@@ -129,6 +129,7 @@
                             <ul class="v-menu w-100 bg-brandColor2 fg-white">
                                 <li><a onclick="createYoutubePlaylist()">Youtube Playlist</a></li>
                                 <li><a onclick="createFractalMusic()">Fractal Music</a></li>
+                                <li><a onclick="createKEXP()">KEXP</a></li>
                                 <li><a href="/">Start</a></li>
                             </ul>
                         </div>
@@ -174,5 +175,18 @@
     });
    }   
    </script>
+      <script>
+   function createKEXP(){
+   Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
+        width: 400,
+        icon: "<span class='mif-youtube'></span>",
+        title: "KEXP",
+        content: "https://youtu.be/_p7K2pnmy00",
+        clsContent: "bg-darkTeal"
+    });
+   }   
+   </script> 
 </body>
 </html>
