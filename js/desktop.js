@@ -154,18 +154,6 @@ function createWindowModal(){
     });
 }
 
-function createWindowYoutube(){
-    Desktop.createWindow({
-        resizeable: true,
-        draggable: true,
-        width: 500,
-        icon: "<span class='mif-youtube'></span>",
-        title: "Youtube video",
-        content: "https://youtu.be/Qz6XNSB0F3E",
-        clsContent: "bg-dark"
-    });
-}
-
 function openCharm() {
     var charm = $("#charm").data("charms");
     charm.toggle();
