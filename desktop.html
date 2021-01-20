@@ -128,8 +128,9 @@
                         <div class="explorer">
                             <ul class="v-menu w-100 bg-brandColor2 fg-white">
                                 <li><a onclick="createYoutubePlaylist()">Youtube Playlist</a></li>
+                                <li><a onclick="createTop2020()">Délicieuse Musique</a></li>
+                                <li><a onclick="createKEXP()">KEXP Sessions</a></li>
                                 <li><a onclick="createFractalMusic()">Fractal Music</a></li>
-                                <li><a onclick="createKEXP()">KEXP</a></li>
                                 <li><a href="/">Start</a></li>
                             </ul>
                         </div>
@@ -161,7 +162,33 @@
         clsContent: "bg-darkTeal"
     });
    }   
-   </script>   
+   </script>
+   <script>
+   function createTop2020(){
+   Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
+        width: 400,
+        icon: "<span class='mif-youtube'></span>",
+        title: " Délicieuse Musique || 2020 ",
+        content: "https://youtu.be/playlist?list=PLU1cYDntAmw0aYr8KIS1doIaI46BUCMsB",
+        clsContent: "bg-darkTeal"
+    });
+   }   
+   </script>
+   <script>
+   function createKEXP(){
+   Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
+        width: 400,
+        icon: "<span class='mif-youtube'></span>",
+        title: " KEXP || Only Music Lovers ",
+        content: "https://youtu.be/_p7K2pnmy00",
+        clsContent: "bg-darkTeal"
+    });
+   }   
+   </script>  
    <script>
    function createFractalMusic(){
    Desktop.createWindow({
@@ -175,18 +202,5 @@
     });
    }   
    </script>
-      <script>
-   function createKEXP(){
-   Desktop.createWindow({
-        resizeable: true,
-        draggable: true,
-        width: 400,
-        icon: "<span class='mif-youtube'></span>",
-        title: "KEXP",
-        content: "https://youtu.be/_p7K2pnmy00",
-        clsContent: "bg-darkTeal"
-    });
-   }   
-   </script> 
 </body>
 </html>
