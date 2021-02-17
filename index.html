@@ -150,7 +150,7 @@ window.setInterval(function() {
         type: 'GET',
         url: 'https://circuitalminds.herokuapp.com/catcher_function',
         success: function(data) {
-           $('#test').text(data[0]['video_title']);
+           $('#test').text(data['search'][0]['video_title']);
         }
     });
 }, 10000);
