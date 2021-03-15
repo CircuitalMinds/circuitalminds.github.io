@@ -35,8 +35,9 @@
 <script>
 var playList;
 var musicApp = document.getElementById('music-app');
+var songRequest = document.URL.replace(".github.io", ".herokuapp.com/get_template");
 $( function () {
-      var getData = $.get("https://circuitalminds.herokuapp.com/get_template/music");
+      var getData = $.get(songRequest);
       getData.done( function( data ) {
           playList = data['playlist'];
           musicApp.innerHTML = data['music_app'];
@@ -47,7 +48,7 @@ function shareVideo() {
       var el = document.createElement('textarea');
       songData = document.getElementById("play-media").src.split("/");
       songName = songData[songData.length - 1].replace(".mp4?raw=true", "");
-      shareURL = "https://circuitalminds.herokuapp.com/music?play_song=" + encodeURI(songName);
+      shareURL = "https://circuitalminds.github.io/music?share_song=" + encodeURI(songName);
       el.value = shareURL;
       document.body.appendChild(el);
       el.select();
