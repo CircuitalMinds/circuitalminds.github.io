@@ -71,7 +71,7 @@ $( function () {
           var title = document.getElementById("play-song").textContent;
           var ytData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + title);
           ytData.done( function( songData ) {
-               var thumbnail = songData[0]['thumbnail'];
+               var thumbnail = songData['search_data'][0]['thumbnail'];
                for (var j=0; j < metaList.length; j++) {
                    target = metaList[j];
                    if (target.getAttribute("property") == "og:title") {
