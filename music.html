@@ -29,13 +29,77 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="bg-dark">
+
 <div id="music-app" class="fg-teal"></div>
+    
+<div class="card">
+    <div class="cell card-header p-2">
+        <h3 id="play-song-mp3">YouTube Search</h3>
+    </div>
+    <br>
+    <div class="cell card-content text-center row m-1">
+            <input id="yt-search" type="text" class="w-75">
+            <button onClick="youtubeSearch(document.getElementById('yt-search').value);"
+                    class="button button primary w-25 border bd-gray fg-teal fg-light-hover bg-light bg-teal-hover">Search
+            </button>
+    </div>
+    <div class="cell card-content text-center">
+    <ul class="group-list text-center">
+        <li class="text-center">
+        <ul class="group-list horizontal text-center">
+            <li class="text-center"><strong>Video</strong></li>
+        </ul>
+        </li>
+    </ul>
+    <ul id="search-list" class="group-list text-center"></ul>
+    </div>
+</div>    
 <script src="metro/js/metro.js"></script>
 <script src="js/music.js"></script>
 <script>
 var playList;
 var musicApp = document.getElementById('music-app');
+var searchList = document.getElementById("search-list");
 var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
+
+function youtubeSearch(search) {
+    searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
+    var searchData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + search);
+    searchData.done( function( data ) {
+       var dataList = data['search_data'];
+       var lenData = dataList.length;
+       searchList.innerHTML = "";
+
+       for (var j = 0; j < lenData; j++) {
+           row = document.createElement("li");
+           row.setAttribute("class", "cell");
+
+           title = document.createElement("p");
+           title.setAttribute("class", "card-header w-100");
+           title.textContent= dataList[j]['video_title'];
+           row.appendChild(title);
+
+           thumb = document.createElement("img");
+           thumb.setAttribute("class", "card-content w-100");
+           thumb.setAttribute("src", dataList[j]["thumbnail"]);
+           row.appendChild(thumb);
+
+           btn = document.createElement("button");
+           btn.textContent = "Download Video";
+           btn.setAttribute("class", "card-content w-100 button primary text-center fg-teal fg-light-hover bg-light bg-teal-hover");
+           btn.setAttribute("onClick", "youtubeDownloader('" + dataList[j]['video_url'] + "')");
+           row.appendChild(btn);
+
+           searchList.appendChild(row);
+       }
+
+    });
+};
+
+function youtubeDownloader(url) {
+    var urlData = $.get("https://circuitalminds.herokuapp.com/check_data/select", {"url": url});
+};
+
 $( function () {
       var getData = $.get(songRequest);
       getData.done( function( data ) {
