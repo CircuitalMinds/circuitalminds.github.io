@@ -63,30 +63,28 @@ var search;
 var metaList = document.getElementsByTagName("meta");
 var target;
 
-$( function () {
-     var getData = $.get(songRequest);
-     getData.done( function( data ) {
-          playList = data['playlist'];
-          musicApp.innerHTML = data['music_app'];        
-          var title = document.getElementById("play-song").textContent;
-          var ytData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + title);
-          ytData.done( function( songData ) {
-               var thumbnail = songData['search_data'][0]['thumbnail'];
-               for (var j=0; j < metaList.length; j++) {
-                   target = metaList[j];
-                   if (target.getAttribute("property") == "og:title") {
-                       target.setAttribute("content", title)
-                   };
-                   if (target.getAttribute("property") == "og:image") {
-                       target.setAttribute("content", thumbnail)
-                   };
-                   if (target.getAttribute("property") == "og:url") {
-                       target.setAttribute("content", document.URL)
-                   };
-               }
-          });
-     });
-});    
+var getData = $.get(songRequest);
+getData.done( function( data ) {
+      playList = data['playlist'];
+      musicApp.innerHTML = data['music_app'];        
+      var title = document.getElementById("play-song").textContent;
+      var ytData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + title);
+      ytData.done( function( songData ) {
+           var thumbnail = songData['search_data'][0]['thumbnail'];
+           for (var j=0; j < metaList.length; j++) {
+               target = metaList[j];
+               if (target.getAttribute("property") == "og:title") {
+                   target.setAttribute("content", title)
+               };
+               if (target.getAttribute("property") == "og:image") {
+                   target.setAttribute("content", thumbnail)
+               };
+               if (target.getAttribute("property") == "og:url") {
+                   target.setAttribute("content", document.URL)
+               };
+           }
+      });
+});
     
 function youtubeSearch() {
     search = document.getElementById('yt-search').value;
