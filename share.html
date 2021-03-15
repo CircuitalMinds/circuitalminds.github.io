@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" /><link rel="canonical" href="https://circuitalminds.github.io/" />
+    <meta name="description" content="Spinning out gracefully" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Alan Matzumiya">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Circuital | Minds" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/img/Jungle3.png" />
+    <meta property="og:url" content="https://circuitalminds.github.io/" />
+    <meta property="og:site_name" content="Circuital | Minds" />
+    <meta property="og:description" content="Spinning out gracefully" />
+    <meta property="fb:app_id" content="772020893629559"/>
+  
+    <!-- Styles -->
+    <link rel="shortcut icon" href="img/Jungle3.ico" type="image/x-icon">
+    <link rel="icon" href="img/Jungle3.ico" type="image/x-icon">
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+  
+    <title>CircuitalMinds | Desktop</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="music-app"></div>
+<script src="metro/js/metro.js"></script>
+<script src="js/music.js"></script>
+<script>
+var playList;
+var musicApp = document.getElementById('music-app');
+$( function () {
+      var getData = $.get("/get_template/music");
+      getData.done( function( data ) {
+          playList = data['playlist'];
+          musicApp.innerHTML = data['music_app'];
+      });
+});
+
+function shareVideo() {
+      var el = document.createElement('textarea');
+      songData = document.getElementById("play-media").src.split("/");
+      songName = songData[songData.length - 1].replace(".mp4?raw=true", "");
+      shareURL = "https://circuitalminds.herokuapp.com/music?play_song=" + encodeURI(songName);
+      el.value = shareURL;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      alert("Link Copied: " + el.value);
+      document.body.removeChild(el);
+}
+</script>
+</body>
+</html>
