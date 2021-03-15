@@ -27,7 +27,8 @@
     <link href="css/descktop.css" rel="stylesheet">
 
     <title>CircuitalMinds | Desktop</title>
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .window-area {
             background: url("img/elephant_valley.png") center center no-repeat;
@@ -191,15 +192,23 @@
    }   
    </script>  
    <script>
+   var playList;
+   var musicApp;
+   var getData = $.get("https://circuitalminds.herokuapp.com/get_template/music");
+   getData.done( function( data ) {
+       playList = data['playlist'];
+       musicApp = data['music_app'];
+   });
+
    function createFractalMusic(){
    Desktop.createWindow({
         resizeable: true,
         draggable: true,
         width: 400,
         icon: "<span class='mif-rocket'></span>",
-        title: "Fractal Music",
-        content: "<video width='396px' data-aspect-ratio='hd' data-role='video-player' data-src=" + "https://github.com/alanmatzumiya/containers/raw/music_1/part_1/Pantera%20-%20Domination%20(Official%20Live%20Video)-aDACorIaxNw.mp4" + "></video>",
-        clsContent: "bg-darkTeal"
+        title: "CircuitalMinds | Music App",
+        content: musicApp,
+        clsContent: "bg-light"
     });
    }   
    </script>
