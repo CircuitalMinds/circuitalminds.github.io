@@ -35,7 +35,7 @@
 <script>
 var playList;
 var musicApp = document.getElementById('music-app');
-var songRequest = document.URL.replace(".github.io", ".herokuapp.com/get_template");
+var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
 $( function () {
       var getData = $.get(songRequest);
       getData.done( function( data ) {
