@@ -12,10 +12,10 @@
     <meta name="author" content="Alan Matzumiya">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="" />
+    <meta property="og:title" content="Laid Back - Don't Shoot The Sun Down (Iive)" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
+    <meta property="og:image" content="https://i.ytimg.com/vi/ClXUlSx65y4/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBimZyv1ldkSlLxEQ2rKtvoPlrPrg" />
+    <meta property="og:url" content="https://circuitalminds.github.io/" />
     <meta property="og:site_name" content="CircuitalMinds | MusicApp" />
     <meta property="og:description" content="Listening Music from Api CircuitalMinds" />
     <meta property="fb:app_id" content="772020893629559"/>
@@ -60,30 +60,11 @@ var musicApp = document.getElementById('music-app');
 var searchList = document.getElementById("search-list");
 var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
 var search;
-var metaList = document.getElementsByTagName("meta");
-var target;
 
 var getData = $.get(songRequest);
 getData.done( function( data ) {
       playList = data['playlist'];
-      musicApp.innerHTML = data['music_app'];        
-      var title = document.getElementById("play-song").textContent;
-      var ytData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + title);
-      ytData.done( function( songData ) {
-           var thumbnail = songData['search_data'][0]['thumbnail'];
-           for (var j=0; j < metaList.length; j++) {
-               target = metaList[j];
-               if (target.getAttribute("property") == "og:title") {
-                   target.setAttribute("content", title)
-               };
-               if (target.getAttribute("property") == "og:image") {
-                   target.setAttribute("content", thumbnail)
-               };
-               if (target.getAttribute("property") == "og:url") {
-                   target.setAttribute("content", document.URL)
-               };
-           }
-      });
+      musicApp.innerHTML = data['music_app'];      
 });
     
 function youtubeSearch() {
