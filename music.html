@@ -45,7 +45,7 @@ $( function () {
 
 function shareVideo() {
       var el = document.createElement('textarea');
-      shareURL = "https://circuitalminds.github.io/music?share_song=" + document.getElementById("play-song");
+      shareURL = "https://circuitalminds.github.io/music?share_song=" + encodeURI(document.getElementById("play-song").textContent);
       el.value = shareURL;
       document.body.appendChild(el);
       el.select();
