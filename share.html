@@ -36,7 +36,7 @@
 var playList;
 var musicApp = document.getElementById('music-app');
 $( function () {
-      var getData = $.get("/get_template/music");
+      var getData = $.get("https://circuitalminds.herokuapp.com/get_template/music");
       getData.done( function( data ) {
           playList = data['playlist'];
           musicApp.innerHTML = data['music_app'];
