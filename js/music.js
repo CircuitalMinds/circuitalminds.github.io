@@ -1,3 +1,10 @@
+function nextSong( playList ) {
+      song = playList[Math.floor(Math.random() * 100)];
+      document.getElementById("play-song").innerHTML = song.name;
+      document.getElementById("play-media").src = song.url;
+      document.getElementById("play-media").play();
+}
+
 function shareVideo() {
       var el = document.createElement('textarea');
       songData = document.getElementById("play-media").src.split("/");
