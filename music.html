@@ -31,29 +31,30 @@
 <body class="bg-dark">
 
 <div id="music-app" class="fg-teal"></div>
-    
-<div class="card">
-    <div class="cell card-header p-2">
-        <h3 id="play-song-mp3">YouTube Search</h3>
-    </div>
-    <br>
-    <div class="cell card-content text-center row m-1">
-            <input id="yt-search" type="text" class="w-75">
-            <button onClick="youtubeSearch(document.getElementById('yt-search').value);"
-                    class="button button primary w-25 border bd-gray fg-teal fg-light-hover bg-light bg-teal-hover">Search
-            </button>
-    </div>
-    <div class="cell card-content text-center">
-    <ul class="group-list text-center">
-        <li class="text-center">
-        <ul class="group-list horizontal text-center">
-            <li class="text-center"><strong>Video</strong></li>
+
+    <div class="card">
+        <div class="cell card-header p-2">
+            <h3 id="play-song-mp3">YouTube Search</h3>
+        </div>
+        <br>
+        <div class="cell card-content text-center row m-1">
+                <input id="yt-search" type="text" class="w-75">
+                <button onClick="youtubeSearch(document.getElementById('yt-search').value);"
+                        class="button button primary w-25 border bd-gray fg-teal fg-light-hover bg-light bg-teal-hover">Search
+                </button>
+        </div>
+        <div class="cell card-content text-center">
+        <ul class="group-list text-center">
+            <li class="text-center">
+            <ul class="group-list horizontal text-center">
+                <li class="text-center"><strong>Video</strong></li>
+            </ul>
+            </li>
         </ul>
-        </li>
-    </ul>
-    <ul id="search-list" class="group-list text-center"></ul>
+        <ul id="search-list" class="group-list text-center"></ul>
+        </div>
     </div>
-</div>    
+    
 <script src="metro/js/metro.js"></script>
 <script src="js/music.js"></script>
 <script>
@@ -62,6 +63,13 @@ var musicApp = document.getElementById('music-app');
 var searchList = document.getElementById("search-list");
 var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
 
+$( function () {
+      var getData = $.get(songRequest);
+      getData.done( function( data ) {
+          playList = data['playlist'];
+          musicApp.innerHTML = data['music_app'];
+      });
+    
 function youtubeSearch(search) {
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
     var searchData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + search);
@@ -100,12 +108,6 @@ function youtubeDownloader(url) {
     var urlData = $.get("https://circuitalminds.herokuapp.com/check_data/select", {"url": url});
 };
 
-$( function () {
-      var getData = $.get(songRequest);
-      getData.done( function( data ) {
-          playList = data['playlist'];
-          musicApp.innerHTML = data['music_app'];
-      });
 });
 
 function shareVideo() {
