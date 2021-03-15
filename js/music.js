@@ -7,9 +7,7 @@ function nextSong( playList ) {
 
 function shareVideo() {
       var el = document.createElement('textarea');
-      songData = document.getElementById("play-media").src.split("/");
-      songName = songData[songData.length - 1].replace(".mp4?raw=true", "");
-      shareURL = "https://circuitalminds.github.io/music?share_song=" + decodeURI(songName);
+      shareURL = "https://circuitalminds.github.io/music?share_song=" + encodeURI(document.getElementById("play-song").textContent);
       el.value = shareURL;
       document.body.appendChild(el);
       el.select();
