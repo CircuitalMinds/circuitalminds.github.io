@@ -67,7 +67,8 @@ $( function () {
       getData.done( function( data ) {
           playList = data['playlist'];
           musicApp.innerHTML = data['music_app'];
-});
+      });
+});    
     
 function youtubeSearch() {
     search = document.getElementById('yt-search').value;
