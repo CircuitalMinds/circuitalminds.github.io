@@ -4,19 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-    var tagRequest = document.URL.replace("github.io/music", "herokuapp.com/get_template/meta_tags");
-    var tag_title = document.querySelector('meta[property="og:title"]');
-    var tag_image = document.querySelector('meta[property="og:image"]');
-    
-    var getTags = $.get(tagRequest);
-    getTags.done( function( data ) {
-        tag_title.setAttribute("content", data["og:title"]);        
-        tag_image.setAttribute("content", data["og:image"]);
-    });    
-    </script>
     
     <!-- Robots -->
     <meta name="robots" content="index, follow" /><link rel="canonical" href="https://circuitalminds.github.io/music" />
@@ -32,6 +19,19 @@
     <meta property="og:url" content="https://circuitalminds.github.io/music" />
     <meta property="og:site_name" content="CircuitalMinds | MusicApp" />
     <meta property="fb:app_id" content="772020893629559" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    var tagRequest = document.URL.replace("github.io/music", "herokuapp.com/get_template/meta_tags");
+    var tag_title = document.querySelector('meta[property="og:title"]');
+    var tag_image = document.querySelector('meta[property="og:image"]');
+    
+    var getTags = $.get(tagRequest);
+    getTags.done( function( data ) {
+        tag_title.setAttribute("content", data["og:title"]);        
+        tag_image.setAttribute("content", data["og:image"]);
+    });    
+    </script>
 
     <!-- Styles -->
     <link rel="shortcut icon" href="img/Jungle3.ico" type="image/x-icon">
