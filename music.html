@@ -14,7 +14,7 @@
     getData.done( function( data ) {
           playList = data['playlist'];
           music_app = data['music_app'];
-          meta_tags = data['meta_tags'].split("\n");
+          var meta_tags = data['meta_tags'].split("\n");
           for (var j = 2; j < meta_tags; j++) {
               $('head').append(meta_tags[j]);
           }
@@ -65,9 +65,7 @@
 var musicApp = document.getElementById('music-app');
 musicApp.innerHTML = music_app;
 var searchList = document.getElementById("search-list");
-var search;  
-     
-});
+var search;
     
 function youtubeSearch() {
     search = document.getElementById('yt-search').value;
