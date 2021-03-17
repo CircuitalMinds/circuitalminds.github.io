@@ -7,18 +7,14 @@
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
-    var playList;
-    var music_app;
-    var meta_tags;
-    var getData = $.get(songRequest);
-    getData.done( function( data ) {
-          playList = data['playlist'];
-          music_app = data['music_app'];
-          meta_tags = data['meta_tags'].split("\n");
-          for (var j = 2; j < meta_tags; j++) {
-              document.getElementByTagName("head").append(meta_tags[j]);
-          }
+    var tagRequest = document.URL.replace("github.io/get_template/music", "herokuapp.com/get_template/meta_tags");
+    var tag_title = document.querySelector('meta[property=os:title]');
+    var tag_image = document.querySelector('meta[property=os:image]');
+    
+    var getTags = $.get(tagRequest);
+    getTags.done( function( data ) {         
+        tag_title.setAttribute("content", data["os:title"]);        
+        tag_image.setAttribute("content", data["os:image"]);
     });    
     </script>
     
@@ -27,7 +23,16 @@
     <meta name="description" content="Listen to music from CircuitalMinds" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="author" content="Alan Matzumiya">
-  
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="Listen to music from CircuitalMinds" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://circuitalminds.github.io/music" />
+    <meta property="og:site_name" content="CircuitalMinds | MusicApp" />
+    <meta property="fb:app_id" content="772020893629559" />
+
     <!-- Styles -->
     <link rel="shortcut icon" href="img/Jungle3.ico" type="image/x-icon">
     <link rel="icon" href="img/Jungle3.ico" type="image/x-icon">
@@ -64,10 +69,16 @@
 <script src="js/music.js"></script>
 <script>
 var musicApp = document.getElementById('music-app');
-musicApp.innerHTML = music_app;
+var playList;
 var searchList = document.getElementById("search-list");
 var search;
     
+var getData = $.get(songRequest);
+getData.done( function( data ) {
+      playList = data['playlist'];
+      musicApp.innerHTML = data['music_app'];
+});        
+
 function youtubeSearch() {
     search = document.getElementById('yt-search').value;
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
