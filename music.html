@@ -7,12 +7,12 @@
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    var tagRequest = document.URL.replace("github.io/get_template/music", "herokuapp.com/get_template/meta_tags");
+    var tagRequest = document.URL.replace("github.io/music", "herokuapp.com/get_template/meta_tags");
     var tag_title = document.querySelector('meta[property="og:title"]');
     var tag_image = document.querySelector('meta[property="og:image"]');
     
     var getTags = $.get(tagRequest);
-    getTags.done( function( data ) {         
+    getTags.done( function( data ) {
         tag_title.setAttribute("content", data["og:title"]);        
         tag_image.setAttribute("content", data["og:image"]);
     });    
