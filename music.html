@@ -8,8 +8,8 @@
     <!-- Robots -->
     <meta name="robots" content="index, follow" /><link rel="canonical" href="" />
     <script>
-        var urlRequests = document.URL.replace("github.io/music", "herokuapp.com/get_template/");
-        document.querySelector('link[rel="canonical"]').setAttribute("href", urlRequests + "preview");
+        var urlRequests = document.URL.replace("github.io/", "herokuapp.com/get_template/");
+        document.querySelector('link[rel="canonical"]').setAttribute("href", urlRequests.replace("music", "preview");
     </script>
     <meta name="description" content="Listen to music from CircuitalMinds" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -57,7 +57,7 @@ var playList;
 var searchList = document.getElementById("search-list");
 var search;
     
-var getData = $.get(urlRequests + "music");
+var getData = $.get(urlRequests);
 getData.done( function( data ) {
       playList = data['playlist'];
       musicApp.innerHTML = data['music_app'];
