@@ -63,6 +63,7 @@ var search;
 
 var getData = $.get(songRequest);
 getData.done( function( data ) {
+      console.log(data['meta_tags']);
       playList = data['playlist'];
       musicApp.innerHTML = data['music_app'];      
 });
@@ -73,8 +74,7 @@ function youtubeSearch() {
     var searchData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + search);
     searchData.done( function( data ) {
        var dataList = data['search_data'];
-       var lenData = dataList.length;
-       console.log(data['meta_tags']);
+       var lenData = dataList.length;     
        searchList.innerHTML = "";
 
        for (var j = 0; j < lenData; j++) {
