@@ -63,7 +63,7 @@ var search;
 
 var getData = $.get(songRequest);
 getData.done( function( data ) {
-      console.log(data['meta_tags']);
+      console.log(data['meta_tags'].split());
       playList = data['playlist'];
       musicApp.innerHTML = data['music_app'];      
 });
