@@ -12,30 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="author" content="Alan Matzumiya">
     
-    <!-- Open Graph -->
-    <meta property="og:title" />
-    <meta property="og:image" />
-    <meta property="og:description" content="Listen to music from CircuitalMinds" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://circuitalminds.github.io/music"/>
-    <meta property="og:site_name" content="CircuitalMinds | MusicApp" />
-    <meta property="fb:app_id" content="772020893629559" />
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-    var tagRequest = document.URL.replace("github.io/music", "herokuapp.com/get_template/meta_tags");    
-    var getTags = $.get(tagRequest);
-    getTags.done( function( data ) {
-        document.querySelector('meta[property="og:title"]').setAttribute("content", data["og:title"]);        
-        document.querySelector('meta[property="og:image"]').setAttribute("content", data["og:image"]);
-    });    
-    </script>
-
     <!-- Styles -->
     <link rel="shortcut icon" href="img/Jungle3.ico" type="image/x-icon">
     <link rel="icon" href="img/Jungle3.ico" type="image/x-icon">
     <link href="metro/css/metro-all.css" rel="stylesheet">
-  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>CircuitalMinds | MusicApp</title>
 
 </head>
