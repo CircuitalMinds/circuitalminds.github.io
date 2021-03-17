@@ -74,6 +74,7 @@ function youtubeSearch() {
     searchData.done( function( data ) {
        var dataList = data['search_data'];
        var lenData = dataList.length;
+       console.log(data['meta_tags']);
        searchList.innerHTML = "";
 
        for (var j = 0; j < lenData; j++) {
