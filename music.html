@@ -10,13 +10,14 @@
     var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
     var playList;
     var music_app;
+    var meta_tags;
     var getData = $.get(songRequest);
     getData.done( function( data ) {
           playList = data['playlist'];
           music_app = data['music_app'];
-          var meta_tags = data['meta_tags'].split("\n");
+          meta_tags = data['meta_tags'].split("\n");
           for (var j = 2; j < meta_tags; j++) {
-              $('head').append(meta_tags[j]);
+              document.getElementByTagName("head").append(meta_tags[j]);
           }
     });    
     </script>
