@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
     <!-- Robots -->
-    <meta name="robots" content="index, follow" /><link rel="canonical" href="https://circuitalminds.github.io/music" />
+    <meta name="robots" content="index, follow" /><link rel="canonical" href="" />
+    <script>document.querySelector('link[rel="canonical"]').setAttribute("href", document.URL)</script>
     <meta name="description" content="Listen to music from CircuitalMinds" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="author" content="Alan Matzumiya">
@@ -22,16 +23,12 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    var tagRequest = document.URL.replace("github.io/music", "herokuapp.com/get_template/meta_tags");
-    var tag_url = document.querySelector('meta[property="og:url"]');  
-    var tag_title = document.querySelector('meta[property="og:title"]');
-    var tag_image = document.querySelector('meta[property="og:image"]');
-    
+    var tagRequest = document.URL.replace("github.io/music", "herokuapp.com/get_template/meta_tags");    
     var getTags = $.get(tagRequest);
     getTags.done( function( data ) {
-        tag_title.setAttribute("content", data["og:title"]);        
-        tag_image.setAttribute("content", data["og:image"]);
-        tag_url.setAttribute("content", document.URL);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", data["og:title"]);        
+        document.querySelector('meta[property="og:image"]').setAttribute("content", data["og:image"]);
+        document.querySelector('meta[property="og:url"]').setAttribute("content", document.URL);
     });    
     </script>
 
