@@ -17,7 +17,7 @@
     <meta property="og:image" />
     <meta property="og:description" content="Listen to music from CircuitalMinds" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" />
+    <meta property="og:url" content="https://circuitalminds.github.io/music"/>
     <meta property="og:site_name" content="CircuitalMinds | MusicApp" />
     <meta property="fb:app_id" content="772020893629559" />
     
@@ -28,7 +28,6 @@
     getTags.done( function( data ) {
         document.querySelector('meta[property="og:title"]').setAttribute("content", data["og:title"]);        
         document.querySelector('meta[property="og:image"]').setAttribute("content", data["og:image"]);
-        document.querySelector('meta[property="og:url"]').setAttribute("content", document.URL);
     });    
     </script>
 
