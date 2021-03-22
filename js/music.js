@@ -1,39 +1,30 @@
-var playList;
-var musicApp = document.getElementById('music-app');
+var currentSong = document.getElementById('play-song');
+var playMedia = document.getElementById('play-media');
 var searchList = document.getElementById("search-list");
-var songRequest = document.URL.replace("github.io", "herokuapp.com/get_template");
+var musicApp = document.getElementById('music-app');
+var playList;
+var listNames;
 var search;
-
-function nextSong( playList ) {
-      song = playList[Math.floor(Math.random() * 100)];
-      document.getElementById("play-song").innerHTML = song.name;
-      document.getElementById("play-media").src = song.url;
-      document.getElementById("play-media").play();
-}
-
-function shareVideo() {
-      var el = document.createElement('textarea');
-      shareURL = "https://circuitalminds.github.io/music?share_song=" + encodeURI(document.getElementById("play-song").textContent);
-      el.value = shareURL;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      alert("Link Copied: " + el.value);
-      document.body.removeChild(el);
-}
-
-var getData = $.get(songRequest);
+    
+var getData = $.get(urlRequests + "api/get_music_app");
 getData.done( function( data ) {
       playList = data['playlist'];
-      musicApp.innerHTML = data['music_app'];      
-});
-    
-function youtubeSearch() {
-    search = document.getElementById('yt-search').value;
+      listNames = data['list_names'];
+      musicApp.innerHTML = data['music_app'];
+});        
+
+function endSong() {
+    nameSong = listNames[listNames.indexOf(currentSong.textContent) + 1];
+    playMedia.setAttribute("src", playList[nameSong]);
+    currentSong.innerHTML = nameSong;
+    playMedia.play();
+};
+
+function youtubeSearch(search) {
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
-    var searchData = $.get("https://circuitalminds.herokuapp.com/youtube/search/" + search);
+    var searchData = $.get(urlRequests + "/api/get_youtube_search_list", {"title": search});
     searchData.done( function( data ) {
-       var dataList = data['search_data'];
+       var dataList = data['search_list'];
        var lenData = dataList.length;
        searchList.innerHTML = "";
 
@@ -48,7 +39,7 @@ function youtubeSearch() {
 
            thumb = document.createElement("img");
            thumb.setAttribute("class", "card-content w-100");
-           thumb.setAttribute("src", dataList[j]["thumbnail"]);
+           thumb.setAttribute("src", dataList[j]["video_image"]);
            row.appendChild(thumb);
 
            btn = document.createElement("button");
@@ -64,16 +55,17 @@ function youtubeSearch() {
 };
 
 function youtubeDownloader(url) {
-    var urlData = $.get("https://circuitalminds.herokuapp.com/check_data/select", {"url": url});
+    var urlData = $.get(urlRequests + "/check_data/select", {"url": url});
 };
 
 function shareVideo() {
-      var el = document.createElement('textarea');
-      shareURL = "https://circuitalminds.github.io/music?share_song=" + encodeURI(document.getElementById("play-song").textContent);
-      el.value = shareURL;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      alert("Link Copied: " + el.value);
-      document.body.removeChild(el);
+    var el = document.createElement('textarea');
+    song = encodeURI(listNames[listNames.indexOf(currentSong.textContent)]);
+    shareURL = "https://circuitalminds.github.io/music?play_song=" + song;
+    el.value = shareURL;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    alert("Link Copied: " + el.value);
+    document.body.removeChild(el);
 };
