@@ -22,7 +22,7 @@ function endSong() {
 
 function youtubeSearch(search) {
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
-    var searchData = $.get(urlRequests + "/api/get_youtube_search_list", {"title": search});
+    var searchData = $.get(urlRequests + "api/get_youtube_search_list", {"title": search});
     searchData.done( function( data ) {
        var dataList = data['search_list'];
        var lenData = dataList.length;
@@ -55,7 +55,7 @@ function youtubeSearch(search) {
 };
 
 function youtubeDownloader(url) {
-    var urlData = $.get(urlRequests + "/check_data/select", {"url": url});
+    var urlData = $.get(urlRequests + "check_data/select", {"url": url});
 };
 
 function shareVideo() {
