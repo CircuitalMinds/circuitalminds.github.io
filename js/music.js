@@ -4,7 +4,6 @@ var searchList = document.getElementById("search-list");
 var musicApp = document.getElementById('music-app');
 var playList;
 var listNames;
-var search;
     
 var getData = $.get(urlRequests + "api/get_music_app");
 getData.done( function( data ) {
@@ -22,7 +21,7 @@ function endSong() {
 
 function youtubeSearch(search) {
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
-    var searchData = $.get(urlRequests + "api/get_youtube_search_list", {"title": search});
+    var searchData = $.get(urlRequests + "api/get_youtube_search_list", {"title": document.getElementById("yt-search").value});
     searchData.done( function( data ) {
        var dataList = data['search_list'];
        var lenData = dataList.length;
