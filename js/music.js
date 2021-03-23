@@ -1,15 +1,17 @@
-var currentSong = document.getElementById('play-song');
-var playMedia = document.getElementById('play-media');
 var searchList = document.getElementById("search-list");
 var musicApp = document.getElementById('music-app');
 var playList;
 var listNames;
-    
+var currentSong;
+var playMedia;
+
 var getData = $.get(urlRequests + "api/get_music_app");
 getData.done( function( data ) {
-      playList = data['playlist'];
-      listNames = data['list_names'];
-      musicApp.innerHTML = data['music_app'];
+    playList = data['playlist'];
+    listNames = data['list_names'];
+    musicApp.innerHTML = data['music_app'];
+    currentSong = document.getElementById('play-song');
+    playMedia = document.getElementById('play-media');
 });        
 
 function endSong() {
