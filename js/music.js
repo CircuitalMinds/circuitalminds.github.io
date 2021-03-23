@@ -20,9 +20,8 @@ function endSong() {
 };
 
 function youtubeSearch(search) {
-    searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
-    var title = decodeURI(document.getElementById("yt-search").value);
-    var searchData = $.get(urlRequests + "api/get_youtube_search_list", {"title": title});
+    searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';    
+    var searchData = $.get(urlRequests + "api/get_youtube_search_list", {"title": search});
     searchData.done( function( data ) {
        var dataList = data['search_list'];
        var lenData = dataList.length;
