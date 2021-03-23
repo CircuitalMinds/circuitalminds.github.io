@@ -148,10 +148,34 @@
             </div>
         </div>
     </div>
-
     <script src="metro/js/metro.js"></script>    
-    <script src="js/desktop.js"></script> 
-    <script src="js/music.js"></script>
+    <script src="js/desktop.js"></script>
+    <script>
+    var urlRequests = document.URL.replace("github.io/desktop", "herokuapp.com/");
+
+    var musicApp;
+    var playList;
+    var listNames;
+
+    var currentSong;
+    var playMedia;
+    
+    function endSong() {        
+        currentSong = document.getElementById('play-song');
+        playMedia = document.getElementById('play-media');
+        nameSong = listNames[listNames.indexOf(currentSong.textContent) + 1];
+        playMedia.setAttribute("src", playList[nameSong]);
+        currentSong.innerHTML = nameSong;
+        playMedia.play();
+    };
+        
+    var getData = $.get(urlRequests + "api/get_music_app");
+    getData.done( function( data ) {
+        playList = data['playlist'];
+        listNames = data['list_names'];
+        musicApp = data['music_app'];
+    });        
+    </script>
     <script>
     function createYoutubePlaylist(){
     Desktop.createWindow({
@@ -191,32 +215,7 @@
     });
    }   
    </script>
-   <script>   
-    var urlRequests = document.URL.replace("github.io/desktop", "herokuapp.com/");
-
-    var musicApp;
-    var playList;
-    var listNames;
-
-    var currentSong;
-    var playMedia;
-
-    var getData = $.get(urlRequests + "api/get_music_app");
-    getData.done( function( data ) {
-        playList = data['playlist'];
-        listNames = data['list_names'];
-        musicApp = data['music_app'];
-    });        
-
-    function endSong() {        
-        currentSong = document.getElementById('play-song');
-        playMedia = document.getElementById('play-media');
-        nameSong = listNames[listNames.indexOf(currentSong.textContent) + 1];
-        playMedia.setAttribute("src", playList[nameSong]);
-        currentSong.innerHTML = nameSong;
-        playMedia.play();
-    };
-
+   <script>
     function createFractalMusic(){
     Desktop.createWindow({
         resizeable: true,
@@ -226,7 +225,7 @@
         title: "CircuitalMinds | MusicApp",
         content: musicApp,
         clsContent: "bg-light fg-teal"
-    });
+        });
     }   
    </script>
 </body>
