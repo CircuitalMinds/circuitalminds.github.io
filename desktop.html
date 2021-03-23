@@ -131,7 +131,7 @@
                                 <li><a onclick="createYoutubePlaylist()">Youtube Playlist</a></li>
                                 <li><a onclick="createTop2020()">Délicieuse Musique</a></li>
                                 <li><a onclick="createKEXP()">KEXP Sessions</a></li>
-                                <li><a onclick="createFractalMusic()">Fractal Music</a></li>
+                                <li><a onclick="createFractalMusic()">CircuitalMinds | MusicApp</a></li>
                                 <li><a href="/">Start</a></li>
                             </ul>
                         </div>
@@ -190,27 +190,44 @@
         clsContent: "bg-darkTeal"
     });
    }   
-   </script>  
-   <script>
-   var playList;
-   var musicApp;
-   var getData = $.get("https://circuitalminds.herokuapp.com/get_template/music");
-   getData.done( function( data ) {
-       playList = data['playlist'];
-       musicApp = data['music_app'];
-   });
+   </script>
+   <script>   
+    var urlRequests = document.URL.replace("github.io/desktop", "herokuapp.com/");
 
-   function createFractalMusic(){
-   Desktop.createWindow({
+    var musicApp;
+    var playList;
+    var listNames;
+
+    var currentSong;
+    var playMedia;
+
+    var getData = $.get(urlRequests + "api/get_music_app");
+    getData.done( function( data ) {
+        playList = data['playlist'];
+        listNames = data['list_names'];
+        musicApp = data['music_app'];
+    });        
+
+    function endSong() {        
+        currentSong = document.getElementById('play-song');
+        playMedia = document.getElementById('play-media');
+        nameSong = listNames[listNames.indexOf(currentSong.textContent) + 1];
+        playMedia.setAttribute("src", playList[nameSong]);
+        currentSong.innerHTML = nameSong;
+        playMedia.play();
+    };
+
+    function createFractalMusic(){
+    Desktop.createWindow({
         resizeable: true,
         draggable: true,
         width: 400,
         icon: "<span class='mif-rocket'></span>",
-        title: "CircuitalMinds | Music App",
+        title: "CircuitalMinds | MusicApp",
         content: musicApp,
         clsContent: "bg-light fg-teal"
     });
-   }   
+    }   
    </script>
 </body>
 </html>
