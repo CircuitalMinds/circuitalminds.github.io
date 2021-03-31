@@ -17,7 +17,7 @@ function endSong() {
 function songFromList( songId ) {
     currentId = songId - 1;
     playMedia.setAttribute("src", playList[currentId]['video_url']);
-    currentSong.innerHTML = [currentId]['video_title'];
+    currentSong.innerHTML = playList[currentId]['video_title'];
     playMedia.play();
 };
 
