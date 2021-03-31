@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class=" scrollbar-type-1 sb-cyan">
+
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" /><link rel="canonical" href="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="author" content="Alan Matzumiya">
+        <meta name='description' content="CircuitalMinds | musicApp">
+    
+        <!-- Open Graph -->
+        <meta property="og:title" content="circuitalminds" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:site_name" content="circuitalminds" />
+        <meta property="og:description" content="" />
+        <meta property="fb:app_id" content="772020893629559"/>
+    
+        <!-- Metro 4 -->
+        <link rel="stylesheet" href="../static/vendors/metro4/css/metro-all.min.css' }}">
+        <link rel="stylesheet" href="../static/css/index.css">
+    
+        <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+            integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+            crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+                crossorigin="anonymous">
+        </script>
+        <title>CircuitalMinds | musicApp</title>
+    
+    </head>
+
+
+<body class="m4-cloak h-vh-100 bg-dark fg-teal">
+<div class="bg-dark fg-teal" data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
+	<div class="navview-pane bg-dark fg-teal">
+	
+
+
+
+        <div class="bg-dark fg-teal d-flex flex-align-center">
+            <button class="pull-button m-0 bg-dark-hover">
+                <span class="mif-menu fg-teal"></span>
+            </button>
+            <h2 class="text-light fg-teal" style="line-height: 52px">CircuitalMinds</h2>
+        </div>
+        
+        <div class="suggest-box">
+            <div class="data-box">
+                <img src="../static/images/Jungle3.png" class="avatar">
+                <div class="ml-4 avatar-title flex-column">
+                    <a href="/" class="d-block fg-white text-medium no-decor"><span class="p-2 reduce-1">Visitor</span></a>
+                    <p class="m-0"><span class="fg-green mr-2">&#x25cf;</span><span class="text-small">online</span></p>
+                </div>
+            </div>
+            <img src="../static/images/Jungle3.png" class="avatar holder ml-2">
+        </div>
+        
+        <div class="suggest-box">
+            <input type="text" data-role="input" data-clear-button="false" data-search-button="true">
+            <button class="holder">
+                <span class="mif-search fg-teal"></span>
+            </button>
+        </div>
+	
+
+
+    <ul class="navview-menu mt-4" id="side-menu">
+        <li class="item-header">MAIN NAVIGATION</li>
+        <li>
+            <a href="/">
+                <span class="icon"><span class="mif-meter"></span></span>
+                <span class="caption">Home</span>
+            </a>
+        </li>
+    
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon"><span class=mif-widgets"></span></span>
+                <span class="caption">Websites</span>
+            </a>
+            <ul class="navview-menu stay-open" data-role="dropdown" >
+                <li class="item-header">Websites</li>
+                <li><a href="/blog">
+                    <span class="icon"><span class="mif-widgets"></span></span>
+                    <span class="caption">Blog</span>
+                </a></li>
+                <li><a href="/pyfullstack">
+                    <span class="icon"><span class="mif-widgets"></span></span>
+                    <span class="caption">pyFullStack</span>
+                </a></li>
+                <li><a href="/portfolio">
+                    <span class="icon"><span class="mif-widgets"></span></span>
+                    <span class="caption">Portfolio</span>
+                </a></li>
+                <li><a href="/desktop">
+                    <span class="icon"><span class="mif-widgets"></span></span>
+                    <span class="caption">Desktop View</span>
+                </a></li>
+            </ul>
+        </li>
+    
+            <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon"><span class="mif-envelop"></span></span>
+                <span class="caption">Mailbox</span>
+                <span class="badges ml-auto mr-3">
+                    <span class="badge inline bg-teal fg-white">17</span>
+                    <span class="badge inline bg-teal fg-white">7</span>
+                    <span class="badge inline bg-teal fg-white">4</span>
+                    <span class="badge inline bg-teal fg-white">3</span>
+                </span>
+            </a>
+            <ul class="navview-menu stay-open" data-role="dropdown" >
+                <li class="item-header">Mailbox</li>
+                <li>
+                    <a href="/inbox">
+                        <span class="icon"><span class="mif-mail"></span></span>
+                        <span class="caption">Inbox</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    
+        <li>
+            <a href="/chat">
+                <span class="icon"><span class="mif-bubbles"></span></span>
+                <span class="caption">Chat</span>
+                <span class="badges ml-auto mr-3">
+                    <span class="badge inline bg-teal fg-white">7</span>
+                    <span class="badge inline bg-teal fg-white">4</span>
+                    <span class="badge inline bg-teal fg-white">3</span>
+                </span>
+            </a>
+        </li>
+    
+        <li>
+            <a href="/music">
+                <span class="icon"><span class="mif-music"></span></span>
+                <span class="caption">Music</span>
+                <span class="badges ml-auto mr-3">
+                    <span class="badge inline bg-teal fg-white">7</span>
+                    <span class="badge inline bg-teal fg-white">4</span>
+                    <span class="badge inline bg-teal fg-white">3</span>
+                </span>
+            </a>
+        </li>
+    
+        <li>
+            <a href="/mandelbrot">
+                <span class="icon"><span class="mif-music"></span></span>
+                <span class="caption">Mandelbrot</span>
+                <span class="badges ml-auto mr-3">
+                    <span class="badge inline bg-teal fg-white">7</span>
+                    <span class="badge inline bg-teal fg-white">4</span>
+                    <span class="badge inline bg-teal fg-white">3</span>
+                </span>
+            </a>
+        </li>
+    
+        <li>
+            <a href="/covid_info">
+                <span class="icon"><span class="mif-music"></span></span>
+                <span class="caption">Covid-19</span>
+                <span class="badges ml-auto mr-3">
+                    <span class="badge inline bg-teal fg-white">7</span>
+                    <span class="badge inline bg-teal fg-white">4</span>
+                    <span class="badge inline bg-teal fg-white">3</span>
+                </span>
+            </a>
+        </li>
+    
+        <li class="item-header">Documentation</li>
+    
+        <li>
+            <a href="https://github.com/CircuitalMinds/">
+                <span class="icon"><img src="../static/images/Jungle3.png" class="avatar"></span>
+                <span class="caption">CircuitalMinds</span>
+            </a>
+        </li>
+        <li><canvas id="criba" style='display: inline-block; max-width: 100%; max-height: 100%;'>
+            </canvas>
+        </li>
+    </ul>
+
+
+
+	</div>
+
+
+	<div class="w-100 text-center text-small data-box p-2 border-top bd-grayMouse" style="position: absolute; bottom: 0">
+        <div>&copy; 2021 <a href="https://alanmatzumiya.github.io/" class="text-muted fg-white-hover no-decor">Alan Matzumiya</a></div>
+    </div>
+    
+    <div class="navview-content h-100">
+
+
+
+        <div data-role="appbar" class="pos-absolute bg-grayMouse fg-white">
+            <a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
+            <div class="app-bar-container ml-auto">
+                <a href="#" class="app-bar-item">
+                    <span class="mif-envelop"></span>
+                    <span class="badge bg-green fg-white mt-2 mr-1">4</span>
+                </a>
+                <a href="#" class="app-bar-item">
+                    <span class="mif-bell"></span>
+                    <span class="badge bg-orange fg-white mt-2 mr-1">10</span>
+                </a>
+                <a href="#" class="app-bar-item">
+                    <span class="mif-flag"></span>
+                    <span class="badge bg-red fg-white mt-2 mr-1">9</span>
+                </a>
+                <div class="app-bar-container">
+                    <a href="#" class="app-bar-item">
+                        <img src="../static/images/Jungle3.png" class="avatar">
+                        <span class="ml-2 app-bar-name">CircuitalMinds</span>
+                    </a>
+                    <div class="user-block shadow-1" data-role="collapse" data-collapsed="true">
+                        <div class="bg-dark fg-teal p-2 text-center">
+                            <img src="../static/images/Jungle3.png" class="avatar">
+                            <div class="h4 mb-0">CircuitalMinds</div>
+                            <div>Organization</div>
+                        </div>
+                        <div class="bg-white d-flex flex-justify-between flex-equal-items p-2">
+                            <button class="button flat-button">Followers</button>
+                            <button class="button flat-button">Users</button>
+                            <button class="button flat-button">Resources</button>
+                        </div>
+                        <div class="bg-white d-flex flex-justify-between flex-equal-items p-2 bg-light">
+                            <button class="button mr-1">Profile</button>
+                            <button class="button ml-1">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="app-bar-item">
+                    <span class="mif-cogs"></span>
+                </a>
+            </div>
+        </div>
+
+
+
+		<div id="content-wrapper" class="content-inner h-100 bg-dark fg-teal" style="overflow-y: auto">
+			
+            <div class="row m-2">
+
+                <div class="cell order-1">
+                    <div data-role="panel"
+                        data-title-caption="Members"
+                        data-collapsible="true"
+                        data-title-icon="<span class='mif-users'></span>"
+                        class="cell card bg-light fg-teal">
+                        <ul class="cell card-content user-list ">
+                        <li>
+                            <img src="https://avatars.githubusercontent.com/u/25187397?s=460&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
+                                 class="avatar">
+                            <div class="text-ellipsis">Alan Matzumiya</div>
+                            <div class="text-small text-muted">Admin</div>
+                        </li>
+                        </ul>
+                        <div class="cell card-footer p-2 border-top bd-default text-center">
+                            <a href="#">View all users</a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+
+		</div>
+	</div>
+</div>
+<!-- jQuery first, then Metro UI JS -->
+<script src="../static/vendors/jquery/jquery-3.4.1.min.js"></script>
+<script src="../static/js/charts.js"></script>
+<script src="../static/vendors/chartjs/Chart.bundle.min.js"></script>
+<script src="../static/vendors/qrcode/qrcode.min.js"></script>
+<script src="../static/vendors/jsbarcode/JsBarcode.all.min.js"></script>
+<script src="../static/vendors/ckeditor/ckeditor.js"></script>
+<script src="../static/vendors/metro4/js/metro.min.js"></script>
+<!-- fractal modules -->
+<script src="../static/js/base/criba.js"></script>
+<script type="text/javascript" src="../static/js/base/mandelbrot.js"></script>
+<script src="../static/js/base/covid.js"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v9.0"
+        nonce="TwCE2nF9">
+</script>
+<!-- Load Facebook SDK for JavaScript -->
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>

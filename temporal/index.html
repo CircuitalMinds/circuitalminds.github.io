@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" class=" scrollbar-type-1 sb-cyan">
+
+        <!-- head -->
+        <head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" /><link rel="canonical" href="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="author" content="Alan Matzumiya">
+        <meta name='description' content="CircuitalMinds | musicApp">
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="CircuitalMinds | musicApp" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:site_name" content="circuitalminds" />
+        <meta property="og:description" content="" />
+        <meta property="fb:app_id" content="772020893629559"/>
+
+        <!-- Metro 4 -->
+        <link rel="stylesheet" href="metro/metro4/css/metro-all.min.css">
+        <link rel="stylesheet" href="metro/css">
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+            integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+            crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+                crossorigin="anonymous">
+        </script>
+        <title>CircuitalMinds | musicApp</title>
+
+        </head>
+
+    <body class="m4-cloak h-vh-100 bg-dark fg-teal">
+    <div class="bg-dark fg-teal" data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
+
+    <div class="navview-pane bg-dark fg-teal">
+
+	        <!-- header -->
+	        div class="bg-dark fg-teal d-flex flex-align-center">
+            <button class="pull-button m-0 bg-dark-hover">
+                <span class="mif-menu fg-teal"></span>
+            </button>
+            <h2 class="text-light fg-teal" style="line-height: 52px">CircuitalMinds</h2>
+            </div>
+
+            <div class="suggest-box">
+            <div class="data-box">
+                <img src="img/Jungle3.png" class="avatar">
+                <div class="ml-4 avatar-title flex-column">
+                    <a href="/" class="d-block fg-white text-medium no-decor"><span class="p-2 reduce-1">Visitor</span></a>
+                    <p class="m-0"><span class="fg-green mr-2">&#x25cf;</span><span class="text-small">online</span></p>
+                </div>
+            </div>
+            <img src="img/Jungle3.png" class="avatar holder ml-2">
+            </div>
+
+            <div class="suggest-box">
+            <input type="text" data-role="input" data-clear-button="false" data-search-button="true">
+            <button class="holder">
+                <span class="mif-search fg-teal"></span>
+            </button>
+            </div>
+
+	        <!-- navigation -->
+            ul class="navview-menu mt-4" id="side-menu">
+            <li class="item-header">MAIN NAVIGATION</li>
+            <li>
+                <a href="/">
+                    <span class="icon"><span class="mif-meter"></span></span>
+                    <span class="caption">Home</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <span class="icon"><span class=mif-widgets"></span></span>
+                    <span class="caption">Websites</span>
+                </a>
+                <ul class="navview-menu stay-open" data-role="dropdown" >
+                    <li class="item-header">Websites</li>
+                    <li><a href="/blog">
+                        <span class="icon"><span class="mif-widgets"></span></span>
+                        <span class="caption">Blog</span>
+                    </a></li>
+                    <li><a href="/pyfullstack">
+                        <span class="icon"><span class="mif-widgets"></span></span>
+                        <span class="caption">pyFullStack</span>
+                    </a></li>
+                    <li><a href="/portfolio">
+                        <span class="icon"><span class="mif-widgets"></span></span>
+                        <span class="caption">Portfolio</span>
+                    </a></li>
+                    <li><a href="/desktop">
+                        <span class="icon"><span class="mif-widgets"></span></span>
+                        <span class="caption">Desktop View</span>
+                    </a></li>
+                </ul>
+            </li>
+
+                <li>
+                <a href="#" class="dropdown-toggle">
+                    <span class="icon"><span class="mif-envelop"></span></span>
+                    <span class="caption">Mailbox</span>
+                    <span class="badges ml-auto mr-3">
+                        <span class="badge inline bg-teal fg-white">17</span>
+                        <span class="badge inline bg-teal fg-white">7</span>
+                        <span class="badge inline bg-teal fg-white">4</span>
+                        <span class="badge inline bg-teal fg-white">3</span>
+                    </span>
+                </a>
+                <ul class="navview-menu stay-open" data-role="dropdown" >
+                    <li class="item-header">Mailbox</li>
+                    <li>
+                        <a href="/inbox">
+                            <span class="icon"><span class="mif-mail"></span></span>
+                            <span class="caption">Inbox</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/chat">
+                    <span class="icon"><span class="mif-bubbles"></span></span>
+                    <span class="caption">Chat</span>
+                    <span class="badges ml-auto mr-3">
+                        <span class="badge inline bg-teal fg-white">7</span>
+                        <span class="badge inline bg-teal fg-white">4</span>
+                        <span class="badge inline bg-teal fg-white">3</span>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/music">
+                    <span class="icon"><span class="mif-music"></span></span>
+                    <span class="caption">Music</span>
+                    <span class="badges ml-auto mr-3">
+                        <span class="badge inline bg-teal fg-white">7</span>
+                        <span class="badge inline bg-teal fg-white">4</span>
+                        <span class="badge inline bg-teal fg-white">3</span>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/mandelbrot">
+                    <span class="icon"><span class="mif-music"></span></span>
+                    <span class="caption">Mandelbrot</span>
+                    <span class="badges ml-auto mr-3">
+                        <span class="badge inline bg-teal fg-white">7</span>
+                        <span class="badge inline bg-teal fg-white">4</span>
+                        <span class="badge inline bg-teal fg-white">3</span>
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/covid_info">
+                    <span class="icon"><span class="mif-music"></span></span>
+                    <span class="caption">Covid-19</span>
+                    <span class="badges ml-auto mr-3">
+                        <span class="badge inline bg-teal fg-white">7</span>
+                        <span class="badge inline bg-teal fg-white">4</span>
+                        <span class="badge inline bg-teal fg-white">3</span>
+                    </span>
+                </a>
+            </li>
+
+            <li class="item-header">Documentation</li>
+
+            <li>
+                <a href="https://github.com/CircuitalMinds/">
+                    <span class="icon"><img src="img/Jungle3.png" class="avatar"></span>
+                    <span class="caption">CircuitalMinds</span>
+                </a>
+            </li>
+            <li><canvas id="criba" style='display: inline-block; max-width: 100%; max-height: 100%;'>
+                </canvas>
+            </li>
+        </ul>
+
+    </div>
+
+	<!-- footer -->
+
+    <div class="w-100 text-center text-small data-box p-2 border-top bd-grayMouse" style="position: absolute; bottom: 0">
+    <div>&copy; 2021 <a href="https://alanmatzumiya.github.io/" class="text-muted fg-white-hover no-decor">Alan Matzumiya</a></div>
+    </div>
+
+    <div class="navview-content h-100">
+
+        <!-- navbar -->
+
+        <div id="content-wrapper" class="content-inner h-100 bg-dark fg-teal" style="overflow-y: auto">
+			<div class="row m-2">
+
+                <!-- content -->
+            <div class="cell order-1 bg-dark bd-light">
+                <h3 class="cell card-header" id='play-song'>play_song</h3>
+                    <button class="cell fg-teal image-button cell" onClick="shareVideo();">
+                    <span class="mif-share icon"></span>
+                    <span class="caption">Share Video</span>
+                    </button>
+                    <div class="cell fb-share-button"
+                data-href="https://circuitalminds.github.io/music"
+                data-layout="button_count">
+               </div>
+                <div class="cell card">
+                <br>
+                <div class="cell card-content">
+                <video class="light fg-cyan" id="play-media"
+                    data-aspect-ratio="hd" data-role="video-player"
+                    data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
+                    data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
+                    data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
+                    data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
+                    data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
+                    data-play-icon="<img src='img/play-icon.png'>"
+                    data-stop-icon="<img src='img/player_stop.png'>"
+                    data-src="" data-volume="1" data-on-end="endSong();">
+                </video>
+                </div>
+                </div>
+            </div>
+
+            <div class="cell order-2">
+                <div class="cell card">
+                <div data-role="panel" data-title-caption="Video PlayList"
+                     data-collapsible="true" data-title-icon="<span class='mif-table'></span>"
+                     class="cell bg-white fg-teal">
+                    <table class="table table-no-border row-hover bg-light fg-teal mt-4"
+                            data-role="table" data-cls-table-top="row" data-cls-search="cell"
+                            data-cls-rows-count="cell" data-rows="5" data-rows-steps="5, 10"
+                            data-show-activity="false" data-horizontal-scroll="true">
+                        <thead>
+                            <tr><th class="p-2 fg-teal">Video Title</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><button name="list-names" style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"
+                                            class="button fg-teal"
+                                            onclick='songFromList(value);'
+                                            value='name'>name</button>
+                            </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row m-2">
+
+                <div class="cell">
+                <div class="card">
+                    <div class="cell card-header p-2">
+                        <h3 id="play-song-mp3">YouTube Search</h3>
+                    </div>
+                    <br>
+                    <div class="cell card-content text-center row m-1">
+                            <input id="yt-search" type="text" class="w-75">
+                            <button id="btn-search"
+                                    onclick="youtubeSearch();"
+                                    class="button button primary w-25 border bd-gray fg-teal fg-light-hover bg-light bg-teal-hover">Search
+                            </button>
+                    </div>
+                <div class="cell card-content text-center">
+                    <ul class="group-list text-center">
+                        <li class="text-center">
+                        <ul class="group-list horizontal text-center">
+                            <li class="text-center"><strong>Video</strong></li>
+                        </ul>
+                        </li>
+                    </ul>
+                    <ul id="search-list" class="group-list text-center"></ul>
+                </div>
+                </div>
+                </div>
+                </div>
+
+        <div class="row m-2">
+
+            <div class="cell order-1">
+                <div class="card fg-teal">
+                <div class="card-header">
+                    <div class="avatar">
+                        <img src="img/Jungle3.png">
+                    </div>
+                    <div class="name"><a href="/blog" class="fg-teal">CircuitalMinds</a></div>
+                    <div class="date">date</div>
+                </div>
+                <div class="card-content p-2">
+                   title
+                </div>
+                <div class="card-content">
+                    <img src="pic" style="width: 100%">
+                </div>
+                <div class="card-content p-2">
+                    text
+                </div>
+                <div class="card-footer fb-like"
+                  data-href="https://www.facebook.com/CircuitalMinds/"
+                  data-width=""
+                  data-layout="button_count"
+                  data-action="like"
+                  data-size="large"
+                  data-share="true">
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-2">
+
+            <div class="cell order-1">
+                <div data-role="panel"
+                    data-title-caption="Members"
+                    data-collapsible="true"
+                    data-title-icon="<span class='mif-users'></span>"
+                    class="cell card bg-light fg-teal">
+                    <ul class="cell card-content user-list ">
+                    <li>
+                        <img src="https://avatars.githubusercontent.com/u/25187397?s=460&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
+                             class="avatar">
+                        <div class="text-ellipsis">Alan Matzumiya</div>
+                        <div class="text-small text-muted">Admin</div>
+                    </li>
+                    </ul>
+                    <div class="cell card-footer p-2 border-top bd-default text-center">
+                        <a href="#">View all users</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+
+<!-- jQuery first, then Metro UI JS -->
+<script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+<script src="js/charts.js' }}"></script>
+<script src="vendors/chartjs/Chart.bundle.min.js"></script>
+<script src="vendors/qrcode/qrcode.min.js"></script>
+<script src="vendors/jsbarcode/JsBarcode.all.min.js"></script>
+<script src="vendors/ckeditor/ckeditor.js"></script>
+<script src="vendors/metro4/js/metro.min.js"></script>
+<script src="/base/music.js"></script>
+<!-- fractal modules -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v9.0"
+        nonce="TwCE2nF9">
+</script>
+<!-- Load Facebook SDK for JavaScript -->
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+var currentSong = document.getElementById('play-song');
+var playMedia = document.getElementById('play-media');
+var searchList = document.getElementById("search-list");
+var listNames;
+var playList;
+var dataList;
+
+$(function () {
+    var getPlaylist = $.get("/get_music_data");
+    getPlaylist.done( function (data) {
+        playList = data['playlist'];
+        listNames = data['list_names'];
+    });
+});
+</script>
+</body>
+</html>
