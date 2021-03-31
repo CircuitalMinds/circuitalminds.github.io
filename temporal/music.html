@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" /><link rel="canonical" href="https://circuitalminds.herokuapp.com/music" />
+    <script>
+        var urlRequests = document.URL.replace("github.io/music", "herokuapp.com/");
+        var urlAPI = document.querySelector('link[rel="canonical"]');
+    </script>
+    <meta name="description" content="Listen to music from CircuitalMinds" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Alan Matzumiya">
+    
+    <!-- Styles -->
+    <link rel="shortcut icon" href="img/Jungle3.ico" type="image/x-icon">
+    <link rel="icon" href="img/Jungle3.ico" type="image/x-icon">
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>CircuitalMinds | MusicApp</title>
+
+</head>
+<body class="bg-dark">
+
+<div id="music-app" class="fg-teal"></div>
+
+<div class="card bg-light fg-teal">
+    <div class="cell card-header p-2">
+        <h3>YouTube Search</h3>
+    </div>
+    <br>
+    <div class="cell card-content text-center row m-1">
+            <input id="yt-search" type="text" class="w-75">
+            <button onClick="youtubeSearch(document.getElementById('yt-search').value);" class="button button primary w-25 border bd-gray fg-teal fg-light-hover bg-light bg-teal-hover">Search</button>
+    </div>
+    <div class="cell card-content">
+    <ul class="group-list text-center">
+        <li>
+        <ul class="group-list horizontal">
+            <li><strong>Video</strong></li>
+        </ul>
+        </li>
+    </ul>
+    <ul id="search-list" class="group-list text-center"></ul>
+    </div>
+</div> 
+<script src="metro/js/metro.js"></script>
+<script src="js/music.js"></script>   
+</body>
+</html>
