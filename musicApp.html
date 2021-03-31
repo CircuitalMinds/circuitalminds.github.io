@@ -348,7 +348,7 @@
             <script src="./musicApp/get_music.js"></script>
             <script>
                 var playList;
-                var currentId = Math.round(Math.random() * (playList.length - 1));
+                var currentId;
                 var currentSong = document.getElementById('play-song');
                 var playMedia = document.getElementById('play-media');
                 var searchList = document.getElementById("search-list");                
@@ -362,6 +362,7 @@
                 requestData.onload = function() {
                     const jsonData = requestData.response;
                     playList = jsonData['data'];
+                    currentId = Math.round(Math.random() * (playList.length - 1));
                     playMedia.setAttribute("src", playList[currentId]['video_url']);
                     currentSong.innerHTML = playList[currentId]['video_title'];
                     playMedia.play();
