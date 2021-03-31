@@ -8,17 +8,16 @@ function youtubeSearch() {
 };
 
 function endSong() {
-    currentId = currentId + 1;
-    videoSong = playList[currentId]['video_url'];
-    playMedia.setAttribute("src", videoSong);
-    nameSong = playList[currentId]['video_title'];
-    currentSong.innerHTML = nameSong;
+    currentId = Math.round(Math.random() * (playList.length - 1));
+    playMedia.setAttribute("src", playList[currentId]['video_url']);
+    currentSong.innerHTML = playList[currentId]['video_title'];    
     playMedia.play();
 };
 
-function songFromList( song ) {
-    playMedia.setAttribute("src", playList[song]);
-    currentSong.innerHTML = song;
+function songFromList( songId ) {
+    currentId = songId - 1;
+    playMedia.setAttribute("src", playList[currentId]['video_url']);
+    currentSong.innerHTML = [currentId]['video_title'];
     playMedia.play();
 };
 

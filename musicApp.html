@@ -268,7 +268,7 @@
                 <div class="row m-2">
 
                     <div class="cell order-1 bg-dark bd-light">
-                        <h3 class="cell card-header" id='play-song'>Days of Lavender</h3>
+                        <h3 class="cell card-header" id='play-song'></h3>
                         <button class="cell fg-teal image-button cell" onClick="shareVideo();">
                             <span class="mif-share icon"></span>
                             <span class="caption">Share Video</span>
@@ -286,7 +286,7 @@
                                     data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
                                     data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
                                     data-play-icon="<img src='./static/images/play-icon.png'>"
-                                    data-stop-icon="<img src='./static/images/player_stop.png'>" data-src="https://github.com/alanmatzumiya/containers/blob/music_1/part_4/Days%20of%20Lavender-0L0i6HYJ-EA.mp4?raw=true"
+                                    data-stop-icon="<img src='./static/images/player_stop.png'>" data-src=""
                                     data-volume="1" data-on-end="endSong();">
                                 </video>
                             </div>
@@ -348,11 +348,10 @@
             <script src="./musicApp/get_music.js"></script>
             <script>
                 var playList;
-                var currentId = 30;
+                var currentId = Math.round(Math.random() * (playList.length - 1));
                 var currentSong = document.getElementById('play-song');
                 var playMedia = document.getElementById('play-media');
                 var searchList = document.getElementById("search-list");                
-                
 
                 let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data.json';
                 let requestData = new XMLHttpRequest();
@@ -362,15 +361,10 @@
                 
                 requestData.onload = function() {
                     const jsonData = requestData.response;
-                    playList = jsonData['data'];    
-                };
-
-                function get_music_data() {
-                    var getPlaylist = $.get("/get_music_data");
-                    getPlaylist.done(function (data) {
-                        playList = data['playlist'];
-                        listNames = data['list_names'];
-                    });
+                    playList = jsonData['data'];
+                    playMedia.setAttribute("src", playList[currentId]['video_url']);
+                    currentSong.innerHTML = playList[currentId]['video_title'];
+                    playMedia.play();
                 };
             </script>
 
