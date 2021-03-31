@@ -294,31 +294,25 @@
                     </div>
 
                     <div class="cell order-2">
-                        <div class="cell card">
-                            <div data-role="panel" data-title-caption="Video PlayList" data-collapsible="true"
-                                data-title-icon="<span class='mif-table'></span>" class="cell bg-white fg-teal">
-                                <table class="table table-no-border row-hover bg-light fg-teal mt-4" data-role="table"
-                                    data-cls-table-top="row" data-cls-search="cell" data-cls-rows-count="cell"
-                                    data-rows="5" data-rows-steps="5, 10" data-show-activity="false"
-                                    data-horizontal-scroll="true">
-                                    <thead>
-                                        <tr>
-                                            <th class="p-2 fg-teal">Video Title</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><button name="list-names"
-                                                    style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"
-                                                    class="button fg-teal" onclick='songFromList(value);'
-                                                    value='name'>name</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                    <div class="cell card">
+                        <div data-role="panel" data-title-caption="PlayList" data-collapsible="true" data-title-icon="<span class='mif-table'></span>" class="mt-4">
+                            <div class="p-4">
+                                <table class="table striped table-border mt-4"
+                                       data-role="table"
+                                       data-cls-table-top="row"
+                                       data-cls-search="cell-md-6"
+                                       data-cls-rows-count="cell-md-6"
+                                       data-rows="5"
+                                       data-rows-steps="5, 10"
+                                       data-show-activity="false"
+                                       data-source="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/table_data.json"
+                                       data-horizontal-scroll="true">
                                 </table>
                             </div>
                         </div>
                     </div>
+                    </div>
+
 
                 </div>
 
@@ -351,14 +345,11 @@
 
                 </div>
             </div>
-            <script src="./static/js/base/music.js"></script>
+            <script src="./musicApp/get_music.js"></script>
             <script>
                 var currentSong = document.getElementById('play-song');
                 var playMedia = document.getElementById('play-media');
-                var searchList = document.getElementById("search-list");
-                var listNames;
-                var playList;
-                var dataList;
+                var searchList = document.getElementById("search-list");                
 
                 function get_music_data() {
                     var getPlaylist = $.get("/get_music_data");
