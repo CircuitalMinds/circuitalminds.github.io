@@ -361,15 +361,11 @@
                 
                 requestData.onload = function() {
                     const jsonData = requestData.response;
-                    playList = jsonData['data'];                                   
-                };
-
-                $(function() {
+                    playList = jsonData['data'];
                     currentId = Math.round(Math.random() * (playList.length - 1));
                     playMedia.setAttribute("src", playList[currentId]['video_url']);
-                    currentSong.innerHTML = playList[currentId]['video_title'];     
-                    playMedia.play();
-                });
+                    currentSong.innerHTML = playList[currentId]['video_title'];
+                };
             </script>
 
         </div>
