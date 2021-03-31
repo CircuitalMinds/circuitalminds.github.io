@@ -1,17 +1,3 @@
-playList;
-currentId = 30;
-
-let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data.json';
-let requestData = new XMLHttpRequest();
-requestData.open('GET', requestURL);
-requestData.responseType = 'json';
-requestData.send();
-
-requestData.onload = function() {
-const jsonData = requestData.response;
-playList = jsonData['data'];    
-};
-
 function youtubeSearch() {
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
     search = document.getElementById("yt-search").value;

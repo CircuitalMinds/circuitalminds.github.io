@@ -347,9 +347,22 @@
             </div>
             <script src="./musicApp/get_music.js"></script>
             <script>
+                var playList;
+                var currentId = 30;
                 var currentSong = document.getElementById('play-song');
                 var playMedia = document.getElementById('play-media');
                 var searchList = document.getElementById("search-list");                
+                
+                let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data.json';
+                let requestData = new XMLHttpRequest();
+                requestData.open('GET', requestURL);
+                requestData.responseType = 'json';
+                requestData.send();
+
+                requestData.onload = function() {
+                    const jsonData = requestData.response;
+                    playList = jsonData['data'];    
+                };
 
                 function get_music_data() {
                     var getPlaylist = $.get("/get_music_data");
