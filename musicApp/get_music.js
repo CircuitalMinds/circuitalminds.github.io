@@ -1,4 +1,5 @@
 playList;
+currentId = 30;
 
 let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data.json';
 let requestData = new XMLHttpRequest();
@@ -21,8 +22,10 @@ function youtubeSearch() {
 };
 
 function endSong() {
-    nameSong = listNames[listNames.indexOf(currentSong.textContent) + 1];
-    playMedia.setAttribute("src", playList[nameSong]);
+    currentId = currentId + 1;
+    videoSong = playList[currentId]['video_url'];
+    playMedia.setAttribute("src", videoSong);
+    nameSong = playList[currentId]['video_title'];
     currentSong.innerHTML = nameSong;
     playMedia.play();
 };

@@ -1,6 +1,9 @@
 import json
+import requests
 
 
+
+json_files = {"table": "table_data.json", "music_data": "music_data.json"}
 
 def save_data(data):
     with open("music_data.json", "w") as outfile:
@@ -8,11 +11,17 @@ def save_data(data):
         outfile.write(json_file)
         outfile.close()
 
-json_files = [f"music_{j}.json" for j in range(1, 11)]
-music_data = {"data": []}
+def get_table_data():
+    json_data = json.load(open(json_files["table"]))
+    print(json_data)
+    return json_data
 
-for json_data in json_files:
-    _data = list(json.load(open(json_data)).values())
-    for song in _data:
-        music_data['data'].append(song)        
-save_data(music_data)
+def get_music_data():
+    json_data = json.load(open(json_files['music_data']))
+    data = []
+    for song in json_data['data']:
+        data.append({"video_url": song["url"], "video_title": requests.utils.unquote(song["video_title"])})
+    json_data['data'] = data
+    save_data(json_data)
+    
+get_music_data()
