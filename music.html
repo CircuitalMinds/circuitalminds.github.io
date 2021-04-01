@@ -49,18 +49,15 @@
 <body class="h-vh-100 bg-dark fg-teal" style="opacity: 1;" data-new-gr-c-s-check-loaded="8.872.0"
     data-gr-ext-installed="">
 
-    <div class="navview-content h-100">
         <div data-role="appbar" class="pos-relative bg-grayMouse fg-white app-bar drag-area" data-role-appbar="true">
             
                 
-            <div class="app-bar-container ml-auto" data-role="draggable">
-                <button onclick="if (playMedia.volume > 0.1) {playMedia.setAttribute('data-volume', playMedia.volume - 0.1)} else {playMedia.setAttribute('data-volume', 0)};"                         
-                        class="app-bar-item">
-                    <span class="mif-volume-minus"></span>
+        <div class="app-bar-container ml-auto" data-role="draggable">
+                <button onclick="if (playMedia.volume > 0.1) {playMedia.setAttribute('data-volume', playMedia.volume - 0.1)} else {playMedia.setAttribute('data-volume', 0)};" class="app-bar-item">
+                <span class="mif-volume-minus"></span>
                 </button>
-                <button onclick="if (playMedia.volume < 0.9) {playMedia.setAttribute('data-volume', playMedia.volume + 0.1)} else {playMedia.setAttribute('data-volume', 1)};"
-                        class="app-bar-item">
-                    <span class="mif-volume-plus"></span>
+                <button onclick="if (playMedia.volume < 0.9) {playMedia.setAttribute('data-volume', playMedia.volume + 0.1)} else {playMedia.setAttribute('data-volume', 1)};" 
+                class="app-bar-item"><span class="mif-volume-plus"></span>
                 </button>
                 <button onclick="endSong();" class="app-bar-item">
                     <span class="mif-previous"></span>                    
@@ -235,7 +232,6 @@
             };
         </script>
 
-    </div>
     <!-- jQuery first, then Metro UI JS -->
     <script src="./static/vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="./static/js/charts.js"></script>
@@ -246,8 +242,6 @@
     <script src="./static/vendors/metro4/js/metro.min.js"></script>
     <!-- fractal modules -->
     <script src="./static/js/base/criba.js"></script>
-    <script type="text/javascript" src="./static/js/base/mandelbrot.js"></script>
-    <script src="./static/js/base/covid.js"></script>
     <div id="fb-root"></div>
     <script async="" defer="" crossorigin="anonymous"
         src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&amp;version=v9.0" nonce="TwCE2nF9">
