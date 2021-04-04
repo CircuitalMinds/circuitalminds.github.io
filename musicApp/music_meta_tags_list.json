@@ -35214,5 +35214,47 @@
         "video_id": "OzYdMSAkGqA",
         "video_image": "https://i.ytimg.com/vi/OzYdMSAkGqA/hqdefault.jpg",
         "video_url": "https://www.youtube.com/watch?v=OzYdMSAkGqA"
-    }
+    },
+    "The Misfits-Skulls": {
+        "meta_tags": {
+            "itemprop_datePublished": "2007-07-10",
+            "itemprop_description": "Skulls Misfits",
+            "itemprop_duration": "PT2M2S",
+            "itemprop_genre": "People & Blogs",
+            "itemprop_height": "360",
+            "itemprop_interactionCount": "6901593",
+            "itemprop_name": "Misfits- Skulls",
+            "itemprop_playerType": "HTML5 Flash",
+            "itemprop_unlisted": "False",
+            "itemprop_uploadDate": "2007-07-10",
+            "itemprop_videoId": "VLXEj4UowF8",
+            "itemprop_width": "480",
+            "name_description": "Skulls Misfits",
+            "name_keywords": "Misfits, Skulls",
+            "name_title": "Misfits- Skulls",
+            "name_twitter_card": "player",
+            "name_twitter_description": "Skulls Misfits",
+            "name_twitter_image": "https://i.ytimg.com/vi/VLXEj4UowF8/hqdefault.jpg",
+            "name_twitter_site": "@youtube",
+            "name_twitter_title": "Misfits- Skulls",
+            "name_twitter_url": "https://www.youtube.com/watch?v=VLXEj4UowF8",
+            "property_al_android_app_name": "YouTube",
+            "property_al_android_package": "com.google.android.youtube",
+            "property_og_description": "Skulls Misfits",
+            "property_og_image": "https://i.ytimg.com/vi/VLXEj4UowF8/hqdefault.jpg",
+            "property_og_image_height": "360",
+            "property_og_image_width": "480",
+            "property_og_site_name": "YouTube",
+            "property_og_title": "Misfits- Skulls",
+            "property_og_url": "https://www.youtube.com/watch?v=VLXEj4UowF8",
+            "property_og_video_height": "360",
+            "property_og_video_tag": "Skulls",
+            "property_og_video_type": "text/html",
+            "property_og_video_width": "480"
+        },
+        "video_id": "VLXEj4UowF8",
+        "video_image": "https://i.ytimg.com/vi/VLXEj4UowF8/hqdefault.jpg",
+        "video_url": "https://www.youtube.com/watch?v=VLXEj4UowF8"
+    },
+    "The Misfits - Last Caress": {}
 }
