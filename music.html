@@ -132,7 +132,7 @@
                                     data-rows="5"                                                                           
                                     data-rows-steps="5, 10"                                       
                                     data-show-activity="true"
-                                    data-source="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/table_data.json"
+                                    data-source="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_template_list.json"
                                     data-horizontal-scroll="true">
                             </table>
                         </div>
@@ -209,7 +209,7 @@
             <div>© 2021 <a href="https://circuitalminds.github.io/" class="text-muted fg-white-hover no-decor">CircuitalMinds</a></div>
         </div>
 
-        <script src="./musicApp/get_music.js"></script>
+        <script src="./musicApp/get_music_app.js"></script>
         <script>
             var playList;
             var currentId;
@@ -217,7 +217,7 @@
             var playMedia = document.getElementById('play-media');
             var searchList = document.getElementById("search-list");                
 
-            let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data.json';
+            let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data_list.json';
             let requestData = new XMLHttpRequest();
             requestData.open('GET', requestURL);
             requestData.responseType = 'json';
@@ -225,7 +225,7 @@
             
             requestData.onload = function() {
                 const jsonData = requestData.response;
-                playList = jsonData['data'];
+                playList = jsonData['music_data_list'];
                 currentId = Math.round(Math.random() * (playList.length - 1));
                 playMedia.setAttribute("src", playList[currentId]['video_url']);
                 currentSong.innerHTML = playList[currentId]['video_title'];
