@@ -65,4 +65,5 @@ def get_music_data_list():
 
 
 get_music_data_list()
-os.system("cd .. && git init && git add . && git commit -m 'auto' && git push")
+os.system("cd .. && git init && git add . && git commit -m 'auto'")
+os.system("cd .. && git push")
