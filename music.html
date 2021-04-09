@@ -217,6 +217,11 @@
             var playMedia = document.getElementById('play-media');
             var searchList = document.getElementById("search-list");                
 
+            var audioList;
+            var audioId;
+            var currentAudio;
+            var playAudio;
+
             let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data_list.json';
             let requestData = new XMLHttpRequest();
             requestData.open('GET', requestURL);

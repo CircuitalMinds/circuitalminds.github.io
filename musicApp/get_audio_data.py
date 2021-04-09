@@ -4,14 +4,15 @@ import os
 
 
 path_main = "../../audio_containers"
-path_containers = [f"{path_main}/audio_container_{n}" for n in range(1, 8)])
+path_containers = [f"{path_main}/audio_container_{n}" for n in range(1, 8)]
 header_template = [{"name": "id", "title": "ID", "size": 50, "sortable": "true", "sortDir": "asc", "format": "number"},
                    {"name": "name", "title": "Name", "sortable": "true"}]
 
 
+
 def save_data(data, file_name):
     with open(f"{file_name}.json", "w") as outfile:
-        json_file = json.dumps(data, indent=4, sort_keys=False)
+        json_file = json.dumps(data, indent=4, sort_keys=True)
         outfile.write(json_file)
         outfile.close()
 
@@ -19,12 +20,11 @@ def save_data(data, file_name):
 def table_template(index, audio_title):
     _template = [f'''<button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"''',
                  f'''class="button fg-teal"''',
-                 f'''onclick="songFromList({index});">{audio_title}''', f'''</button>''']
+                 f'''onclick="mp3songFromList({index});">{audio_title}''', f'''</button>''']
     template = ""
     for line in _template:
         template += f"{line} \n"
     return [index, template]
-
 
 
 def get_data_list():
@@ -34,7 +34,9 @@ def get_data_list():
         data_list = get_data(path=f"{path}/data_list.json")
         for song in data_list:
             data[song['audio_title']] = song['audio_url']
-    return [{"audio_title": title, "audio_url": data[title]} for title in list(data.keys())]
+    _data_list = list(data.keys())
+    _data_list.sort()
+    return [{"audio_title": title, "audio_url": data[title]} for title in _data_list]
 
 
 def get_audio_data_list():
