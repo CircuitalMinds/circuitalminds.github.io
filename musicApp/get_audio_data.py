@@ -34,9 +34,9 @@ def get_data_list():
         data_list = get_data(path=f"{path}/data_list.json")
         for song in data_list:
             if song['audio_title'].endswith("mp3"):           
-                data[song['audio_title'].replace("mp3", "")] = song['audio_url']
+                data[song['audio_title'].replace(".mp3", "")] = song['audio_url']
             elif song['audio_title'].endswith("MP3"):                
-                data[song['audio_title'].replace("MP3", "")] = song['audio_url']
+                data[song['audio_title'].replace(".MP3", "")] = song['audio_url']
     _data_list = list(data.keys())
     _data_list.sort()
     return [{"audio_title": title, "audio_url": data[title]} for title in _data_list]
