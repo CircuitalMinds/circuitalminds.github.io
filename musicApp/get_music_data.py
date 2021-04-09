@@ -37,7 +37,8 @@ def get_meta_data(data):
         if video_title not in list(meta_data.keys()):
             meta_data.update({video_title: requests.get(api, {"video_title": video_title}).json()})
             save_data(data=meta_data, file_name="music_meta_tags_list")
-        data[s] = {"video_title": meta_data[video_title]["meta_tags"]["name_title"], "video_url": video_url}    
+        if meta_data[video_title]["meta_tags"]["name_title"] != "":
+            data[s] = {"video_title": meta_data[video_title]["meta_tags"]["name_title"], "video_url": video_url}    
     return meta_data, data
 
 
