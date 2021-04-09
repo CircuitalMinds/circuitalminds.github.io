@@ -94,7 +94,8 @@
         <div id="content-wrapper" class="content-inner h-100 bg-dark fg-teal" style="overflow-y: auto">
             <div class="row m-2">
 
-                <div class="cell order-1 bg-dark bd-light">
+                <div class="cell order-1 bg-dark bd-light">                    
+                    <div class="cell card">
                     <h3 class="cell card-header" id='play-song'></h3>
                     <button class="cell fg-teal image-button cell" onClick="shareVideo();">
                         <span class="mif-share icon"></span>
@@ -103,20 +104,16 @@
                     <div class="cell fb-share-button" data-href="https://circuitalminds.herokuapp.com/music"
                         data-layout="button_count">
                     </div>
-                    <div class="cell card">
-                        <br>
-                        <div class="cell card-content">
-                            <video class="light fg-cyan" id="play-media" data-aspect-ratio="hd"
-                                data-role="video-player" data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
-                                data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
-                                data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
-                                data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
-                                data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
-                                data-play-icon="<img src='./static/images/play-icon.png'>"
-                                data-stop-icon="<img src='./static/images/player_stop.png'>" data-src=""
-                                data-volume="1" data-on-end="endSong('up');">
-                            </video>
-                        </div>
+                    <video class="light fg-cyan" id="play-media" data-aspect-ratio="hd"
+                           data-role="video-player" data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
+			   data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
+			   data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
+			   data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"
+			   data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
+			   data-play-icon="<img src='./static/images/play-icon.png'>"
+			   data-stop-icon="<img src='./static/images/player_stop.png'>" data-src=""
+			   data-volume="1" data-on-end="endSong('up');">
+		    </video>                  
                     </div>
                 </div>
 
