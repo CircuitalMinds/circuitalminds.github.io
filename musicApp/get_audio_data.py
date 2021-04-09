@@ -33,10 +33,13 @@ def get_data_list():
     for path in path_containers:
         data_list = get_data(path=f"{path}/data_list.json")
         for song in data_list:
-            data[song['audio_title']] = song['audio_url']
+            if song['audio_title'].endswith("mp3"):           
+                data[song['audio_title'].replace("mp3", "")] = song['audio_url']
+            elif song['audio_title'].endswith("MP3"):                
+                data[song['audio_title'].replace("MP3", "")] = song['audio_url']
     _data_list = list(data.keys())
     _data_list.sort()
-    return [{"audio_title": title.replace(".mp3", ""), "audio_url": data[title]} for title in _data_list]
+    return [{"audio_title": title, "audio_url": data[title]} for title in _data_list]
 
 
 def get_audio_data_list():
