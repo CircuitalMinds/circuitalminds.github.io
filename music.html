@@ -143,6 +143,41 @@
 
             </div>
 
+
+	    <div class="row m-2">
+		
+		<div class="cell order-1">
+		    <h3 class="cell card-header" id='audio-title'></h3>
+		    <div class="cell card">
+		    <audio data-role="audio-player" id="audio-media"
+		           data-on-end="endAudioSong('up');" data-src=""
+		           class="light">
+		    </audio>
+		    </div>
+		</div>
+
+		<div class="cell order-2">
+		<div class="cell card">
+		    <div data-role="panel" data-title-caption="Audio PlayList" data-collapsible="true" data-title-icon="<span class='mif-table'></span>" class="mt-4">
+		        <div class="p-4">
+		            <table class="table row-hover striped table-border mt-4"
+		                    data-role="table"
+		                    data-cls-table-top="row"
+		                    data-cls-search="cell-md-6"
+		                    data-cls-rows-count="cell-md-6"
+		                    data-rows="5"
+		                    data-rows-steps="5, 10"
+		                    data-show-activity="true"
+		                    data-source="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/audio_template_list.json"
+		                    data-horizontal-scroll="true">
+		            </table>
+		        </div>
+		    </div>
+		</div>
+		</div>
+
+	    </div>
+
             <div class="row m-2">
 
                 <div class="cell">
@@ -215,12 +250,7 @@
             var currentId;
             var currentSong = document.getElementById('play-song');
             var playMedia = document.getElementById('play-media');
-            var searchList = document.getElementById("search-list");                
-
-            var audioList;
-            var audioId;
-            var currentAudio;
-            var playAudio;
+            var searchList = document.getElementById("search-list");                            
 
             let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data_list.json';
             let requestData = new XMLHttpRequest();
@@ -234,6 +264,25 @@
                 currentId = Math.round(Math.random() * (playList.length - 1));
                 playMedia.setAttribute("src", playList[currentId]['video_url']);
                 currentSong.innerHTML = playList[currentId]['video_title'];
+            };
+            
+            var audioList;
+            var audioId;
+            var currentAudio = document.getElementById('audio-title');
+            var audioMedia = document.getElementById('audio-media');
+
+            let audioRequestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/audio_data_list.json';
+            let requestAudio = new XMLHttpRequest();
+            requestAudio.open('GET', audioRequestURL);
+            requestAudio.responseType = 'json';
+            requestAudio.send();
+            
+            requestAudio.onload = function() {
+                const jsonAudio = requestAudio.response;
+                audioList = jsonAudio['audio_data_list'];
+                audioId = Math.round(Math.random() * (audioList.length - 1));
+                audioMedia.setAttribute("src", audioList[audioId]['audio_url']);
+                currentAudio.innerHTML = audioList[audioId]['audio_title'];
             };
         </script>
 

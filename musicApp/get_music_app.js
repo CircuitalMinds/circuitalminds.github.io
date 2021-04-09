@@ -25,6 +25,24 @@ function songFromList( songId ) {
     playMedia.play();    
 };
 
+function endAudioSong( option ) {
+    if (option == "back") {    
+        audioId = audioId - 1;
+    } else if (option == "up") {
+    	audioId = audioId + 1;
+    }    
+    audioMedia.setAttribute("src", audioList[audioId]['audio_url']);
+    currentAudio.innerHTML = audioList[audioId]['audio_title'];    
+    audioMedia.play();
+};
+
+function audioSongFromList( audio_Id ) {
+    audioId = audio_Id - 1;
+    audioMedia.setAttribute("src", audioList[audioId]['audio_url']);
+    currentAudio.innerHTML = audioList[audioId]['audio_title'];
+    audioMedia.play();    
+};
+
 function youtubeDownloader(Id) {
     title = document.getElementById(Id).getElementsByTagName("p")[0].textContent;
     image = document.getElementById(Id).getElementsByTagName("img")[0].src;

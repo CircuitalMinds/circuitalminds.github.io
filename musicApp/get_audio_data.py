@@ -20,7 +20,7 @@ def save_data(data, file_name):
 def table_template(index, audio_title):
     _template = [f'''<button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"''',
                  f'''class="button fg-teal"''',
-                 f'''onclick="mp3songFromList({index});">{audio_title}''', f'''</button>''']
+                 f'''onclick="audioSongFromList({index});">{audio_title}''', f'''</button>''']
     template = ""
     for line in _template:
         template += f"{line} \n"
@@ -36,7 +36,7 @@ def get_data_list():
             data[song['audio_title']] = song['audio_url']
     _data_list = list(data.keys())
     _data_list.sort()
-    return [{"audio_title": title, "audio_url": data[title]} for title in _data_list]
+    return [{"audio_title": title.replace(".mp3", ""), "audio_url": data[title]} for title in _data_list]
 
 
 def get_audio_data_list():
