@@ -7,15 +7,12 @@ function youtubeSearch() {
         });
 };
 
-function backSong() {
-    currentId = currentId - 1;
-    playMedia.setAttribute("src", playList[currentId]['video_url']);
-    currentSong.innerHTML = playList[currentId]['video_title'];    
-    playMedia.play();
-};
-
-function endSong() {
-    currentId = currentId + 1;
+function endSong( option ) {
+    if (option == "back") {    
+        currentId = currentId - 1;
+    } else if (option == "up") {
+    	currentId = currentId + 1;
+    }    
     playMedia.setAttribute("src", playList[currentId]['video_url']);
     currentSong.innerHTML = playList[currentId]['video_title'];    
     playMedia.play();
