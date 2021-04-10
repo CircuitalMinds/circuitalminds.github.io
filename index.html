@@ -42,6 +42,10 @@
         
         <h1 class="start-screen-title">
         <a class="fg-teal" href="https://circuitalminds.github.io/">Home</a>
+        <fb:login-button 
+          scope="public_profile,email"
+          onlogin="checkLoginState();">
+        </fb:login-button>
         </h1>
         
         <div class="tiles-area clear">
@@ -151,4 +155,47 @@
 </body>
 <script src="metro/js/metro.js"></script>
 <script src="js/start.js"></script>
+    <script>
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '772020893629559',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v10.0'
+  });
+
+  FB.AppEvents.logPageView();   
+
+};
+
+(function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "https://connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
+
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+  
+  
+{
+    status: 'connected',
+    authResponse: {
+        accessToken: '...',
+        expiresIn:'...',
+        signedRequest:'...',
+        userID:'...'
+    }
+}
+  
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+</script>
 </html>
