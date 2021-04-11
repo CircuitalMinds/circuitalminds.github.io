@@ -1,7 +1,7 @@
 function youtubeSearch() {
     searchList.innerHTML = '<li><div data-role="progress" data-type="line"></div></li>';
     search = document.getElementById("yt-search").value;
-    var searchData = $.get("/search_list_template", {"video_title": search});
+    var searchData = $.get("https://circuitalminds.herokuapp.com/api/templates", {"video_title": search, "html": "search_list"});
     searchData.done( function( data )  {
            searchList.innerHTML = data;
         });
@@ -47,7 +47,7 @@ function youtubeDownloader(Id) {
     title = document.getElementById(Id).getElementsByTagName("p")[0].textContent;
     image = document.getElementById(Id).getElementsByTagName("img")[0].src;
     url = document.getElementById(Id).getElementsByTagName("button")[0].value;
-    var urlData = $.get("/api/query", {"video_title": title, "video_url": url, "video_image": image, "status": "waiting", "book": "select_songs", "option": "add"});
+    var urlData = $.get("https://circuitalminds.herokuapp.com/api/query", {"video_title": title, "video_url": url, "video_image": image, "status": "waiting", "book": "select_songs", "option": "add"});
 };
 
 function shareVideo() {
