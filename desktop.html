@@ -151,7 +151,7 @@
     <script src="metro/js/metro.js"></script>    
     <script src="js/desktop.js"></script>
     <script>
-    var urlRequests = document.URL.replace("github.io/desktop", "herokuapp.com/");
+    var urlRequests = document.URL.replace("github.io/desktop", "");
 
     var musicApp;
     var playList;
@@ -169,12 +169,14 @@
         playMedia.play();
     };
         
-    var getData = $.get(urlRequests + "api/get_music_app");
-    getData.done( function( data ) {
-        playList = data['playlist'];
-        listNames = data['list_names'];
-        musicApp = data['music_app'];
-    });        
+    function getData() { 
+            $.get(urlRequests + "api/get_music_app");
+            getData.done( function( data ) {
+            playList = data['playlist'];
+            listNames = data['list_names'];
+            musicApp = data['music_app'];
+        });        
+    };
     </script>
     <script>
     function createYoutubePlaylist(){
