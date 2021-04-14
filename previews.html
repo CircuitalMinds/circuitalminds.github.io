@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Styles -->
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/CircuitalMinds/saponis/main/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="https://raw.githubusercontent.com/CircuitalMinds/saponis/main/favicon.ico" type="image/x-icon">
-    <link href="metro/css/metro-all.css" rel="stylesheet">    
 </head>
   <body>
 </body>
 <script>
-let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/static/data/head_templates/blog.json';
+let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/static/data/head_templates/';
 let requestData = new XMLHttpRequest();
-requestData.open('GET', requestURL);
+data = document.URL.split('?')[1].split("=")
+filename = data[0] + ".json"
+key_data = data[1]
+requestData.open('GET', requestURL + filename);
 requestData.responseType = 'json';
 requestData.send();
-
-var head_data;
-
+var Head = document.head;
 requestData.onload = function() {
-	const jsonData = requestData.response;
-	head_data = jsonData;
-	document.getElementsByTagName['head'][0].appendChild(head_data['2020-10-08-fractalmind.markdown']);
+    const jsonData = requestData.response;
+    Head.innerHTML = jsonData[key_data];
+	
 };
 </script>
 </html>
