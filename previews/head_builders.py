@@ -12,7 +12,8 @@ class HeadTemplates:
         self.open_graph = lambda prop, content: f'<meta property="{prop}" content="{content}" />'
         self.item_prop = lambda item, content: f'<meta itemprop="{item}" content="{content}" />'
         self.title = lambda title: f'<title> {title} </title>'
-        self.html = lambda head: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n</html>'
+        self.script = lambda url: '<script>function onload() { window.location.href="' + url + '"; }</script>'
+        self.html = lambda head, script: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n<body onload="onload()"></body>\n{script}\n</html>'
         
         self.music_meta_tags = requests.get(
             f"{self.url_git}/circuitalminds.github.io/main/musicApp/music_meta_tags_list.json").json()
@@ -51,7 +52,7 @@ class HeadTemplates:
             "title": "CircuitalMinds | Home", "url": self.url}
         return _template
 
-    def builder(self, data):
+    def builder(self, data, url_redirect):
         template = ""
         template += self.robots(href=data['url']) + "\n"
         names, props = data["basic"].keys(), data["open_graph"].keys()
@@ -64,7 +65,8 @@ class HeadTemplates:
             for item in itemprops:
                 template += self.item_prop(item=item, content=data["itemprop"][item]) + "\n"
         template += self.title(title=data["title"])
-        return self.html(head=template)
+        script = self.script(url=url_redirect)
+        return self.html(head=template, script=script)
 
     def build_music_template(self, song_data):
         data = self.default()
@@ -73,7 +75,7 @@ class HeadTemplates:
         title = tags["name_title"].replace("/", "-")
         data["title"] = f'MusicApp | {title}'
         name = "./music/" + title
-        data["url"] = f"{self.url}/previews/music/{data['title'].replace('/', '')}"
+        data["url"] = f"{self.url}/previews/music/{title}"
         for tag in list(tags.keys()):
             value = tags[tag]
             if "YouTube" in value:
@@ -92,7 +94,8 @@ class HeadTemplates:
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
         data["open_graph"]["og:title"] = f'MusicApp | {title}'       
-        template = self.builder(data=data)
+        url_redirect = f"{self.url}/music?play_song={title}"
+        template = self.builder(data=data, url_redirect=url_redirect)
         return template, name
 
     def build_blog_template(self, post, section):
@@ -125,7 +128,8 @@ class HeadTemplates:
         data["open_graph"]["og:title"] = title
         data["open_graph"]["og:description"] = _post["description"]
         data["open_graph"]["og:url"] = url
-        template, name = self.builder(data=data), f'./{name}' 
+        url_redirect = f"{self.url}/{name}/"
+        template, name = self.builder(data=data, url_redirect=url_redirect), f'./{name}' 
         return template, name
 
 HeadTemplates = HeadTemplates()

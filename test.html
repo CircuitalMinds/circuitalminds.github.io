@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-  <body>
-</body>
-<script>
-let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/static/data/head_templates/';
-let requestData = new XMLHttpRequest();
-data = document.URL.split('?')[1].split("=")
-filename = data[0] + ".json"
-key_data = data[1]
-requestData.open('GET', requestURL + filename);
-requestData.responseType = 'json';
-requestData.send();
-var Head = document.head;
-requestData.onload = function() {
-    const jsonData = requestData.response;
-    Head.innerHTML = jsonData[key_data];
-	
-};
-</script>
+<html>
+   <body>
+      <h2>Welcome to GeeksforGeeks</h2>
+      <p>This is the example of <i>location.href</i> way. </p>
+      <button onclick="myFunc()">Click me</button>
+        
+      <!--script to redirect to another webpage-->   
+      <script>
+         myFunc();
+         function myFunc() {
+           window.location.href="https://www.wikipedia.org/";
+         }
+      </script>
+   </body>
 </html>

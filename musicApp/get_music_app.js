@@ -53,7 +53,7 @@ function youtubeDownloader(Id) {
 function shareVideo() {
     var el = document.createElement('textarea');
     song = encodeURI(currentSong.textContent);
-    shareURL = "https://circuitalminds.github.io/music?play_song=" + song;
+    shareURL = "https://circuitalminds.github.io/previews/music/" + song;
     el.value = shareURL;
     document.body.appendChild(el);
     el.select();
