@@ -70,8 +70,9 @@ class HeadTemplates:
         data = self.default()
         data["itemprop"] = {}
         tags = song_data["meta_tags"]
-        data["title"] = tags["name_title"].replace("/", "-")
-        name = "./music/" + data["title"]
+        title = tags["name_title"].replace("/", "-")
+        data["title"] = "MusicApp | " + title
+        name = "./music/" + title
         data["url"] = f"{self.url}/previews/music/{data['title'].replace('/', '')}"
         for tag in list(tags.keys()):
             value = tags[tag]
@@ -114,11 +115,12 @@ class HeadTemplates:
             _post[key] = value[::-1][1:][::-1]
         name = f"{section}/{post.split('.')[0].split('-')[-1]}"
         url = f"{self.url}/previews/{name}"
-        data["title"] = _post["title"]
+        title = {"blog": "Blog | ", "pyfullstack": "PyFullStack | "}[section] + _post["title"]
+        data["title"] = title
         data["url"] = url
         data["basic"]["description"] = _post["description"]
         data["open_graph"]["og:image"] = f"{url_request}/img/{_post['image']}"
-        data["open_graph"]["og:title"] = _post["title"]
+        data["open_graph"]["og:title"] = title
         data["open_graph"]["og:description"] = _post["description"]
         data["open_graph"]["og:url"] = url
         template, name = self.builder(data=data), f'./{name}' 
