@@ -113,8 +113,7 @@ class HeadTemplates:
                 if v != "":
                     value += v + " "
             _post[key] = value[::-1][1:][::-1]
-        page = post.split(".")[0].split("-")[-1]
-        url = f"{self.url}/{section}/{page}/"
+        url = f"{self.url}/previews.html?{section}={post}"
         data["title"] = _post["title"]
         data["url"] = url
         data["basic"]["description"] = _post["description"]
