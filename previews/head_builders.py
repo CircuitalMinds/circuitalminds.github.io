@@ -91,7 +91,7 @@ class HeadTemplates:
                 data["open_graph"][_tag] = value
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
-        data["open_graph"]["og:title"] = "MusicApp | " + title       
+        data["open_graph"]["og:title"] = "MusicApp | " + data["open_graph"]["og:title"]       
         template = self.builder(data=data)
         return template, name
 
