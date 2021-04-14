@@ -13,15 +13,7 @@
     <meta name="author" content="Alan Matzumiya">
     <meta name="description" content="Circuital | Minds">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="CircuitalMinds | MusicApp">
-    <meta property="og:type" content="website">
-    <meta property="og:image"
-        content="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/img/Jungle3.png">
-    <meta property="og:url" content="https://circuitalminds.github.io/">
-    <meta property="og:site_name" content="circuitalminds">
-    <meta property="og:description" content="CircuitalMinds">
-    <meta property="fb:app_id" content="772020893629559">
+
 
     <!-- Metro 4 -->
     <link rel="stylesheet" href="./static/vendors/metro4/css/metro-all.min.css">
@@ -29,7 +21,13 @@
 
     <link rel="shortcut icon" href="./static/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="./static/images/favicon.ico" type="image/x-icon">
-
+    <script>    
+    var url_page = document.URL.split("/");
+    var url_data = url_page[url_page.length - 1];
+    var url_follow = document.querySelector("head link[rel]").href + "previews/" + url_data.replace("?play_song=", "/");
+    var share_data = url_data.search("=")
+    document.querySelector("head link[rel]").href = url_follow;
+    </script>
     <script src="https://connect.facebook.net/en_US/sdk.js?hash=40244eae9a38309c12186e04d750ee55" async=""
         crossorigin="anonymous"></script>
     <script id="facebook-jssdk" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v3.0"></script>
@@ -41,7 +39,13 @@
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous">
     </script>
-
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="CircuitalMinds | MusicApp">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="circuitalminds">
+    <meta property="og:description" content="CircuitalMinds">
+    <meta property="fb:app_id" content="772020893629559">
     <title>CircuitalMinds | MusicApp</title>
 
 </head>
@@ -247,12 +251,6 @@
 
         <script src="./musicApp/get_music_app.js"></script>
         <script>
-            var url_page = document.URL.split("/");
-            var url_data = url_page[url_page.length - 1];
-            var url_follow = document.querySelector("head link[rel]").href + "previews/" + url_data.replace("?play_song=", "/");
-            var share_data = url_data.search("=")
-            document.querySelector("head link[rel]").href = url_follow;
-            document.querySelector("head meta[property='og:url']").content = url_follow;
             var playList;
             var idsPlayList = {};
             var currentId;
