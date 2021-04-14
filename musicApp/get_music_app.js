@@ -16,6 +16,8 @@ function endSong( option ) {
     playMedia.setAttribute("src", playList[currentId]['video_url']);
     currentSong.innerHTML = playList[currentId]['video_title'];    
     playMedia.play();
+    fb_share = "https://circuitalminds.github.io/previews/music/" + playList[currentId]['video_title'];
+    document.getElementsByClassName("cell fb-share-button")[0].setAttribute("data-href", fb_share);
 };
 
 function songFromList( songId ) {
@@ -23,6 +25,8 @@ function songFromList( songId ) {
     playMedia.setAttribute("src", playList[currentId]['video_url']);
     currentSong.innerHTML = playList[currentId]['video_title'];
     playMedia.play();    
+    fb_share = "https://circuitalminds.github.io/previews/music/" + playList[currentId]['video_title'];
+    document.getElementsByClassName("cell fb-share-button")[0].setAttribute("data-href", fb_share);
 };
 
 function endAudioSong( option ) {
