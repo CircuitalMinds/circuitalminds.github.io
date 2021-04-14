@@ -71,7 +71,7 @@ class HeadTemplates:
         data["itemprop"] = {}
         tags = song_data["meta_tags"]
         title = tags["name_title"].replace("/", "-")
-        data["title"] = "MusicApp | " + title
+        data["title"] = f'MusicApp | {title}'
         name = "./music/" + title
         data["url"] = f"{self.url}/previews/music/{data['title'].replace('/', '')}"
         for tag in list(tags.keys()):
@@ -91,7 +91,7 @@ class HeadTemplates:
                 data["open_graph"][_tag] = value
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
-        data["open_graph"]["og:title"] = "MusicApp | " + data["open_graph"]["og:title"]       
+        data["open_graph"]["og:title"] = f'MusicApp | {title}'       
         template = self.builder(data=data)
         return template, name
 
@@ -116,7 +116,8 @@ class HeadTemplates:
             _post[key] = value[::-1][1:][::-1]
         name = f"{section}/{post.split('.')[0].split('-')[-1]}"
         url = f"{self.url}/previews/{name}"
-        title = {"blog": "Blog | ", "pyfullstack": "PyFullStack | "}[section] + _post["title"]
+        _title = _post["title"]
+        title = {"blog": f'Blog | {_title}', "pyfullstack": f'PyFullStack | {_title}'}[section]
         data["title"] = title
         data["url"] = url
         data["basic"]["description"] = _post["description"]
