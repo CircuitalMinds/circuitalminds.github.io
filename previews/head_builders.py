@@ -14,11 +14,10 @@ class HeadTemplates:
         self.title = lambda title: f'<title> {title} </title>'
         self.script = lambda url: '<script>function onload() { ' + url + ' }</script>'
         self.html = lambda head, script: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n<body onload="onload()"></body>\n{script}\n</html>'
-                        
-        self.music_meta_tags = list(requests.get(f"{self.url_git}/circuitalminds.github.io/main/musicApp/music_meta_tags_list.json").json().values())
-        self.playlist = requests.get(f"{self.url_git}/circuitalminds.github.io/main/musicApp/music_data_list.json").json()["music_data_list"]      
+                
+        self.music_meta_tags = list(json.load(open("../musicApp/music_meta_tags_list.json")).values())
+        self.playlist = json.load(open("../musicApp/music_data_list.json"))["music_data_list"]      
         self.songs = {self.playlist[s]["video_title"]: self.music_meta_tags[s] for s in range(len(self.playlist))}
-        print(self.songs)
         self.blog_posts = ["2020-09-08-hidokei.markdown", "2020-09-14-birthdays.markdown", "2020-10-08-fractalmind.markdown", "2020-12-28-circuital.markdown"]
         self.pyfullstack_posts = ["2020-10-16-data_analysis.md", "2020-10-16-engineering.md", "2020-10-16-introduction.md"]
         for song in list(self.songs.keys()):            

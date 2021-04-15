@@ -68,7 +68,7 @@ def get_music_data_list():
     return dict(music_data_list=music_data_list), music_template_list, music_meta_tags_list
 
 
-
 get_music_data_list()
+os.system("cd ../previews/ && python3 head_builders.py")
 os.system("cd .. && git init && git add . && git commit -m 'auto'")
 os.system("cd .. && git push")
