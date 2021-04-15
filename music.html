@@ -279,7 +279,7 @@
                 } else {    
                     currentId = Math.round(Math.random() * (playList.length - 1));
                 }                
-                fb_share.setAttribute("data-href", url_previews + encodeURI(playList[currentId]['video_title']));
+                fb_share.dataset.href = url_previews + encodeURI(playList[currentId]['video_title']);
                 playMedia.setAttribute("src", playList[currentId]['video_url']);
                 currentSong.innerHTML = playList[currentId]['video_title'];
             };
