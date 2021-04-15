@@ -151,14 +151,19 @@
     <script src="metro/js/metro.js"></script>    
     <script src="js/desktop.js"></script>
     <script>
-    var urlRequests = document.URL.replace("github.io/desktop", "");
-
+    var urlRequests = "https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/";
+    var api_url = urlRequests + "api.html";
     var musicApp;
     var playList;
     var listNames;
 
     var currentSong;
     var playMedia;
+    
+    var API = $.get(api_url)
+    API.done( function( data ) {
+    	musicApp = data	
+    })
     
     function endSong() {        
         currentSong = document.getElementById('play-song');
