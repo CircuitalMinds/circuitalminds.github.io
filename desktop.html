@@ -168,11 +168,11 @@
     
     var playListData = $.get(playList_url);
     playListData.done( function( data ) {
-        playList = data["music_data_list"];
-        currentId = Math.round(Math.random() * (playList.length - 1));
-        playMedia.setAttribute("src", playList[currentId]['video_url']);
-        currentSong = playList[currentId]['video_title'];
+        playList = data["music_data_list"];        
     });
+    currentId = Math.round(Math.random() * (playList.length - 1));
+    playMedia.setAttribute("src", playList[currentId]['video_url']);
+    currentSong = playList[currentId]['video_title'];
     
     function endSong() {        
         currentSong = document.getElementById('play-song');
