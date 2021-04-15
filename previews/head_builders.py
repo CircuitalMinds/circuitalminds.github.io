@@ -20,8 +20,8 @@ class HeadTemplates:
         self.blog_posts = ["2020-09-08-hidokei.markdown", "2020-09-14-birthdays.markdown", "2020-10-08-fractalmind.markdown", "2020-12-28-circuital.markdown"]
         self.pyfullstack_posts = ["2020-10-16-data_analysis.md", "2020-10-16-engineering.md", "2020-10-16-introduction.md"]
         for song in list(self.music_meta_tags.keys()):            
-            template = self.build_music_template(song_data=self.music_meta_tags[song], title=song)
-            self.save_template(template=template, name=f"music/{song}")
+            template, name = self.build_music_template(song_data=self.music_meta_tags[song])
+            self.save_template(template=template, name=name)
         for post in self.blog_posts:            
             template, name = self.build_blog_template(post=post, section="blog")
             self.save_template(template=template, name=name)
@@ -68,12 +68,13 @@ class HeadTemplates:
         script = self.script(url=url_redirect)
         return self.html(head=template, script=script)
 
-    def build_music_template(self, song_data, title):
+    def build_music_template(self, song_data):
         data = self.default()
         data["itemprop"] = {}
         tags = song_data["meta_tags"]
-        data["title"] = f'MusicApp | {title}'        
-        data["url"] = f"{self.url}/previews/music/{title}"
+        name = tags["name_title"].replace("/", "")
+        data["title"] = f'MusicApp | {name}'        
+        data["url"] = f"{self.url}/previews/music/{name}"
         for tag in list(tags.keys()):
             value = tags[tag]
             if "YouTube" in value:
@@ -91,10 +92,10 @@ class HeadTemplates:
                 data["open_graph"][_tag] = value
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
-        data["open_graph"]["og:title"] = f'MusicApp | {title}'       
-        url_redirect = f"{self.url}/music?play_song=" + requests.utils.quote(title)
+        data["open_graph"]["og:title"] = f'MusicApp | {name}'       
+        url_redirect = f'{self.url}/music?play_song=' + requests.utils.quote(name)
         template = self.builder(data=data, url_redirect=url_redirect)
-        return template
+        return template, "./music/" + name
 
     def build_blog_template(self, post, section):
         url_request = f"{self.url_git}/{section}/main"
