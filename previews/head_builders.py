@@ -94,7 +94,7 @@ class HeadTemplates:
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
         data["open_graph"]["og:title"] = f'MusicApp | {title}'       
-        url_redirect = f"{self.url}/music?play_song={title}"
+        url_redirect = f'{self.url}/music?play_song={requests.utils.quote(title)}'
         template = self.builder(data=data, url_redirect=url_redirect)
         return template, name
 
