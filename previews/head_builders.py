@@ -12,7 +12,7 @@ class HeadTemplates:
         self.open_graph = lambda prop, content: f'<meta property="{prop}" content="{content}" />'
         self.item_prop = lambda item, content: f'<meta itemprop="{item}" content="{content}" />'
         self.title = lambda title: f'<title> {title} </title>'
-        self.script = lambda url: '<script>function onload() { window.location.href="' + url + '"; }</script>'
+        self.script = lambda url: '<script>function onload() { window.location.href=encodeURI("' + url + '"); }</script>'
         self.html = lambda head, script: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n<body onload="onload()"></body>\n{script}\n</html>'
         
         self.music_meta_tags = requests.get(
@@ -94,7 +94,7 @@ class HeadTemplates:
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
         data["open_graph"]["og:title"] = f'MusicApp | {title}'       
-        url_redirect = f'{self.url}/music?play_song={requests.utils.quote(title)}'
+        url_redirect = self.url + "/music?play_song=" + title
         template = self.builder(data=data, url_redirect=url_redirect)
         return template, name
 
