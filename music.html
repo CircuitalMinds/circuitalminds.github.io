@@ -273,7 +273,7 @@
                 playList = jsonData['music_data_list'];
                 getIds(playList);
                 if (share_data != -1) {
-                    currentId = idsPlayList[url_data.split("=")[1]]
+                    currentId = idsPlayList[decodeURI(url_data.split("=")[1])]
                 } else {    
                     currentId = Math.round(Math.random() * (playList.length - 1));
                 }
