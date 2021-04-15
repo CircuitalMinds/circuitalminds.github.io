@@ -153,17 +153,26 @@
     <script>
     var urlRequests = "https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/";
     var api_url = urlRequests + "api.html";
-    var musicApp;
-    var playList;
-    var listNames;
-
+    var playList_url = urlRequests + "music_data_list.json";
+    var currentId;
     var currentSong;
     var playMedia;
+    var musicApp;
+    var playList;
     
-    var API = $.get(api_url)
+    var API = $.get(api_url);
     API.done( function( data ) {
-    	musicApp = data	
-    })
+    	musicApp = data;
+    	playMedia = document.getElementById('play-media');
+    });
+    
+    var playListData = $.get(playList_url);
+    playListData.done( function( data ) {
+        playList = data["music_data_list"];
+        currentId = Math.round(Math.random() * (playList.length - 1));
+        playMedia.setAttribute("src", playList[currentId]['video_url']);
+        currentSong = playList[currentId]['video_title'];
+    });
     
     function endSong() {        
         currentSong = document.getElementById('play-song');
@@ -229,7 +238,7 @@
         draggable: true,
         width: 400,
         icon: "<span class='mif-rocket'></span>",
-        title: "CircuitalMinds | MusicApp",
+        title: "CircuitalMinds | MusicApp | " + currentSong,
         content: musicApp,
         clsContent: "bg-light fg-teal"
         });
