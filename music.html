@@ -273,13 +273,13 @@
                 playList = jsonData['music_data_list'];
                 getIds(playList);
                 if (share_data != -1) {
-                    currentId = idsPlayList[decodeURI(url_data.split("=")[1])]
+                    currentId = idsPlayList[url_data.split("=")[1])]
                 } else {    
                     currentId = Math.round(Math.random() * (playList.length - 1));
                 }
                 playMedia.setAttribute("src", playList[currentId]['video_url']);
                 currentSong.innerHTML = playList[currentId]['video_title'];
-                fb_share = "https://circuitalminds.github.io/previews/music/" + encodeURI(playList[currentId]['video_title']);
+                fb_share = "https://circuitalminds.github.io/previews/music/" + playList[currentId]['video_title'];
                 document.getElementsByClassName("cell fb-share-button")[0].setAttribute("data-href", fb_share);
             };
             

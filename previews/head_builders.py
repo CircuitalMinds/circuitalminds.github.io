@@ -94,7 +94,7 @@ class HeadTemplates:
                 data["itemprop"][_tag] = value 
         data["open_graph"]["og:title"] = f'MusicApp | {name}'       
         _url = self.url + "/music?play_song="
-        url_redirect = 'var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "' + _url + '" + encodeURI(song);'
+        url_redirect = 'var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "' + _url + '" + song;'
         template = self.builder(data=data, url_redirect=url_redirect)
         return template, "./music/" + name
 
