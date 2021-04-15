@@ -45,5 +45,5 @@
 <title> MusicApp | LOS HERMANOS PAJARO alemanes suizos locos ridiculos frikis silbando canción aun mas friki </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=LOS%20HERMANOS%20PAJARO%20alemanes%20suizos%20locos%20ridiculos%20frikis%20silbando%20canci%C3%B3n%20aun%20mas%20friki"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

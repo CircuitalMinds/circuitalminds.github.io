@@ -45,5 +45,5 @@
 <title> MusicApp | Quise Verte | Kaos Etiliko | Full Cover </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Quise%20Verte%20%7C%20Kaos%20Etiliko%20%7C%20Full%20Cover"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

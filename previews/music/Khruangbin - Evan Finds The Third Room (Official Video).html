@@ -45,5 +45,5 @@
 <title> MusicApp | Khruangbin - Evan Finds The Third Room (Official Video) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Khruangbin%20-%20Evan%20Finds%20The%20Third%20Room%20%28Official%20Video%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

@@ -45,5 +45,5 @@
 <title> MusicApp | Soy un Gnomo-Piperrak </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Soy%20un%20Gnomo-Piperrak"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

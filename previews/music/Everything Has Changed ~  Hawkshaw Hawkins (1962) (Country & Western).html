@@ -45,5 +45,5 @@
 <title> MusicApp | Everything Has Changed ~  Hawkshaw Hawkins (1962) (Country & Western) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Everything%20Has%20Changed%20~%20%20Hawkshaw%20Hawkins%20%281962%29%20%28Country%20%26%20Western%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

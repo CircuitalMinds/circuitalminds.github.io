@@ -45,5 +45,5 @@
 <title> MusicApp | 1942 HITS ARCHIVE: He’s My Guy - Harry James (Helen Forrest, vocal) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=1942%20HITS%20ARCHIVE%3A%20He%E2%80%99s%20My%20Guy%20-%20Harry%20James%20%28Helen%20Forrest%2C%20vocal%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

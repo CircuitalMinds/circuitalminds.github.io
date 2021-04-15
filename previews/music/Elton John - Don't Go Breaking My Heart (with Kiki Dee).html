@@ -45,5 +45,5 @@
 <title> MusicApp | Elton John - Don't Go Breaking My Heart (with Kiki Dee) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Elton%20John%20-%20Don%27t%20Go%20Breaking%20My%20Heart%20%28with%20Kiki%20Dee%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

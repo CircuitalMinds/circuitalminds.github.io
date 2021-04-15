@@ -45,5 +45,5 @@
 <title> MusicApp | Silvio Rodríguez - Oleo De Una Mujer Con Sombrero [HD] </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Silvio%20Rodr%C3%ADguez%20-%20Oleo%20De%20Una%20Mujer%20Con%20Sombrero%20%5BHD%5D"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

@@ -45,5 +45,5 @@
 <title> MusicApp | Skid Row - 18 And Life (Official Music Video) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Skid%20Row%20-%2018%20And%20Life%20%28Official%20Music%20Video%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

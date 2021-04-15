@@ -45,5 +45,5 @@
 <title> MusicApp | Snow in Summer - Another Edit Version from NieR Replicant ver.1.22 Soundtrack Weiss Edition </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Snow%20in%20Summer%20-%20Another%20Edit%20Version%20from%20NieR%20Replicant%20ver.1.22%20Soundtrack%20Weiss%20Edition"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

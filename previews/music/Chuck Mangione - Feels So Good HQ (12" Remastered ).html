@@ -45,5 +45,5 @@
 <title> MusicApp | Chuck Mangione - Feels So Good HQ (12" Remastered ) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Chuck%20Mangione%20-%20Feels%20So%20Good%20HQ%20%2812%22%20Remastered%20%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

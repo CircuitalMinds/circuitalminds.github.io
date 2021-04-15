@@ -45,5 +45,5 @@
 <title> MusicApp | Mariya Takeuchi 竹内 まりや Plastic Love </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Mariya%20Takeuchi%20%E7%AB%B9%E5%86%85%20%E3%81%BE%E3%82%8A%E3%82%84%20Plastic%20Love"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

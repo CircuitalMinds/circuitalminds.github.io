@@ -45,5 +45,5 @@
 <title> MusicApp | A Pink Cocktail For A Blue Lady ~ Glenn Miller & His Orchestra (1942) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=A%20Pink%20Cocktail%20For%20A%20Blue%20Lady%20~%20Glenn%20Miller%20%26%20His%20Orchestra%20%281942%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

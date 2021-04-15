@@ -45,5 +45,5 @@
 <title> MusicApp | At the Drive-in - Arcarsenal (Live @ Big Day Out '01) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=At%20the%20Drive-in%20-%20Arcarsenal%20%28Live%20%40%20Big%20Day%20Out%20%2701%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

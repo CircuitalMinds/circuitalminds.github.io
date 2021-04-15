@@ -45,5 +45,5 @@
 <title> MusicApp | Mad Season - I Don't Wanna Be a Soldier (Live at the Moore, Seattle, 1995) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Mad%20Season%20-%20I%20Don%27t%20Wanna%20Be%20a%20Soldier%20%28Live%20at%20the%20Moore%2C%20Seattle%2C%201995%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

@@ -45,5 +45,5 @@
 <title> MusicApp | A Forest - (Feat. Earl Slick, unreleased 2001) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=A%20Forest%20-%20%28Feat.%20Earl%20Slick%2C%20unreleased%202001%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

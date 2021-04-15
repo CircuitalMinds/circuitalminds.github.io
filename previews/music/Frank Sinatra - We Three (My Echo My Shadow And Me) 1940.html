@@ -45,5 +45,5 @@
 <title> MusicApp | Frank Sinatra - We Three (My Echo My Shadow And Me) 1940 </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Frank%20Sinatra%20-%20We%20Three%20%28My%20Echo%20My%20Shadow%20And%20Me%29%201940"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

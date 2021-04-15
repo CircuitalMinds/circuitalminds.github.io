@@ -45,5 +45,5 @@
 <title> MusicApp | Cafe Tacuba - Maria    (HD) MTV </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Cafe%20Tacuba%20-%20Maria%20%20%20%20%28HD%29%20MTV"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

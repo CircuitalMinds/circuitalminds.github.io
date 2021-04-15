@@ -45,5 +45,5 @@
 <title> MusicApp | Blitz - New Age - (UKDK. UK, 1983) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Blitz%20-%20New%20Age%20-%20%28UKDK.%20UK%2C%201983%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

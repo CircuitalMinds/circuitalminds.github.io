@@ -45,5 +45,5 @@
 <title> MusicApp | Mac DeMarco  "Ode to Viceroy" (OFFICIAL VIDEO) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Mac%20DeMarco%20%20%22Ode%20to%20Viceroy%22%20%28OFFICIAL%20VIDEO%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

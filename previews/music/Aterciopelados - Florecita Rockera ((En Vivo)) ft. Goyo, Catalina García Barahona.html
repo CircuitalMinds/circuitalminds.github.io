@@ -45,5 +45,5 @@
 <title> MusicApp | Aterciopelados - Florecita Rockera ((En Vivo)) ft. Goyo, Catalina García Barahona </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Aterciopelados%20-%20Florecita%20Rockera%20%28%28En%20Vivo%29%29%20ft.%20Goyo%2C%20Catalina%20Garc%C3%ADa%20Barahona"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

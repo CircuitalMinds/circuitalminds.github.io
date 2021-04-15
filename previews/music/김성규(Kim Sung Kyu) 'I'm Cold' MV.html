@@ -45,5 +45,5 @@
 <title> MusicApp | 김성규(Kim Sung Kyu) 'I'm Cold' MV </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=%EA%B9%80%EC%84%B1%EA%B7%9C%28Kim%20Sung%20Kyu%29%20%27I%27m%20Cold%27%20MV"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

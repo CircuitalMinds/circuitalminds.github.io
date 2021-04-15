@@ -45,5 +45,5 @@
 <title> MusicApp | Stromae - Tous Les Mêmes (Clip Officiel) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Stromae%20-%20Tous%20Les%20M%C3%AAmes%20%28Clip%20Officiel%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

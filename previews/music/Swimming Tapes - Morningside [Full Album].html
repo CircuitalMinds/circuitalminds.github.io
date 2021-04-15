@@ -45,5 +45,5 @@
 <title> MusicApp | Swimming Tapes - Morningside [Full Album] </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Swimming%20Tapes%20-%20Morningside%20%5BFull%20Album%5D"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

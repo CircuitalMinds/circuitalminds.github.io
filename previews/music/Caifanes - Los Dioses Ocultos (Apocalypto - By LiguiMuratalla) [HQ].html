@@ -45,5 +45,5 @@
 <title> MusicApp | Caifanes - Los Dioses Ocultos (Apocalypto - By LiguiMuratalla) [HQ] </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Caifanes%20-%20Los%20Dioses%20Ocultos%20%28Apocalypto%20-%20By%20LiguiMuratalla%29%20%5BHQ%5D"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

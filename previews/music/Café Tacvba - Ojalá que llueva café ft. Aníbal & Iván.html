@@ -45,5 +45,5 @@
 <title> MusicApp | Café Tacvba - Ojalá que llueva café ft. Aníbal & Iván </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Caf%C3%A9%20Tacvba%20-%20Ojal%C3%A1%20que%20llueva%20caf%C3%A9%20ft.%20An%C3%ADbal%20%26%20Iv%C3%A1n"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

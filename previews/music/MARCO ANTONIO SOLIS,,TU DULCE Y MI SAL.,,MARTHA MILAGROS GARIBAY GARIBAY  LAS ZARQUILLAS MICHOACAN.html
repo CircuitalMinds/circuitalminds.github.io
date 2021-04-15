@@ -45,5 +45,5 @@
 <title> MusicApp | MARCO ANTONIO SOLIS,,TU DULCE Y MI SAL.,,MARTHA MILAGROS GARIBAY GARIBAY  LAS ZARQUILLAS MICHOACAN </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=MARCO%20ANTONIO%20SOLIS%2C%2CTU%20DULCE%20Y%20MI%20SAL.%2C%2CMARTHA%20MILAGROS%20GARIBAY%20GARIBAY%20%20LAS%20ZARQUILLAS%20MICHOACAN"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

@@ -45,5 +45,5 @@
 <title> MusicApp | La Familia Iskariote - Hay Mañanas Que Es Mejor No Levantarse (Videoclip Oficial) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=La%20Familia%20Iskariote%20-%20Hay%20Ma%C3%B1anas%20Que%20Es%20Mejor%20No%20Levantarse%20%28Videoclip%20Oficial%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

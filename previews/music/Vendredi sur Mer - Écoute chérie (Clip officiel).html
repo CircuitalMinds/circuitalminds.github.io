@@ -45,5 +45,5 @@
 <title> MusicApp | Vendredi sur Mer - Écoute chérie (Clip officiel) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Vendredi%20sur%20Mer%20-%20%C3%89coute%20ch%C3%A9rie%20%28Clip%20officiel%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

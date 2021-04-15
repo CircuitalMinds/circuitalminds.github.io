@@ -45,5 +45,5 @@
 <title> MusicApp | Paul Simon - Diamonds On The Soles Of Her Shoes (Todd Terje Edit) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Paul%20Simon%20-%20Diamonds%20On%20The%20Soles%20Of%20Her%20Shoes%20%28Todd%20Terje%20Edit%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

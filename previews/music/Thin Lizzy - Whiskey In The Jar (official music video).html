@@ -45,5 +45,5 @@
 <title> MusicApp | Thin Lizzy - Whiskey In The Jar (official music video) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Thin%20Lizzy%20-%20Whiskey%20In%20The%20Jar%20%28official%20music%20video%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

@@ -45,5 +45,5 @@
 <title> MusicApp | SONIDO REBELDE EN EL ANIV. DE SANDY BELL </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=SONIDO%20REBELDE%20EN%20EL%20ANIV.%20DE%20SANDY%20BELL"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

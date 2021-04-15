@@ -45,5 +45,5 @@
 <title> MusicApp | Brenda Lee ~ Les "Carrot Top" Anderson (1958) (Country & Western) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Brenda%20Lee%20~%20Les%20%22Carrot%20Top%22%20Anderson%20%281958%29%20%28Country%20%26%20Western%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

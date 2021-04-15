@@ -45,5 +45,5 @@
 <title> MusicApp | Stonewall Jackson - B.J. The D.J. 1964 </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Stonewall%20Jackson%20-%20B.J.%20The%20D.J.%201964"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

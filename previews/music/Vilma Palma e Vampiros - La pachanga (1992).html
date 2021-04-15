@@ -45,5 +45,5 @@
 <title> MusicApp | Vilma Palma e Vampiros - La pachanga (1992) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Vilma%20Palma%20e%20Vampiros%20-%20La%20pachanga%20%281992%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

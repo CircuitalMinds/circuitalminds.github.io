@@ -45,5 +45,5 @@
 <title> MusicApp | Onward & Upward - Tommee Profitt (feat. Fleurie) </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Onward%20%26%20Upward%20-%20Tommee%20Profitt%20%28feat.%20Fleurie%29"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

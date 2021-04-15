@@ -45,5 +45,5 @@
 <title> MusicApp | PESCA en una ISLA DESIERTA | PESCA de ORILLA en LA PAZ, BCS </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=PESCA%20en%20una%20ISLA%20DESIERTA%20%7C%20PESCA%20de%20ORILLA%20en%20LA%20PAZ%2C%20BCS"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

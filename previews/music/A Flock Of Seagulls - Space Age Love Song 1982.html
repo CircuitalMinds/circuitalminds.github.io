@@ -45,5 +45,5 @@
 <title> MusicApp | A Flock Of Seagulls - Space Age Love Song 1982 </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=A%20Flock%20Of%20Seagulls%20-%20Space%20Age%20Love%20Song%201982"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

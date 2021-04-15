@@ -12,7 +12,7 @@ class HeadTemplates:
         self.open_graph = lambda prop, content: f'<meta property="{prop}" content="{content}" />'
         self.item_prop = lambda item, content: f'<meta itemprop="{item}" content="{content}" />'
         self.title = lambda title: f'<title> {title} </title>'
-        self.script = lambda url: '<script>function onload() { window.location.href="' + url + '"; }</script>'
+        self.script = lambda url: '<script>function onload() { ' + url + ' }</script>'
         self.html = lambda head, script: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n<body onload="onload()"></body>\n{script}\n</html>'
         
         self.music_meta_tags = requests.get(
@@ -93,7 +93,8 @@ class HeadTemplates:
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
         data["open_graph"]["og:title"] = f'MusicApp | {name}'       
-        url_redirect = f'{self.url}/music?play_song=' + requests.utils.quote(name)
+        _url = self.url + "/music?play_song="
+        url_redirect = 'var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "' + _url + '" + song;'
         template = self.builder(data=data, url_redirect=url_redirect)
         return template, "./music/" + name
 
@@ -127,7 +128,8 @@ class HeadTemplates:
         data["open_graph"]["og:title"] = title
         data["open_graph"]["og:description"] = _post["description"]
         data["open_graph"]["og:url"] = url
-        url_redirect = f"{self.url}/{name}/"
+        _url = self.url + "/blog/"
+        url_redirect = 'var url = document.URL.split("/"); var page = url[url.length - 1]; window.location.href = "' + _url + '" + page;' 
         template, name = self.builder(data=data, url_redirect=url_redirect), f'./{name}' 
         return template, name
 

@@ -45,5 +45,5 @@
 <title> MusicApp | Velvet Underground-"European Son" from "Velvet Underground and Nico" LP </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=Velvet%20Underground-%22European%20Son%22%20from%20%22Velvet%20Underground%20and%20Nico%22%20LP"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>

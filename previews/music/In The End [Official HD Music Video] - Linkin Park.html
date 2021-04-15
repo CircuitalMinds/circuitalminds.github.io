@@ -45,5 +45,5 @@
 <title> MusicApp | In The End [Official HD Music Video] - Linkin Park </title>
 </head>
 <body onload="onload()"></body>
-<script>function onload() { window.location.href="https://circuitalminds.github.io/music?play_song=In%20The%20End%20%5BOfficial%20HD%20Music%20Video%5D%20-%20Linkin%20Park"; }</script>
+<script>function onload() { var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "https://circuitalminds.github.io/music?play_song=" + song; }</script>
 </html>
