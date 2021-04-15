@@ -11,7 +11,7 @@
     <script>    
     var url_page = document.URL.split("/");
     var url_data = url_page[url_page.length - 1];
-    var url_follow = document.querySelector("head link[rel]").href + "previews/" + encodeURI(url_data.replace("?play_song=", "/"));
+    var url_follow = document.querySelector("head link[rel]").href + "previews/" + url_data.replace("?play_song=", "/");
     var share_data = url_data.search("=")
     document.querySelector("head link[rel]").href = url_follow;
     </script>
