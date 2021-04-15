@@ -14,14 +14,16 @@ class HeadTemplates:
         self.title = lambda title: f'<title> {title} </title>'
         self.script = lambda url: '<script>function onload() { ' + url + ' }</script>'
         self.html = lambda head, script: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n<body onload="onload()"></body>\n{script}\n</html>'
-        
-        self.music_meta_tags = requests.get(
-            f"{self.url_git}/circuitalminds.github.io/main/musicApp/music_meta_tags_list.json").json()
+                        
+        self.music_meta_tags = list(requests.get(f"{self.url_git}/circuitalminds.github.io/main/musicApp/music_meta_tags_list.json").json().values())
+        self.playlist = requests.get(f"{self.url_git}/circuitalminds.github.io/main/musicApp/music_data_list.json").json()["music_data_list"]      
+        self.songs = {self.playlist[s]["video_title"]: self.music_meta_tags[s] for s in range(len(self.playlist))}
+        print(self.songs)
         self.blog_posts = ["2020-09-08-hidokei.markdown", "2020-09-14-birthdays.markdown", "2020-10-08-fractalmind.markdown", "2020-12-28-circuital.markdown"]
         self.pyfullstack_posts = ["2020-10-16-data_analysis.md", "2020-10-16-engineering.md", "2020-10-16-introduction.md"]
-        for song in list(self.music_meta_tags.keys()):            
-            template, name = self.build_music_template(song_data=self.music_meta_tags[song])
-            self.save_template(template=template, name=name)
+        for song in list(self.songs.keys()):            
+            template = self.build_music_template(song_data=self.songs[song], song=song)
+            self.save_template(template=template, name=f'music/{song.replace("/", "")}')
         for post in self.blog_posts:            
             template, name = self.build_blog_template(post=post, section="blog")
             self.save_template(template=template, name=name)
@@ -30,7 +32,7 @@ class HeadTemplates:
             self.save_template(template=template, name=name)
             
     def save_template(self, template, name):
-        outfile = open(name + ".html", "w")
+        outfile = open(f'{name}.html', "w")
         outfile.write(template)
         outfile.close()
 
@@ -68,13 +70,12 @@ class HeadTemplates:
         script = self.script(url=url_redirect)
         return self.html(head=template, script=script)
 
-    def build_music_template(self, song_data):
+    def build_music_template(self, song_data, song):
         data = self.default()
         data["itemprop"] = {}
-        tags = song_data["meta_tags"]
-        name = tags["name_title"].replace("/", "")
-        data["title"] = f'MusicApp | {name}'        
-        data["url"] = f"{self.url}/previews/music/{name}"
+        tags = song_data["meta_tags"]        
+        data["title"] = f'MusicApp | {song}'        
+        data["url"] = f"{self.url}/previews/music/{song}"
         for tag in list(tags.keys()):
             value = tags[tag]
             if "YouTube" in value:
@@ -92,11 +93,10 @@ class HeadTemplates:
                 data["open_graph"][_tag] = value
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
-        data["open_graph"]["og:title"] = f'MusicApp | {name}'       
-        _url = self.url + "/music?play_song="
-        url_redirect = 'var url = document.URL.split("/"); var song = url[url.length - 1]; window.location.href = "' + _url + '" + song;'
+        data["open_graph"]["og:title"] = f'MusicApp | {song}'   
+        url_redirect = f'window.location.href = "{self.url}/music?play_song={song}";'
         template = self.builder(data=data, url_redirect=url_redirect)
-        return template, "./music/" + name
+        return template
 
     def build_blog_template(self, post, section):
         url_request = f"{self.url_git}/{section}/main"
@@ -128,10 +128,10 @@ class HeadTemplates:
         data["open_graph"]["og:title"] = title
         data["open_graph"]["og:description"] = _post["description"]
         data["open_graph"]["og:url"] = url
-        _url = self.url + "/blog/"
-        url_redirect = 'var url = document.URL.split("/"); var page = url[url.length - 1]; window.location.href = "' + _url + '" + page;' 
+        _url = f"{self.url}/{name}/"
+        url_redirect = f'window.location.href = "{_url}";' 
         template, name = self.builder(data=data, url_redirect=url_redirect), f'./{name}' 
         return template, name
 
-HeadTemplates = HeadTemplates()
 
+templates = HeadTemplates() 

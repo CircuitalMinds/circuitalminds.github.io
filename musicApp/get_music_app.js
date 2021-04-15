@@ -13,6 +13,7 @@ function endSong( option ) {
     } else if (option == "up") {
     	currentId = currentId + 1;
     }    
+    fb_share.setAttribute("data-href", url_previews + encodeURI(playList[currentId]['video_title']));    
     playMedia.setAttribute("src", playList[currentId]['video_url']);
     currentSong.innerHTML = playList[currentId]['video_title'];    
     playMedia.play();
@@ -22,11 +23,10 @@ function endSong( option ) {
 
 function songFromList( songId ) {
     currentId = songId - 1;
+    fb_share.setAttribute("data-href", url_previews + encodeURI(playList[currentId]['video_title']));
     playMedia.setAttribute("src", playList[currentId]['video_url']);
     currentSong.innerHTML = playList[currentId]['video_title'];
-    playMedia.play();    
-    fb_share = "https://circuitalminds.github.io/previews/music/" + playList[currentId]['video_title'];
-    document.getElementsByClassName("cell fb-share-button")[0].setAttribute("data-href", fb_share);
+    playMedia.play();
 };
 
 function endAudioSong( option ) {
