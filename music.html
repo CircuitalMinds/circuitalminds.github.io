@@ -11,7 +11,7 @@
     <script>    
     var url_page = document.URL.split("/");
     var url_data = url_page[url_page.length - 1];
-    var url_follow = document.querySelector("head link[rel]").href + "previews/" + url_data.replace("?play_song=", "/");
+    var url_follow = document.querySelector("head link[rel]").href + "previews/" + encodeURI(url_data.replace("?play_song=", "/"));
     var share_data = url_data.search("=")
     document.querySelector("head link[rel]").href = url_follow;
     </script>
@@ -279,7 +279,7 @@
                 }
                 playMedia.setAttribute("src", playList[currentId]['video_url']);
                 currentSong.innerHTML = playList[currentId]['video_title'];
-                fb_share = "https://circuitalminds.github.io/previews/music/" + playList[currentId]['video_title'];
+                fb_share = "https://circuitalminds.github.io/previews/music/" + encodeURI(playList[currentId]['video_title']);
                 document.getElementsByClassName("cell fb-share-button")[0].setAttribute("data-href", fb_share);
             };
             
