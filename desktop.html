@@ -152,27 +152,32 @@
     <script src="js/desktop.js"></script>
     <script>
     var urlRequests = "https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/";
-    var api_url = urlRequests + "api.html";
-    var playList_url = urlRequests + "music_data_list.json";
+    let api_url = urlRequests + "api.html";
+    let playList_url = urlRequests + "music_data_list.json";
     var currentId;
     var currentSong;
     var playMedia;
     var musicApp;
-    var playList;
+    var playList;   
     
     var API = $.get(api_url);
     API.done( function( data ) {
     	musicApp = data;
-    	playMedia = document.getElementById('play-media');
     });
+        
+    let playListRequests = new XMLHttpRequest();
+    playListRequests.open('GET', playList_url);
+    playListRequests.responseType = 'json';
+    playListRequests.send();
     
-    var playListData = $.get(playList_url);
-    playListData.done( function( data ) {
-        playList = data["music_data_list"];        
-    });
-    currentId = Math.round(Math.random() * (playList.length - 1));
-    playMedia.setAttribute("src", playList[currentId]['video_url']);
-    currentSong = playList[currentId]['video_title'];
+    playListRequests.onload = function() {
+        const jsonData = playListRequests.response;
+        playList = jsonData['music_data_list'];
+        currentId = Math.round(Math.random() * (playList.length - 1));        
+        currentSong = playList[currentId]['video_title'];
+    };
+    
+
     
     function endSong() {        
         currentSong = document.getElementById('play-song');
@@ -232,7 +237,7 @@
    }   
    </script>
    <script>
-    function createMusicApp(){
+    function createMusicApp(){    
     Desktop.createWindow({
         resizeable: true,
         draggable: true,
@@ -242,6 +247,9 @@
         content: musicApp,
         clsContent: "bg-light fg-teal"
         });
+    playMedia = document.getElementById('play-media');
+    playMedia.setAttribute("data-src", playList[currentId]['video_url']);
+
     }   
    </script>
 </body>
