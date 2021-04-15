@@ -12,7 +12,7 @@ class HeadTemplates:
         self.open_graph = lambda prop, content: f'<meta property="{prop}" content="{content}" />'
         self.item_prop = lambda item, content: f'<meta itemprop="{item}" content="{content}" />'
         self.title = lambda title: f'<title> {title} </title>'
-        self.script = lambda url: '<script>function onload() { window.location.href=encodeURI("' + url + '"); }</script>'
+        self.script = lambda url: '<script>function onload() { window.location.href="' + url + '"; }</script>'
         self.html = lambda head, script: f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{head}\n</head>\n<body onload="onload()"></body>\n{script}\n</html>'
         
         self.music_meta_tags = requests.get(
@@ -20,8 +20,8 @@ class HeadTemplates:
         self.blog_posts = ["2020-09-08-hidokei.markdown", "2020-09-14-birthdays.markdown", "2020-10-08-fractalmind.markdown", "2020-12-28-circuital.markdown"]
         self.pyfullstack_posts = ["2020-10-16-data_analysis.md", "2020-10-16-engineering.md", "2020-10-16-introduction.md"]
         for song in list(self.music_meta_tags.keys()):            
-            template, name = self.build_music_template(song_data=self.music_meta_tags[song])
-            self.save_template(template=template, name=name)
+            template = self.build_music_template(song_data=self.music_meta_tags[song], title=song)
+            self.save_template(template=template, name=f"music/{song}")
         for post in self.blog_posts:            
             template, name = self.build_blog_template(post=post, section="blog")
             self.save_template(template=template, name=name)
@@ -68,13 +68,11 @@ class HeadTemplates:
         script = self.script(url=url_redirect)
         return self.html(head=template, script=script)
 
-    def build_music_template(self, song_data):
+    def build_music_template(self, song_data, title):
         data = self.default()
         data["itemprop"] = {}
         tags = song_data["meta_tags"]
-        title = tags["name_title"].replace("/", "-")
-        data["title"] = f'MusicApp | {title}'
-        name = "./music/" + title
+        data["title"] = f'MusicApp | {title}'        
         data["url"] = f"{self.url}/previews/music/{title}"
         for tag in list(tags.keys()):
             value = tags[tag]
@@ -94,9 +92,9 @@ class HeadTemplates:
             elif "itemprop" in key[0]:
                 data["itemprop"][_tag] = value 
         data["open_graph"]["og:title"] = f'MusicApp | {title}'       
-        url_redirect = self.url + "/music?play_song=" + title
+        url_redirect = f"{self.url}/music?play_song=" + requests.utils.quote(title)
         template = self.builder(data=data, url_redirect=url_redirect)
-        return template, name
+        return template
 
     def build_blog_template(self, post, section):
         url_request = f"{self.url_git}/{section}/main"
