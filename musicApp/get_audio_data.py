@@ -20,7 +20,7 @@ def save_data(data, file_name):
 def table_template(index, audio_title):
     _template = [f'''<button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"''',
                  f'''class="button fg-teal"''',
-                 f'''onclick="Api.changeAudio({index});">{audio_title}''', f'''</button>''']
+                 f'''onclick="audioSongFromList({index});">{audio_title}''', f'''</button>''']
     template = ""
     for line in _template:
         template += f"{line} \n"
