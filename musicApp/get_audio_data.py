@@ -20,7 +20,7 @@ def save_data(data, file_name):
 def table_template(index, audio_title):
     _template = [f'''<button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"''',
                  f'''class="button fg-teal"''',
-                 f'''onclick="audioSongFromList({index});">{audio_title}''', f'''</button>''']
+                 f'''onclick="audioPlayer.from_list({index});">{audio_title}''', f'''</button>''']
     template = ""
     for line in _template:
         template += f"{line} \n"
@@ -44,7 +44,7 @@ def get_data_list():
 
 def get_audio_data_list():
     audio_data_list = get_data_list()
-    audio_template_list = dict(header=header_template, data=[table_template(index=s+1,
+    audio_template_list = dict(header=header_template, data=[table_template(index=s,
                                                                             audio_title=audio_data_list[s]['audio_title'])
                                                              for s in range(len(audio_data_list))])
     save_data(data=dict(audio_data_list=audio_data_list), file_name="audio_data_list")
