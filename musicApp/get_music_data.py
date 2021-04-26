@@ -21,7 +21,7 @@ def save_data(data, file_name):
 def table_template(index, video_title):
     _template = [f'''<button style="border: 1px solid dark; margin: 0; width: 100%; height: 100%;"''',
                  f'''class="button fg-teal"''',
-                 f'''onclick="videoPlayer.from_list({index});">{video_title}''', f'''</button>''']
+                 f'''onclick="songFromList({index});">{video_title}''', f'''</button>''']
     template = ""
     for line in _template:
         template += f"{line} \n"
@@ -60,7 +60,7 @@ def get_data_list():
 def get_music_data_list():
     _data_list = get_data_list()
     music_meta_tags_list, music_data_list = get_meta_data(data=_data_list)   
-    music_template_list = dict(header=header_template, data=[table_template(index=s,
+    music_template_list = dict(header=header_template, data=[table_template(index=s+1,
                                                                             video_title=music_data_list[s]['video_title'])
                                                              for s in range(len(music_data_list))])
     save_data(data=dict(music_data_list=music_data_list), file_name="music_data_list")

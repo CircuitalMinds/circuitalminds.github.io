@@ -55,16 +55,19 @@
             
                 
         <div class="app-bar-container ml-auto" data-role="draggable">
-                <button onclick="setButton.volume('down');" class="app-bar-item"><span class="mif-volume-minus"></span></button>
-                <button onclick="setbutton.volume('up');" class="app-bar-item"><span class="mif-volume-plus"></span>
+                <button onclick="if (playMedia.volume > 0.1) {playMedia.setAttribute('data-volume', playMedia.volume - 0.1)} else {playMedia.setAttribute('data-volume', 0)};" class="app-bar-item">
+                <span class="mif-volume-minus"></span>
                 </button>
-                <button onclick="videoPlayer.back();" class="app-bar-item">
+                <button onclick="if (playMedia.volume < 0.9) {playMedia.setAttribute('data-volume', playMedia.volume + 0.1)} else {playMedia.setAttribute('data-volume', 1)};" 
+                class="app-bar-item"><span class="mif-volume-plus"></span>
+                </button>
+                <button onclick="endSong('back');" class="app-bar-item">
                     <span class="mif-previous"></span>                    
                 </button>
-                <button id="button-bar" value="play" onclick="setButton.bar(this.value);" class="app-bar-item">
+                <button id="stop-play" value="play" onclick="StopPlay(this.value)" class="app-bar-item">
                     <span  class='mif-play'></span>
                 </button>
-                <button onclick="videoPlayer.up();" class="app-bar-item">
+                <button onclick="endSong('up');" class="app-bar-item">
                     <span class="mif-next"></span>
                 </button>
                 
@@ -73,6 +76,21 @@
                     <span class="ml-2 app-bar-name">CircuitalMinds</span>
                 </a>            
             </div>
+            <script>
+                var videoButton = document.getElementById("stop-play");                
+                function StopPlay( status ) {
+                if (status == "play") {
+                    playMedia.play();
+                    videoButton.setAttribute("value", "stop")
+                    videoButton.innerHTML ='<span class="mif-stop"></span>';
+                    } 
+                else {
+                    playMedia.pause();
+                    videoButton.setAttribute("value", "play");
+                    videoButton.innerHTML = '<span class=mif-play></span>';
+                    }
+                };           
+            </script>
         </div>
 
         <div id="content-wrapper" class="content-inner h-100 bg-dark fg-teal" style="overflow-y: auto">
@@ -80,7 +98,7 @@
 
                 <div class="cell order-1 bg-dark bd-light">                    
                     <div class="cell card">
-                    <h3 class="cell card-header" id='video-title'></h3>
+                    <h3 class="cell card-header" id='play-song'></h3>
                     <button class="cell fg-teal image-button cell" onClick="shareVideo();">
 		    <fb:login-button 
 		      scope="public_profile,email"
@@ -92,7 +110,7 @@
                     <div class="cell fb-share-button" data-href="https://circuitalminds.herokuapp.com/music"
                         data-layout="button_count">
                     </div>
-                    <video class="light fg-cyan" id="video-media" data-aspect-ratio="hd"
+                    <video class="light fg-cyan" id="play-media" data-aspect-ratio="hd"
                            data-role="video-player" data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"
 			   data-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
 			   data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"
@@ -100,7 +118,7 @@
 			   data-volume-high-icon="<span class='mif-volume-high fg-cyan'></span>"
 			   data-play-icon="<img src='./static/images/play-icon.png'>"
 			   data-stop-icon="<img src='./static/images/player_stop.png'>" data-src=""
-			   data-volume="1" data-on-end="videoPlayer.up();">
+			   data-volume="1" data-on-end="endSong('up');">
 		    </video>                  
                     </div>
                 </div>
@@ -135,7 +153,7 @@
 		    <h3 class="cell card-header" id='audio-title'></h3>
 		    <div class="cell card">
 		    <audio data-role="audio-player" id="audio-media"
-		           data-on-end="audioPlayer.up();" data-src=""
+		           data-on-end="endAudioSong('up');" data-src=""
 		           class="light">
 		    </audio>
 		    </div>
@@ -229,79 +247,62 @@
             <div>© 2021 <a href="https://circuitalminds.github.io/" class="text-muted fg-white-hover no-decor">CircuitalMinds</a></div>
         </div>
 
-   <script src="./musicApp/get_music_app.js"></script>
-   <script>
-    var ytList = document.getElementById("search-list");
-    var ytSearch = document.getElementById("yt-search");
-    var videoMedia = document.getElementById('video-media');
-    var audioMedia = document.getElementById('audio-media');              
-    var videoTitle = document.getElementById('video-title');
-    var audioTitle = document.getElementById('audio-title');
-        
-    var btnBar = document.getElementById("button-bar"); 
-    var setButton = {};
-    setButton.bar = function ( option ) {
-    	if ( option == "stop" ) {
-	    	videoMedia.pause();
-	    	btnBar.setAttribute("value", "play");
-            btnBar.innerHTML = '<span class=mif-play></span>';             
-    	} else {
-    		videoMedia.play();
-    		btnBar.setAttribute("value", "stop");
-            btnBar.innerHTML ='<span class="mif-stop"></span>';    	
-    	}
-    };
-    setButton.volume = function ( option ) {
-    	if ( option == "down" ) {
-			if (videoMedia.volume > 0.1) {
-			    videoMedia.setAttribute('data-volume', videoMedia.volume - 0.1)
-			} else {
-			    videoMedia.setAttribute('data-volume', 0)
-			}    	
-		} else {			
-			if (videoMedia.volume < 0.9) {
-			    videoMedia.setAttribute('data-volume', videoMedia.volume + 0.1)
-			} else {
-			    videoMedia.setAttribute('data-volume', 1)
-			}
-		}
-    };
-        
-    var titlePlayers = {video: videoTitle, audio: audioTitle};    
-    var mediaPlayers = {video: videoMedia, audio: audioMedia};
-    mediaPlayers.video.play = function () { setButton.bar( 'play' ) };    
+        <script src="./musicApp/get_music_app.js"></script>
+        <script>
+            var playList;
+            var idsPlayList = {};
+            var currentId;
+            var currentSong = document.getElementById('play-song');
+            var playMedia = document.getElementById('play-media');
+            var searchList = document.getElementById("search-list");    
+            var fb_share = document.getElementsByClassName("cell fb-share-button")[0];   
+            var url_previews = "https://circuitalminds.github.io/previews/music/";
 
-    var setObj = {song_list: [], current_song: {title: '', url: '', index: 0}, mediaType: ''};
-    var videoPlayer = setObj;
-    var audioPlayer = setObj;
-    var circuitApi = {url_content: "https://raw.githubusercontent.com/CircuitalMinds/", yt: {search_list: ytList, search_title: ytSearch}};    
+            let requestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/music_data_list.json';
+            let requestData = new XMLHttpRequest();
+            requestData.open('GET', requestURL);
+            requestData.responseType = 'json';
+            requestData.send();
+            
+            function getIds( data ) {
+            	for (var i=0; i < data.length; i++) {
+		    idsPlayList[data[i]['video_title']] = i
+            	};
+            };
+            
+            requestData.onload = function() {
+                const jsonData = requestData.response;
+                playList = jsonData['music_data_list'];
+                getIds(playList);
+                if (share_data != -1) {
+                    currentId = idsPlayList[decodeURI(url_data.split("=")[1])]
+                } else {    
+                    currentId = Math.round(Math.random() * (playList.length - 1));
+                }                
+                fb_share.setAttribute("data-href", url_previews + encodeURI(playList[currentId]['video_title']));
+                playMedia.setAttribute("src", playList[currentId]['video_url']);
+                currentSong.innerHTML = playList[currentId]['video_title'];
+            };
+            
+            var audioList;
+            var audioId;
+            var currentAudio = document.getElementById('audio-title');
+            var audioMedia = document.getElementById('audio-media');
 
-    let audioLocation = circuitApi.url_content + "circuitalminds.github.io/main/musicApp/audio_data_list.json";
-    let audioRequest = new XMLHttpRequest();
-    audioRequest.open('GET', audioLocation);
-    audioRequest.responseType = 'json';
-    audioRequest.send();            
-    
-    audioRequest.onload = function() {
-        const audioData = audioRequest.response;
-        audioPlayer.song_list = audioData['audio_data_list'];
-    };            
-
-    let videoLocation = circuitApi.url_content + "circuitalminds.github.io/main/musicApp/music_data_list.json";
-    let videoRequest = new XMLHttpRequest();
-    videoRequest.open('GET', videoLocation);
-    videoRequest.responseType = 'json';
-    videoRequest.send();            
-    
-    videoRequest.onload = function() {
-        const videoData = videoRequest.response;
-        videoPlayer.song_list = videoData['music_data_list'];
-    };       
-    
-    setConfig(videoPlayer, audioPlayer, circuitApi);
-    videoPlayer.random_song();
-    audioPlayer.random_song();
-    </script>
+            let audioRequestURL = 'https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/musicApp/audio_data_list.json';
+            let requestAudio = new XMLHttpRequest();
+            requestAudio.open('GET', audioRequestURL);
+            requestAudio.responseType = 'json';
+            requestAudio.send();
+            
+            requestAudio.onload = function() {
+                const jsonAudio = requestAudio.response;
+                audioList = jsonAudio['audio_data_list'];
+                audioId = Math.round(Math.random() * (audioList.length - 1));
+                audioMedia.setAttribute("src", audioList[audioId]['audio_url']);
+                currentAudio.innerHTML = audioList[audioId]['audio_title'];
+            };
+        </script>
 
     <!-- jQuery first, then Metro UI JS -->
     <script src="./static/vendors/jquery/jquery-3.4.1.min.js"></script>
