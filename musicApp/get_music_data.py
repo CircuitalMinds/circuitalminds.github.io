@@ -37,9 +37,10 @@ def get_meta_data(data):
         video_url = data[s]["video_url"]
         meta_data.update({video_title: requests.get(api, {"video_title": video_title}).json()})
         if meta_data[video_title] != {}:
-            video_title = video_title.replace(list(meta_data.keys())[0], "")
+            video_title = meta_data[video_title][list(meta_data[video_title].keys())[0]]['video_title']
             save_data(data=meta_data, file_name="music_meta_tags_list")
-        video_title = video_title.replace(".mp4", "")        
+        else:
+            video_title = video_title.replace(".mp4", "")        
         data[s] = {"video_title": video_title, "video_url": video_url}    
     return meta_data, data
 
