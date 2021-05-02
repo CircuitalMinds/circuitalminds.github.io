@@ -16,12 +16,17 @@ def save_data(data_files):
             outfile.close()
 
 def get_songs():
-    conts = [f"{path}/pendientes/music_{j}"
-             for j in range(1, 8)]
-    out_cont = lambda cont, n: cont.replace(f"pendientes/music_{n}", f"music_container_1{n}")
-    for n in range(len(conts)):
-        dir_path = f"{conts[n]}/videos"
-        music_data = os.listdir(dir_path)[0:1]
-        for song in music_data:
-            print(f"{dir_path}/{song}", out_cont(cont=conts[n], n=n))
+    meta = {}
+    data = []
+    for cont in data_containers:
+        data.extend(os.listdir(f"{path}/{cont}/videos"))
+    for n in range(1, 8):
+        meta.update(json.load(open(f"{path}/pendientes/music_{n}/music_data.json")))
+    for s in meta:
+        test = [s in t for t in data]
+        new_data
+        if any(test):
+            r = data[test.index(True)]
+            print(r, meta[s])
+
 get_songs()
