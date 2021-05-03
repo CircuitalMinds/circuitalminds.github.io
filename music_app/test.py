@@ -1,6 +1,7 @@
 import json
 import os
 
+# paths
 path = "../../music_containers"
 data_containers = ["music_container"]
 data_containers.extend([f"music_container_{j}" for j in range(1, 18)])
