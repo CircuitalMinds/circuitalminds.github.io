@@ -1,201 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  
-    <!-- Robots -->
-    <meta name="robots" content="index, follow" /><link rel="canonical" href="https://circuitalminds.github.io/" />
-    <meta name="description" content="Spinning out gracefully" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="author" content="Alan Matzumiya">
+---
+layout: default
+---
+<div class="container">
+	<div class="row">
+	{% if site.posts.size > 0 %}
+		{%- for post in paginator.posts -%}
+		{% if forloop.index <= 1 %}
+		<div class="col col-12">
+			<article class="article-first">
+				<div class="article-image-first" style="background-image: url({{"/" | prepend: site.img | append : post.image}})">
+					<div class="article-content-first">
+						<div class="article-tag">
+						{% if post.tags.size >= 1 %}
+							{% for tag in post.tags %}
+							<a href="{{ site.baseurl }}/tags#{{tag}}" class="tag">{{ tag }}</a>
+							{% endfor %}
+						{% else %} {% endif %}
+						</div>
+						<h2 class="article-title"><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></h2>
+						<p class="article-excerpt">{% if post.description %}{{ post.description | strip_html | truncate: 163 }}{% else %}{{ post.content | strip_html | truncate: 163 }}{% endif %}</p>
+						<a href="{{ post.url | prepend: site.baseurl }}" class="button read-more">Read More</a>
+					</div>
+				</div>
+			</article> <!-- /.article-first -->
+		</div>
+		{% endif %}
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Circuital | Minds" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/CircuitalMinds/circuitalminds.github.io/main/img/Jungle3.png" />
-    <meta property="og:url" content="https://circuitalminds.github.io/" />
-    <meta property="og:site_name" content="Circuital | Minds" />
-    <meta property="og:description" content="Spinning out gracefully" />
-    <meta property="fb:app_id" content="772020893629559"/>
-  
-    <!-- Styles -->
-    <link rel="shortcut icon" href="img/Jungle3.ico" type="image/x-icon">
-    <link rel="icon" href="img/Jungle3.ico" type="image/x-icon">
-    <link href="metro/css/metro-all.css" rel="stylesheet">
-    <link href="css/start.css" rel="stylesheet">
+		{% endfor %}
+	{% endif %}
+	</div>
+</div>
 
-    <title>CircuitalMinds | Home</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
-        integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
-        crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        crossorigin="anonymous">
-    </script>
-</head>
-<body class="bg-dark fg-white h-vh-100 m4-cloak">
-    
-    <div class="container-fluid start-screen h-100">
-        
-        <h1 class="start-screen-title">
-        <a class="fg-teal" href="https://circuitalminds.github.io/">Home</a>
-        <fb:login-button 
-          scope="public_profile,email"
-          onlogin="checkLoginState();">
-        </fb:login-button>
-        </h1>
-        
-        <div class="tiles-area clear">
-
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Propietary and Organization">
-            
-                <a href='https://alanmatzumiya.github.io/' data-role="tile" data-cover="img/avatar.jpg" class="bg-teal">
-                <span class="branding-bar">Alan Matzumiya</span>
-                </a>
-                <a href='https://circuitalminds.github.io/blog/' data-role="tile" data-cover="img/mandel.png" class="bg-teal">
-                <span class="branding-bar">Circuital Minds</span>
-                </a>       
-                <div data-role="tile" data-size="wide" data-effect="image-set" class="bg-teal">
-                    <img src="img/Pineapples.jpg">
-                    <img src="img/banner-collage.png">
-                    <img src="img/thesis-01.png">
-                    <img src="img/thesis-02.png">
-                    <img src="img/cv_me.png">
-                </div>
-                <div data-role="tile" data-size="wide" data-effect="image-set" class="bg-teal">
-                    <img src="img/01.jpg">
-                    <img src="img/elephant_valley.png">
-                    <img src="img/dolly.jpg">
-                    <img src="img/mandel.png">
-                    <img src="img/08.jpg">
-                </div>
-                
-            </div>
-
-            <div class="tiles-grid tiles-group size-1 fg-white" data-group-title="Office">
-                
-                    <div data-role="tile" data-size="small" class="bg-teal">
-                        <img src="img/images/outlook.png" class="icon">
-                    </div>
-                    <div data-role="tile" data-size="small" class="bg-teal">
-                        <img src="img/images/word.png" class="icon">
-                    </div>
-                    <div data-role="tile" data-size="small" class="bg-teal">
-                        <img src="img/images/excel.png" class="icon">
-                    </div>
-                    <div data-role="tile" data-size="small" class="bg-teal">
-                        <img src="img/images/powerpoint.png" class="icon">
-                    </div>
-                    <a href="https://jupyternbs.herokuapp.com" data-role="tile" data-cover="img/jupyter.png" class="bg-white">
-                    </a>
-                
-            </div>
-            
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Resources">
-
-                    <a href='https://circuitalminds.github.io/pyfullstack/' data-role="tile" data-cover="img/Welcome_banner.png" data-size="wide" class="bg-teal fg-yellow">
-                    <span class="branding-bar">pyFullStack
-                    </span>
-                    </a>
-
-                    <a href="https://circuitalminds.herokuapp.com/" data-role="tile" data-cover="img/Jungle3.png" data-size="wide" class="bg-teal">
-                    <span class="branding-bar">FractalMetric
-                    </span>
-                    </a>
-
-                    <a href="https://matsuhub.herokuapp.com/" data-role="tile" data-cover="img/logo.png" data-size="wide" class="bg-teal fg-brown">
-                    <span class="branding-bar">matsuHub
-                    </span>
-                    </a>
-                        
-            </div>
-            
-            <div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Apps">
-                
-                <a href="/github" data-role="tile" class="bg-teal">
-                    <span class="mif-github icon"></span>
-                    <span class="branding-bar">Github</span>
-                    <span class="badge-bottom">30</span>
-                </a>
-                <div data-role="tile" class="bg-teal">
-                    <span class="mif-envelop icon"></span>
-                    <span class="branding-bar">Email</span>
-                    <span class="badge-bottom">10</span>
-                </div>
-                <div data-role="tile" class="bg-teal" data-size="wide">
-                    <span class="mif-chrome icon"></span>
-                    <span class="branding-bar">Chrome</span>
-                </div>
-                <div data-role="tile" data-size="small" class="bg-teal fg-white">
-                    <span class="mif-apple icon"></span>
-                </div>
-                <div data-role="tile" data-size="small" class="bg-teal fg-white">
-                    <span class="mif-bell icon"></span>
-                </div>
-                <a href="/desktop" data-role="tile" data-size="small" class="bg-teal fg-white col-1 row-6">
-                <span class="mif-windows icon">
-                </span>
-                </a>
-                <div data-role="tile" data-size="small" class="bg-teal fg-white col-2 row-6">
-                    <span class="mif-wind icon">
-                    </span>
-                </div>
-                <div data-role="tile" class="bg-teal fg-white">
-                    <span class="mif-table icon"></span>
-                    <span class="branding-bar">Tables</span>
-                </div>
-                
-            </div>
-            
-       </div>
-    </div>
-</body>
-<script src="metro/js/metro.js"></script>
-<script src="js/start.js"></script>
-    <script>
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '772020893629559',
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v10.0'
-  });
-
-  FB.AppEvents.logPageView();   
-
-};
-
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-  
-  
-{
-    status: 'connected',
-    authResponse: {
-        accessToken: '...',
-        expiresIn:'...',
-        signedRequest:'...',
-        userID:'...'
-    }
-}
-  
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-</script>
-</html>
+<div class="container">
+	<div class="row">
+		<div class="col col-12 col-t-8">
+			<div class="row">
+			{%- for post in paginator.posts offset: 1 -%}
+				<article class="article col col-12 col-t-6">
+					<div class="article-box">
+						<div class="article-head">
+							<a href="{{ post.url | prepend: site.baseurl }}" class="article-image" style="background-image: url({{"/" | prepend: site.img | append : post.image}})">
+								<div class="image-overlay">
+									<span class="image-overlay-text">{{post.title | slice: 0}}</span>
+								</div>
+							</a>
+						</div>
+						<div class="article-content">
+							<div class="article-info">
+								<div class="article-date">
+									<span class="date"><time datetime="{{ post.date | date_to_xmlschema }}">{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}{{ post.date | date: date_format }}</time></span>
+								</div>
+								<div class="article-tag">
+								{% if post.tags.size >= 1 %}
+									{% for tag in post.tags %}
+									<a href="{{ site.baseurl }}/tags#{{tag}}" class="tag">{{ tag }}</a>
+									{% endfor %}
+								{% else %} {% endif %}
+								</div>
+							</div>
+							<h2 class="article-title">
+								<a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a>
+							</h2>
+							<p class="article-excerpt">{% if post.description %}{{ post.description | strip_html | truncate: 135 }}{% else %}{{ post.content | strip_html | truncate: 135 }}{% endif %}</p>
+						</div>
+					</div>
+				</article> <!-- /.article -->
+			{% endfor %}
+			</div>
+			{% include pagination.html %}
+		</div>
+		<div class="col col-12 col-t-4">
+			{% include sidebar.html %}
+		</div>
+	</div>
+</div>
