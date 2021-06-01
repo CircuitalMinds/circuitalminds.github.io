@@ -5,7 +5,7 @@ permalink: /desktop_app/
 image: zeta_function.gif
 ---
 
-<div id="desktop_app" class="container"></div>
+<div id="desktop" class="container"></div>
 
 ***
 
@@ -15,24 +15,7 @@ image: zeta_function.gif
 
 
 <script>
-var App = document.getElementById("desktop_app");
+var App = document.getElementById("desktop");
 App.innerHTML = Object_App("iframe", App.id);
-
-function getGraph() {
-    let graphRequestURL = '';
-    let requestGraph = new XMLHttpRequest();
-    var a = '&a=' + document.getElementById("a").textContent;
-    var b = '&b=' + document.getElementById("b").textContent;
-    var n = '&n=' + document.getElementById("n").textContent;
-    var func = '&function=' + document.getElementById("function").value;
-    console.log(graphRequestURL + a + b + n + func);
-    requestGraph.open('GET', graphRequestURL + a + b + n + func);
-    requestGraph.responseType = 'json';
-    requestGraph.send();
-    requestGraph.onload = function() {
-        jsonGraph = requestGraph.response;
-        document.getElementById("graph").innerHTML = jsonGraph["output"];
-    };
-};
 </script>
 
