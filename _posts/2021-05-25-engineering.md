@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  Some Applications in Engineering
-date:   2020-10-16 20:16:55 +0300
-image:  posts/engineering.jpeg
-tags:   [Python in Engineering]
+title: Some Applications in Engineering
+date: 2020-10-16 20:16:55 +0300
+image: posts/engineering.jpeg
+tags: [Python in Engineering]
 ---
 > <h3><strong>"Modulos de Aplicaciones en Ingenieria para Usuarios Principiantes y Avanzados en Areas como: Ecuaciones Diferenciales, Termodinamica, Ingenieria de Procesos, Teoria de Control, Y Muchas Otras Mas de Interes".</strong></h3>
 

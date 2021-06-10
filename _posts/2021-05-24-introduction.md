@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  Introduction
-date:   2020-10-16 20:16:55 +0300
-image:  posts/introduction.jpg
-tags:   [Introduction]
+title: Introduction
+date: 2020-10-16 20:16:55 +0300
+image: posts/introduction.jpg
+tags: [Introduction]
 ---
 > <h3><strong>"Modulo Basico de Python: Aspectos basicos del lenguaje y sus librerias mas fundamentales".</strong></h3>
 

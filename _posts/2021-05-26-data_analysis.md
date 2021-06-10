@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  Data Analysis, Good Practices
-date:   2020-10-16 20:16:55 +0300
-image:  posts/data_analysis.jpg
-tags:   [Data Analysis]
+title: Data Analysis, Good Practices
+date: 2020-10-16 20:16:55 +0300
+image: posts/data_analysis.jpg
+tags: [Data Analysis]
 ---
 > <h3><strong>"Modulos de Practicas Basicas y Avanzadas en Analisis de Datos abarcando desde: Conceptos Basicos en Estadistica; Extraccion, Limpieza y Representacion de Datos; Simulacion de Modelos de Prediccion; Y Otras Muchas Mas Aplicadas a Diversas Areas de Interes".</strong></h3>
 

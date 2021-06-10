@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  Birthdays
-date:   2020-09-14 13:45:55 +0300
-image:  posts/birthdays.jpg
-tags:   [Little Pigs]
+title: Birthdays
+date: 2020-09-14 13:45:55 +0300
+image: posts/birthdays.jpg
+tags: [Little Pigs]
 ---
 
 > <h3>"A veces, las cosas más sencillas y normales pueden convertirse en acontecimientos extraordinarios, simplemente si las llevaran a cabo con las personas adecuadas; y puedes ser solamente una persona para el mundo, pero para una persona tú eres el mundo."</h3>
