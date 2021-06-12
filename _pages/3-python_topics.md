@@ -8,44 +8,60 @@ permalink: /python-topics/
 
 ***
 
-Soon, By: __FractalMetric.__ Threading, Parallel Processing, and GPU Acceleration with Cuda 
+<h3 align="center">Fourier Analysis</h3>
+<div id="fourier_analysis"></div>
 
-{% highlight python %}
-from numba import jit, guvectorize, complex128, int64
-import matplotlib.pyplot as plt
-import numpy as np
+***
 
-@jit
-def mandelbrot_iteration(c, maxiter):
-    z = 0
-    for n in range(maxiter):
-        z = z**2+c
-        if z.real*z.real+z.imag*z.imag > 4:
-            return n
-    return maxiter
+<h3 align="center">Fractal Simulations</h3>
+<div id="fractal_simulations"></div>
 
-@guvectorize([(complex128[:], int64[:], int64[:])], '(n), () -> (n)',
-             target='parallel')
-def mandelbrot(c, itermax, output):
-    nitermax = itermax[0]
-    for i in range(c.shape[0]):
-        output[i] = mandelbrot_iteration(c[i], nitermax)
+***
 
-def mandelbrot_set(xmin, xmax, ymin, ymax, npts, nitermax):
-    cy, cx = np.ogrid[ymin:ymax:npts*1j, xmin:xmax:npts*1j]
-    c = cx+cy*1j
-    return mandelbrot(c, nitermax)
+<h3 align="center">Special Functions</h3>
+<div id="special_functions"></div>
 
-def plot(data, xmin, xmax, ymin, ymax):
-    plt.imshow(data, cmap='jet', interpolation='none')
-    plt.show()
+***
 
-nitermax = 2000
-npts = 1024
-xmin = -2
-xmax = 1
-ymin = -1.5
-ymax = 1.5
-data = mandelbrot_set(xmin, xmax, ymin, ymax, npts, nitermax)
-plot(data, xmin, xmax, ymin, ymax)
-{% endhighlight %}
+<script>
+var python_static = 'https://raw.githubusercontent.com/CircuitalMinds/static/main/python/';
+
+var scripts = {
+    fourier_analysis: {url: python_static + 'fourier_analysis/main.py', data: ''},
+    fractal_simulations: {url: python_static + 'fractal_simulations/main.py', data: ''},
+    special_functions: {url: python_static + 'special_functions/main.py', data: ''}    
+};
+
+function color_marker ( code ) {
+	new_code = code.replaceAll("self", '<span class="s">self</span>');
+	new_code = new_code.replaceAll("import ", '<span class="nb" >import</span> ');
+	new_code = new_code.replaceAll("from ", '<span class="nb" >from</span> ');
+	new_code = new_code.replaceAll("as ", '<span class="nb" >as</span> ');
+	new_code = new_code.replaceAll("class ", '<span class="mi" >class</span> ');
+	new_code = new_code.replaceAll("def ", '<span class="mi" >def</span> ');
+	new_code = new_code.replaceAll("if", '<span class="mi" >if</span> ');
+	new_code = new_code.replaceAll("elif", '<span class="mi" >elif</span> ');	
+	new_code = new_code.replaceAll("else", '<span class="mi" >else</span> ');
+	new_code = new_code.replaceAll("@staticmethod", '<span class="s" >@staticmethod</span>');
+	return new_code;
+};
+
+function make_script ( code ) {
+	return '<figure class="highlight"><pre>'
+		   + '<code class="language-python" data-lang="python">' + color_marker(code) + '</code>'
+		   + '</pre></figure>';
+};
+
+function getPythonScript ( name ) {
+    var getScript = $.get( scripts[name].url );
+    getScript.done( function( data ) {  	
+    	scripts[name].data = data;
+    	document.getElementById(name).innerHTML = make_script(data);
+   	});
+};
+
+
+for ( name in scripts ) {	
+	getPythonScript(name);
+};
+</script>
