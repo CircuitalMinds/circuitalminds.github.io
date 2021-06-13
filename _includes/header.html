@@ -18,9 +18,15 @@
               {% endif %}
                 {% endunless %}
               {% endfor %}
-              <li class="menu-item"></li>
               <li class="menu-item" style="color: #2C2F36;" id="greeting"></li>
-              <li class="menu-item" style="color: #1abc9c;" id="user-online"></li>
+              <li class="menu-item" style="color: #1abc9c;" id="user-online"></li>    		 	     		     		 
+              <li class="menu-item">
+              <input class="newsletter-email required username" id="username" type="text" name="username" placeholder=" username ">
+              <input class="newsletter-email required password" id="password" type="password" name="password" placeholder=" password ">
+              <button onclick="Login();">Sign In</button>
+              <button onclick="Login();">Sign Up</button>
+  	      </li>  
+	      <li class="menu-item" style="color: #1abc9c;" id ="login-message"></li>			               
             </ul>
           </nav>
           
