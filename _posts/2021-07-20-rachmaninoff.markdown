@@ -2,21 +2,13 @@
 layout: post
 title: Tempo Rubato
 date: 2021-07-20 20:16:55 +0300
-image: posts/rachmaninoff.svg
+image: posts/rachma.jpeg
 tags: [Rachmaninoff]
 ---
 
 > "El tiempo pasó. Pero el tiempo se divide en muchas corrientes. Como en un rio, hay una corriente central rapida en algunos sectores y lenta, hasta inmóvil, en otros. El tiempo cósmico es igual para todos, pero el tiempo humano difiere con cada persona. El tiempo corre de la misma manera para todos los seres humanos; pero todo ser humano flota de distinta manera en el tiempo". — Yasunari Kawabata
 
-***
 
-> "Cuando la energía es degradada, dijo Boltzmann, se debe a que los átomos asumen un estado más desordenado. Y la entropía es un parámetro del desorden: ésa es la concepción profunda que se desprende de la nueva interpretación de __Boltzmann__. Por extraño que parezca, se puede crear una medida para el desorden; es la probabilidad de un estado particular, definido aquí como el número de formas en que se puede armar a partir de sus átomos". — Jacob Bronowski. El ascenso del hombre.
-
-***
-
-__El tiempo y la entropía__, pasaríamos toda una eternidad decodificando su significado; y sus conexiones entre si, similares a las que hacen posible que hoy nuestras __Mentes__ se encuentren conectadas a través de __Circuitos__. Y como decia __Henri Poincaré__, ```El azar no es más que la medida de la ignorancia del hombre"```.
-
-$${\displaystyle {\frac {\partial f}{\partial t}}=-\sum _{i=1}^{N}{\frac {\partial }{\partial x_{i}}}\left[D_{i}^{1}(x_{1},\ldots ,x_{N})f\right]+\sum _{i=1}^{N}\sum _{j=1}^{N}{\frac {\partial ^{2}}{\partial x_{i}\,\partial x_{j}}}\left[D_{ij}^{2}(x_{1},\ldots ,x_{N})f\right]}$$
 
 
 ![]({{site.img}}/demo/04.jpg)

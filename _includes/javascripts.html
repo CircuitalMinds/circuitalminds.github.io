@@ -4,12 +4,14 @@
   SimpleJekyllSearch({
   searchInput: document.getElementById("js-search-input"),
   resultsContainer: document.getElementById("js-results-container"),
-  json: "{{site.baseurl}}/search.json",
+  json: "/search.json",
   searchResultTemplate:
     '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
   noResultsText: '<li class="search-no-item">No results found</li>'
   });
 </script>
+<script src="{{ site.js }}/utils.js"></script>
+<script src="{{ site.js }}/chat.js"></script>
 <script src="{{ site.js }}/instafeed.min.js"></script>
 <script src="{{ site.js }}/jquery.waitforimages.min.js"></script>
 <script src="{{ site.js }}/jquery.fitvids.js"></script>
@@ -59,16 +61,7 @@ function checkLoginState() {
   });
 }
 </script>
-<script>
-var metaList = document.getElementsByTagName("meta");
-var target;
-for (var j=0; j < metaList.length; j++) {
-   target = metaList[j];
-   if (target.getAttribute("property") == "og:image") {
-       console.log(target);
-    };
-}
-</script>
+<script></script>
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'es'}, 'google_translate_element');

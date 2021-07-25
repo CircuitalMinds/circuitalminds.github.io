@@ -20,7 +20,7 @@ layout: default
 					{% if page.tags.size >= 1 %}
 					<div class="post-tag">
 						{% for tag in page.tags %}
-						<a href="{{ site.baseurl }}/tags#{{tag}}" class="tag">{{ tag }}</a>
+						<a href="/tags#{{tag}}" class="tag">{{ tag }}</a>
 						{% endfor %}
 					</div>
 					{% endif %}
@@ -80,12 +80,12 @@ layout: default
 
 				<div class="post-navigation">
 					{% if page.previous.url %}
-					<a href="{{ site.baseurl }}{{page.previous.url}}" class="prev">
+					<a href="{{page.previous.url}}" class="prev">
 						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
 						<h2 class="post-nav-title">{{page.previous.title}}</h2>
 					</a>
 					{% endif %} {% if page.next.url %}
-					<a href="{{ site.baseurl }}{{page.next.url}}" class="next">
+					<a href="{{page.next.url}}" class="next">
 						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
 						<h2 class="post-nav-title">{{page.next.title}}</h2>
 					</a>
