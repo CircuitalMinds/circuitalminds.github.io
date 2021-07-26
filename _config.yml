@@ -60,9 +60,9 @@ sass:
   style: compressed
 
 
-js: "static/js/blog"
-css: "static/css/blog"
-img: "static/images/blog" 
+js: "https://circuitalminds.github.io/static/js/blog"
+css: "https://circuitalminds.github.io/static/css/blog"
+img: "https://circuitalminds.github.io/static/images/blog" 
 
 
 view_apps:  
