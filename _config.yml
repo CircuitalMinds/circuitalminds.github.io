@@ -60,9 +60,9 @@ sass:
   style: compressed
 
 
-js: "/_static/js/blog"
-css: "/_static/css/blog"
-img: "/_static/images/blog" 
+js: "/static/js/blog"
+css: "/static/css/blog"
+img: "/static/images/blog" 
 
 
 view_apps:  

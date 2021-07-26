@@ -24,7 +24,7 @@ __Importante:__ Cualquier duda o sugerencia se le agradecera dejando su comentar
 ***
 
 <div class="item">   
-<embed class="image fit" type="text/html" src="http://127.0.0.1:5200" width="100%">
+<embed class="image fit" type="text/html" src="{{ site.url }}/video_app/" width="100%">
   <header>
     <h3>Video App</h3>
   </header>
