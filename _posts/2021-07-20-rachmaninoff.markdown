@@ -2,7 +2,7 @@
 layout: post
 title: Tempo Rubato
 date: 2021-07-20 20:16:55 +0300
-image: /posts/rachma.jpeg
+image: posts/rachma.jpeg
 tags: [Rachmaninoff]
 ---
 
