@@ -1,46 +1,65 @@
 #-------------------------------
 # General Site Settings
-
 title: Circuital | Minds
-description: Official Website # this means to ignore newlines until "baseurl:"
+description: Spinning out gracefully # this means to ignore newlines until "baseurl:"
+preview: images/circuitalminds.jpg
+author: Alan Matzumiya
+avatar: images/avatar.jpg
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://circuitalminds.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-
-
-#-------------------------------
-# About Section
-author-name:   Alan Matzumiya
-author-avatar: avatar.jpg
-
-
+url: https://circuitalminds.github.io # the base hostname & protocol for your site, e.g. http://example.com
 #-------------------------------
 # Contact links
-facebook:  https://www.facebook.com/CircuitalMinds/ # Add your Facebook handle
-twitter:   https://twitter.com/ # Add your Facebook handle
-instagram: https://www.instagram.com/alanmatzumiya # Add your Facebook handle
-pinterest: https://www.pinterest.com/alanmatzumiya # Add your Facebook handle
-
-
+facebook:  https://www.facebook.com/CircuitalMinds # Add your Facebook handle
+twitter:   https://twitter.com/CircuitalMinds # Add your Facebook handle
+instagram: https://www.instagram.com/CircuitalMinds # Add your Facebook handle
+pinterest: https://www.pinterest.com/CircuitalMinds # Add your Facebook handle
+#-------------------------------
+# static-data
+query: query.json
+static: https://circuitalminds.github.io/static
+templates: https://circuitalminds.github.io/templates
+meta:
+  default:
+    author: Alan Matzumiya
+    description: Spinning out gracefully
+    robots: index, follow
+    viewport: width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no
+  open_graph:
+    fb:app_id: 772020893629559
+    og:description: Spinning out gracefully
+    og:image: images/circuitalminds.jpg
+    og:site_name: CircuitalMinds
+    og:title: CircuitalMinds
+    og:type: website
+    og:url: https://circuitalminds.github.io
+scripts:
+  ajax:
+    jquery:
+      src: https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js
+    socket:
+      integrity: sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==
+      src: https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js
+  metro: metro/js/metro.js
+  utils: js/utils.js
+  Api: js/Api.js
+styles:
+  bootstrap:
+    href: https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css
+    integrity: sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC
+  favicon: images/favicon.ico
+  metro: metro/css/metro-all.css
 #-------------------------------
 # Comment Section (Disqus)
 disqus-identifier: alan-matzumiya # Add your shortname for Disqus Comment. For example mr-brown
-
-
 #-------------------------------
 # Instagram Feed
 instafeed: false # To enable the instafeed, use the value true. To turn off use the value false.
-
-
 #-------------------------------
 # Google Analytics
 google-analytics: UA-177619690-2 # Add your identifier. For example UA-99631805-1.
-
-
 #-------------------------------
 # Newsletter
 mailchimp: # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e
-
-
 #-------------------------------
 # Build settings
 markdown: kramdown
@@ -48,45 +67,13 @@ permalink: ':title/'
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-
 paginate: 7
 paginate_path: "/page/:num"
-
 include:
   - _pages
-
 sass:
   sass_dir: _sass
   style: compressed
-
-
-js: "https://circuitalminds.github.io/static/js/blog"
-css: "https://circuitalminds.github.io/static/css/blog"
-img: "https://circuitalminds.github.io/static/images/blog" 
-
-
-view_apps:  
-  - app: 
-    id: 'desktop'
-    caption: 'Desktop App'
-    image: 'desktop.jpg'
-  - app:
-    id: 'music_app'
-    caption: 'Music App'
-    image: 'music_app.jpg'
-  - app:
-    id: 'chat_app'
-    caption: 'Chat App'
-    image: 'chat_app.jpg'
-  - app:    
-    id: 'inbox_app'
-    caption: 'Inbox App'
-    image: 'inbox_app.jpg'
-  - app:
-    id: 'console_app'
-    caption: 'Console App'
-    image: 'console_app.jpg'
-
 #-------------------------------
 # Exclude from processing.
 # exclude:

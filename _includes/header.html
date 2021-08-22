@@ -4,13 +4,13 @@
       <div class="col col-12">
         <div class="header-box">
           <div class="logo-title">
-            <a href="{{site.url}}/" class="logo-text">Circuital Minds</a>
+            <a href="/" class="logo-text">Circuital Minds</a>
           </div>
           
           <nav class="nav-menu">
             <i class="menu-close ion ion-ios-close"></i>
             <ul class="menu-list">
-              <li class="menu-item"><a href="{{site.url}}" class="menu-link">Home</a></li>
+              <li class="menu-item"><a href="/" class="menu-link">Home</a></li>
               {% for page in site.pages %}
                 {% unless page.name == 'tags.html' or page.name == '404.html' %}
               {% if page.title %}
@@ -18,11 +18,11 @@
               {% endif %}
                 {% endunless %}
               {% endfor %}
-              <li class="menu-item"><button class="mainbutton ontouch">Sign In</button></li>
-              <li class="menu-item"><button class="mainbutton ontouch">Sign Up</button></li>
             </ul>
           </nav>
-          <div class="nav-buttons">              
+          <div class="nav-buttons">
+            <button class="mainbutton ontouch">Sign In</button>
+            <button class="mainbutton ontouch">Sign Up</button>
             <i class="menu-button d-hide ion ion-ios-menu"></i>
             <i class="search-button ion ion-ios-search"></i>
           </div>

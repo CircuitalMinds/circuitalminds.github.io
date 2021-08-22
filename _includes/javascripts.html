@@ -1,27 +1,33 @@
-<script src="{{ site.js }}/jquery-3.3.1.min.js"></script>
-<script src="{{ site.js }}/simple-jekyll-search.min.js"></script>
+<!-- SCRIPTS -->
+
+<script src="{{ site.scripts.ajax.jquery.src }}"></script>
+<script src="{{ site.static }}/{{ site.scripts.utils }}"></script>
+<script src="{{ site.static }}/{{ site.scripts.Api }}"></script>
+
+<!-- SCRIPTS -->
+
+<script src="{{ site.static }}/js/utils/simple-jekyll-search.min.js"></script>
 <script>
   SimpleJekyllSearch({
   searchInput: document.getElementById("js-search-input"),
   resultsContainer: document.getElementById("js-results-container"),
-  json: "{{ site.url }}/search.json",
+  json: "/search.json",
   searchResultTemplate:
     '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
   noResultsText: '<li class="search-no-item">No results found</li>'
   });
 </script>
-<script src="{{ site.js }}/utils.js"></script>
-<script src="{{ site.js }}/chat.js"></script>
-<script src="{{ site.js }}/instafeed.min.js"></script>
-<script src="{{ site.js }}/jquery.waitforimages.min.js"></script>
-<script src="{{ site.js }}/jquery.fitvids.js"></script>
-<script src="{{ site.js }}/common.js"></script>
+
+<script src="{{ site.static }}/js/utils/instafeed.min.js"></script>
+<script src="{{ site.static }}/js/utils/jquery.waitforimages.min.js"></script>
+<script src="{{ site.static }}/js/utils/jquery.fitvids.js"></script>
+<script src="{{ site.static }}/js/utils/common.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>	
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 <script>
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '772020893629559',
+    appId      : "{{ site.meta.open_graph['fb:app_id'] }}",
     cookie     : true,
     xfbml      : true,
     version    : 'v10.0'

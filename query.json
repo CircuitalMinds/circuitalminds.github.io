@@ -1,0 +1,913 @@
+{
+    "APP": {
+        "directories": [
+            {
+                "python_resources": {
+                    "directories": [
+                        "template_builders",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "updaters.py",
+                        "info.json",
+                        "git_tools.py",
+                        "index.py",
+                        "storage_manager.py",
+                        "constants.py",
+                        "__init__.py"
+                    ]
+                }
+            },
+            {
+                "templates": {
+                    "directories": [
+                        "handlers",
+                        "includes",
+                        "snipets",
+                        "check",
+                        "views"
+                    ],
+                    "files": [
+                        "base.html"
+                    ]
+                }
+            },
+            {
+                ".idea": {
+                    "directories": [
+                        "inspectionProfiles"
+                    ],
+                    "files": [
+                        "workspace.xml",
+                        "modules.xml",
+                        ".gitignore",
+                        "vcs.xml",
+                        "deploy.iml",
+                        "misc.xml"
+                    ]
+                }
+            },
+            {
+                "video_app": {
+                    "directories": [
+                        "templates",
+                        ".idea",
+                        "video_manager",
+                        "environment",
+                        ".git",
+                        "static",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "view_settings.py",
+                        "notebooks.json",
+                        "index.html",
+                        "_config.yml",
+                        "requirements.txt",
+                        "README.md",
+                        "app_config.py",
+                        "app.py",
+                        "install"
+                    ]
+                }
+            },
+            {
+                ".jekyll-cache": {
+                    "directories": [
+                        "Jekyll"
+                    ],
+                    "files": []
+                }
+            },
+            {
+                "environment": {
+                    "directories": [
+                        "include",
+                        "lib",
+                        "bin"
+                    ],
+                    "files": [
+                        ".gitignore",
+                        "pyvenv.cfg"
+                    ]
+                }
+            },
+            {
+                "spectrum_app": {
+                    "directories": [
+                        "templates",
+                        ".idea",
+                        "graphic_lab",
+                        "fourier_methods",
+                        "environment",
+                        ".git",
+                        "testers"
+                    ],
+                    "files": [
+                        "_config.yml",
+                        "test.gif",
+                        "requirements.txt",
+                        "README.md",
+                        "app_config.py",
+                        "app.py"
+                    ]
+                }
+            },
+            {
+                "storage_app": {
+                    "directories": [
+                        "templates",
+                        ".idea",
+                        "environment",
+                        ".git",
+                        "storage",
+                        "secret_folder",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "builder_config.py",
+                        "favicon.ico",
+                        "_config.yml",
+                        "template.json",
+                        "requirements.txt",
+                        "storage_app.py",
+                        "Procfile",
+                        "README.md",
+                        "app_config.py",
+                        "storage_template.py",
+                        "install"
+                    ]
+                }
+            },
+            {
+                "database": {
+                    "directories": [
+                        "books",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "manager.py",
+                        "models.py",
+                        "__init__.py",
+                        "temp.json"
+                    ]
+                }
+            },
+            {
+                "__pycache__": {
+                    "directories": [],
+                    "files": [
+                        "api_config.cpython-38.pyc",
+                        "api_config.cpython-39.pyc"
+                    ]
+                }
+            }
+        ],
+        "files": [
+            "utils.py",
+            "favicon.ico",
+            "_config.yml",
+            "requirements.txt",
+            "Procfile",
+            "README.md",
+            "get_resources.py",
+            "api_config.py",
+            "install_all.py",
+            "install",
+            "rachmaninoff.jpeg",
+            "circuitalminds.py"
+        ]
+    },
+    "GitHub": {
+        "directories": [
+            {
+                "templates": {
+                    "directories": [
+                        "applications",
+                        ".git",
+                        "previews"
+                    ],
+                    "files": [
+                        "index.html",
+                        "desktop.html",
+                        "github.html",
+                        "utils.js",
+                        "listener.html",
+                        "README.md",
+                        "videos.html",
+                        "start.html",
+                        "head.json"
+                    ]
+                }
+            },
+            {
+                "localhost": {
+                    "directories": [
+                        "templates",
+                        "_sass",
+                        ".idea",
+                        "_site",
+                        "_pages",
+                        ".git",
+                        ".sass-cache",
+                        "_includes",
+                        "static",
+                        "_layouts",
+                        "_posts"
+                    ],
+                    "files": [
+                        "favicon.ico",
+                        "index.html",
+                        "tags.html",
+                        "settings.js",
+                        "_config.yml",
+                        "Gemfile.lock",
+                        "Gemfile",
+                        "README.md",
+                        "google7719ccdbe085881a.html",
+                        "search.json",
+                        "LICENSE.txt",
+                        "404.html",
+                        "install"
+                    ]
+                }
+            },
+            {
+                "data_analysis": {
+                    "directories": [
+                        "module_1",
+                        "module_5",
+                        ".git",
+                        "module_4",
+                        "module_6",
+                        "module_2",
+                        "module_7",
+                        "module_3"
+                    ],
+                    "files": [
+                        "get_data.py",
+                        "notebooks_data.json",
+                        "README.md"
+                    ]
+                }
+            },
+            {
+                "video_app": {
+                    "directories": [
+                        "templates",
+                        ".idea",
+                        "video_manager",
+                        "environment",
+                        ".git",
+                        "static",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "view_settings.py",
+                        "notebooks.json",
+                        "index.html",
+                        "_config.yml",
+                        "requirements.txt",
+                        "README.md",
+                        "app_config.py",
+                        "app.py",
+                        "install"
+                    ]
+                }
+            },
+            {
+                "spectrum_app": {
+                    "directories": [
+                        "templates",
+                        ".idea",
+                        "graphic_lab",
+                        "fourier_methods",
+                        "environment",
+                        ".git",
+                        "testers",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "_config.yml",
+                        "test.gif",
+                        "requirements.txt",
+                        "README.md",
+                        "app_config.py",
+                        "app.py"
+                    ]
+                }
+            },
+            {
+                "engineering-basic": {
+                    "directories": [
+                        "module_1",
+                        "module_5",
+                        ".git",
+                        "module_0",
+                        "module_4",
+                        "module_6",
+                        "module_2",
+                        "module_7",
+                        "module_3"
+                    ],
+                    "files": [
+                        "get_data.py",
+                        "notebooks_data.json",
+                        "README.md"
+                    ]
+                }
+            },
+            {
+                "storage_app": {
+                    "directories": [
+                        "templates",
+                        ".idea",
+                        "environment",
+                        ".git",
+                        "storage",
+                        "secret_folder",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "builder_config.py",
+                        "favicon.ico",
+                        "_config.yml",
+                        "template.json",
+                        "requirements.txt",
+                        "storage_app.py",
+                        "Procfile",
+                        "README.md",
+                        "app_config.py",
+                        "storage_template.py",
+                        "install"
+                    ]
+                }
+            },
+            {
+                "static": {
+                    "directories": [
+                        "banners",
+                        "images",
+                        "data",
+                        ".git",
+                        "vendors",
+                        "js",
+                        "metro",
+                        "python",
+                        "css"
+                    ],
+                    "files": [
+                        "README.md"
+                    ]
+                }
+            },
+            {
+                "API": {
+                    "directories": [
+                        "python_resources",
+                        "templates",
+                        ".idea",
+                        "environment",
+                        ".git",
+                        "database",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "utils.py",
+                        "favicon.ico",
+                        "_config.yml",
+                        "requirements.txt",
+                        "Procfile",
+                        "README.md",
+                        "get_resources.py",
+                        "api_config.py",
+                        "install_all.py",
+                        "install",
+                        "circuitalminds.py"
+                    ]
+                }
+            },
+            {
+                "deploy": {
+                    "directories": [
+                        "python_resources",
+                        "templates",
+                        ".idea",
+                        ".jekyll-cache",
+                        "environment",
+                        "database",
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "utils.py",
+                        "favicon.ico",
+                        "_config.yml",
+                        "requirements.txt",
+                        "Procfile",
+                        "README.md",
+                        "get_resources.py",
+                        "api_config.py",
+                        "install_all.py",
+                        "install",
+                        "circuitalminds.py"
+                    ]
+                }
+            },
+            {
+                "circuitalminds.github.io": {
+                    "directories": [
+                        "_sass",
+                        ".idea",
+                        "_site",
+                        "_pages",
+                        ".git",
+                        ".sass-cache",
+                        "_includes",
+                        "_layouts",
+                        "_posts"
+                    ],
+                    "files": [
+                        "favicon.ico",
+                        "index.html",
+                        "tags.html",
+                        "settings.json",
+                        "_config.yml",
+                        "Gemfile.lock",
+                        "Gemfile",
+                        "README.md",
+                        "google7719ccdbe085881a.html",
+                        "search.json",
+                        "LICENSE.txt",
+                        "404.html",
+                        "app.js",
+                        "config.py",
+                        "install"
+                    ]
+                }
+            }
+        ],
+        "files": [
+            "server_config.yml",
+            "config.py",
+            "script.sh"
+        ]
+    },
+    "Public": {
+        "directories": [
+            {
+                "banners": {
+                    "directories": [],
+                    "files": [
+                        "pandora.psd",
+                        "thumbnail.psd",
+                        "preview.psd"
+                    ]
+                }
+            },
+            {
+                "images": {
+                    "directories": [
+                        "blog",
+                        "saponis",
+                        "metro",
+                        "desktop"
+                    ],
+                    "files": [
+                        "favicon.ico",
+                        "circuitalminds.jpg",
+                        "avatar.jpg",
+                        "invited.jpeg"
+                    ]
+                }
+            },
+            {
+                "data": {
+                    "directories": [],
+                    "files": [
+                        "table.json",
+                        "table-wide.json",
+                        "skill.json",
+                        "orders.json",
+                        "inbox.json"
+                    ]
+                }
+            },
+            {
+                "vendors": {
+                    "directories": [
+                        "jsbarcode",
+                        "metro4",
+                        "jquery",
+                        "chartjs",
+                        "qrcode",
+                        "ckeditor"
+                    ],
+                    "files": []
+                }
+            },
+            {
+                "js": {
+                    "directories": [
+                        "blog",
+                        "api_modules",
+                        "video_app",
+                        "others",
+                        "desktop"
+                    ],
+                    "files": [
+                        "api_manager.js",
+                        "API.js",
+                        "books.json"
+                    ]
+                }
+            },
+            {
+                "metro": {
+                    "directories": [
+                        "js",
+                        "mif",
+                        "css"
+                    ],
+                    "files": []
+                }
+            },
+            {
+                "python": {
+                    "directories": [
+                        "fourier_analysis",
+                        "special_functions",
+                        "fractal_simulations"
+                    ],
+                    "files": []
+                }
+            },
+            {
+                "css": {
+                    "directories": [
+                        "blog",
+                        "others",
+                        "desktop"
+                    ],
+                    "files": [
+                        "colors.css",
+                        "helpers.css",
+                        "buttons.css",
+                        "modals.css"
+                    ]
+                }
+            }
+        ],
+        "files": [
+            "utils.js"
+        ]
+    },
+    "Templates": {
+        "directories": [
+            {
+                "handlers": {
+                    "directories": [],
+                    "files": [
+                        "404.html",
+                        "500.html"
+                    ]
+                }
+            },
+            {
+                "applications": {
+                    "directories": [
+                        "video_app"
+                    ],
+                    "files": [
+                        "chat_app.html",
+                        "console_app.html",
+                        "console_app.js",
+                        "desktop.html",
+                        "github.html",
+                        "utils.js",
+                        "inbox_app.html",
+                        "listener.html",
+                        "music_app.html",
+                        "music_app.js",
+                        "videos.html",
+                        "start.html"
+                    ]
+                }
+            },
+            {
+                "includes": {
+                    "directories": [],
+                    "files": [
+                        "head.html",
+                        "javascripts.html"
+                    ]
+                }
+            },
+            {
+                "snipets": {
+                    "directories": [],
+                    "files": [
+                        "order-details.html",
+                        "product.html",
+                        "widgets.html",
+                        "profile.html",
+                        "tabs.html",
+                        "orders.html",
+                        "hints.html",
+                        "table-classes.html",
+                        "dashboards.html",
+                        "forms-validating.html",
+                        "calendar.html",
+                        "splitter.html",
+                        "inbox2.html",
+                        "inbox.html",
+                        "tiles.html",
+                        "dialogs.html",
+                        "table-component.html",
+                        "forms-basic.html",
+                        "notifies.html",
+                        "maintenance.html",
+                        "forms-layouts.html",
+                        "info-boxes.html",
+                        "treeview.html",
+                        "read-email.html",
+                        "typography.html",
+                        "compose.html",
+                        "lockscreen.html",
+                        "price-table.html",
+                        "toasts.html",
+                        "forms-extended.html",
+                        "master.html",
+                        "progress.html",
+                        "preloader.html",
+                        "list.html",
+                        "listview.html",
+                        "coming-soon.html",
+                        "windows.html",
+                        "wizard.html",
+                        "video.html",
+                        "audio.html",
+                        "invoice.html",
+                        "chat.html"
+                    ]
+                }
+            },
+            {
+                "check": {
+                    "directories": [
+                        "others"
+                    ],
+                    "files": [
+                        "index.html",
+                        "api_manager.js",
+                        "github.html",
+                        "utils.js",
+                        "config_website.yml",
+                        "plotter.html",
+                        "head.json"
+                    ]
+                }
+            },
+            {
+                "views": {
+                    "directories": [],
+                    "files": [
+                        "buttons.html",
+                        "chat_app.html",
+                        "register.html",
+                        "console_app.html",
+                        "computer.html",
+                        "login.html",
+                        "desktop.html",
+                        "github.html",
+                        "video_app.html",
+                        "inbox_app.html",
+                        "colors.html",
+                        "grid.html",
+                        "start.html"
+                    ]
+                }
+            },
+            {
+                "previews": {
+                    "directories": [
+                        "blog",
+                        "music"
+                    ],
+                    "files": []
+                }
+            }
+        ],
+        "files": [
+            "base.html"
+        ]
+    },
+    "circuitalminds.github.io": {
+        "directories": [
+            {
+                "_sass": {
+                    "directories": [
+                        "1-tools",
+                        "2-base",
+                        "5-trumps",
+                        "3-modules",
+                        "0-settings",
+                        "4-layouts"
+                    ],
+                    "files": []
+                }
+            },
+            {
+                ".idea": {
+                    "directories": [
+                        "inspectionProfiles"
+                    ],
+                    "files": [
+                        "circuitalminds.github.io.iml",
+                        "workspace.xml",
+                        "modules.xml",
+                        ".gitignore",
+                        "vcs.xml",
+                        "misc.xml"
+                    ]
+                }
+            },
+            {
+                "_site": {
+                    "directories": [
+                        "applications",
+                        "page",
+                        "tags",
+                        "engineering",
+                        "hidokei",
+                        "about",
+                        "data_analysis",
+                        "python-topics",
+                        "introduction",
+                        "circuital",
+                        "courses",
+                        "birthdays",
+                        "fractalmind",
+                        "rachmaninoff"
+                    ],
+                    "files": [
+                        "servers.py",
+                        "favicon.ico",
+                        "index.html",
+                        "sitemap.xml",
+                        "robots.txt",
+                        "README.md",
+                        "google7719ccdbe085881a.html",
+                        "search.json",
+                        "app.py",
+                        "tools.py",
+                        "LICENSE.txt",
+                        "404.html",
+                        "app.js",
+                        "install"
+                    ]
+                }
+            },
+            {
+                "_pages": {
+                    "directories": [],
+                    "files": [
+                        "3-python_topics.md",
+                        "2-courses.md",
+                        "4-about.md",
+                        "1-applications.md"
+                    ]
+                }
+            },
+            {
+                ".ipynb_checkpoints": {
+                    "directories": [],
+                    "files": []
+                }
+            },
+            {
+                ".git": {
+                    "directories": [
+                        "refs",
+                        "branches",
+                        "objects",
+                        "info",
+                        "logs",
+                        "hooks"
+                    ],
+                    "files": [
+                        "HEAD",
+                        "config",
+                        "COMMIT_EDITMSG",
+                        "description",
+                        "index",
+                        "packed-refs"
+                    ]
+                }
+            },
+            {
+                ".sass-cache": {
+                    "directories": [
+                        "6c40886b72d67a2296a0cb1ce557ea28f9c6c5dc",
+                        "2c01fd8999e69e739c53f13880bd731d73bdbc9a",
+                        "c39d08458dd60f8e8497b0ba7fe0999b2571c8d0",
+                        "bf7a165b3908d5bdd34f2670ef004375836283c2",
+                        "2e00c37b122f09e8f83cf2158eefd7d969195171",
+                        "dc6e23c7315b6be7684c0955a054690e0430fec1",
+                        "45251ff50360441c3979067ed76836972b3a63df",
+                        "591a54c382e43a0ed9a46ea3b732f92c0155137c",
+                        "ced528f68e3e7affa291a3d3aa2f69382b7fcb93",
+                        "dc6b7a7a59274060cc3ef995863604e6e6cc001b",
+                        "bca4ed96e0ca6e1ff37074896f1a5930eb8d2760",
+                        "627c964e1246f88c51917ea692fa9d8e9ebb7bf0"
+                    ],
+                    "files": []
+                }
+            },
+            {
+                "_includes": {
+                    "directories": [],
+                    "files": [
+                        "disqus-comments.html",
+                        "header.html",
+                        "main.scss",
+                        "footer.html",
+                        "sidebar.html",
+                        "loader.html",
+                        "google-analytics.html",
+                        "head.html",
+                        "pagination.html",
+                        "javascripts.html"
+                    ]
+                }
+            },
+            {
+                "src": {
+                    "directories": [
+                        "__pycache__"
+                    ],
+                    "files": [
+                        "directories.json",
+                        "view_settings.py",
+                        "servers.py",
+                        "utils.js",
+                        "storage_manager.py",
+                        "directories.py",
+                        "__init__.py",
+                        "tools.py",
+                        "app.js",
+                        "config.py"
+                    ]
+                }
+            },
+            {
+                "_layouts": {
+                    "directories": [],
+                    "files": [
+                        "default.html",
+                        "post.html",
+                        "page.html"
+                    ]
+                }
+            },
+            {
+                "__pycache__": {
+                    "directories": [],
+                    "files": [
+                        "config.cpython-38.pyc"
+                    ]
+                }
+            },
+            {
+                "_posts": {
+                    "directories": [],
+                    "files": [
+                        "2021-05-25-engineering.md",
+                        "2020-10-08-fractalmind.markdown",
+                        "2020-09-08-hidokei.markdown",
+                        "2020-12-28-circuital.markdown",
+                        "2021-05-24-introduction.md",
+                        "2020-09-14-birthdays.markdown",
+                        "2021-05-26-data_analysis.md",
+                        "2021-07-20-rachmaninoff.markdown"
+                    ]
+                }
+            }
+        ],
+        "files": [
+            "favicon.ico",
+            "index.html",
+            "tags.html",
+            "_config.yml",
+            "Gemfile.lock",
+            "Gemfile",
+            "README.md",
+            "google7719ccdbe085881a.html",
+            "app_config.py",
+            "search.json",
+            "app.py",
+            "LICENSE.txt",
+            "404.html",
+            "install"
+        ]
+    }
+}
