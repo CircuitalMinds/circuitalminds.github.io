@@ -3,8 +3,7 @@
 
 {% include head.html %}
 
-<body onload="init_chat()">
-  <script src="{{ site.js }}/manager.js"></script>
+<body onload="init_chat();">
   {% if site.google-analytics %}
     {% include google-analytics.html %}
   {% endif %}
@@ -16,21 +15,20 @@
   {% include footer.html %}
   {% include javascripts.html %}
   
-  <button class="open-button" onclick="openForm()">Chat</button>
+  <button class="open-button" onclick="open_form()">Chat</button>
   <div class="chat-popup" id="myForm">
   <div class="form-container">
-      <div id="iframe_chat"></div>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <div id="chat_app"></div>
+      <button type="button" class="btn cancel" onclick="close_form()">Close</button>
   </div>
   </div>
 </body>
 <script>
-  function init_chat () { 
-    select_object(
-      "div", "id", "iframe_chat"
-    ).innerHTML = set_iframe(
-      "/templates/applications/chat_app.html"
-    )
-  };
+function init_chat () { 
+    obj = $("#chat_app")[0];
+    data = Api.template_builder('iframe');
+    app = data.get_object("/static/templates/applications/chat_app.html");
+    obj.innerHTML = app;         
+};
 </script>
 </html>

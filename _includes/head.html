@@ -1,31 +1,28 @@
 <head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<!-- DEFAULT -->
+{% for item in site.metadata %}
+  <meta name="{{ item.name }}" content="{{ item.content }}"/>
+{% endfor %}
 
-<!-- DEFAULT -->
-  {% for item in site.meta.default %}
-    <meta name="{{ item[0] }}" content="{{ item[1] }}"/>
-  {% endfor %}
-<!-- DEFAULT -->
-  
 <!-- OPEN_GRAPH -->
-  {% for item in site.meta.open_graph %}
-    <meta name="{{ item[0] }}" content="{{ item[1] }}"/>
-  {% endfor %}
-<!-- OPEN_GRAPH -->
+{% for item in site.open_graph %}
+  <meta property="{{ item.property }}" content="{{ item.content }}"/>
+{% endfor %}
+
+<title>
+{% if page.title %}
+  {{ site.title_page }} => {{ page.title }}
+{% else %}
+  {{ site.title }}
+{% endif %}
+</title>
   
-  <title>
-    {% if page.title %}
-      {{ 'circuitalminds' }} | {{ page.title }}
-    {% else %}
-      {{ site.title }}
-    {% endif %}
-  </title>
-  
-  <!-- Robots -->
-  <meta name="robots" content="index, follow"/>
+<!-- Robots -->
+<meta name="robots" content="index, follow"/>
   {%- unless page.canonical == false -%}
-  <link rel="canonical" href="{% if page.title %}{{ site.previews }}{{ page.url }}{% else %}{{ site.img }}/{{ site.preview_primary }}{% endif %}"/>
+<link rel="canonical" href="{% if page.title %}{{ site.url }}/static/images/{{ page.image }}{% else %}{{ site.url }}/static/images/{{ site.logo }}{% endif %}"/>
   {%- endunless -%}
   
   <!-- Title, description, author -->
@@ -36,33 +33,28 @@
   {%- endcapture -%}
   {%- assign _page_title = _page_title | escape -%}
   {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
+                                              
+<!-- BOOTSTRAP -->                                               
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                      
+<!-- AJAX -->                                               
+<script crossorigin="anonymous"
+        integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+        src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>                                                         
+<!-- Styles -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"/>
+<!-- Ionicons -->
+<link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="/favicon.ico" rel="icon" type="image/x-icon" />   
+<link href="{{ site.url }}/static/css/utils.css" rel="stylesheet"/>
 
-  <meta name="author" content="{{ site.author }}"/>
-  <meta name='description' content='{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}'/>
-                                                    
-  <!-- Open Graph -->
-  <meta property="og:title" content="{% if page.title %}{{ site.secondary_title }} | {{ page.title }}{% else %}{{ site.title }}{% endif %}"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="{% if page.title %}{{ site.previews }}{{ page.url }}{% else %}{{ site.img }}/{{ site.preview_primary }}{% endif %}"/>
-  <meta property="og:site_name" content="{% if page.title %}{{ site.secondary_title }} | {{ page.title }}{% else %}{{ site.title }}{% endif %}"/>  
-  <meta property="og:description" content='{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}'/>
-  <meta property="og:image" content="{% if page.title %}{{ site.previews }}{{ page.url }}{% else %}{{ site.img }}/{{ site.preview_primary }}{% endif %}"/>
-  <meta property="fb:app_id" content="{{ site.fb_id }}"/>
-  <!-- Styles -->
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"/>
-  <!-- Ionicons -->
-  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>
-  <link rel="icon" href="https://raw.githubusercontent.com/circuitalminds/circuitalminds.github.io/main/favicon.ico"/>
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <link href="{{ site.css }}/mainbutton.css" rel="stylesheet"/>
-  <link href="{{ site.css }}/colors.css" rel="stylesheet"/>
-  <link href="{{ site.css }}/chat.css" rel="stylesheet"/>
-  <link rel="canonical" href="{{ site.previews }}/{{ page.url | replace:'/','' }}"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <style>{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
+<style>{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
 </head>

@@ -1,12 +1,7 @@
-<!-- SCRIPTS -->
-
-<script src="{{ site.scripts.ajax.jquery.src }}"></script>
-<script src="{{ site.static }}/{{ site.scripts.utils }}"></script>
-<script src="{{ site.static }}/{{ site.scripts.Api }}"></script>
-
-<!-- SCRIPTS -->
-
-<script src="{{ site.static }}/js/utils/simple-jekyll-search.min.js"></script>
+{% for script in site.scripts %}
+  <script src="/static/{{ script.src }}"></script>
+{% endfor %}
+<script src="{{ site.url }}/{{ site.Api }}"></script>
 <script>
   SimpleJekyllSearch({
   searchInput: document.getElementById("js-search-input"),
@@ -16,18 +11,12 @@
     '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
   noResultsText: '<li class="search-no-item">No results found</li>'
   });
-</script>
-
-<script src="{{ site.static }}/js/utils/instafeed.min.js"></script>
-<script src="{{ site.static }}/js/utils/jquery.waitforimages.min.js"></script>
-<script src="{{ site.static }}/js/utils/jquery.fitvids.js"></script>
-<script src="{{ site.static }}/js/utils/common.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>	
+</script>	
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 <script>
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : "{{ site.meta.open_graph['fb:app_id'] }}",
+    appId      : "{{ site.metadata.open_graph['fb:app_id'] }}",
     cookie     : true,
     xfbml      : true,
     version    : 'v10.0'
@@ -67,7 +56,6 @@ function checkLoginState() {
   });
 }
 </script>
-<script></script>
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'es'}, 'google_translate_element');
