@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+
+RUNNER=$"bundle exec jekyll serve"
+OPTS=$"-l -o -H"
+
+function init_server() {
+echo $( $RUNNER $OPTS [ --host $HOST --port $PORT ] )
+
+}
+
+HOST=$"192.168.50.7"
+PORT=$"8080"
+SERVER=$(init_server)
+echo "$SERVER"

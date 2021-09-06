@@ -1,0 +1,117 @@
+#-------------------------------
+# General Site Settings
+baseurl: ""
+url: "https://circuitalminds.github.io"
+title: Circuital | Minds
+title_page: CircuitalMinds
+description: From Here To Eternity
+logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
+#-------------------------------
+# proprietary info
+author-name: Alan Matzumiya
+author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
+author-website: "https://alanmatzumiya.github.io"
+#-------------------------------
+# Contact links
+fb_id: 772020893629559
+facebook:  https://www.facebook.com/circuitalminds
+twitter:   https://twitter.com/circuitalminds
+instagram: https://www.instagram.com/circuitalminds
+pinterest: https://www.pinterest.com/circuitalminds
+#-------------------------------
+# Comment Section (Disqus)
+disqus-identifier: alan-matzumiya
+#-------------------------------
+# Instagram Feed
+instafeed: false
+#-------------------------------
+# Google Analytics
+google-analytics: UA-177619690-2
+#-------------------------------
+# Newsletter
+mailchimp: # Add your MailChimp form identifier.
+#-------------------------------
+# assets-path
+js: "/assets/js"
+css: "/assets/css"  
+img: "/assets/img"
+data: "/assets/data"
+#-------------------------------
+# resources 
+libs:
+  jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  
+scripts:
+  - "simple-jekyll-search.min.js"
+  - "instafeed.min.js"
+  - "jquery.waitforimages.min.js"
+  - "jquery.fitvids.js"
+  - "common.js"
+  - "utils.js"
+styles:
+  - "main.css"   
+#-------------------------------
+# manager
+Api: "/Api.js"
+#-------------------------------
+# Build settings
+markdown: kramdown
+permalink: ':title'
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+paginate: 7
+paginate_path: "/page/:num"
+include:
+  - _pages
+sass:
+  sass_dir: _sass
+  style: compressed
+#-------------------------------
+# Metadata    
+metadata:
+  - meta:
+    name: author
+    content: alanmatzumiya
+  - meta:
+    name: description
+    content: From Here To Eternity
+  - meta:
+    name: robots
+    content: index, follow
+  - meta:
+    name: viewport
+    content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+#-------------------------------
+# Open-Graph
+open_graph:
+  - meta:
+    property: fb:app_id
+    content: 772020893629559
+  - meta:
+    property: "og:description"
+    content: From Here To Eternity
+  - meta:
+    property: "og:image"
+    content: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
+  - meta:
+    property: "og:site_name" 
+    content: CircuitalMinds
+  - meta:
+    property: "og:title"
+    content: CircuitalMinds
+  - meta:
+    property: "og:type"
+    content: website
+  - meta:
+    property: "og:url"
+    content: "https://circuitalminds.github.io"
+#-------------------------------
+# Exclude from processing.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

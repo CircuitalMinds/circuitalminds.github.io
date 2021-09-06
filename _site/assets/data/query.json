@@ -1,0 +1,30 @@
+{
+    "video_app": "/video_app/static/data/videos.json",
+    "templates": {
+        "applications": {
+            "url": "templates/applications",
+            "chat_app": "chat_app.html",
+            "video_app": "video_app.html"
+        },
+        "views": {
+            "url": "templates/views",
+            "github": "github.html"
+            
+        }
+    },
+    "static": {
+        "data": {
+            "url": "static/data",
+            "videos": "videos.json"
+        },
+        "js": {
+            "url": "static/js"
+        },
+        "css": {
+            "url": "static/css"
+        },
+        "images": {
+            "url": "static/images"
+        }
+    }       
+}        
