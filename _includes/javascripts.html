@@ -1,7 +1,7 @@
-{% for script in site.scripts %}
-  <script src="/static/{{ script.src }}"></script>
+{% for src in site.scripts %}
+  <script src="{{ site.js }}/{{ src }}"></script>
 {% endfor %}
-<script src="{{ site.url }}/{{ site.Api }}"></script>
+
 <script>
   SimpleJekyllSearch({
   searchInput: document.getElementById("js-search-input"),

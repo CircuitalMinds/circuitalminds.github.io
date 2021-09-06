@@ -4,12 +4,14 @@ title: What does it mean to feel millions of dreams come real?
 date: 2020-10-08 10:30:55 +0300
 image: posts/fractalmind.jpg
 tags: [Cantor]
+scripts: ["criba", "sierpinski", "cantor", "lorenz", "mandelbrot", "animationPixel"]
 ---
 > <h3><strong>"Se repiten en multitud, liberandose en aparente anarquía preciosa estructura pintada en fragmentos disjuntos; El Infinito expresando su arte más auténtico".</strong></h3>
 
+
+
 ***
 
-<link rel="stylesheet" href="{{site.css}}/fractal.css">
 
 Aprender un lenguaje nuevo e intentar formalizarlo, conlleva actos con diálogos internos que quizás en algunas ocasiones no será posible contar con alguna conclusión inmediata e inclusive girar de forma irracional por caminos equívocos; Y un escape posible es volver al inicio de todo, una y otra vez si fuese necesario. En matemáticas, obtener una prueba clara y coherente logrando su perfeccion, recurrir a prácticas de meditación es una necesidad para transportarnos al pensamiento abstracto, y asi obtener argumentos elementales para la construcción de un lenguaje que pueda sostener su claridad al mínimo detalle posible.
 
@@ -267,11 +269,5 @@ No se requiere ser un genio para divagar en esta clase de arte matematico, solam
 <canvas id='pixel' width='505px' height='100px' style='display: inline-block; max-width: 100%; max-height: 100%;'></canvas>
 </div>
 
-***
 
-<script type="text/javascript" src="{{site.js}}/criba.js"></script>
-<script type="text/javascript" src="{{site.js}}/sierpinski.js"></script> 
-<script type="text/javascript" src="{{site.js}}/cantor.js"></script>
-<script type="text/javascript" src="{{site.js}}/lorenz.js"></script> 
-<script type="text/javascript" src="{{site.js}}/mandelbrot.js"></script>
-<script type="text/javascript" src="{{site.js}}/animationPixel.js"></script>
+***

@@ -4,6 +4,7 @@ title: CircuitalMinds, their fractalized meaning.
 date: 2021-01-01 12:00:00 +0300
 image: posts/circuital.jpg
 tags: [CircuitalMinds]
+scripts: ['lyrics']
 ---
 ><h3><strong>"Dando vueltas, con gracia. Ir a ninguna parte, rápidamente Soy mayor; Día a día rapido envejezco pero regresando a mi infancia. Gira y gira pacientemente, perdiendose por el guía. Y estoy todo nervioso por nada".</strong></h3>
 
@@ -25,26 +26,26 @@ Su conexión externa es precisamente la que surge de la información que hace po
 
 ***
 
-Esta relación de orden no solamente es un método que sirve para identificar, sino que además es la forma en la que mantenemos comunicación con el exterior que por alguna razón y natural, es propiamente elegida a causa de la necesidad de interacción con otros seres humanos, y posiblemente para mantener ese circuito que lleva consciencia y sin duda, día a día crece en ramas como si fuera un __Fractal__. Y precisamente esta es la esencia de <a href="https://circuitalminds.github.io/">CircuitalMinds</a>.
+Esta relación de orden no solamente es un método que sirve para identificar, sino que además es la forma en la que mantenemos comunicación con el exterior que por alguna razón y natural, es propiamente elegida a causa de la necesidad de interacción con otros seres humanos, y posiblemente para mantener ese circuito que lleva consciencia y sin duda, día a día crece en ramas como si fuera un __Fractal__. Y precisamente esta es la esencia de <a href="{{ site.url }}">{{ site.title_page }}</a>.
 
 ***
 
 __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que junto con __My Morning Jacket__ se produce esto que han llamado __Circuital__, un tema que motivo esta vagancia, y que he representado junto con su letra en estos __Circuitos__.
 
 
-<link rel="stylesheet" href="{{site.css}}/circuital.css">
-<div class="row" id="backrow" style="background-image: url('/static/images/blog/posts/cantor_circuital.jpeg');">
+
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cantor_circuital.jpeg');">
   
-  <img id="fractalImg" class="container reveal-in" style="width : 100%;" src="/static/images/blog/posts/cantor_circuital.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="width : 100%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
   
-  <img id="fractalImg" class="container reveal-in" style="float : left; width : 33%;" src="/static/images/blog/posts/cantor_circuital.jpeg">
-  <img id="fractalImg" class="container reveal-in" style="float : right; width : 34%;" src="/static/images/blog/posts/cantor_circuital.jpeg">
-  <img id="fractalImg" class="container reveal-in" style="float : right; width : 33%;" src="/static/images/blog/posts/cantor_circuital.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="float : left; width : 33%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="float : right; width : 34%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="float : right; width : 33%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
   
   <div id="fractalImg" class="container" style="float : left; width : 33%;"> 
-  <img id="fractalImg" class="container reveal-in" src="/static/images/blog/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="/static/images/blog/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 34%;">
-  <img id="fractalImg" class="container reveal-in" src="/static/images/blog/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 34%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 33%;">
   </div>
   
   <div id="fractalImg" class="container" style="padding-top : 0; float : right; width : 34%;">
@@ -52,16 +53,16 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
   </div>
   
   <div id="fractalImg" class="container" style="float : right; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="/static/images/blog/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="/static/images/blog/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 34%;">
-  <img id="fractalImg" class="container reveal-in" src="/static/images/blog/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 34%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 33%;">
   </div> 
   
   <iframe class="container" src="https://www.youtube.com/embed/tARFYFQIGaQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </div>
 
-<div class="row" id="backrow" style="background-image: url('/static/images/blog/posts/cascade.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade.gif');">
 <div class="container" style="float : left; width : 45%">
 <h2>Lyrics</h2>
 <p id="original-part1" class="lyrics"></p>
@@ -72,7 +73,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div>
 </div>
 
-<div class="row" id="backrow" style="background-image: url('/static/images/blog/posts/cascade4.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade4.gif');">
 <div class="container" style="float : left; width : 45%">
 <p id="original-part2" class="lyrics"></p>
 </div>
@@ -81,7 +82,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div> 
 </div>
 
-<div class="row" id="backrow" style="background-image: url('/static/images/blog/posts/cascade3.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade3.gif');">
 <div class="container" style="float : left; width : 45%">
 <p id="original-part3" class="lyrics"></p>
 </div>
@@ -90,7 +91,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div>
 </div> 
 
-<div class="row" id="backrow" style="background-image: url('/static/images/blog/posts/cascade2.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade2.gif');">
 <div class="container" style="float : left; width : 45%">
 <p id="original-part4" class="lyrics"></p>
 </div>
@@ -133,9 +134,9 @@ Para finalizar este post, y lucir con algo especial, unos descubrimientos dentro
 
 * <a href="https://www.youtube.com/channel/UCQ4mN8NcmaayKkEErES5-Sw"> L'Impératrice  ||  YouTube Official Channel </a>
 
-* Y para darles el buen gusto, pueden encontrar el resto de la lista libre de comerciales ni nada que los distraiga en: <a href="https://circuitalminds.github.io/desktop"> Délicieuse Musique  ||  2020 </a>
+* Y para darles el buen gusto, pueden encontrar el resto de la lista libre de comerciales ni nada que los distraiga en: <a href="{{ site.url }}/video_app/"> Délicieuse Musique  ||  2020 </a>
 
-* ...Y si se han quedado enganchados, recomiendo el siguiente canal para descubrir nuevos talentos; Pero con calma y disfrutar lento: <a href="https://circuitalminds.github.io/desktop"> KEXP  ||  Only Music Lovers </a>
+* ...Y si se han quedado enganchados, recomiendo el siguiente canal para descubrir nuevos talentos; Pero con calma y disfrutar lento: <a href="{{ site.url }}/video_app/"> KEXP  ||  Only Music Lovers </a>
 
 ***
 
@@ -146,8 +147,8 @@ __Sugerencia:__ Puedes dejar tu comentario al final de este post para recomendar
 <div class="row" id="backrow">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PD2XgQOyCCk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class="row" id="backrow" style="background-image: url('/static/images/blog/posts/circuital.jpg')">
-<img id="fractalImg" width="40%" class="reveal-in" alt="circuitalminds.github.io" src="https://avatars.githubusercontent.com/u/75770878?s=400&u=4ca8d3358eb1f584e0b5d893b7ecc61d754a337c&v=4">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital.jpg')">
+<img id="fractalImg" width="40%" class="reveal-in" alt="{{ site.url }}" src="{{ site.logo }}">
 </div>
 <div class="row" id="backrow">
 <iframe src="https://www.youtube.com/embed/jiRUH9b33dA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -168,5 +169,3 @@ __Sugerencia:__ Puedes dejar tu comentario al final de este post para recomendar
 {% endhighlight %}
 
 ***
-
-<script type="text/javascript" src="{{site.js}}/lyrics.js"></script>

@@ -1,0 +1,26 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<!-- metadata -->
+{% for item in site.metadata %}
+  <meta name="{{ item.name }}" content="{{ item.content }}"/>
+{% endfor %}  
+<!-- open_graph -->
+{% for item in site.open_graph %}
+  <meta property="{{ item.property }}" content="{{ item.content }}"/>
+{% endfor %}  
+<title>
+{% if page.title %}{{ site.title_page }} | {{ page.title }}
+{% else %}{{ site.title }}
+{% endif %}
+</title>    
+<!-- Robots -->
+<link rel="canonical" href="{{ site.logo }}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://circuitalminds.github.io/static/metro/css/metro-all.css" rel="stylesheet">
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://circuitalminds.github.io/static/images/favicon.ico" rel="icon" type="image/x-icon">
+<script src="https://circuitalminds.github.io/static/metro/js/metro.js"></script>
+<!-- Bootsrap -->                                               
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>                    

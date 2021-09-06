@@ -1,78 +1,61 @@
 #-------------------------------
 # General Site Settings
+baseurl: ""
+url: "https://circuitalminds.github.io"
 title: Circuital | Minds
 title_page: CircuitalMinds
-description: Spinning out gracefully # this means to ignore newlines until "baseurl:"
-logo: images/circuitalminds.jpg
+description: From Here To Eternity
+logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
 #-------------------------------
 # proprietary info
 author-name: Alan Matzumiya
-author-avatar: images/avatar.jpg
+author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
 author-website: "https://alanmatzumiya.github.io"
 #-------------------------------
-# Open Graph
-fb_id: 772020893629559
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://circuitalminds.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-#-------------------------------
 # Contact links
-facebook:  https://www.facebook.com/CircuitalMinds/ # Add your Facebook handle
-twitter:   https://twitter.com/ # Add your Facebook handle
-instagram: https://www.instagram.com/alanmatzumiya # Add your Facebook handle
-pinterest: https://www.pinterest.com/alanmatzumiya # Add your Facebook handle
-#-------------------------------
-# static-folders
-static:
-  js: "static/js"
-  css: "static/css"  
-  images: "static/images"
-  data: "static/data"
-#-------------------------------
-# templates-folders
-templates:
-  applications: "templates/applications"
-  views: "templates/views"
-#-------------------------------
-# manager-resource
-Api: "/Api.js"
-#-------------------------------
-# external-resources 
-libs:
-  jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-  
-scripts:
-  - jekyll_search:
-    src: "js/simple-jekyll-search.min.js"
-  - setup_instagram:
-    src: "js/instafeed.min.js"
-  - waitforimages:
-    src: "js/jquery.waitforimages.min.js"
-  - fitvids:
-    src: "js/jquery.fitvids.js"
-  - common:
-    src: "js/common.js"
-  - utils:
-    src: "js/utils.js"
-styles:
-  - utils:
-    href: "css/utils.css"
-   
+fb_id: 772020893629559
+facebook:  https://www.facebook.com/circuitalminds
+twitter:   https://twitter.com/circuitalminds
+instagram: https://www.instagram.com/circuitalminds
+pinterest: https://www.pinterest.com/circuitalminds
 #-------------------------------
 # Comment Section (Disqus)
-disqus-identifier: alan-matzumiya # Add your shortname for Disqus Comment. For example mr-brown
+disqus-identifier: alan-matzumiya
 #-------------------------------
 # Instagram Feed
-instafeed: false # To enable the instafeed, use the value true. To turn off use the value false.
+instafeed: false
 #-------------------------------
 # Google Analytics
-google-analytics: UA-177619690-2 # Add your identifier. For example UA-99631805-1.
+google-analytics: UA-177619690-2
 #-------------------------------
 # Newsletter
-mailchimp: # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e
+mailchimp: # Add your MailChimp form identifier.
+#-------------------------------
+# assets-path
+js: "/assets/js"
+css: "/assets/css"  
+img: "/assets/img"
+data: "/assets/data"
+#-------------------------------
+# resources 
+libs:
+  jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  
+scripts:
+  - "simple-jekyll-search.min.js"
+  - "instafeed.min.js"
+  - "jquery.waitforimages.min.js"
+  - "jquery.fitvids.js"
+  - "common.js"
+  - "utils.js"
+styles:
+  - "main.css"   
+#-------------------------------
+# manager
+Api: "/Api.js"
 #-------------------------------
 # Build settings
 markdown: kramdown
-permalink: ':title/'
+permalink: ':title'
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
@@ -83,57 +66,33 @@ include:
 sass:
   sass_dir: _sass
   style: compressed
-
-server: http://192.168.50.7:8000
-previews: https://circuitalminds.github.io/previews/blog
-js: https://circuitalminds.github.io/static/js/blog
-css: https://circuitalminds.github.io/static/css/blog
-img: https://circuitalminds.github.io/static/images/blog
-view_apps:  
-  - app: 
-    id: 'desktop'
-    caption: 'Desktop App'
-    image: 'desktop.jpg'
-  - app:
-    id: 'music_app'
-    caption: 'Music App'
-    image: 'music_app.jpg'
-  - app:
-    id: 'chat_app'
-    caption: 'Chat App'
-    image: 'chat_app.jpg'
-  - app:    
-    id: 'inbox_app'
-    caption: 'Inbox App'
-    image: 'inbox_app.jpg'
-  - app:
-    id: 'console_app'
-    caption: 'Console App'
-    image: 'console_app.jpg'
-    
+#-------------------------------
+# Metadata    
 metadata:
   - meta:
     name: author
     content: alanmatzumiya
   - meta:
     name: description
-    content: Spinning out gracefully
+    content: From Here To Eternity
   - meta:
     name: robots
     content: index, follow
   - meta:
     name: viewport
     content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+#-------------------------------
+# Open-Graph
 open_graph:
   - meta:
     property: fb:app_id
     content: 772020893629559
   - meta:
     property: "og:description"
-    content: Spinning out gracefully
+    content: From Here To Eternity
   - meta:
     property: "og:image"
-    content: images/logo.jpg
+    content: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
   - meta:
     property: "og:site_name" 
     content: CircuitalMinds
@@ -146,7 +105,6 @@ open_graph:
   - meta:
     property: "og:url"
     content: "https://circuitalminds.github.io"
-  
 #-------------------------------
 # Exclude from processing.
 # exclude:

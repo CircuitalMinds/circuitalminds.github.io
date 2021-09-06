@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 
-BRANCH=$(git branch --show-current)
 RUNNER=$"bundle exec jekyll serve"
 OPTS=$"-l -o -H"
 
@@ -10,16 +9,7 @@ echo $( $RUNNER $OPTS [ --host $HOST --port $PORT ] )
 
 }
 
-if [ $BRANCH == "main" ]
-then
 HOST=$"192.168.50.7"
 PORT=$"8080"
 SERVER=$(init_server)
 echo "$SERVER"
-elif [ $BRANCH == "localhost" ]
-then
-HOST=$"127.0.0.1"
-PORT=$"5000"
-SERVER=$(init_server)
-echo "$SERVER"
-fi

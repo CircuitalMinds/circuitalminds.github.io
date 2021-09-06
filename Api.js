@@ -1,183 +1,10 @@
 var Api = {
     url: 'https://circuitalminds.github.io',
-    geolocation: {},
-    resources: {},
-    request_data: {},
-    storage: {}
+    logo: 'https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4',
+    applications: ['chat_app', 'video_app'],
+    notebooks: {},
+    geolocation: {latitude: '', longitude: '', accuracy: ''}    
 };
-
-Api.template_builder = function ( object_name ) {
-    function set_attrs ( attrs_data ) {
-        return Object.keys(attrs_data).map(
-            key => key + '="' + attrs_data[key] + '"'
-        ).join(' ');
-    };
-    var prototypes_data = {
-        img: {
-            attrs: {
-                "src": '',
-                "class": 'container reveal-in',
-                "style": 'width : 100%; border: 1px solid #1abc9c;'
-            },
-            get_object: function ( src ) {
-                this.attrs.src = src;
-                return '<img ' + set_attrs(this.attrs) + '>';
-            }
-        },
-        iframe: {
-            attrs: {
-                "src": '', "height": '100%', "width": '100%', "class": 'image fit',
-                "frameborder": '0',
-                "allow": 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
-                "allowfullscreen": 'true'
-            },
-            get_object: function ( src ) {
-                this.attrs.src = src;
-                return '<iframe ' + set_attrs(this.attrs) + '></iframe';
-            }
-        }
-    };
-    return prototypes_data[object_name];
-};
-
-Api.get_tag = function ( name, attr_name='', attr_value='' ) {
-    if ( attr_name == '' & attr_value == '' ) {
-        return $(name);
-    } else if ( attr_value == '' ) {
-        return $(name + '[' + attr_name + ']');
-    } else {
-        obj_data = $(name + '[' + attr_name + '="' + attr_value + '"]');
-        if ( obj_data.length == 1 ) {
-            return obj_data[0];
-        } else {
-            return obj_data;
-        };
-    };
-};
-
-Api.set_metadata = function ( attr_name, attr_value, content_value ) {
-    obj = get_tag('meta', attr_name, attr_value)
-    obj.setAttribute('content', content_value);
-};
-
-Api.filter_object = function ( data, target='all' ) {
-    if ( target == 'all' ) {
-        return data;
-    } else if ( data.length != undefined ) {
-  		return data.filter( e => e == target );
-    } else {
-        return Object.keys(data).filter( e => e == target );
-    }
-}
-
-Api.create_object = function ( dict_data={} ) {
-    obj = {};
-    if ( dict_data == {} ) {
-        return obj;
-    } else {
-        Object.keys(dict_data).map( k => obj[k] = dict_data[k] );
-        return obj;
-    };
-};
-
-Api.create_array = function ( size, start=0, step=1 ) {
-    new_array = [];
-    counter = start;
-    while ( counter < start + size ) {
-        new_array.push(counter);
-        counter += step;
-    };
-    return new_array;
-};
-
-Api.partitions = function ( array_data, n ) {
-    sn = Math.ceil(array_data.length / n);
-    arrays = create_array(sn).map(
-        s => create_array(n, s * n, 1)
-    );
-    return arrays.map( arr => arr.map( x => array_data[x] ) );
-};
-
-Api.iter_array = function ( data, start, end ) {
-  iter_data = [];
-  for ( var i = start; i < end; i++ ) {
-       if ( i == data.length ) {
-           break;
-       } else {
-           iter_data.push(data[i]);
-       };
-  };
-  return iter_data;
-};
-
-Api.get = function ( url, datatype='', type='GET' ) {
-  	options = {
-      url: url, type: type, dataType: datatype
-    };
-   	var response = new Object;
-  	options.url = url;
-  	if ( datatype == '' ) {
-  	    options.dataType = url.split('/').reverse()[0].split('.')[1];
-  	};
-  	if ( options.dataType == 'json' ) {
-        options.success = function ( data ) {
-            Object.keys(data).map( k => response[k] = data[k] );
-        };
-    } else {
-      	if ( options.dataType != 'html' ) {
-      		options.dataType = '';
-        };
-      	options.success = function ( data ) {
-        	response.data = data;
-        };
-    }
-   	$.ajax(options);
-    return response;
-};
-
-Api.query_data = Api.get('data/query.json');
-Api.query = function ( q ) {
-    return this.query_data[q];
-};
-
-Api.create_template = function ( data, selector='' ) {
-    doc = document.createElement('template');
-    doc.innerHTML = data;
-    content = doc.content;
-    if ( selector == '' ) {
-        return content;
-    } else {
-        return content.querySelectorAll(selector);
-    }
-};
-Api.add_listener = function ( ) {
-    var obj = document;
-    for ( n in obj ) {
-        if ( typeof( obj[n] ) == 'object' ) {
-            obj[n].addEventListener("mousedown", function (event) {
-                console.log(obj[n]);
-            });
-        }
-    };
-};
-
-Api.Git = function ( data='', repo='' ) {
-    g = {
-        url: "https://api.github.com",
-        user: "circuitalminds"
-    };
-    response = response_data();
-    function get_data (q) {
-        $.get(q, function ( data ) { response['data'] = data } );
-    };
-    if ( data == '' & repo == '' ) {
-        get_data([g.url, "users", g.user, "repos"].join('/'));
-    } else if ( data == 'repos' & repo != '' ) {
-        get_data([g.url, data, g.user, repo].join('/'));
-    };
-    return response;
-};
-
 Api.get_location = function () {
     var options = {
             enableHighAccuracy: true,
@@ -186,7 +13,7 @@ Api.get_location = function () {
     };
     function success( position ) {
         var data = position.coords;
-        ['latitude', 'longitude', 'accuracy'].map( k=> location_data[k] = data[k] );
+        Object.keys(this.geolocation).map( k => this.geolocation[k] = data[k] );
     };
     function error( err ) {
         console.warn(
@@ -196,6 +23,30 @@ Api.get_location = function () {
     navigator.geolocation.getCurrentPosition(
         success, error, options
     );
+};
+
+Api.get_notebooks = function () {
+    function get_data (topic) {
+        url = [
+            "https://raw.githubusercontent.com/alanmatzumiya",
+            topic, "main/notebooks_data.json"
+        ].join("/");
+        Api.notebooks[topic] = {};
+        Api.notebooks[topic] = Api.get(url);
+    };
+    ['engineering-basic', 'data_analysis'].map(
+        topic => get_data(topic)
+    );    
+};    
+Api.notebooks.set_data = function ( topic, module ) {
+    data_list = Api.notebooks[topic][module];
+    return [
+        "<ul>",
+        data_list.map(
+            l => ['<li><p><a href="', l.url_app, '" >', l.name.replace('.ipynb', ''), '</a></p></li>'].join('')
+        ).join("\n"),
+        "</ul>"                 
+    ].join("\n");
 };
 
 function init_app () {
@@ -221,3 +72,41 @@ function init_app () {
     return app;
 };
 
+function App ( name ) {
+    if ( Api.applications.indexOf(name) != undefined ) {
+        var Obj = $("#" + name)[0];
+        Obj.src = '"' + [Api.url, name].join('/') + '/"';
+        Obj.img = '"' + Api.logo + '"';
+        Obj.open_view = [
+            '<iframe src=' + Obj.src,
+            'class="image fit"', 'allow="accelerometer;', 'autoplay;', 'encrypted-media;',
+            'gyroscope;', 'picture-in-picture"', 'allowfullscreen="true"', 'width="100%"',
+            'height="300px"', 'frameborder="0"',
+            '></iframe>'
+        ].join(" ");
+        Obj.close_view = [
+            '<img src=' + Obj.img,
+            'class="container reveal-in"',
+            'style="width: 100%; border: 1px solid #1abc9c;" >'
+        ].join(" ");
+        Obj.open = function () { this.innerHTML = this.open_view };    
+        Obj.close = function () { this.innerHTML = this.close_view };
+        return Obj;
+    };
+};
+
+function time_clock () {
+    var clock_obj = $('#time-clock')[0];
+    if ( clock_obj != undefined ) {
+        start = setInterval( function () {
+            datetime = new Date();
+            clock_obj.innerHTML = [
+                datetime.toLocaleDateString(),
+                datetime.toLocaleTimeString()                
+            ].join(" - ");
+        }, 1000);
+    };
+};
+window.onload = function () {
+    time_clock();
+};
