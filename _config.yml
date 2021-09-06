@@ -36,6 +36,7 @@ js: "/assets/js"
 css: "/assets/css"  
 img: "/assets/img"
 data: "/assets/data"
+applications: "/assets/applications"
 #-------------------------------
 # resources 
 libs:
@@ -51,7 +52,7 @@ styles:
   - "main.css"   
 #-------------------------------
 # manager
-Api: "/Api.js"
+Api: "/Api.js"  
 #-------------------------------
 # Build settings
 markdown: kramdown

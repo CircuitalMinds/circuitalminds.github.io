@@ -72,6 +72,7 @@ function get_query ( q ) {
             };
             search_template.set_data(search_template.get_list(rows));
         };
+        return results;   
     };
 };
 var colors = [

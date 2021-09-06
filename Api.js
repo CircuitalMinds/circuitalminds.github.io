@@ -13,7 +13,7 @@ Api.get_location = function () {
     };
     function success( position ) {
         var data = position.coords;
-        Object.keys(this.geolocation).map( k => this.geolocation[k] = data[k] );
+        Object.keys(Api.geolocation).map( k => Api.geolocation[k] = data[k] );
     };
     function error( err ) {
         console.warn(

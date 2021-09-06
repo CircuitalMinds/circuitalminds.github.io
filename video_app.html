@@ -58,6 +58,16 @@ permalink: /video_app
         data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>">
     </video>
 <div id="colors-2" class="row"></div>
-<script src="/assets/applications/video_app/video.js"></script>
-<script src="/assets/applications/video_app/search.js"></script>
-<script src="/assets/applications/video_app/app.js"></script>
+<script src="{{ site.applications }}/video_app/video.js"></script>
+<script src="{{ site.applications }}/video_app/search.js"></script>
+<script src="{{ site.applications }}/video_app/app.js"></script>
+<script>
+var uri = decodeURI(document.URL.split('?q=')[1]);    
+var result_uri = '';
+setTimeout( function () {
+    result_uri = get_query(uri)[0].title;
+    if ( result_uri != undefined ) {
+        App.set(result_uri);    
+    };
+}, 1000);    
+</script>

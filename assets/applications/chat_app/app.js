@@ -9,7 +9,7 @@ var App = {
 App.random_message = function () {
     return this.messages[Math.round( Math.random() * (this.messages.length - 1) )];
 };
-function SendMessage ( message ){
+function SendMessage ( message ) {
     App.data.received.push(message.text);
     var chat = $(this).data("chat");
     setTimeout(function(){

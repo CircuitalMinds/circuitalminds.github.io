@@ -40,14 +40,9 @@ layout: default
 				<div style="padding-top: 5%;" class="fb-like" data-href="{{ site.url }}/{{ page.url }}" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
                                 </div>
 				<div class="post-body">
+					
                         {{ content }}
-						{% if page.image %}
-							<script>
-								['image', 'url'].map(
-									m => document.querySelector('meta[property="og:' + m + '"').content = '{{ site.url }}{{ site.img }}/{{ page.image}}'
-								);
-							</script>
-						{% endif %}					
+			
 						{% if page.scripts %}
 						{% for src in page.scripts %}
 						<script type="text/javascript" src="{{ site.js }}/posts/{{ src }}.js"></script>
