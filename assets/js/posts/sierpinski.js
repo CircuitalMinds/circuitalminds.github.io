@@ -1,9 +1,7 @@
 function initSierpin() {
     var depth = parseInt(document.getElementById('depthStepper').value);
-    document.getElementById("var-sn").innerHTML = depth;
-    
-    sierpinski = new Sierpinski();	
-    
+    document.getElementById("var-sn").innerHTML = depth;    
+    sierpinski = new Sierpinski();	    
     // Constructor which initializes the canvas widget
     function Sierpinski() {
         this.w = 505;

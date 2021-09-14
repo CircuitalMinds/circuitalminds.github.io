@@ -94,19 +94,3 @@ function App ( name ) {
         return Obj;
     };
 };
-
-function time_clock () {
-    var clock_obj = $('#time-clock')[0];
-    if ( clock_obj != undefined ) {
-        start = setInterval( function () {
-            datetime = new Date();
-            clock_obj.innerHTML = [
-                datetime.toLocaleDateString(),
-                datetime.toLocaleTimeString()                
-            ].join(" - ");
-        }, 1000);
-    };
-};
-window.onload = function () {
-    time_clock();
-};

@@ -2,7 +2,7 @@
 layout: page
 title: About
 image: about.jpg
-permalink: /about/
+permalink: /about
 ---
 Cabe la posibilidad de encontrar formas que no puedan ser del todo tangibles, pero todo depende de sus atributos.
 

@@ -1,0 +1,15 @@
+<div data-role="carousel"
+     data-cls-controls="fg-teal"
+     data-cls-bullet="bullet-big"
+     data-cls-bullet-on="bg-teal drop-shadow"
+     data-cls-slides="rounded"
+     data-control-next="<span class='mif-arrow-right'></span>"
+     data-control-prev="<span class='mif-arrow-left'></span>"
+     data-auto-start="true"
+     data-controls-outside="true" class="card-container">
+    {% for img in image_list %}
+    <div class="slide h-100 w-100 bg-teal"
+         data-cover="img">
+    </div>
+    {% endfor %}
+</div>

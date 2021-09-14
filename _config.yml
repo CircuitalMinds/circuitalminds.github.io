@@ -35,8 +35,6 @@ mailchimp: # Add your MailChimp form identifier.
 js: "/assets/js"
 css: "/assets/css"  
 img: "/assets/img"
-data: "/assets/data"
-applications: "/assets/applications"
 #-------------------------------
 # resources 
 libs:
@@ -47,7 +45,6 @@ scripts:
   - "jquery.waitforimages.min.js"
   - "jquery.fitvids.js"
   - "common.js"
-  - "utils.js"
 styles:
   - "main.css"   
 #-------------------------------
@@ -64,6 +61,7 @@ paginate: 7
 paginate_path: "/page/:num"
 include:
   - _pages
+  - _applications
 sass:
   sass_dir: _sass
   style: compressed
@@ -92,9 +90,6 @@ open_graph:
     property: "og:description"
     content: From Here To Eternity
   - meta:
-    property: "og:image"
-    content: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
-  - meta:
     property: "og:site_name" 
     content: CircuitalMinds
   - meta:
@@ -103,9 +98,6 @@ open_graph:
   - meta:
     property: "og:type"
     content: website
-  - meta:
-    property: "og:url"
-    content: "https://circuitalminds.github.io"
 #-------------------------------
 # Exclude from processing.
 # exclude:

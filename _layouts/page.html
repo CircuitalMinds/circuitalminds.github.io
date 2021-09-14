@@ -6,7 +6,7 @@ layout: default
 	<div class="row">
 		<div class="col col-12">
 			<div class="page-image-box">
-				<div class="page-image" style="background-image: url('/static/images/{{ page.image }}')"></div>
+				<div class="page-image" style="background-image: url('{{ site.img }}/{{ page.image }}')"></div>
 			</div>
 		</div>
 		<article class="col col-12 col-t-10 push-t-1 page">
@@ -14,11 +14,13 @@ layout: default
 				<div class="page-head">
 					<h1 class="page-title">{{ page.title | escape }}</h1>
 				</div>
-
 				<div class="page-body">
-					{{ content }}
+					
+					{{ content }}					
+
 				</div>
 			</div>
 		</article> <!-- /.page -->
 	</div>
+
 </div>

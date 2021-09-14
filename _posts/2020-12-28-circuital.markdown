@@ -34,18 +34,18 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 
 
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cantor_circuital.jpeg');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cantor.jpeg');">
   
-  <img id="fractalImg" class="container reveal-in" style="width : 100%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="width : 100%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
   
-  <img id="fractalImg" class="container reveal-in" style="float : left; width : 33%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
-  <img id="fractalImg" class="container reveal-in" style="float : right; width : 34%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
-  <img id="fractalImg" class="container reveal-in" style="float : right; width : 33%;" src="{{ site.img }}/posts/cantor_circuital.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="float : left; width : 33%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="float : right; width : 34%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
+  <img id="fractalImg" class="container reveal-in" style="float : right; width : 33%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
   
   <div id="fractalImg" class="container" style="float : left; width : 33%;"> 
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 34%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : left; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor.jpeg" style="height : 66%; float : left; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor.jpeg" style="height : 66%; float : left; width : 34%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor.jpeg" style="height : 66%; float : left; width : 33%;">
   </div>
   
   <div id="fractalImg" class="container" style="padding-top : 0; float : right; width : 34%;">
@@ -53,16 +53,16 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
   </div>
   
   <div id="fractalImg" class="container" style="float : right; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 34%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor_circuital.jpeg" style="height : 66%; float : right; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/circuital/cantor.jpeg" style="height : 66%; float : right; width : 33%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/circuital/cantor.jpeg" style="height : 66%; float : right; width : 34%;">
+  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/circuital/cantor.jpeg" style="height : 66%; float : right; width : 33%;">
   </div> 
   
   <iframe class="container" src="https://www.youtube.com/embed/tARFYFQIGaQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </div>
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_1.gif');">
 <div class="container" style="float : left; width : 45%">
 <h2>Lyrics</h2>
 <p id="original-part1" class="lyrics"></p>
@@ -73,7 +73,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div>
 </div>
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade4.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_4.gif');">
 <div class="container" style="float : left; width : 45%">
 <p id="original-part2" class="lyrics"></p>
 </div>
@@ -82,7 +82,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div> 
 </div>
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade3.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_3.gif');">
 <div class="container" style="float : left; width : 45%">
 <p id="original-part3" class="lyrics"></p>
 </div>
@@ -91,7 +91,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div>
 </div> 
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/cascade2.gif');">
+<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_2.gif');">
 <div class="container" style="float : left; width : 45%">
 <p id="original-part4" class="lyrics"></p>
 </div>

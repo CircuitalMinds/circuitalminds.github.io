@@ -7,12 +7,29 @@
   {% endif %}  
   {% include loader.html %}
   {% include header.html %}
-  {% include modal.html %}
 
       {{ content }}
-
-  {% include footer.html %}    
-  {% include javascripts.html %}    
+  
+  {% include javascripts.html %}   
+  {% include footer.html %}     
 </body>
+
+<script>
+  function time_clock () {
+  var clock_obj = $('#time-clock')[0];
+    if ( clock_obj != undefined ) {
+      start = setInterval( function () {
+        datetime = new Date();
+        clock_obj.innerHTML = [
+          datetime.toLocaleDateString(),
+          datetime.toLocaleTimeString()                
+        ].join(" - ");
+      }, 1000);
+    };
+  };
+  window.onload = function () {
+    time_clock();
+  };
+  </script>
 {% include chat.html %}
 </html>
