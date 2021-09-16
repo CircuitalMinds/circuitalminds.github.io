@@ -12,16 +12,15 @@ App.onplay = function () {this.play()};
 App.onpause = function () {this.pause()};
 function set_video_data ( data ) {
     data_list = Object.keys(data);
-    key_list = [
-            'video_id', 'description', 'duration',
-            'interaction_count', 'keywords', 'image', 'url'
-    ];
     for ( v of data_list ) {
         w = data[v];
+        key_list = Object.keys(w);
         t = w.title;
         video_object.data[t] = {};
         video_object.list.push(t);
-        key_list.map( k => video_object.data[t][k] = w[k] );
+        key_list.map(
+            k => video_object.data[t][k.replace('og:', '').replace('twitter:', '')] = w[k]
+        );
     };
 };
 function get_videos () {
