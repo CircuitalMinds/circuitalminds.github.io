@@ -2,7 +2,6 @@ var Api = {
     url: 'https://circuitalminds.github.io',
     logo: 'https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4',
     applications: ['chat_app', 'video_app'],
-    notebooks: {},
     geolocation: {latitude: '', longitude: '', accuracy: ''}    
 };
 Api.get_location = function () {
@@ -13,7 +12,7 @@ Api.get_location = function () {
     };
     function success( position ) {
         var data = position.coords;
-        Object.keys(this.geolocation).map( k => this.geolocation[k] = data[k] );
+        Object.keys(Api.geolocation).map( k => Api.geolocation[k] = data[k] );
     };
     function error( err ) {
         console.warn(
@@ -25,29 +24,6 @@ Api.get_location = function () {
     );
 };
 
-Api.get_notebooks = function () {
-    function get_data (topic) {
-        url = [
-            "https://raw.githubusercontent.com/alanmatzumiya",
-            topic, "main/notebooks_data.json"
-        ].join("/");
-        Api.notebooks[topic] = {};
-        Api.notebooks[topic] = Api.get(url);
-    };
-    ['engineering-basic', 'data_analysis'].map(
-        topic => get_data(topic)
-    );    
-};    
-Api.notebooks.set_data = function ( topic, module ) {
-    data_list = Api.notebooks[topic][module];
-    return [
-        "<ul>",
-        data_list.map(
-            l => ['<li><p><a href="', l.url_app, '" >', l.name.replace('.ipynb', ''), '</a></p></li>'].join('')
-        ).join("\n"),
-        "</ul>"                 
-    ].join("\n");
-};
 
 function init_app () {
     url = 'https://circuitalminds.github.io';
@@ -93,20 +69,4 @@ function App ( name ) {
         Obj.close = function () { this.innerHTML = this.close_view };
         return Obj;
     };
-};
-
-function time_clock () {
-    var clock_obj = $('#time-clock')[0];
-    if ( clock_obj != undefined ) {
-        start = setInterval( function () {
-            datetime = new Date();
-            clock_obj.innerHTML = [
-                datetime.toLocaleDateString(),
-                datetime.toLocaleTimeString()                
-            ].join(" - ");
-        }, 1000);
-    };
-};
-window.onload = function () {
-    time_clock();
 };

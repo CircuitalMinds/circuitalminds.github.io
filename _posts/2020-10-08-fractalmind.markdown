@@ -92,16 +92,15 @@ Hoy en día son conocidas una gran variedad de objetos geometricos que presentan
 
 <h3>Fractal del Conjunto de Cantor.</h3>
 <div class="container">
-    <button id="cantorBtn" class="button show" onclick="initCantor()">Mostrar</button>
-    <br>
-    <div id="cantor" class="row"></div>
-    <br>    
     <div class="row">
-        <p>Numero de Particiones \(C_n =\) <span id="var-fn">5</span></p>
+        <p>Numero de Particiones \(C_m =\) <span id="cantor-partitions">5</span></p>
     </div>
     <div class="slidecontainer">
-        <input id='fn' value="5" type="range" class="slider" min="0" max="10" step="1" oninput="initCantor()"/>
+        <input value="5" type="range" class="slider" min="0" max="10" step="1" oninput="set_cantor(this.value);"/>
     </div>    
+    <br>
+    <div id="cantor"></div>
+    <br>    
 </div>    
 
 ***
@@ -268,6 +267,6 @@ No se requiere ser un genio para divagar en esta clase de arte matematico, solam
 <iframe width="505px" height="300px" src="https://www.youtube.com/embed/Gm1kC6xcRlE?list=PL9tY0BWXOZFtUDxjYHtFVrpsI0jmPopPr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
 <canvas id='pixel' width='505px' height='100px' style='display: inline-block; max-width: 100%; max-height: 100%;'></canvas>
 </div>
-
+<script src="{{ site.js }}/canvas.js"></script>
 
 ***

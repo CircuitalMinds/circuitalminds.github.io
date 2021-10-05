@@ -1,0 +1,41 @@
+---
+layout: dashboard
+title: Charts
+permalink: /spectrum/charts
+---
+<div id="wrapper">
+    <div id="chart" class="chart"></div>
+</div>
+<script>
+var line_chart = {
+    series: [],
+    chart: {type: 'line'},
+    dataLabels: {},
+    stroke: {},
+    title: {},
+    grid: {},
+    xaxis: {}
+};
+
+line_chart.default = function () {
+    this.series.push({
+        name: "dataset",
+        data: [1, 2, 3, 4]
+    });    
+    this.chart.height = 350;
+    this.chart.zoom = {enabled: false};
+    this.dataLabels = {enabled: false};  
+    this.stroke = {curve: 'straight'};
+    this.title = {text: 'Title', align: 'left'};  
+    this.grid = {row: {colors: ['#f3f3f3', 'transparent'], opacity: 0.5}};
+    this.xaxis.categories = ['A', 'B', 'C', 'D'];
+};
+
+function set_chart ( id, settings ) {
+    var obj = new ApexCharts($("#" + id)[0], settings);
+    obj.render();
+};
+line_chart.default()
+set_chart('chart', line_chart);
+</script>
+

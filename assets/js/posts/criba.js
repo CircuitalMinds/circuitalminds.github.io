@@ -1,5 +1,4 @@
 function initCrib() {
-
     var canvasCrib = document.getElementById("crib");
     var ctxCrib = canvasCrib.getContext("2d");
     var primo = 1;

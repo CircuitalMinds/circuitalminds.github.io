@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 {% include head.html %}
+{% include favicon.html %}
+</head>
 <body>
   {% if site.google-analytics %}
     {% include google-analytics.html %}
@@ -10,26 +13,68 @@
 
       {{ content }}
 
-  {% include footer.html %}    
-  {% include javascripts.html %}
-  <button class="open-button" onclick="open_form()">Chat</button>
-  <div class="chat-popup" id="myForm">
-  <div class="form-container">
-      <div id="chat_app"></div>
-      <button type="button" class="btn cancel" onclick="close_form()">Close</button>
-  </div>
-  </div>
-  <script>
-  var chat_app = $("#chat_app")[0];
-  chat_app.innerHTML = [
-      '<iframe',
-      'src="' + Api.url + '/chat_app/"',
-      'class="image fit"', 'allow="accelerometer;', 'autoplay;',
-      'encrypted-media;', 'gyroscope;', 'picture-in-picture"',
-      'allowfullscreen="true"', 'width="100%"', 'height="300px"',
-      'frameborder="0"', '></iframe>'
-  ].join(" ");
-  </script>
-
+  {% include javascripts.html %}   
+  {% include footer.html %}     
 </body>
+
+<script>
+function time_clock () {
+    var clock_obj = document.querySelectorAll('div[id="time-clock"]');
+    function set_clock ( obj ) {
+        if ( obj != undefined ) {
+            start = setInterval( function () {
+                datetime = new Date();
+                obj.innerHTML = [
+                    datetime.toLocaleDateString(),
+                    datetime.toLocaleTimeString()                
+                ].join(" - ");
+            }, 1000);
+        };  
+    };
+    for ( obj of clock_obj ) {
+        set_clock(obj);
+    };
+};
+
+function DocumentQuery ( element={all_matches: true} ) {
+    var data;
+    get_data = ( q ) => (
+        element.all_matches == true 
+    ) ? data=$(q) : data=$(q)[0];
+    if ( element.id != undefined ) {
+        get_data('#' + element.id);        
+    } else {
+        if ( element.name != undefined && element.key == undefined ) {
+            get_data(element.name);
+        } else if ( element.name != undefined && element.key != undefined && element.value != undefined ) {
+            if ( element.key == 'cls' ) {
+                get_data(element.name + '.' + element.value);
+            } else {
+                get_data([
+                    element.name, 
+                    '[', element.key, '="', element.value, '"]'
+                ].join(''));
+            };
+        };    
+    };        
+    return data;
+};
+
+
+function setJekyllSearch (
+    jsonfile, search={input: "js-search-input", container: "js-results-container"}
+    ) {
+    SimpleJekyllSearch({
+    searchInput: document.getElementById(search.input),
+    resultsContainer: document.getElementById(search.container),
+    json: jsonfile,
+    searchResultTemplate:
+      '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
+    noResultsText: '<li class="search-no-item">No results found</li>'
+    });
+};
+setJekyllSearch('/search.json');
+time_clock();
+</script>
+{% include chat.html %}
 </html>
