@@ -23,7 +23,7 @@ def update_files(dir_name):
     if isfile(fn):
         system(f'cp -u {fn} {gn}')
     else:       
-        system(f'cp -u -R {fn} {gn}')                    
+        system(f'cp -u -R {fn} {"/".join(gn.split("/")[:-1])}')                    
 
 
 [get_directories(br) for br in branches]
