@@ -73,3 +73,9 @@ function Dot ( A, B ) {
 function Factorial ( n ) {
     return Prod(Range(1 , n));
 };
+
+function randomPointOnCircle(radius) {
+    angle = Math.random() * 2 * Math.PI;
+    return {x: radius * Math.cos(angle),
+            y: radius * Math.sin(angle)};
+  };

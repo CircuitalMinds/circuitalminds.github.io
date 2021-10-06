@@ -42,14 +42,21 @@ scripts:
   - "instafeed.min.js"
   - "jquery.waitforimages.min.js"
   - "jquery.fitvids.js"
-  - "common.js"
+  - "common.js"  
 styles:
   - "main.css"   
-  - "colors.css"
+  - "actions.css"
   - "modal.css"
+  - "dropdown.css"
 #-------------------------------
 # manager
 Api: "/Api.js"  
+Tools:
+  - "utils.js"
+  - "spectrum.js"
+  - "jekyll.js"
+  - "elements.js"
+  - "analyzer.js"
 #-------------------------------
 # Build settings
 markdown: kramdown

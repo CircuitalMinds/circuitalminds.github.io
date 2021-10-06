@@ -40,6 +40,24 @@ function GetColor ( w ) {
     }
 };
 
+function time_clock () {
+    var clock_obj = document.querySelectorAll('div[id="time-clock"]');
+    function set_clock ( obj ) {
+        if ( obj != undefined ) {
+            start = setInterval( function () {
+                datetime = new Date();
+                obj.innerHTML = [
+                    datetime.toLocaleDateString(),
+                    datetime.toLocaleTimeString()                
+                ].join(" - ");
+            }, 1000);
+        };  
+    };
+    for ( obj of clock_obj ) {
+        set_clock(obj);
+    };
+};
+
 function SetImageView ( static_path ) {
     function OnMouse( cover ) {
         return function () { showImage(cover) }
@@ -67,85 +85,6 @@ function SetImageView ( static_path ) {
 		};
     };
 };
-
-function randomPointOnCircle(radius) {
-  angle = Math.random() * 2 * Math.PI;
-  return {x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle)};
-};
-
-function set_modal ( button_id, modal_id, content ) {
-    modal = document.getElementById(modal_id);  
-    modal.innerHTML = [
-        '<div class="modal-content">', 
-        '<div class="modal-header">',        
-        '<h2>', content.header, '</h2>',
-        '<span class="close">&times;</span>',
-        '</div>',
-        '<div class="modal-body">', content.body, '</div>',
-        '<div class="modal-footer">',
-        '<h3>', content.footer, '</h3>',
-        '</div>',
-        '</div>'
-    ].join("\n");
-    close = modal.querySelector('span');
-    modal_button = document.getElementById(button_id);
-    modal_button.onclick = function() {
-        modal.style.display = "block";
-    };
-    close.onclick = function() {
-        modal.style.display = "none";
-    };
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        };
-    };
-};
-
-function set_modal ( button_id, modal_id, content ) {
-    modal = document.getElementById(modal_id);  
-    modal.innerHTML = [
-        '<div class="modal-content">', 
-        '<div class="modal-header">', 
-        '<span class="close">&times;</span>', content.header, '</div>',
-        '<div class="modal-body">', content.body, '</div>',
-        '<div class="modal-footer">', content.footer,
-        '</div>',
-        '</div>'
-    ].join("\n");
-    close = modal.querySelector('span');
-    modal_button = document.getElementById(button_id);
-    modal_button.onclick = function() {
-        modal.style.display = "block";
-    };
-    close.onclick = function() {
-        modal.style.display = "none";
-    };
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        };
-    };
-};    
-function set_accordion ( id, content ) {
-    accordion = document.getElementById(id);
-    accordion.innerHTML = [
-        '<div class="accordion accordion-flush" id="' + id + '">',
-        '<div class="accordion-item">',
-        '<h2 class="accordion-header" id="flush-heading-' + id + '">',
-        '<button class="accordion-button collapsed bg-darklight fg-teal ontouch" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-' + id + '" aria-expanded="false" aria-controls="flush-collapse-' + id + '">',
-        content.header,
-        '</button>',
-        '</h2>',
-        '<div id="flush-collapse-' + id + '" class="accordion-collapse collapse bg-darklight" aria-labelledby="flush-heading-' + id + '" data-bs-parent="#' + id + '">',
-        '<div class="accordion-body">', content.body, '</div>',
-        '</div>',
-        '</div>',
-        '</div>'
-    ].join("\n");
-};
-
 function showImage ( image ){
     Metro.dialog.create({
         title: "Animation demo",
@@ -166,17 +105,4 @@ function showImage ( image ){
             }, 5000);
         }
     });
-};
-
-
-function startswith_upper ( str ) {
-    return str[0] + iter_string(str, 1, str.length);
-};
-
-function iter_string ( str, start, end ) {
-    var new_string = '';
-    for ( var i = start; i < end; i++ ) { 
-        new_string += str[i];
-    };
-    return new_string;
 };
