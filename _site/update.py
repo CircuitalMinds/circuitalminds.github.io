@@ -6,7 +6,7 @@ is_acepted = lambda x: x not in [
 ]
 get_dirs = lambda x: {x.split('/')[-1]: join(x, y) for y in listdir(x)}
 data_update = lambda dir_path: {dir_path.split('/')[-1]: dir_path} if isfile(dir_path) else get_dirs(dir_path)
-git_push = lambda branch_name: print(' && '.join([
+git_push = lambda branch_name: system(' && '.join([
     f'cd ../{branch_name}', 'git add .', 'git commit -m "deployment"', 'git push'
 ]))
 branches = {'localhost': {}, 'main': {}}
