@@ -4,7 +4,6 @@ title: CircuitalMinds, their fractalized meaning.
 date: 2021-01-01 12:00:00 +0300
 image: posts/circuital.jpg
 tags: [CircuitalMinds]
-scripts: ['lyrics']
 ---
 ><h3><strong>"Dando vueltas, con gracia. Ir a ninguna parte, rápidamente Soy mayor; Día a día rapido envejezco pero regresando a mi infancia. Gira y gira pacientemente, perdiendose por el guía. Y estoy todo nervioso por nada".</strong></h3>
 
@@ -32,83 +31,65 @@ Esta relación de orden no solamente es un método que sirve para identificar, s
 
 __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que junto con __My Morning Jacket__ se produce esto que han llamado __Circuital__, un tema que motivo esta vagancia, y que he representado junto con su letra en estos __Circuitos__.
 
+<div class="row" id="cover" style="background-image: url('{{ site.img }}/posts/circuital/cantor.jpeg');">
+<img id='cover' class='w-100' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
 
+<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-34' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cantor.jpeg');">
-  
-  <img id="fractalImg" class="container reveal-in" style="width : 100%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
-  
-  <img id="fractalImg" class="container reveal-in" style="float : left; width : 33%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
-  <img id="fractalImg" class="container reveal-in" style="float : right; width : 34%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
-  <img id="fractalImg" class="container reveal-in" style="float : right; width : 33%;" src="{{ site.img }}/posts/circuital/cantor.jpeg">
-  
-  <div id="fractalImg" class="container" style="float : left; width : 33%;"> 
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor.jpeg" style="height : 66%; float : left; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor.jpeg" style="height : 66%; float : left; width : 34%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/cantor.jpeg" style="height : 66%; float : left; width : 33%;">
-  </div>
-  
-  <div id="fractalImg" class="container" style="padding-top : 0; float : right; width : 34%;">
-   <h3 style="text-align : center;">Circuital</h3> 
-  </div>
-  
-  <div id="fractalImg" class="container" style="float : right; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/circuital/cantor.jpeg" style="height : 66%; float : right; width : 33%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/circuital/cantor.jpeg" style="height : 66%; float : right; width : 34%;">
-  <img id="fractalImg" class="container reveal-in" src="{{ site.img }}/posts/circuital/cantor.jpeg" style="height : 66%; float : right; width : 33%;">
-  </div> 
-  
-  <iframe class="container" src="https://www.youtube.com/embed/tARFYFQIGaQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<div class="wl-33">
+<img id='cover' class='wr-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
 </div>
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_1.gif');">
+<h3 class="wr-34" style="text-align : center;">Circuital</h3>
+
+<div class="wl-33">
+<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+</div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tARFYFQIGaQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<div class="row" id="cover" style="background-image: url('{{ site.img }}/posts/circuital/cascade_0.gif');">
 <div class="container" style="float : left; width : 45%">
 <h2>Lyrics</h2>
-<p id="original-part1" class="lyrics"></p>
+{% for s in site.data.lyrics.english[0] %}  
+<p class="lyrics"><span style="height: 26px;">{{ s }}</span><br></p>
+{% endfor %}
 </div>
 <div class="container" style="float : left; width : 45%">
 <h2>Traduction</h2>
-<p id="traduction-part1" class="lyrics"></p>
+{% for s in site.data.lyrics.spanish[0] %}  
+<p class="lyrics"><span style="height: 26px;">{{ s }}</span><br></p>
+{% endfor %}
 </div>
 </div>
 
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_4.gif');">
+{% for i in (1..site.data.lyrics.english.size) %}
+<div class="row" id="cover" style="background-image: url('{{ site.img }}/posts/circuital/cascade_{{ i }}.gif');">
 <div class="container" style="float : left; width : 45%">
-<p id="original-part2" class="lyrics"></p>
+{% for s in site.data.lyrics.english[i] %}  
+<p class="lyrics"><span style="height: 26px;">{{ s }}</span><br></p>
+{% endfor %}
 </div>
 <div class="container" style="float : left; width : 45%">
-<p id="traduction-part2" class="lyrics"></p>
+{% for s in site.data.lyrics.spanish[i] %}  
+<p class="lyrics"><span style="height: 26px;">{{ s }}</span><br></p>
+{% endfor %}
 </div> 
 </div>
-
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_3.gif');">
-<div class="container" style="float : left; width : 45%">
-<p id="original-part3" class="lyrics"></p>
-</div>
-<div class="container" style="float : left; width : 45%">
-<p id="traduction-part3" class="lyrics"></p>
-</div>
-</div> 
-
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital/cascade_2.gif');">
-<div class="container" style="float : left; width : 45%">
-<p id="original-part4" class="lyrics"></p>
-</div>
-<div class="container" style="float : left; width : 45%">
-<p id="traduction-part4" class="lyrics"></p>
-</div>
-</div>
-
+{% endfor %}
 
 ***
-
 
 > "Jim James explicó el significado de la canción al periódico británico __The Sun__: Se trata de la naturaleza circular de la vida; cómo todos nacemos de este vacío loco que nadie puede describir o poner un nombre. Aunque lo intentemos con la religión y la filosofía, nadie lo sabe con certeza. Nacemos y viajamos por el __Circuito__ de la vida, después todos completamos el círculo y terminamos regresando al mismo vacío desde donde vinimos para pasar a algo diferente".
 
-
 ***
-
 
 En algunas ocasiones, al describir ideas propias, no es posible captar por completo la deseada por encontrarse entre muchas otras acechando a su alrededor. Aun así, la redacción da la impresión de que __Jim__ describe satisfactoriamente la interpretación de __Circuital__, y en mi opinión, él intenta sugerir una perspectiva más trivial y abierta para ser descifrada libremente por algún otro intérprete o espectador que supere la idea original.
 
@@ -118,15 +99,11 @@ Entonces, quizá y si fuera posible, en el momento que se fuera a dar un paso ad
 
 Sin embargo, desde un contexto donde podamos mantener la firmeza de que probar la existencia de algo no requiera como hipótesis la cualidad tangible, la reconstrucción de su mejor aproximación posible siempre puede ser infinitamente mejorada. Y __Benoît Mandelbrot__, me describe de la siguiente manera.
 
-
 ***
-
 
 > "Me encontré en la posición de ese niño de un cuento que ve un trozo de cuerda y, por curiosidad, tira de ella para descubrir que era solo la punta de una cuerda muy larga y cada vez más gruesa ... y seguí mostrando maravillas más allá del cálculo de cuentas". — __Benoît Mandelbrot__
 
-
 > "Para una persona que piensa, la enfermedad mental más grave es no estar seguro de quién es". — __Benoît Mandelbrot__
-
 
 ***
 
@@ -140,20 +117,18 @@ Para finalizar este post, y lucir con algo especial, unos descubrimientos dentro
 
 ***
 
-
 __Sugerencia:__ Puedes dejar tu comentario al final de este post para recomendarnos alguna playlist o tema de tu agrado. Dejo con ustedes este Trip Fractal.
 
-
-<div class="row" id="backrow">
+<div class="row">
+<div class="w-100">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PD2XgQOyCCk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class="row" id="backrow" style="background-image: url('{{ site.img }}/posts/circuital.jpg')">
-<img id="fractalImg" width="40%" class="reveal-in" alt="{{ site.url }}" src="{{ site.logo }}">
+<div id="cover" class="w-50" style="background-image: url('{{ site.img }}/posts/circuital.jpg')"></div>
+<img id="cover" class="reveal-in w-50" alt="{{ site.url }}" src="{{ site.logo }}">
+<div class="w-100">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jiRUH9b33dA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class="row" id="backrow">
-<iframe src="https://www.youtube.com/embed/jiRUH9b33dA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
 
 ***
 

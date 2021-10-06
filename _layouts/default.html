@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+
 {% include head.html %}
+{% include styles.html %}
+{% include favicon.html %}
+
+</head>
 <body>
   {% if site.google-analytics %}
     {% include google-analytics.html %}
@@ -9,27 +15,20 @@
   {% include header.html %}
 
       {{ content }}
-  
+
   {% include javascripts.html %}   
   {% include footer.html %}     
 </body>
-
+<button class="open-button" style="border-radius: 150px;" onclick="open_form('chat_form')">Chat</button>
+<div class="chat-popup" id="chat_form">
+<div class="form-container">
+    <div id="chat_app"></div>
+    <button type="button" class="btn cancel" onclick="close_form('chat_form')" style="border-radius: 150px;">Close</button>
+</div>
+</div>
 <script>
-  function time_clock () {
-  var clock_obj = $('#time-clock')[0];
-    if ( clock_obj != undefined ) {
-      start = setInterval( function () {
-        datetime = new Date();
-        clock_obj.innerHTML = [
-          datetime.toLocaleDateString(),
-          datetime.toLocaleTimeString()                
-        ].join(" - ");
-      }, 1000);
-    };
-  };
-  window.onload = function () {
-    time_clock();
-  };
-  </script>
-{% include chat.html %}
+setJekyllSearch('/search.json');
+time_clock();
+set_iframe("chat_app", '{{ site.url }}/chat');
+</script>
 </html>

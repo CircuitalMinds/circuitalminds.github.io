@@ -1,17 +1,6 @@
 {% for src in site.scripts %}
   <script src="{{ site.js }}/{{ src }}"></script>
 {% endfor %}
-
-<script>
-  SimpleJekyllSearch({
-  searchInput: document.getElementById("js-search-input"),
-  resultsContainer: document.getElementById("js-results-container"),
-  json: "/search.json",
-  searchResultTemplate:
-    '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
-  noResultsText: '<li class="search-no-item">No results found</li>'
-  });
-</script>	
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 <script>
 window.fbAsyncInit = function() {

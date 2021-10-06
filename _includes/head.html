@@ -1,73 +1,63 @@
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <!-- metadata -->
-  {% for item in site.metadata %}
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<!-- metadata -->
+
+{% for item in site.data.metadata %}
+    {% if item.name %}
     <meta name="{{ item.name }}" content="{{ item.content }}"/>
-  {% endfor %}
-  <title>
-  {% if page.title %}{{ site.title_page }} | {{ page.title }}
-  {% else %}{{ site.title }}
-  {% endif %}
-  </title>    
-  <!-- Robots -->
-  {%- unless page.canonical == false -%}
-  <link rel="canonical" href="{% if page.title %}{{ site.url }}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}"/>
-  {%- endunless -%}
-  <!-- Title, description, author -->
-  {%- capture _page_title -%}
-    {%- if page.title -%}{{- page.title | append: ' | ' -}}{%- endif -%}
-    {{- site.title | default: "Untitled Website" -}}
-    {%- if site.subtitle -%}{{- site.subtitle | prepend: ' - ' -}}{%- endif -%}
-  {%- endcapture -%}
-  {%- assign _page_title = _page_title | escape -%}
-  {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
-  <!-- open_graph -->
-  {% if page.title %}      
-    <meta property="og:image" content="{{ site.url }}{{ site.img }}/{{ page.image }}" />
-    <meta property="og:url" content="{{ site.url }}{{ site.img }}/{{ page.image }}" />  
-  {% else %}
-    <meta property="og:image" content="{{ site.logo }}" />
-    <meta property="og:url" content="{{ site.url }}" />  
-  {% endif %}    
-  {% for item in site.open_graph %}
-    <meta property="{{ item.property }}" content="{{ item.content }}" />
-  {% endfor %}
-  <!-- Ajax -->                                               
-  <script crossorigin="anonymous"
-          integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>                                                         
-  <!-- Styles -->
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"/>
-  <!-- Ionicons -->
-  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>  
-  <link rel="apple-touch-icon" sizes="57x57" href="/favicon.ico/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/favicon.ico/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/favicon.ico/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/favicon.ico/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/favicon.ico/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/favicon.ico/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/favicon.ico/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/favicon.ico/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon.ico/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico/favicon-16x16.png">
-  <link rel="manifest" href="/favicon.ico/manifest.json">
-  <meta name="msapplication-TileColor" content="#1abc9c">
-  <meta name="msapplication-TileImage" content="/favicon.ico/ms-icon-144x144.png">
-  <meta name="theme-color" content="#1abc9c">  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>              
-  {% for href in site.styles %}
-  <link href="{{ site.css }}/{{ href }}" rel="stylesheet"/>
-  {% endfor %}
-  
-  <script src="{{ site.js }}/utils.js"></script>
-  <script src="{{ site.Api }}"></script>
-  <style>{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
-</head>
+    {% else %}
+    <meta property="{{ item.property }}" content="{{ item.content }}"/>
+    {% endif %}
+{% endfor %}
+
+<title>
+{% if page.title %}{{ site.title_page }} | {{ page.title }}
+{% else %}{{ site.title }}
+{% endif %}
+</title>    
+<!-- Robots -->
+{%- unless page.canonical == false -%}
+<link rel="canonical" href="{% if page.title %}{{ site.url }}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}"/>
+{%- endunless -%}
+<!-- Title, description, author -->
+{%- capture _page_title -%}
+  {%- if page.title -%}{{- page.title | append: ' | ' -}}{%- endif -%}
+  {{- site.title | default: "Untitled Website" -}}
+  {%- if site.subtitle -%}{{- site.subtitle | prepend: ' - ' -}}{%- endif -%}
+{%- endcapture -%}
+{%- assign _page_title = _page_title | escape -%}
+{%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
+
+<!-- open_graph -->
+{% if page.title %}      
+  <meta property="og:image" content="{{ site.url }}{{ site.img }}/{{ page.image }}" />
+  <meta property="og:url" content="{{ site.url }}{{ site.img }}/{{ page.image }}" />  
+{% else %}
+  <meta property="og:image" content="{{ site.logo }}" />
+  <meta property="og:url" content="{{ site.url }}" />  
+{% endif %}    
+
+<!-- Ajax -->                                               
+<script crossorigin="anonymous"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>                                                         
+<!-- Styles -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"/>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>              
+
+{% for href in site.styles %}
+<link href="{{ site.css }}/{{ href }}" rel="stylesheet"/>
+{% endfor %}
+
+{% for src in site.Tools %}
+  <script src="{{ site.js }}/{{ src }}"></script>
+{% endfor %}
+
+<script src="{{ site.Api }}"></script>
+<style>{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
+

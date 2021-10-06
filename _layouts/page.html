@@ -16,11 +16,16 @@ layout: default
 				</div>
 				<div class="page-body">
 					
-					{{ content }}					
+					{{ content }}				
+					{% if page.html_includes %}	
+					{% for name in page.html_includes %}
+						{% include {{ name }}.html %}						
+					{% endfor %}
+					{% endif %}
 
 				</div>
 			</div>
 		</article> <!-- /.page -->
 	</div>
 
-</div>
+</div>   
