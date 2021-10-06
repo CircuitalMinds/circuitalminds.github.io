@@ -184,8 +184,8 @@
 }
 
 .ontouch:hover {
-    background-color: #2C2F36;
-    color: #2C2F36;
+    background-color: #1abc9c;
+    color: white;
 }
 
 /* switches */
@@ -200,10 +200,3 @@
     border-color: teal;
     background: dark;
 }
-
-.initial-gradient {
-    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-    background-repeat: no-repeat, repeat;
-    background-size: cover; 
-    background-position: center;
-}    

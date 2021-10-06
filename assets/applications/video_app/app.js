@@ -53,8 +53,6 @@ function get_query ( q ) {
         };
     };
 };
-var colors_top = $("#colors-top")[0];
-var colors_bottom = $("#colors-bottom")[0];
 
 function set_colors ( colors_data ) {
     function colors_row ( data ) {
@@ -83,10 +81,6 @@ function random_array ( a, b, n ) {
     };
     return array_data;
 };
-
-
-var color_list = Object.values(Colors);
-set_colors(color_list);
 
 function time_clock () {
   start = setInterval( function () {
