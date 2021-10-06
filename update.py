@@ -1,12 +1,12 @@
-from os import listdir, mkdir, system
-from os.path import isfile, isdir, join
+from os import listdir, system
+from os.path import isfile, join
 is_acepted = lambda x: x not in [
     'Gemfile', 'Gemfile.lock', 'google7719ccdbe085881a.html', '_site',
     'install', 'LICENSE.txt', 'README.md', 'updates.py', '_sass', '.git', '.sass-cache', '.idea'
 ]
 get_dirs = lambda x: {x.split('/')[-1]: join(x, y) for y in listdir(x)}
 data_update = lambda dir_path: {dir_path.split('/')[-1]: dir_path} if isfile(dir_path) else get_dirs(dir_path)
-git_push = lambda branch_name: print(' && '.join([
+git_push = lambda branch_name: system(' && '.join([
     f'cd ../{branch_name}', 'git add .', 'git commit -m "deployment"', 'git push'
 ]))
 branches = {'localhost': {}, 'main': {}}
@@ -20,10 +20,10 @@ def get_directories(branch_name):
 
 def update_files(dir_name):
     fn, gn = [join('../', i, dir_name) for i in ('localhost', 'main')]
-    if isfile(fn) and not isfile(gn):
-        system(f'cp {fn} {gn}')
-    elif isdir(fn) and not isdir(gn):       
-        system(f'cp -R {fn} {gn}')                    
+    if isfile(fn):
+        system(f'cp -u {fn} {gn}')
+    else:       
+        system(f'cp -u -R {fn} {gn}')                    
 
 
 [get_directories(br) for br in branches]
