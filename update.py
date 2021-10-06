@@ -2,7 +2,7 @@ from os import listdir, system
 from os.path import isfile, join
 is_acepted = lambda x: x not in [
     'Gemfile', 'Gemfile.lock', 'google7719ccdbe085881a.html', '_site',
-    'install', 'LICENSE.txt', 'README.md', 'updates.py', '_sass', '.git', '.sass-cache', '.idea'
+    'install', 'LICENSE.txt', 'README.md', 'update.py', '_sass', '.git', '.sass-cache', '.idea'
 ]
 get_dirs = lambda x: {x.split('/')[-1]: join(x, y) for y in listdir(x)}
 data_update = lambda dir_path: {dir_path.split('/')[-1]: dir_path} if isfile(dir_path) else get_dirs(dir_path)
