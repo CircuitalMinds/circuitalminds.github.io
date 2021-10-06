@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    {% include custom.html %}
+    {% include favicon.html %}
+</head>    
+<body>
+    {{ content }}
+</body>
+<script src="/assets/dashboard/scripts.js"></script>
+<script>
+function create_chart ( element_id, name, settings ) {
+    var obj = new ApexCharts($("#" + element_id)[0], settings);
+    obj.render();
+};  
+</script>
+</html>

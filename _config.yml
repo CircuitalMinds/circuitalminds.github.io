@@ -2,7 +2,7 @@
 # General Site Settings
 baseurl: ""
 url: "https://circuitalminds.github.io"
-title: Circuital | Minds
+title: "Circuital | Minds"
 title_page: CircuitalMinds
 description: From Here To Eternity
 logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
@@ -37,19 +37,26 @@ css: "/assets/css"
 img: "/assets/img"
 #-------------------------------
 # resources 
-libs:
-  jquery: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"  
 scripts:
   - "simple-jekyll-search.min.js"
   - "instafeed.min.js"
   - "jquery.waitforimages.min.js"
   - "jquery.fitvids.js"
-  - "common.js"
+  - "common.js"  
 styles:
   - "main.css"   
+  - "actions.css"
+  - "modal.css"
+  - "dropdown.css"
 #-------------------------------
 # manager
 Api: "/Api.js"  
+Tools:
+  - "utils.js"
+  - "spectrum.js"
+  - "jekyll.js"
+  - "elements.js"
+  - "analyzer.js"
 #-------------------------------
 # Build settings
 markdown: kramdown
@@ -62,42 +69,10 @@ paginate_path: "/page/:num"
 include:
   - _pages
   - _applications
+  - _spectrum
 sass:
   sass_dir: _sass
   style: compressed
-#-------------------------------
-# Metadata    
-metadata:
-  - meta:
-    name: author
-    content: alanmatzumiya
-  - meta:
-    name: description
-    content: From Here To Eternity
-  - meta:
-    name: robots
-    content: index, follow
-  - meta:
-    name: viewport
-    content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-#-------------------------------
-# Open-Graph
-open_graph:
-  - meta:
-    property: fb:app_id
-    content: 772020893629559
-  - meta:
-    property: "og:description"
-    content: From Here To Eternity
-  - meta:
-    property: "og:site_name" 
-    content: CircuitalMinds
-  - meta:
-    property: "og:title"
-    content: CircuitalMinds
-  - meta:
-    property: "og:type"
-    content: website
 #-------------------------------
 # Exclude from processing.
 # exclude:

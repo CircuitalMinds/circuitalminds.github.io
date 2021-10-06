@@ -11,4 +11,14 @@ layout: null
       "date"     : "{{ post.date }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
+  ,
+  {% for video in site.data.videos %}
+    { 
+      "description" : "{{ video[1].description | escape }}",
+      "tag"         : "{{ video[1].tag | escape }}",
+      "name"        : "{{ video[1].name | escape }}",
+      "title"       : "{{ video[1].title | escape }}",
+      "url"         : "{{ video[1].url }}"
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}    
 ]

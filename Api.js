@@ -2,7 +2,6 @@ var Api = {
     url: 'https://circuitalminds.github.io',
     logo: 'https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4',
     applications: ['chat_app', 'video_app'],
-    notebooks: {},
     geolocation: {latitude: '', longitude: '', accuracy: ''}    
 };
 Api.get_location = function () {
@@ -25,29 +24,6 @@ Api.get_location = function () {
     );
 };
 
-Api.get_notebooks = function () {
-    function get_data (topic) {
-        url = [
-            "https://raw.githubusercontent.com/alanmatzumiya",
-            topic, "main/notebooks_data.json"
-        ].join("/");
-        Api.notebooks[topic] = {};
-        Api.notebooks[topic] = Api.get(url);
-    };
-    ['engineering-basic', 'data_analysis'].map(
-        topic => get_data(topic)
-    );    
-};    
-Api.notebooks.set_data = function ( topic, module ) {
-    data_list = Api.notebooks[topic][module];
-    return [
-        "<ul>",
-        data_list.map(
-            l => ['<li><p><a href="', l.url_app, '" >', l.name.replace('.ipynb', ''), '</a></p></li>'].join('')
-        ).join("\n"),
-        "</ul>"                 
-    ].join("\n");
-};
 
 function init_app () {
     url = 'https://circuitalminds.github.io';

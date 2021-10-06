@@ -1,0 +1,10 @@
+{
+    "folder_name": "assets/applications",
+    "video_app": {
+        "html": "videos.html",
+        "scripts": ["video.js", "search.js", "app.js"],
+        "icons": {"play": "utils/media_player/play.png", "stop": "utils/media_player/stop.png"},
+        "buttons": ["volume-minus", "volume-plus", "previous", "play", "pause", "next"]
+    }
+    
+}
