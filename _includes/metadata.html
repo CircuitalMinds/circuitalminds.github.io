@@ -1,0 +1,29 @@
+{% for item in site.data.metadata %}
+{% if item.name %}
+<meta name="{{ item.name }}" content="{{ item.content }}"/>
+{% else %}
+<meta property="{{ item.property }}" content="{{ item.content }}"/>
+{% endif %}
+{% endfor %}
+
+<!-- Robots -->
+{%- unless page.canonical == false -%}
+<link rel="canonical" href="{% if page.title %}{{ site.url }}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}"/>
+{%- endunless -%}
+<!-- Title, description, author -->
+{%- capture _page_title -%}
+  {%- if page.title -%}{{- page.title | append: ' | ' -}}{%- endif -%}
+  {{- site.title | default: "Untitled Website" -}}
+  {%- if site.subtitle -%}{{- site.subtitle | prepend: ' - ' -}}{%- endif -%}
+{%- endcapture -%}
+{%- assign _page_title = _page_title | escape -%}
+{%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
+
+<!-- open_graph -->
+{% if page.title %}      
+  <meta property="og:image" content="{{ site.url }}{{ site.img }}/{{ page.image }}" />
+  <meta property="og:url" content="{{ site.url }}{{ site.img }}/{{ page.image }}" />  
+{% else %}
+  <meta property="og:image" content="{{ site.logo }}" />
+  <meta property="og:url" content="{{ site.url }}" />  
+{% endif %}    

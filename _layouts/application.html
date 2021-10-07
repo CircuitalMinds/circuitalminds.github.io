@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    {% include custom.html %}
+    {% include metadata.html %}
+    {% include libs.html %}
+    {% for href in page.include_styles %}
+        <link href="{{ site.css }}/{{ href }}.css" rel="stylesheet"/>
+    {% endfor %}
     {% include favicon.html %}
 </head>    
-<body class="bg-dark fg-white w-100">
+<body class="bg-dark fg-white h-vh-100">
     {{ content }}
 </body>
+{% for src in page.include_scripts %}
+<script src="{{ site.js }}/{{ src }}.js"></script>
+{% endfor %}
 </html>
