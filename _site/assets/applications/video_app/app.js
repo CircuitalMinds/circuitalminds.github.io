@@ -91,6 +91,11 @@ function time_clock () {
       clock_obj.innerHTML = datetime.toLocaleTimeString();
   }, 1000);
 };
+function colorGrad ( colors ) {
+    return 'background-image: linear-gradient(60deg, ' + colors.map(
+        c => `${c} ${Math.round(100 / colors.length) * colors.indexOf(c)}%, `
+    ).join('') + '#1abc9c 100%); background-size: cover;';
+};
 window.setInterval( function () {
     feed_list = $("#feed-playlist")[0];
     rows = '';
@@ -106,4 +111,7 @@ $( document ).ready(function() {
     if ( $('#time-clock')[0] != undefined ) {
         time_clock();
     };
+    $("#pallete-top")[0].innerHTML = `<div class="cell-md-12 h-100" style="${colorGrad(Pallete)}"></div>`;
+    $("#pallete-bottom")[0].innerHTML = `<div class="cell-md-12 h-100" style="${colorGrad(Pallete.reverse())}"></div>`;
+
 });
