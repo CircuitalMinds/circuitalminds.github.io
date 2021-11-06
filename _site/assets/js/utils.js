@@ -106,3 +106,48 @@ function showImage ( image ){
         }
     });
 };
+
+$(function () {        
+    var clockObj = $("#clock")[0];
+    var dateObj = $("#date")[0];    
+    setInterval( function () {
+        datetime = new Date();
+        if ( clockObj != undefined ) {
+            clockObj.innerHTML = datetime.toLocaleTimeString();
+        };
+        if ( dateObj != undefined ) {        
+            dateObj.innerHTML = datetime.toLocaleDateString();
+        };
+    }, 1000);
+});
+
+function set_colors ( colors_data ) {        
+    return colors_data.map(
+        c => `<div class="cell-md-1" style="background-color: ${c};"></div>`
+    ).join("\n");
+};
+
+function range (start, stop, step=1) {
+    return Array.from(
+    	  {length: (stop - start - 1) / step + 1}, (_, i) => start + (i * step)
+    );
+};
+
+var randint = ( a, b ) => ( a + Math.round(Math.random() * (b - a)) );
+var is_element = ( e, data ) => ( data.indexOf(e) != -1 );
+function random_array ( a, b, n ) {
+    var array_data = [];  	
+    while ( array_data.length < n ) {
+        ri = randint(a, b);
+        if ( is_element(ri, array_data) == false ) {
+            array_data.push(ri);
+        };
+    };
+    return array_data;
+};
+
+function colorGrad ( colors ) {
+    return 'background-image: linear-gradient(60deg, ' + colors.map(
+        c => `${c} ${Math.round(100 / colors.length) * colors.indexOf(c)}%, `
+    ).join('') + '#1abc9c 100%); background-size: cover;';
+};

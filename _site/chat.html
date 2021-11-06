@@ -39,19 +39,33 @@
 
 
 
-<!-- Robots --><link rel="canonical" href="http://192.168.50.7:8080/assets/img/"/><!-- Title, description, author --><!-- open_graph -->
-      
-  <meta property="og:image" content="http://192.168.50.7:8080/assets/img/" />
-  <meta property="og:url" content="http://192.168.50.7:8080/assets/img/" />  
+<!-- Robots --><link rel="canonical" href="/assets/img/https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"/><!-- Title, description, author --><!-- open_graph -->
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4" />
+  <meta property="og:url" content="http://192.168.50.7:8080" />
+
+<title>CircuitalMinds | Chat</title>
+
+    <script src="/assets/js/simple-jekyll-search.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
     
+    <!-- Metro -->
+    <link href="https://circuitalminds.github.io/static/metro/css/metro-all.css" rel="stylesheet">
+    <script src="https://circuitalminds.github.io/static/metro/js/metro.js"></script>
+    <style>
+        .controls {
+            opacity: 0.0;
+            transition-duration: 0.4s;
+            transition: opacity 1s;
+            transition-delay: 0.5s;
+        }
+
+        .controls:hover {
+            opacity: 1.0;
+        }
+    </style>
     
-<!-- Metro -->
-<link href="https://circuitalminds.github.io/static/metro/css/metro-all.css" rel="stylesheet">
-<script src="https://circuitalminds.github.io/static/metro/js/metro.js"></script>
-
-
-
-
 
     
     <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>  
@@ -62,9 +76,36 @@
 <meta name="msapplication-TileColor" content="#1abc9c">
 <meta name="msapplication-TileImage" content="/favicon.ico/ms-icon-144x144.png">
 <meta name="theme-color" content="#1abc9c">
-</head>    
+</head>
+
 <body class="bg-dark fg-white h-vh-100">
-    <script src="/assets/applications/chat_app/app.js"></script>
+    <script>
+var Messages = {
+     random: function (msg=[
+        "Aprendiendo a Escuchar",
+        "Todo es Mas Sencillo"
+     ]) {
+          return msg[Math.round( Math.random() * (msg.length - 1) )];
+    },
+    data: {received: [], sent: []}
+};
+
+function SendMessage ( message ) {
+     Messages.data.received.push(message.text);
+     var chat = $(this).data("chat");
+     setTimeout(function(){
+         var _m = {
+             name: "CircuitalMinds",
+             time: (new Date()),
+             avatar: 'https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4',
+             text: Messages.random(),
+             position: "left"
+         };
+         Messages.data.sent.push(_m.text);
+         chat.add(_m);
+     }, 1000 + Math.round(Math.random() * 2000));
+ }
+</script>
 <div id="chat0" class="bg-darkTeal fg-light w-100 h-100"
      data-role="chat"
      data-avatar="https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"
@@ -78,5 +119,6 @@
      data-on-send="SendMessage">
 </div>
 </body>
+
 
 </html>

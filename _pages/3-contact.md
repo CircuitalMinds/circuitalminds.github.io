@@ -1,68 +1,92 @@
 ---
 layout: page
 title: Contact
-image: topics.png
+image: logo.png
 permalink: /contact
 ---
 
-<h3 align="center">Interesting Topics in Python</h3>
+<div class="item">
+  <header>
+    <h2 style="text-align: left;">Degree in Mathematical Sciences</h2>
+  </header>
+  <div class="image fit">
+    <table class="table">
+    <tbody id="mathematical-sciences"></tbody>
+    </table>
+  </div>
+</div>
 
-***
-
-<h3 align="center">Fourier Analysis</h3>
-<div id="fourier_analysis"></div>
-
-***
-
-<h3 align="center">Fractal Simulations</h3>
-<div id="fractal_simulations"></div>
-
-***
-
-<h3 align="center">Special Functions</h3>
-<div id="special_functions"></div>
-
-***
-
-<script>
-var python_static = 'https://raw.githubusercontent.com/CircuitalMinds/static/main/python/';
-
-var scripts = {
-    fourier_analysis: {url: python_static + 'fourier_analysis/main.py', data: ''},
-    fractal_simulations: {url: python_static + 'fractal_simulations/main.py', data: ''},
-    special_functions: {url: python_static + 'special_functions/main.py', data: ''}    
-};
-
-function color_marker ( code ) {
-	new_code = code.replaceAll("self", '<span class="s">self</span>');
-	new_code = new_code.replaceAll("import ", '<span class="nb" >import</span> ');
-	new_code = new_code.replaceAll("from ", '<span class="nb" >from</span> ');
-	new_code = new_code.replaceAll("as ", '<span class="nb" >as</span> ');
-	new_code = new_code.replaceAll("class ", '<span class="mi" >class</span> ');
-	new_code = new_code.replaceAll("def ", '<span class="mi" >def</span> ');
-	new_code = new_code.replaceAll("if", '<span class="mi" >if</span> ');
-	new_code = new_code.replaceAll("elif", '<span class="mi" >elif</span> ');	
-	new_code = new_code.replaceAll("else", '<span class="mi" >else</span> ');
-	new_code = new_code.replaceAll("@staticmethod", '<span class="s" >@staticmethod</span>');
-	return new_code;
-};
-
-function make_script ( code ) {
-	return '<figure class="highlight"><pre>'
-		   + '<code class="language-python" data-lang="python">' + color_marker(code) + '</code>'
-		   + '</pre></figure>';
-};
-
-function getPythonScript ( name ) {
-    var getScript = $.get( scripts[name].url );
-    getScript.done( function( data ) {  	
-    	scripts[name].data = data;
-    	document.getElementById(name).innerHTML = make_script(data);
-   	});
-};
+<div class="item">
+  <header>
+    <h2 style="text-align: left;">Chemical Engineering</h2>
+  </header>
+  <div class="image fit">
+    <table class="table">
+    <tbody id="chemical-engineering"></tbody>
+    </table>
+  </div>
+</div>
 
 
-for ( name in scripts ) {	
-	getPythonScript(name);
-};
-</script>
+<div class="item">
+  <header>
+    <h2 style="text-align: left;">GitHub - Repositories</h2> 
+  </header>
+  <p class="image fit" id="desc-git" style="text-align: left;">
+  You can consult on GitHub some of my programming projects that are being developed,
+  which aim to collect all the practices in the Python language and obtain as a result 
+  something useful such as Python packages, and educational guides for beginners or advanced users
+  in the use of this language. And an image shows more than a few words.
+  </p>
+</div>
+
+<div class="item">
+<a href="https://github.com/CircuitalMinds/" class="image fit"><img src="assets/images/organization.png" alt="circuitalminds" /></a>
+    <header>
+      <h3>Organization    <spam class="icon-b fa-github-alt"></spam></h3>
+    </header>
+</div>
+<div class="item">
+<embed class="image fit" type="text/html" src="https://circuitalminds.github.io/" width="100%" height="550px">
+    <header>
+      <h3>CircuitalMinds</h3>
+    </header>
+</div>
+<div class="item">   
+<embed class="image fit" type="text/html" src="{{ site.url }}/pySpectralPDE/" width="100%" height="550px">
+  <header>
+    <h3>Python Package | pySpectralPDE</h3>
+  </header>
+</div>
+
+<form method="post" action="/api/message">
+	<div class="row uniform">
+		<div class="6u 12u$(xsmall)">
+			<input type="text" name="name" id="name" value="" placeholder="Name" />
+		</div>
+		<div class="6u$ 12u$(xsmall)">
+			<input type="email" name="email" id="email" value="" placeholder="Email" />
+		</div>
+		<!-- Break -->
+		<div class="12u$">
+			<div class="select-wrapper">
+				<select name="category" id="category">
+					<option value="">- Category -</option>
+					<option value="1">Query</option>
+					<option value="2">Business</option>
+					<option value="3">Human Resources</option>
+				</select>
+			</div>
+		</div>
+		<!-- Break -->
+		<div class="12u$">
+			<textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+		</div>
+		<!-- Break -->
+		<div class="12u$">
+			<div class="actions">
+				<input type="submit" value="Send Message" class="special" />
+			</div>
+		</div>
+	</div>
+</form>

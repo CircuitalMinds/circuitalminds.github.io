@@ -1,0 +1,62 @@
+<header>
+        <button onclick="get_my_name();">
+                <h4>
+                        Hi! Click to get my full name.
+                </h4>
+                <h4 id="my-name"></h4>
+        </button>
+</header>
+
+<script>
+var thesis_data = {
+    "mathematical-sciences": {
+        "author": "MATZUMIYA ZAZUETA, ALAN DANIEL",
+        "date": "2020-09",
+        "url": "https://github.com/alanmatzumiya/spectral-methods/raw/master/docs/Thesis.pdf",
+        "description": "Degree Thesis in Mathematics",
+        "sponsorship": "Universidad de Sonora - División de Ciencias Exactas y Naturales",
+        "publisher": "Universidad de Sonora",
+        "classification": "Applied Mathematics and Computation",
+        "title": "Numerical solutions for Burgers' Equation in its stochastic and deterministic versions using spectral methods",
+        "type": "Degree Thesis"
+    },
+    "chemical-engineering": {
+        "author": "MATZUMIYA ZAZUETA, ALAN DANIEL",
+        "date": "2016-06",
+        "url": "https://investigadores.unison.mx/es/studentTheses/carcaterizaci%C3%B3n-y-evaluaci%C3%B3n-de-las-propiedades-bioactivas-de-una",
+        "description": "Tesis de ingeniería química",
+        "sponsorship": "Universidad de Sonora - División de Ingeniería",
+        "publisher": "Universidad de Sonora",
+        "classification": "INGENIERÍA Y TECNOLOGÍA",
+        "title": "Caracterización y evaluación de las propiedades bioactivas de una mezcla de biocompósitos de hidroxiapatita/β-wollastonita\npreparados por el método sol gel: sometidos a tratamientos térmicos diferentes",
+        "type": "Tesis de licenciatura"
+    }
+};	
+function get_my_name () {
+	var text = 'Alan Daniel Matzumiya Zazueta';
+	var my_name = document.getElementById('my-name');
+	if ( my_name.textContent == '' ) {
+		my_name.innerHTML = text;
+	} else {
+		my_name.innerHTML = '';
+	};	
+};
+function set_education_data () {	
+	function set_row ( k, v ) {
+		return '<tr><td>' + k + '</td><td>' + v + '</td></tr>';
+	};
+	for ( n of ['chemical-engineering', 'mathematical-sciences'] ) {
+		data = thesis_data[n];
+		string_data = '';
+		for ( k of Object.keys(data) ) {
+			if ( k == 'url' ) {
+				string_data += set_row(k, '<a href="' + data[k]+ '" >' + data[k] + '</a>');
+			} else {
+				string_data += set_row(k, data[k]) + "\n";
+			};
+		};
+		document.getElementById(n).innerHTML = string_data;
+	};
+};
+set_education_data();
+</script>

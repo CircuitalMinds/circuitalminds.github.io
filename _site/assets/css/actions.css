@@ -171,7 +171,7 @@
     display: inline-block;
     border-radius: 0.35em;
     padding: 10px 30px;
-    background-color: #1abc9c;
+    background-color: #9e0843;
     border: 0;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -179,12 +179,12 @@
 
 .ontouch {
     background-color: #2C2F36;
-    color: #1abc9c;
-    border: 2px solid #1abc9c;
+    color: #9e0843;
+    border: 2px solid #9e0843;
 }
 
 .ontouch:hover {
-    background-color: #1abc9c;
+    background-color: #9e0843;
     color: white;
 }
 

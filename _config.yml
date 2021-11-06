@@ -49,14 +49,21 @@ styles:
   - "modal.css"
   - "dropdown.css"
 #-------------------------------
-# manager
-Api: "/Api.js"  
+# include-scripts
 Tools:
-  - "utils.js"
-  - "spectrum.js"
-  - "jekyll.js"
-  - "elements.js"
-  - "analyzer.js"
+  utils: "utils.js"
+  spectrum: "spectrum.js"
+  elements: "elements.js"
+  analyzer: "analyzer.js"
+#-------------------------------
+# storage directory
+storage:
+  path: /storage
+  folders:
+    - data
+    - documents
+    - media
+    - scripts
 #-------------------------------
 # Build settings
 markdown: kramdown
@@ -69,7 +76,6 @@ paginate_path: "/page/:num"
 include:
   - _pages
   - _applications
-  - _spectrum
 sass:
   sass_dir: _sass
   style: compressed

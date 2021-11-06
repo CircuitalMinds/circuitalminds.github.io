@@ -1,0 +1,72 @@
+---
+layout: application
+include_lib: metro
+include_styles: [modal]
+include_snipet: video
+include_scripts: [elements, utils]
+title: VahnGraff
+image: pages/videos.jpg
+permalink: /rubato
+---
+<div id="pallete-top"></div>
+<div class="container w-100">
+{% assign app_data=site.data.applications.video_app %}
+{% assign buttons=app_data.buttons %}
+{% assign folder=site.data.applications.folder | append: '/video_app' %}
+<h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
+    <div class="row">
+      <div id="logo" class="cell-md-3 text-center bg-dark" style="color: #9e0843;">
+          {{ site.title_page }} | {{ page.title }}
+      </div>
+      <input id="query" type="text" class="cell-md-4" placeholder="Search for video..">            
+      <button onclick="$('#query')[0].value='';" class="cell-md-1 bg-dark fg-light"><span class="mif-cross-light"></span></button>
+      <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="clock"></div>
+      <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="date"></div>
+    </div>
+    <div class="row">
+        <div class="cell-md-4">
+            <div class="p-2 multi-action">
+                <button class="action-button rotate-minus bg-teal fg-white" onclick="$(this).toggleClass('active')">
+                    <span class="icon"><span class="mif-apps"></span></span>
+                </button>
+                <ul class="p-2 actions drop-right">
+                {% for btn in buttons %}
+                    <li id="{{ btn.id }}" onclick="{{ btn.onclick }}" class="bg-teal"><a><span class="{{ btn.icon }}"></span></a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>                
+        <div class="cell-md-2">
+            <input id="random" class="p-2"
+                   type="checkbox"
+                   data-role="switch"
+                   data-caption="Random"
+                   data-cls-switch="mySwitch"
+                   data-cls-caption="fg-teal text-bold"
+                   data-cls-check="bd-teal myCheck">
+        </div>
+</div>
+<div class="row mt-2">
+
+    {% include /snipets/{{ page.include_snipet }}.html player=app_data.player %}
+
+    <div class="cell-md-4">
+    <ul id="feed-playlist" class="group-list feed-list"></ul>    
+    </div>
+</div>
+
+{% include /snipets/modal.html id="results" header="<h2>Search Results</h2>" body='<ul id="jkl-results" class="feed-list bg-darkTeal fg-light"></ul>' footer="Don't Stop The Classics" btn_id="query" %}
+
+</div>
+<div id="pallete-bottom"></div>
+<script>
+var Pallete = {};
+Pallete.data = {{ site.data.colors.pallete | jsonify }};
+Pallete.set_style = ( sty ) => ( `<div class="cell-md-12 h-100" style="${colorGrad(sty)}"></div>` );
+$(function() {
+    Pallete.top = Pallete.set_style(Pallete.data);
+    Pallete.bottom = Pallete.set_style(Pallete.data.reverse());
+    ["top", "bottom"].map( x => $(`#pallete-${x}`)[0].innerHTML = Pallete[x] );
+    setJekyllSearch("videos");
+});
+</script>

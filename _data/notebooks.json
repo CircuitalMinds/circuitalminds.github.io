@@ -1,6 +1,8 @@
-{
-    "engineering": [
-        [
+{    
+    "engineering": {
+        "modules": 7,
+        "data": [
+            [   
             {
                 "name": "16_Step_12",
                 "url": "https://jupyternbs.herokuapp.com/notebooks/engineering/module_1/16_Step_12.ipynb"
@@ -862,8 +864,11 @@
                 "url": "https://jupyternbs.herokuapp.com/notebooks/engineering/module_3/A Modular Approach to Simulation using Python Generators.ipynb"
             }
         ]
-    ],
-    "introduction": [
+    ]
+    },
+    "introduction": {
+    "modules": 1,
+    "data": [
         {
             "name": "003-NumPy-CaracteristicasArrays",
             "url": "https://jupyternbs.herokuapp.com/notebooks/introduction/003-NumPy-CaracteristicasArrays.ipynb"
@@ -944,8 +949,10 @@
             "name": "013-SciPy-InterpolacionAjuste",
             "url": "https://jupyternbs.herokuapp.com/notebooks/introduction/013-SciPy-InterpolacionAjuste.ipynb"
         }
-    ],
-    "science_data": [
+    ]},
+    "science_data": {
+    "modules": 7,
+    "data": [
         [
             {
                 "name": "03.01-Python-Generators",
@@ -1968,5 +1975,5 @@
                 "url": "https://jupyternbs.herokuapp.com/notebooks/science_data/module_3/04.04-Scheduling-Multipurpose-Batch-Processes-using-State-Task_Networks.ipynb"
             }
         ]
-    ]
+    ]}
 }

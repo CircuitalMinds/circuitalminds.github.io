@@ -1,6 +1,6 @@
 {
-    "url": "https://circuitalminds.github.io/static",
-    "images": {
-        "utils": "images/utils"
-    }
+    "path": "https://circuitalminds.github.io/static",
+    "folders": [
+        "apexcharts", "metro", "js", "images", "css"
+    ]
 }     

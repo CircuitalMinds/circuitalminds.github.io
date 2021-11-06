@@ -1,13 +1,111 @@
 {
-    "folder": "assets/applications",    
-    "video_app": {
-        "html": "videos.html",
-        "scripts": ["video.js", "search.js", "app.js"],
-        "icons": {
-            "play": "images/utils/media_player/play.png",
-            "stop": "images/utils/media_player/stop.png"
+    "drive_app": {
+        "folders": {
+            "data": [
+                {
+                    "name": "bar-with-images.png",
+                    "path": "/storage/data/bar-with-images.png",
+                    "type": "file"
+                },
+                {
+                    "name": "test.json",
+                    "path": "/storage/data/test.json",
+                    "type": "file"
+                }
+            ],
+            "documents": [
+                {
+                    "name": "cv.pdf",
+                    "path": "/storage/documents/cv.pdf",
+                    "type": "file"
+                }
+            ],
+            "media": [
+                {
+                    "content": [
+                        {
+                            "name": "Give_Life_Back_to_Music-zKSsP2084nU.mp4",
+                            "path": "/storage/media/videos/Give_Life_Back_to_Music-zKSsP2084nU.mp4",
+                            "type": "file"
+                        }
+                    ],
+                    "name": "videos",
+                    "path": "/storage/media/videos",
+                    "type": "directory"
+                },
+                {
+                    "content": [
+                        {
+                            "name": "zeta_function.gif",
+                            "path": "/storage/media/pictures/zeta_function.gif",
+                            "type": "file"
+                        },
+                        {
+                            "name": "mandelbrot.gif",
+                            "path": "/storage/media/pictures/mandelbrot.gif",
+                            "type": "file"
+                        },
+                        {
+                            "name": "julia.gif",
+                            "path": "/storage/media/pictures/julia.gif",
+                            "type": "file"
+                        },
+                        {
+                            "name": "circuitalminds.png",
+                            "path": "/storage/media/pictures/circuitalminds.png",
+                            "type": "file"
+                        }
+                    ],
+                    "name": "pictures",
+                    "path": "/storage/media/pictures",
+                    "type": "directory"
+                }
+            ],
+            "scripts": [
+                {
+                    "name": "get_update",
+                    "path": "/storage/scripts/get_update",
+                    "type": "file"
+                },
+                {
+                    "name": "my_script.py",
+                    "path": "/storage/scripts/my_script.py",
+                    "type": "file"
+                }
+            ]
         },
-        "buttons": ["volume-minus", "volume-plus", "previous", "play", "pause", "next"]
+        "scripts": [
+            "app.js"
+        ]
+    },
+    "folder": "assets/applications",
+    "video_app": {
+        "player": {
+            "id": "video-player",
+            "poster": "pages/julia.gif",
+            "icons": {
+                "volume-low": "mif-volume-low",
+                "volume-medium": "mif-volume-medium",
+                "volume-high": "mif-volume-low",
+                "volume-mute": "mif-volume-mute2",
+                "loop": "mif-loop2",            
+                "play": "mif-play", 
+                "stop": "mif-stop"
+            }
+        },
+        "video_title": "video-title",
+        "buttons": [
+            {"id": "volume-minus", "icon": "mif-volume-minus", "onclick": "Vol('-');"},
+            {"id": "volume-plus", "icon": "mif-volume-plus", "onclick": "Vol('+');"},
+            {"id": "previous", "icon": "mif-previous", "onclick": "OnEvent('video-back');"},
+            {"id": "play", "icon": "mif-play", "onclick": "$('#video-player')[0].play();"},
+            {"id": "pause", "icon": "mif-pause", "onclick": "$('#video-player')[0].pause();"},
+            {"id": "next", "icon": "mif-next", "onclick": "OnEvent('video-next');"}
+        ],
+        "scripts": [
+            "video.js",
+            "search.js",
+            "app.js"
+        ]
     }
-    
 }

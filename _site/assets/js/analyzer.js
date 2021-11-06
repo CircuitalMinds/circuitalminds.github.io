@@ -1,4 +1,4 @@
-function get_request (
+function GetRequest (
     url, handler={
         response: {},
         get: () => ( this.response ),
