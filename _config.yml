@@ -1,7 +1,7 @@
 #-------------------------------
 # General Site Settings
 baseurl: ""
-url: "https://circuitalminds.github.io"
+url: "http://192.168.50.7:8080"
 title: "Circuital | Minds"
 title_page: CircuitalMinds
 description: From Here To Eternity

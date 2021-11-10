@@ -1,111 +1,149 @@
 {
     "drive_app": {
-        "folders": {
-            "data": [
-                {
-                    "name": "bar-with-images.png",
-                    "path": "/storage/data/bar-with-images.png",
-                    "type": "file"
-                },
-                {
-                    "name": "test.json",
-                    "path": "/storage/data/test.json",
-                    "type": "file"
-                }
-            ],
-            "documents": [
-                {
-                    "name": "cv.pdf",
-                    "path": "/storage/documents/cv.pdf",
-                    "type": "file"
-                }
-            ],
-            "media": [
-                {
-                    "content": [
-                        {
-                            "name": "Give_Life_Back_to_Music-zKSsP2084nU.mp4",
-                            "path": "/storage/media/videos/Give_Life_Back_to_Music-zKSsP2084nU.mp4",
-                            "type": "file"
-                        }
-                    ],
-                    "name": "videos",
-                    "path": "/storage/media/videos",
-                    "type": "directory"
-                },
-                {
-                    "content": [
-                        {
-                            "name": "zeta_function.gif",
-                            "path": "/storage/media/pictures/zeta_function.gif",
-                            "type": "file"
-                        },
-                        {
-                            "name": "mandelbrot.gif",
-                            "path": "/storage/media/pictures/mandelbrot.gif",
-                            "type": "file"
-                        },
-                        {
-                            "name": "julia.gif",
-                            "path": "/storage/media/pictures/julia.gif",
-                            "type": "file"
-                        },
-                        {
-                            "name": "circuitalminds.png",
-                            "path": "/storage/media/pictures/circuitalminds.png",
-                            "type": "file"
-                        }
-                    ],
-                    "name": "pictures",
-                    "path": "/storage/media/pictures",
-                    "type": "directory"
-                }
-            ],
-            "scripts": [
-                {
-                    "name": "get_update",
-                    "path": "/storage/scripts/get_update",
-                    "type": "file"
-                },
-                {
-                    "name": "my_script.py",
-                    "path": "/storage/scripts/my_script.py",
-                    "type": "file"
-                }
-            ]
-        },
+        "folders": [
+            {
+                "content": [
+                    {
+                        "date": "2021/09/09 21:00",
+                        "name": "test.json",
+                        "size": "89"
+                    }
+                ],
+                "date": "2021/11/06 04:31",
+                "name": "data"
+            },
+            {
+                "content": [
+                    {
+                        "date": "2021/09/09 21:00",
+                        "name": "cv.pdf",
+                        "size": "202992"
+                    }
+                ],
+                "date": "2021/11/06 04:31",
+                "name": "documents"
+            },
+            {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "date": "2021/09/09 21:00",
+                                "name": "circuitalminds.png",
+                                "size": "823907"
+                            },
+                            {
+                                "date": "2021/09/09 21:00",
+                                "name": "julia.gif",
+                                "size": "5725551"
+                            },
+                            {
+                                "date": "2021/09/22 04:47",
+                                "name": "mandel.gif",
+                                "size": "3132366"
+                            },
+                            {
+                                "date": "2021/09/09 21:00",
+                                "name": "mandelbrot.gif",
+                                "size": "2874619"
+                            },
+                            {
+                                "date": "2021/09/09 21:00",
+                                "name": "zeta_function.gif",
+                                "size": "8554264"
+                            }
+                        ],
+                        "date": "2021/11/06 04:31",
+                        "name": "pictures"
+                    },
+                    {
+                        "content": [
+                            {
+                                "date": "2021/09/10 13:41",
+                                "name": "Give_Life_Back_to_Music-zKSsP2084nU.mp4",
+                                "size": "4449601"
+                            }
+                        ],
+                        "date": "2021/11/06 04:31",
+                        "name": "videos"
+                    }
+                ],
+                "date": "2021/11/06 01:44",
+                "name": "media"
+            },
+            {
+                "content": [
+                    {
+                        "date": "2021/09/11 00:17",
+                        "name": "get_update",
+                        "size": "148"
+                    },
+                    {
+                        "date": "2021/10/19 22:32",
+                        "name": "my_script.py",
+                        "size": "10"
+                    }
+                ],
+                "date": "2021/11/06 04:31",
+                "name": "scripts"
+            }
+        ],
         "scripts": [
             "app.js"
         ]
     },
     "folder": "assets/applications",
     "video_app": {
+        "buttons": [
+            {
+                "icon": "mif-volume-minus",
+                "id": "volume-minus",
+                "onclick": "Vol('-');"
+            },
+            {
+                "icon": "mif-volume-plus",
+                "id": "volume-plus",
+                "onclick": "Vol('+');"
+            },
+            {
+                "icon": "mif-previous",
+                "id": "previous",
+                "onclick": "OnEvent('video-back');"
+            },
+            {
+                "icon": "mif-play",
+                "id": "play",
+                "onclick": "$('#video-player')[0].play();"
+            },
+            {
+                "icon": "mif-pause",
+                "id": "pause",
+                "onclick": "$('#video-player')[0].pause();"
+            },
+            {
+                "icon": "mif-next",
+                "id": "next",
+                "onclick": "OnEvent('video-next');"
+            }
+        ],
         "player": {
-            "id": "video-player",
-            "poster": "pages/julia.gif",
             "icons": {
+                "loop": "mif-loop2",
+                "play": "mif-play",
+                "stop": "mif-stop",
+                "volume-high": "mif-volume-low",
                 "volume-low": "mif-volume-low",
                 "volume-medium": "mif-volume-medium",
-                "volume-high": "mif-volume-low",
-                "volume-mute": "mif-volume-mute2",
-                "loop": "mif-loop2",            
-                "play": "mif-play", 
-                "stop": "mif-stop"
-            }
+                "volume-mute": "mif-volume-mute2"
+            },
+            "id": "video-player",
+            "poster": "pages/julia.gif"
         },
-        "video_title": "video-title",
-        "buttons": [
-            {"id": "volume-minus", "icon": "mif-volume-minus", "onclick": "Vol('-');"},
-            {"id": "volume-plus", "icon": "mif-volume-plus", "onclick": "Vol('+');"},
-            {"id": "previous", "icon": "mif-previous", "onclick": "OnEvent('video-back');"},
-            {"id": "play", "icon": "mif-play", "onclick": "$('#video-player')[0].play();"},
-            {"id": "pause", "icon": "mif-pause", "onclick": "$('#video-player')[0].pause();"},
-            {"id": "next", "icon": "mif-next", "onclick": "OnEvent('video-next');"}
-        ],
         "scripts": [
             "video.js",
             "search.js",
             "app.js"
-        ]
+        ],
+        "video_title": "video-title"
     }
 }
