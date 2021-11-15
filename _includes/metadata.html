@@ -8,7 +8,7 @@
 
 <!-- Robots -->
 {%- unless page.canonical == false -%}
-<link rel="canonical" href="{{ site.img }}/{% if page.image %}{{ page.image }}{% else %}{{ site.logo }}{% endif %}"/>
+<link rel="canonical" href="{{ page.image | default: site.logo }}"/>
 {%- endunless -%}
 <!-- Title, description, author -->
 {%- capture _page_title -%}
@@ -18,13 +18,7 @@
 {%- endcapture -%}
 {%- assign _page_title = _page_title | escape -%}
 {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
-
 <!-- open_graph -->
-{% if page.image %}
-  <meta property="og:image" content="{{ site.img }}/{{ page.image }}" />
-  <meta property="og:url" content="{{ site.img }}/{{ page.image }}" />
-{% else %}
-  <meta property="og:image" content="{{ site.logo }}" />
-  <meta property="og:url" content="{{ site.url }}" />
-{% endif %}
-<title>{% if page.title %}{{ site.title_page }} | {{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta property="og:image" content="{% if page.image %}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}" />
+<meta property="og:url" content="{% if page.image %}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}" />
+<title>{% if page.title %}{{ site.title  | replace:' | ', '' }} | {{ page.title }}{% else %}{{ site.title }}{% endif %}</title>

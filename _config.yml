@@ -3,7 +3,6 @@
 baseurl: ""
 url: "http://192.168.50.7:8080"
 title: "Circuital | Minds"
-title_page: CircuitalMinds
 description: From Here To Eternity
 logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
 #-------------------------------
@@ -38,32 +37,19 @@ img: "/assets/img"
 #-------------------------------
 # resources 
 scripts:
-  - "simple-jekyll-search.min.js"
   - "instafeed.min.js"
   - "jquery.waitforimages.min.js"
   - "jquery.fitvids.js"
-  - "common.js"  
+  - "common.js"
+  - "utils.js"
+  - "spectrum.js"
+  - "elements.js"
+  - "analyzer.js"
 styles:
   - "main.css"   
   - "actions.css"
   - "modal.css"
   - "dropdown.css"
-#-------------------------------
-# include-scripts
-Tools:
-  utils: "utils.js"
-  spectrum: "spectrum.js"
-  elements: "elements.js"
-  analyzer: "analyzer.js"
-#-------------------------------
-# storage directory
-storage:
-  path: /storage
-  folders:
-    - data
-    - documents
-    - media
-    - scripts
 #-------------------------------
 # Build settings
 markdown: kramdown
