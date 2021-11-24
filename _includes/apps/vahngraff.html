@@ -1,0 +1,180 @@
+{% assign app=site.data.app.vahngraff %}
+{% for src in app.scripts %}
+<script src="{{ site.static.apps }}/vahngraff/js/{{ src }}"></script>
+{% endfor %}
+<h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
+<div class="row">
+  <div id="logo" class="cell-md-3 text-center bg-dark" style="color: #9e0843;">
+      {{ site.title | replace:' | ', '' }} | {{ page.title }}
+  </div>
+  <input id="query" type="text" class="cell-md-4" placeholder="Search for video..">
+  <button onclick="$('#query')[0].value='';" class="cell-md-1 bg-dark fg-light"><span class="mif-cross-light"></span></button>
+  <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="clock"></div>
+  <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="date"></div>
+</div>
+<div class="row">
+    <div class="cell-md-4">
+        <div class="p-2 multi-action">
+            <button class="action-button rotate-minus bg-teal fg-white" onclick="$(this).toggleClass('active')">
+                <span class="icon"><span class="mif-apps"></span></span>
+            </button>
+            <ul class="p-2 actions drop-right">
+            {% for btn in app.buttons %}
+                <li id="{{ btn.id }}" onclick="{{ btn.onclick }}" class="bg-teal"><a><span class="{{ btn.icon }}"></span></a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="cell-md-2">
+        <input id="random" class="p-2"
+               type="checkbox"
+               data-role="switch"
+               data-caption="Random"
+               data-cls-switch="mySwitch"
+               data-cls-caption="fg-teal text-bold"
+               data-cls-check="bd-teal myCheck">
+    </div>
+</div>
+<div class="row mt-2">
+{% assign data_icon="<span class='ICON fg-cyan'></span>" %}
+<video id="{{ app.player.id }}"
+       data-video-selected=""
+       class="cell-md-8 bg-light fg-cyan"
+       data-aspect-ratio="hd"
+       data-role="video-player"
+       data-volume="1"
+       data-on-end="OnEvent('video-next');"
+       data-on-play="this.play();"
+       data-on-pause="this.pause();"
+       onchange="this.play();"
+       {% for i in app.player.icons %}data-{{ i[0] }}-icon="{{ data_icon | replace:'ICON',i[1] }}"{% endfor %}
+></video>
+    <div class="cell-md-4">
+    <ul id="feed-playlist" class="group-list feed-list"></ul>
+    </div>
+</div>
+<script>
+var Videos;
+
+function getVideos() {
+    if ( Videos != undefined ) {
+        return Videos;
+    } else {
+        $.getJSON(
+            '{{ site.static.data }}/videos/metadata.json',
+            function ( data ) { setTimeout( function () {
+                Videos = data;
+                }, 1000);
+            }
+        );
+        return Videos;
+    };
+};
+
+function getVideoByIndex ( index ) {
+    var Data = getVideos();
+    var Name = Object.keys(Data)[index];
+    var Video = Data[Name];
+    var Metadata = {index: index, url: Video.url};
+    for ( x of Video.metadata ) {
+        var keys = Object.keys(x);
+        if ( keys.indexOf("name") != -1 ) {
+            if ( x.name == "title" && Metadata.title == undefined ) {
+                Metadata.title = x.content;
+            } else if ( x.name == "twitter:image" && Metadata.image == undefined ) {
+                Metadata.image = x.content;
+            } else if ( x.name == "keywords" && Metadata.keywords == undefined ) {
+                Metadata.keywords = x.content;
+            };
+        } else if ( keys.indexOf("property") != -1 ) {
+            if ( x.property == "og:title" && Metadata.title == undefined ) {
+                Metadata.title = x.content;
+            } else if ( x.property == "og:image" && Metadata.image == undefined ) {
+                Metadata.image = x.content;
+            };
+        } else if ( keys.indexOf("itemprop") != -1 && Metadata.duration == undefined ) {
+            if ( x.itemprop == "duration" ) {
+                Metadata.duration = x.content.replace("PT", "").replace("M", ":").replace("S", ":0");
+            };
+        };
+    };
+    if ( Metadata.title == undefined  ) {
+        Metadata["title"] = Name.replace(".mp4", "").replace(".wmv", "");
+    };
+    if ( Metadata.image == undefined ) {
+        Metadata["image"] = '{{ site.logo }}';
+    };
+    return Metadata;
+};
+
+function getRandomVideo() {
+    var Data = getVideos();
+    return getVideoByIndex(Math.round(Math.random() * (Object.keys(Data).length - 1)));
+};
+
+function playerMode () {
+    return $("#random")[0].checked;
+};
+
+function OnEvent ( Event ) {
+    var Player = $("#video-player")[0];
+    var Index = Player.dataset.videoSelected;
+    var N = 0;
+    if ( Index != "" ) {
+        N += parseFloat(Index);
+    };
+    if ( Event == 'video-selected' ) {
+        Video = getVideoByIndex(N);
+        Player.setAttribute("src", Video.url);
+        $("#video-title")[0].innerHTML = Video.title;
+    } else if ( Event == 'video-next' || Event == 'video-back' ) {
+        if ( playerMode() ) {
+            Video = getRandomVideo();
+            Player.dataset.videoSelected = Video.index;
+            Player.setAttribute("src", Video.url);
+            $("#video-title")[0].innerHTML = Video.title;
+        } else {
+            if ( Event == "video-next" ) {
+                N += 1;
+            } else if ( Event == "video-back" ) {
+                N -= 1;
+            };
+            Video = getVideoByIndex(N);
+            Player.dataset.videoSelected = Video.index;
+            Player.setAttribute("src", Video.url);
+            $("#video-title")[0].innerHTML = Video.title;
+        };
+    };
+    setTimeout(function() {
+        Player.play();
+        $("#results")[0].style.display = "none";
+    }, 1000);
+};
+
+function Vol ( opt ) {    
+    data = $('#{{ app.player.id }}')[0].volume;
+    if ( opt == "+" && data < 1 ) { 
+        $('#{{ app.player.id }}')[0].volume += 0.1;
+    } else if ( data > 0.99 ) {
+        $('#{{ app.player.id }}')[0].volume = 1;
+    };
+    if ( opt == "-" && data > 0 ) {
+        $('#{{ app.player.id }}')[0].volume -= 0.1;
+    } else if ( data < 0.01 ) {
+        $('#{{ app.player.id }}')[0].volume = 0;
+    };
+};
+
+var Pallete = {};
+Pallete.data = {{ site.data.colors.pallete | jsonify }};
+Pallete.set_style = ( sty ) => ( `<div class="cell-md-12 h-100" style="${colorGrad(sty)}"></div>` );
+
+$(function() {
+    getVideos();
+    $('#{{ app.player.id }}')[0].poster = '{{ app.player.poster }}';
+    Pallete.top = Pallete.set_style(Pallete.data);
+    Pallete.bottom = Pallete.set_style(Pallete.data.reverse());
+    ["top", "bottom"].map( x => $(`#pallete-${x}`)[0].innerHTML = Pallete[x] );
+    setJekyllSearch("videos");
+});
+</script>

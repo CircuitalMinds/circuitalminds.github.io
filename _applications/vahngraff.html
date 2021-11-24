@@ -1,0 +1,16 @@
+---
+layout: application
+app_name: vahngraff
+include_lib: metro
+include_styles: [modal]
+include_scripts: [utils]
+title: VahnGraff
+permalink: /vahngraff
+---
+<div id="pallete-top"></div>
+<div class="container w-100">
+    {% include apps/vahngraff.html %}
+    {% include snipets/modal.html id="results" header="<h2>Search Results</h2>" body='<ul id="jkl-results" class="feed-list bg-darkTeal fg-light"></ul>' footer="Don't Stop The Classics" btn_id="query" %}
+</div>
+<div id="pallete-bottom"></div>
+

@@ -12,22 +12,23 @@
   {% endif %}  
   {% include loader.html %}
   {% include header.html %}
-
+  {% include snipets/modal.html id="login" header="<h3>Login</h3>" body='<div class="container"><span>Username: <input type="text"></span> <span> Password: <input type="text"></span></div>' footer="" btn_id="get-login" %}
       {{ content }}
-
-  {% include javascripts.html %}   
+  {% include javascripts.html %}
   {% include footer.html %}     
 </body>
-<button class="open-button" style="border-radius: 150px;" onclick="open_form('chat_form')">Chat</button>
+<div class="container">
+<button class="open-button" onclick="open_form('chat_form')">Chat</button>
 <div class="chat-popup" id="chat_form">
 <div class="form-container">
-    <div id="chat_app"></div>
-    <button type="button" class="btn cancel" onclick="close_form('chat_form')" style="border-radius: 150px;">Close</button>
+    <div id="chat-app"></div>
+    <button type="button" class="btn cancel" onclick="close_form('chat_form')">Close</button>
+</div>
 </div>
 </div>
 <script>
-setJekyllSearch('/search.json');
+setJekyllSearch('site');
 time_clock();
-set_iframe("chat_app", '{{ site.url }}/chat');
+set_iframe("chat-app", '{{ site.url }}/chat');
 </script>
 </html>

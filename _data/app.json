@@ -1,0 +1,71 @@
+{
+    "msn": {
+        "scripts": ["messages.js"],
+        "styles": []
+    },
+    "spectrum": {
+        "scripts": [],
+        "styles": []
+    },
+    "drive": {
+        "folders": [
+            "pictures",
+            "media",
+            "data",
+            "scripts"
+        ],
+        "scripts": [],
+        "styles": []
+    },
+    "vahngraff": {
+        "buttons": [
+            {
+                "icon": "mif-volume-minus",
+                "id": "volume-minus",
+                "onclick": "Vol('-');"
+            },
+            {
+                "icon": "mif-volume-plus",
+                "id": "volume-plus",
+                "onclick": "Vol('+');"
+            },
+            {
+                "icon": "mif-previous",
+                "id": "previous",
+                "onclick": "OnEvent('video-back');"
+            },
+            {
+                "icon": "mif-play",
+                "id": "play",
+                "onclick": "$('#video-player')[0].play();"
+            },
+            {
+                "icon": "mif-pause",
+                "id": "pause",
+                "onclick": "$('#video-player')[0].pause();"
+            },
+            {
+                "icon": "mif-next",
+                "id": "next",
+                "onclick": "OnEvent('video-next');"
+            }
+        ],
+        "player": {
+            "icons": {
+                "loop": "mif-loop2",
+                "play": "mif-play",
+                "stop": "mif-stop",
+                "volume-high": "mif-volume-low",
+                "volume-low": "mif-volume-low",
+                "volume-medium": "mif-volume-medium",
+                "volume-mute": "mif-volume-mute2"
+            },
+            "id": "video-player",
+            "poster": "https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/poster.gif"
+        },
+        "preview": "https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/preview.jpg",
+        "scripts": [],
+        "styles": ["main.css"],
+        "video_title": "video-title"
+    }
+}

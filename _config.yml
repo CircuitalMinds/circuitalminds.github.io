@@ -3,14 +3,14 @@
 baseurl: ""
 url: "https://circuitalminds.github.io"
 title: "Circuital | Minds"
-title_page: CircuitalMinds
 description: From Here To Eternity
 logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
 #-------------------------------
 # proprietary info
 author-name: Alan Matzumiya
 author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
-author-website: "https://alanmatzumiya.github.io"
+author-website: https://alanmatzumiya.github.io
+author-github: https://github.com/alanmatzumiya
 #-------------------------------
 # Contact links
 fb_id: 772020893629559
@@ -18,6 +18,7 @@ facebook:  https://www.facebook.com/circuitalminds
 twitter:   https://twitter.com/circuitalminds
 instagram: https://www.instagram.com/circuitalminds
 pinterest: https://www.pinterest.com/circuitalminds
+github: https://github.com/CircuitalMinds
 #-------------------------------
 # Comment Section (Disqus)
 disqus-identifier: alan-matzumiya
@@ -35,30 +36,48 @@ mailchimp: # Add your MailChimp form identifier.
 js: "/assets/js"
 css: "/assets/css"  
 img: "/assets/img"
+libs:
+  metro:
+    js: "metro/js/metro.js"
+    css: "metro/css/metro-all.css"
+  apexcharts:
+    js: "apexcharts/dist/apexcharts.js"
+static:
+  data: "https://circuitalminds.github.io/static/data"
+  docs: "https://circuitalminds.github.io/static/docs"
+  js: "https://circuitalminds.github.io/static/js"
+  css: "https://circuitalminds.github.io/static/css"
+  img: "https://circuitalminds.github.io/static/img"
+  apps: "https://circuitalminds.github.io/static/apps"
+  libs: "https://circuitalminds.github.io/static/libs"
+  storage: "https://circuitalminds.github.io/static/storage"
+templates: "https://circuitalminds.github.io/templates"
 #-------------------------------
-# resources 
+# resources
+api: "/assets/js/api.js"
 scripts:
-  - "simple-jekyll-search.min.js"
-  - "instafeed.min.js"
-  - "jquery.waitforimages.min.js"
-  - "jquery.fitvids.js"
-  - "common.js"  
+  before:
+    - "instafeed.min.js"
+    - "facebook.js"
+    - "jquery.waitforimages.min.js"
+    - "jquery.fitvids.js"
+    - "common.js"
+  after:
+    - "utils.js"
+    - "pages.js"
+    - "posts.js"
 styles:
   - "main.css"   
   - "actions.css"
   - "modal.css"
   - "dropdown.css"
 #-------------------------------
-# manager
-Api: "/Api.js"  
-Tools:
-  - "utils.js"
-  - "spectrum.js"
-  - "jekyll.js"
-  - "elements.js"
-  - "analyzer.js"
-#-------------------------------
 # Build settings
+header_pages:
+  - projects
+  - topics
+  - contact
+  - about
 markdown: kramdown
 permalink: ':title'
 plugins:
@@ -69,7 +88,6 @@ paginate_path: "/page/:num"
 include:
   - _pages
   - _applications
-  - _spectrum
 sass:
   sass_dir: _sass
   style: compressed

@@ -2,7 +2,7 @@
 layout: post
 title: CircuitalMinds, their fractalized meaning.
 date: 2021-01-01 12:00:00 +0300
-image: posts/circuital.jpg
+image: circuital.jpg
 tags: [CircuitalMinds]
 ---
 ><h3><strong>"Dando vueltas, con gracia. Ir a ninguna parte, rápidamente Soy mayor; Día a día rapido envejezco pero regresando a mi infancia. Gira y gira pacientemente, perdiendose por el guía. Y estoy todo nervioso por nada".</strong></h3>

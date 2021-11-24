@@ -2,7 +2,7 @@
 layout: post
 title: What does it mean to feel millions of dreams come real?
 date: 2020-10-08 10:30:55 +0300
-image: posts/fractalmind.jpg
+image: fractalmind.jpg
 tags: [Cantor]
 scripts: ["criba", "sierpinski", "cantor", "lorenz", "mandelbrot", "animationPixel"]
 ---

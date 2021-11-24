@@ -1,12 +1,11 @@
 ---
 layout: default
 ---
-
 <div class="container">
 	<div class="row">
 		<div class="col col-12">
 			<div class="page-image-box">
-				<div class="page-image" style="background-image: url('{{ site.img }}/{{ page.image }}')"></div>
+				<div class="page-image" style="background-image: url('{{ site.img }}/pages/{{ page.image }}')"></div>
 			</div>
 		</div>
 		<article class="col col-12 col-t-10 push-t-1 page">
@@ -16,7 +15,12 @@ layout: default
 				</div>
 				<div class="page-body">
 					
-					{{ content }}				
+					{{ content }}										
+
+					{% if page.snipet %}	
+					{% include /snipets/{{ page.snipet }}.html %}
+					{% endif %}
+
 					{% if page.html_includes %}	
 					{% for name in page.html_includes %}
 						{% include {{ name }}.html %}						

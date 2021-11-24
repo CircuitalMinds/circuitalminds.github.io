@@ -7,10 +7,16 @@
         <link href="{{ site.css }}/{{ href }}.css" rel="stylesheet"/>
     {% endfor %}
     {% include favicon.html %}
-</head>    
+</head>
+{% if page.include_lib == 'metro' %}
 <body class="bg-dark fg-white h-vh-100">
     {{ content }}
 </body>
+{% else %}
+<body>
+    {{ content }}
+</body>
+{% endif %}
 {% for src in page.include_scripts %}
 <script src="{{ site.js }}/{{ src }}.js"></script>
 {% endfor %}

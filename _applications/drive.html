@@ -1,108 +1,132 @@
 ---
 layout: application
+app_name: drive
+include_lib: metro
 title: Drive
 permalink: /drive
 ---
-<div class="row border-bottom bd-lightGray m-3">
-    <div class="cell-md-4 text-center text-left-md">
-        <h3 class="dashboard-section-title">{{ site.title }}<small>  Version 1.0  </small></h3>
-    </div>
-    <div class="cell-md-8 d-flex flex-justify-center flex-justify-end-md">
-        <ul class="breadcrumbs bg-transparent">
-            <li class="page-item"><a class="page-link" href="#"><span class="mif-meter"></span></a></li>
-            <li class="page-item"><a class="page-link" href="#">Mailbox</a></li>
-            <li class="page-item"><a class="page-link" href="#">Compose</a></li>
-        </ul>
-    </div>
-</div>
-<div class="m-3">
-    <div class="inbox p-1 bg-transparent">
-        <div class="row">
-            <div class="cell-md-3 cell-xl-2 mt-2">
-                <button class="button mb-3 success">Compose</button>
-                <div data-collapsible="true" data-role="panel" data-title-caption="Folders">
-                    <ul class="v-menu inbox-folders mt-4">
-                        <li class="active">
-                            <a href="#"><span class="icon mif-download"></span>Inbox
-                            <span class="badge inline bg-cyan fg-white">12</span></a>
-                        </li>
-                        <li><a class="dropdown-toggle" href="#">
-                            <span class="icon mif-brightness-auto"></span>Labels</a>
-                        <ul class="v-menu" data-role="dropdown">
-                            <li><a href="#"><span class="icon mif-brightness-auto fg-red"></span>Important</a></li>
-                            <li><a href="#"><span class="icon mif-brightness-auto fg-cyan"></span>Social</a></li>
-                        </ul>
-                        </li>
-                    </ul>
-                </div>
+<div class="container w-100 h-100">
 
-                <div class="mt-2" data-collapsible="true" data-role="panel" data-title-caption="Categories">
-                    <ul class="v-menu inbox-folders mt-4">
+<div class="row border-bottom bd-lightGray">
+{% assign app_data = site.data.applications.drive_app %}   
+{% assign folder = site.data.applications.folder | append: '/drive_app' %} 
+<div class="cell-md-4 text-center text-left-md">
+    <h3 class="dashboard-section-title">{{ site.title_page }} | {{ page.title }}</h3>
+</div>
+<div class="cell-md-8 d-flex flex-justify-center flex-justify-end-md">
+<ul class="breadcrumbs bg-light">
+    <li class="pages-item mainbutton ontouch"><div id="time-clock" class="page-link"></div></li>
+    {% for page in site.pages %}
+    {% unless page.name == 'tags.html' or page.name == '404.html' %}
+    {% if page.layout == 'page' %}
+    <li class="page-item"><a class="page-link" href="{{ page.url }}">{{ page.title }}</a></li>
+    {% endif %}
+    {% endunless %}
+    {% endfor %}
+    <li class="pages-item mainbutton ontouch"><div id="get-login" class="page-link">Login</div></li>
+</ul>
+</div>
+</div>
+
+<div class="row m-3">
+<div class="cell-md-3 inbox p-1 bg-transparent">
+        <button class="button mb-3 success">Compose</button>
+
+        <div data-collapsible="true" data-role="panel" data-title-caption="Folders">
+<ul class="v-menu inbox-folders mt-4">
+    {% for x in app_data.folders %}
+    <li>
+        <a class="dropdown-toggle" href="#">{{ x.name }} <span class="icon mif-folder fg-teal"></span></a>
+        <ul class="v-menu" data-role="dropdown">
+        {% if x.content %}
+            {% for y in x.content %}
+                <li>
+                    {% if y.content %}
+                    <a class="dropdown-toggle" href="#">{{ y.name }} <span class="icon mif-folder fg-teal"></span></a>
+                    <ul class="v-menu" data-role="dropdown">
+                    {% for z in y.content %}
                         <li>
-                            <a href="#">
-        <span class="icon mif-chat fg-green">
-        </span>
-                                Notifies
-                            </a>
+                            <a onclick="getFile( '/storage/{{ x.name }}/{{ y.name }}/{{ z.name }}' );">{{ z.name }} {{ z.size }} {{ z.date }}<span class="icon mif-file-empty fg-teal"></span></a>
                         </li>
+                    {% endfor %}
                     </ul>
-                </div>
+                    {% else %}
+                        <a onclick="getFile( '/storage/{{ x.name }}/{{ y.name }}' );">{{ y.name }} {{ y.size }} {{ y.date }}<span class="icon mif-file-empty fg-teal"></span></a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+        {% else %}
+                <li>
+                    <a href="/storage/{{ x.name }}">{{ x.name }}<span class="icon mif-empty-file fg-teal"></span></a>
+                    {{ x.size }} {{ x.date }}
+                </li>
+        {% endif %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+</div>
+
+<div class="cell-md-8 bg-light">
+<div id="view" class="cell-md-5 img-container rounded fg-dark">
+    <div class="container" style="display: none"></div>
+    <img style="display: block;" src="{{ site.logo }}">
+    <video style="display: none;" controls></video>
+</div>
+<form class="cell-md-3" action="http://192.168.50.7:8081/" method=post enctype=multipart/form-data>
+        <input type="file" data-role="file" data-mode="drop"
+               data-on-select="$('#selected-files').html('');
+               $.each(arguments[0], function(){
+               $('#selected-files').append('&lt;div&gt;'+this.name+'&lt;/div&gt;');
+            });" name="file"/>
+            <div class="bg-light p-2 overflow reduce-1" id="selected-files" style="height: 270px;">
             </div>
-            <div class="cell-md-9 cell-xl-10 mt-2">
-                <div class="p-1 p-6-lg bg-white">
-                    <h4>
-                        Compose new mail
-                    </h4>
-                    <form class="mt-3">
-                        <div class="row m-0">
-                            <div class="cell-lg-8 bg-light p-1 p-6-lg">
-                                <div class="form-group">
-                                    <input data-prepend="To:" data-role="input" type="text"/>
-                                </div>
-                                <div class="form-group">
-                                    <input data-prepend="Subject:" data-role="input" type="text"/>
-                                </div>
-                                <div class="form-group">
-                                    <textarea id="editor"></textarea>
-                                </div>
-                            </div>
-                            <div class="cell-lg-4 d-none d-block-lg">
-                                <input class="h-50"
-                                       data-drop-icon="&lt;span class='mif-attachment mif-4x text-center'&gt;"
-                                       data-mode="drop" data-on-select="
-                                    $('#selected-files').html('');
-                                    $.each(arguments[0], function(){
-                                        $('#selected-files').append('&lt;div&gt;'+this.name+'&lt;/div&gt;');
-                                    });
-                                " data-role="file" type="file"/>
-                                <div class="bg-light p-2 overflow reduce-1" id="selected-files" style="height: 270px;">
-                                </div>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div class="form-actions d-flex flex-wrap flex-justify-center flex-justify-start-lg">
-                            <button class="button" type="button">
-        <span class="mif-cancel">
-        </span>
-                                Discard
-                            </button>
-                            <div class="ml-auto-lg">
-                                <button class="button secondary" type="button">
-         <span class="mif-pencil">
-         </span>
-                                    Draft
-                                </button>
-                                <button class="button warning" type="button">
-         <span class="mif-eye">
-         </span>
-                                    Preview
-                                </button>
-        <button class="button info"><span class="mif-paper-plane"></span>Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+        <input type=submit value=Upload>
+</form>
+</div>
+<script>
+var selected_files = $('#selected-files');
+
+function getFile ( path ) {
+    ["video", "img", "div.container"].map( s => $("#view")[0].querySelector(s).style.display="none" );
+    if ( path.endsWith("mp4") ) {
+        view = $("#view")[0].querySelector("video");
+        view.setAttribute("src", path);
+        view.style.display = "block"
+    } else if ( ["gif", "png", "jpg", "jpeg"].map( x => path.endsWith(x) ).indexOf(true) != -1 ) {
+        view = $("#view")[0].querySelector("img");
+        view.setAttribute("src", path);
+        view.style.display = "block"
+    } else if ( path.endsWith("pdf") ) {
+        view = $("#view")[0].querySelector("div.container");
+        view.innerHTML = `<embed class="image fit" src="${path}"
+                                 width="100%" height="550px" type="application/pdf">
+                         </embed>`;
+        view.style.display="block";
+    } else {
+        get_file(path);
+    };
+};
+
+function get_file ( url ) {
+    let request_url = url;
+    var request_data = new Object;
+    let request = new XMLHttpRequest();
+    request.open('GET', request_url);
+    request.send();
+    request.onload = function() {
+        data = request.response;
+        setTimeout( () => {
+            request_data = data;
+            text_data = request_data.split('\n').map( l => `<p>${l}</p>` ).join('\n');
+            view = $("#view")[0].querySelector("div.container");
+            view.innerHTML = text_data;
+            view.style.display="block";
+        }, 1000);
+    };
+};
+</script>
+</div>
 </div>

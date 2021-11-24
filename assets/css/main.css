@@ -3,16 +3,17 @@
     text-align: center; text-decoration: none;
     font-size: 12px; margin: 10px 250x;
     display: inline-block; border-radius: 0.35em;
-    padding: 10px 30px; background-color: #1abc9c;
+    padding: 10px 30px; background-color: #9e0843;
     border: 0; transition-duration: 0.8s; cursor: pointer;
 }
 
 .on-touch {
-    background-color: #2C2F36;color: #1abc9c;
-    border: 2px solid #1abc9c;
+    background-color: #2C2F36;
+    color: #9e0843;
+    border: 2px solid #9e0843;
 }
 .on-touch:hover {
-    background-color: #1abc9c; color: white;
+    background-color: #9e0843; color: white;
 }
 
 span.intLink, a, a:visited {

@@ -2,7 +2,7 @@
 layout: post
 title: Birthdays
 date: 2020-09-14 13:45:55 +0300
-image: posts/birthdays.jpg
+image: birthdays.jpg
 tags: [Little Pigs]
 ---
 
