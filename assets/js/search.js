@@ -17,12 +17,12 @@ var Templates = {
         no_results: '<li class="search-no-item">No results found</li>'
     },
     videos: {
-        jsonfile: "/query/videos.json",
+        jsonfile: "https://circuitalminds.github.io/static/data/videos/videos.json",
         search: {
             input: "query", container: "jkl-results"
         },
         results: `<li class="button card-content bg-darkTeal bg-dark-hover fg-light"
-                      onclick="$('#video-player')[0].dataset.videoSelected = '{index}'; OnEvent('video-selected');" >
+                      onclick="Player.Select( {index} );">
                       <img class="avatar" src="{image}">
                       <span class="label">{title}</span>
                       <span class="second-label">{duration}</span>

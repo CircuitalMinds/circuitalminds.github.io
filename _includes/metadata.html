@@ -1,3 +1,5 @@
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
 {% for item in site.data.metadata %}
 {% if item.name %}
 <meta name="{{ item.name }}" content="{{ item.content }}"/>
@@ -5,11 +7,6 @@
 <meta property="{{ item.property }}" content="{{ item.content }}"/>
 {% endif %}
 {% endfor %}
-
-<!-- Robots -->
-{%- unless page.canonical == false -%}
-<link rel="canonical" href="{{ page.image | default: site.logo }}"/>
-{%- endunless -%}
 <!-- Title, description, author -->
 {%- capture _page_title -%}
   {%- if page.title -%}{{- page.title | append: ' | ' -}}{%- endif -%}
@@ -19,6 +16,17 @@
 {%- assign _page_title = _page_title | escape -%}
 {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
 <!-- open_graph -->
-<meta property="og:image" content="{% if page.image %}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}" />
-<meta property="og:url" content="{% if page.image %}{{ site.img }}/{{ page.image }}{% else %}{{ site.logo }}{% endif %}" />
-<title>{% if page.title %}{{ site.title  | replace:' | ', '' }} | {{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+{% if page.layout == 'application' %}
+{% assign app_name=page.name | replace:'.html','' %}
+<meta property="og:image" content="{{ site.data.app[app_name].preview }}" />
+<meta property="og:url" content="{{ site.data.app[app_name].preview }}" />
+<title>{{ site.title | replace:' | ','' }} | {{ page.title }}</title>
+{% elsif page.image %}
+<meta property="og:image" content="{{ site.url }}{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
+<meta property="og:url" content="{{ site.url }}{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
+<title>{{ site.title | replace:' | ','' }} | {{ page.title }}</title>
+{% else %}
+<meta property="og:image" content="{{ site.logo }}" />
+<meta property="og:url" content="{{ site.logo }}" />
+<title>{{ site.title }}</title>
+{% endif %}

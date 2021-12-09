@@ -2,7 +2,7 @@
 layout: post
 title: Birthdays
 date: 2020-09-14 13:45:55 +0300
-image: posts/birthdays.jpg
+image: birthdays.jpg
 tags: [Little Pigs]
 ---
 
@@ -38,7 +38,12 @@ print_friend('friendship')
 
 ### U2 - Love is bigger than anything in its way. (pª. YAC)
 
-<iframe width="910" height="512" src="https://www.youtube.com/embed/Ki5keBCz8DQ?list=LLLuSHhURU35xtFCoEaoSEzA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div id="vahngraff-app"></div>
+<script>
+$( function () {
+  set_iframe("vahngraff-app", '{{ site.url }}/vahngraff');
+});
+</script>
 
 ***
 

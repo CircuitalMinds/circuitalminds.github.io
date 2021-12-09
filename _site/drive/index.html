@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <link rel="canonical" href="http://192.168.50.7:8080/drive/">
+<link rel="alternate" type="application/rss+xml" title="Circuital | Minds" href='/feed.xml'/>
+
+
+<meta name="author" content="alanmatzumiya"/>
+
+
+
+<meta name="description" content="From Here To Eternity"/>
+
+
+
+<meta name="robots" content="index, follow"/>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+
+<meta property="fb:app_id" content="772020893629559"/>
+
+
+
+<meta property="og:description" content="From Here To Eternity"/>
+
+
+
+<meta property="og:site_name" content="CircuitalMinds"/>
+
+
+
+<meta property="og:title" content="CircuitalMinds"/>
+
+
+
+<meta property="og:type" content="website"/>
+
+
+<!-- Title, description, author --><!-- open_graph -->
+
+
+<meta property="og:image" content="https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/preview.jpg" />
+<meta property="og:url" content="https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/preview.jpg" />
+<title>CircuitalMinds | Drive</title>
+
+
+    <!-- Ajax -->
+<script crossorigin="anonymous"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="/assets/js/simple-jekyll-search.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+    
+    <!-- Metro -->
+    <link href="https://circuitalminds.github.io/static/libs/metro/css/metro-all.css" rel="stylesheet">
+    <script src="https://circuitalminds.github.io/static/libs/metro/js/metro.js"></script>
+    
+
+
+    
+
+
+<style>
+.controls {
+    opacity: 0.0;
+    transition-duration: 0.4s;
+    transition: opacity 1s;
+    transition-delay: 0.5s;
+}
+
+.controls:hover {
+    opacity: 1.0;
+}
+</style>
+
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>
+<link rel="manifest" href="/favicon.ico/manifest.json">
+
+<link rel="apple-touch-icon" href="/favicon.ico/apple-icon.png">
+
+<link rel="apple-touch-icon" href="/favicon.ico/apple-icon-precomposed.png">
+<link rel="icon" href="/favicon.ico/favicon.ico">
+
+<meta name="msapplication-TileColor" content="#1abc9c">
+
+<meta name="theme-color" content="#1abc9c">
+</head>
+
+<body class="bg-dark fg-white h-vh-100">
+    <div class="container w-100 h-100">
+<div class="row border-bottom bd-lightGray">
+
+
+
+
+<script src="/assets/js/utils.js"></script>
+
+<div class="cell-md-4 text-center text-left-md">
+    <h3 class="dashboard-section-title">CircuitalMinds | Drive</h3>
+</div>
+<div class="cell-md-8 d-flex flex-justify-center flex-justify-end-md">
+<ul class="breadcrumbs bg-light">
+    <li class="pages-item mainbutton ontouch"><div id="time-clock" class="page-link"></div></li>
+    
+    <li class="page-item"><a class="page-link" href="/projects/">projects</a></li>
+    
+    <li class="page-item"><a class="page-link" href="/topics/">topics</a></li>
+    
+    <li class="page-item"><a class="page-link" href="/contact/">contact</a></li>
+    
+    <li class="page-item"><a class="page-link" href="/about/">about</a></li>
+    
+    <li class="pages-item mainbutton ontouch"><div id="get-login" class="page-link">Login</div></li>
+</ul>
+</div>
+</div>
+
+<div class="row m-3">
+<div class="cell-md-3 inbox p-1 bg-transparent">
+    <button class="button mb-3 success">Compose</button>
+    <div data-collapsible="true" data-role="panel" data-title-caption="Folders">
+    <ul class="v-menu inbox-folders mt-4">
+    
+    <li>
+        <a class="dropdown-toggle" href="#">pictures <span class="icon mif-folder fg-teal"></span></a>
+        <ul id="pictures" class="v-menu" data-role="dropdown"></ul>
+    </li>
+    
+    <li>
+        <a class="dropdown-toggle" href="#">videos <span class="icon mif-folder fg-teal"></span></a>
+        <ul id="videos" class="v-menu" data-role="dropdown"></ul>
+    </li>
+    
+    <li>
+        <a class="dropdown-toggle" href="#">documents <span class="icon mif-folder fg-teal"></span></a>
+        <ul id="documents" class="v-menu" data-role="dropdown"></ul>
+    </li>
+    
+    <li>
+        <a class="dropdown-toggle" href="#">data <span class="icon mif-folder fg-teal"></span></a>
+        <ul id="data" class="v-menu" data-role="dropdown"></ul>
+    </li>
+    
+    <li>
+        <a class="dropdown-toggle" href="#">scripts <span class="icon mif-folder fg-teal"></span></a>
+        <ul id="scripts" class="v-menu" data-role="dropdown"></ul>
+    </li>
+    
+    </ul>
+</div>
+</div>
+
+<div class="cell-md-8 bg-light">
+<div id="view" class="cell-md-5 img-container rounded fg-dark">
+    <img id="default-view" style="display: block;" src="https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4">
+    <div id="data-view" class="container" style="display: none">
+        <embed class="image fit" width="100%" height="550px" type="text/plain">
+        <embed class="image fit" width="100%" height="550px" type="application/json">
+    </div>
+    <div id="scripts-view" class="container" style="display: none">
+        <embed class="image fit" width="100%" height="550px" type="text/plain">
+    </div>
+    <div id="documents-view" class="container" style="display: none;"></div>
+        <embed class="image fit" width="100%" height="550px" type="application/pdf">
+        <embed class="image fit" width="100%" height="550px" type="text/html">
+    <img id="pictures-view" style="display: none;" src="https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4">
+    <video id="videos-view" style="display: none;" controls></video>
+</div>
+<form class="cell-md-3" action="http://192.168.50.7:5000/api/drive/upload" method=post enctype=multipart/form-data>
+    <input type="file" data-role="file" data-mode="drop" multiple="true"
+           data-on-select="$('#selected-files').html('');
+           $('#data-list')[0].innerHTML = '';
+           $.each(arguments[0], function(){
+           $('#selected-files').append('&lt;div&gt;'+this.name+'&lt;/div&gt;');
+           $('#data-list')[0].innerHTML += '<p>'+this.name+'</p>\n';
+        });" name="files[]"/>
+        <div class="bg-light p-2 overflow reduce-1" id="selected-files" style="height: 270px;"></div>
+        <label class="fg-dark">Selected Files</label><div id="data-list" class="fg-dark"></div>
+    <input type=submit value=Upload>
+</form>
+</div>
+<script>
+var selected_files = $('#selected-files');
+let fileObj = new Object();
+let folderObj = new Object();
+
+fileObj = {"icon":"icon mif-file-empty fg-teal","views":{"data":{"view":"#data-view","types":["json","yml","txt"]},"videos":{"view":"#videos-view","types":["mp4","mp3","wmv","mkv"]},"pictures":{"view":"#pictures-view","types":["jpg","png","svg","gif","jpeg"]},"scripts":{"view":"#scripts-view","types":["py","js","css","sqlite3","","sh"]},"documents":{"view":"#documents-view","types":["html","pdf","md","markdown","ipynb"]}}};
+folderObj = {"icon":"icon mif-folder fg-teal","path":"https://circuitalminds.github.io/static/storage","url_data":"https://circuitalminds.github.io/static/data/storage.json","directories":["pictures","videos","documents","data","scripts"],"total_size":0,"content":[]};
+
+folderObj.getFoldersContent = function () {
+    requestObj.get(
+        this.url_data,
+        function ( data ) {
+            folderObj.total_size = data.total_size;
+            for ( folder of data.content.folders ) {
+                folderObj.content.push(folder);
+                $("#"+folder.name)[0].innerHTML = folder.files.map(
+                    x => `<li>
+                          <a onclick="fileObj.Open( '${folder.name}', '${x.filename}' );">
+                             ${x.filename} ${x.date} ${x.size} <span class="${fileObj.icon}"></span>
+                          </a>
+                          </li>`
+                ).join("\n");
+            };
+        }
+    );
+};
+
+fileObj.openPDF = function ( path ) {
+    $("#documents-view")[0].querySelector(
+        'embed[type="application/pdf"]'
+    ).setAttribute( "src", path );
+};
+fileObj.Close = function () {
+    Object.values(this.views).map( x => $(x.view)[0].style.display = "none" );
+    $("#default-view")[0].style.display = "block";
+};
+fileObj.Open = function ( folder, filename ) {
+    this.Close();
+    $("#default-view")[0].style.display = "none";
+    Folder = Object.values(this.views).filter(
+        x => x.types.filter(
+            y => filename.match(y)
+        ).length > 0
+    )[0];
+    Path = [folderObj.path, folder, filename].join("/");
+    if ( $(Folder.view)[0].tagName == "DIV" ) {
+        dataType = "";
+        if ( filename.endsWith("pdf") ) {
+            dataType += "application/pdf";
+        } else if ( filename.endsWith("json") ) {
+            dataType += "application/json";
+        } else {
+            dataType += "text/plain";
+        };
+        $(Folder.view)[0].innerHTML = `<embed class="image fit" width="100%" height="550px" type="${dataType}" src="${Path}">`;
+    } else {
+        $(Folder.view)[0].setAttribute("src", Path);
+    };
+    $(Folder.view)[0].style.display = "block";
+};
+
+$( function () {
+    folderObj.getFoldersContent();
+});
+</script>
+</div>
+
+</div>
+
+</body>
+
+<script>
+$( function () {
+    ElementObj.setClock();
+    ElementObj.setDate();
+});
+</script>
+</html>

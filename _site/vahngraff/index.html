@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <link rel="canonical" href="http://192.168.50.7:8080/vahngraff/">
+<link rel="alternate" type="application/rss+xml" title="Circuital | Minds" href='/feed.xml'/>
+
+
+<meta name="author" content="alanmatzumiya"/>
+
+
+
+<meta name="description" content="From Here To Eternity"/>
+
+
+
+<meta name="robots" content="index, follow"/>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+
+<meta property="fb:app_id" content="772020893629559"/>
+
+
+
+<meta property="og:description" content="From Here To Eternity"/>
+
+
+
+<meta property="og:site_name" content="CircuitalMinds"/>
+
+
+
+<meta property="og:title" content="CircuitalMinds"/>
+
+
+
+<meta property="og:type" content="website"/>
+
+
+<!-- Title, description, author --><!-- open_graph -->
+
+
+<meta property="og:image" content="https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/preview.jpg" />
+<meta property="og:url" content="https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/preview.jpg" />
+<title>CircuitalMinds | VahnGraff</title>
+
+
+    <!-- Ajax -->
+<script crossorigin="anonymous"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="/assets/js/simple-jekyll-search.min.js"></script>
+<script src="/assets/js/search.js"></script>
+
+    
+    <!-- Metro -->
+    <link href="https://circuitalminds.github.io/static/libs/metro/css/metro-all.css" rel="stylesheet">
+    <script src="https://circuitalminds.github.io/static/libs/metro/js/metro.js"></script>
+    
+
+
+    
+
+
+<link href="/assets/css/modal.css" rel="stylesheet"/>
+
+<style>
+.controls {
+    opacity: 0.0;
+    transition-duration: 0.4s;
+    transition: opacity 1s;
+    transition-delay: 0.5s;
+}
+
+.controls:hover {
+    opacity: 1.0;
+}
+</style>
+
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>
+<link rel="manifest" href="/favicon.ico/manifest.json">
+
+<link rel="apple-touch-icon" href="/favicon.ico/apple-icon.png">
+
+<link rel="apple-touch-icon" href="/favicon.ico/apple-icon-precomposed.png">
+<link rel="icon" href="/favicon.ico/favicon.ico">
+
+<meta name="msapplication-TileColor" content="#1abc9c">
+
+<meta name="theme-color" content="#1abc9c">
+</head>
+
+<body class="bg-dark fg-white h-vh-100">
+    <div id="palette-top"></div>
+<div class="container w-100">
+    
+
+
+
+<script src="/assets/js/utils.js"></script>
+
+<script src="/assets/js/search.js"></script>
+
+<script>
+function floatPrecision ( x, n ) {
+    xInt = Math.trunc(x);
+  	xDec = Math.trunc( (x - xInt) * 10 ** n );
+    return parseFloat( xInt + "." + xDec );
+};
+
+function Range (start, stop, step=1) {
+    return Array.from(
+    	  {length: (stop - start - 1) / step + 1}, (_, i) => start + (i * step)
+    );
+};
+
+function randomInt ( a, b ) {
+    return a + Math.round(
+        Math.random() * (b - a)
+    );
+};
+
+function randomArray ( a, b, n ) {
+    A = [];
+    while ( A.length < n ) {
+        ei = randomInt(a, b);
+        if ( A.indexOf(ei) == -1 ) {
+            A.push(ei);
+        };
+    };
+    return A;
+};
+
+function Factorial ( n ) {
+    return Range(1, n + 1).reduce( function (x, y) { return x * y }, 1 );
+};
+
+function mathFunction ( name ) {
+    Func = Math[name.toLowerCase()];
+    if ( Func != undefined ) {
+        return Func;
+    } else {
+        return "function " + name + " not found";
+    };
+};
+
+function mathConstant ( name ) {
+    Constant = Math[name.toUpperCase()];
+    if ( Constant != undefined ) {
+        return Constant;
+    } else {
+        return "constant " + name + " not found";
+    };
+};
+
+let Vector = new Object();
+Vector.isVector = function ( u ) {
+    return u.length != undefined;
+};
+Vector.isCallable = function ( f ) {
+    return typeof(f) == "function";
+};
+Vector.Zeros = function ( n ) {
+    return Range(0, n).map( i => 0.0 );
+};
+Vector.Grid = function ( a, b, n ) {
+    dx = (b - a) / n;
+    return Range(0, n + 1).map( i => a + i * dx );
+};
+Vector.Prod = function ( u, v ) {
+    if ( this.isVector(u) == false && this.isVector(v) == false ) {
+        return u * v;
+    } else if ( this.isVector(u) && this.isVector(v) == false ) {
+        return Range(0 , u.length).map( i => u[i] * v );
+    } else if ( this.isVector(u) == false && this.isVector(v) ) {
+        return Range(0 , v.length).map( i => u * v[i] );
+    } else if ( this.isVector(u) && this.isVector(v) ) {
+        if ( u.length == v.length ) {
+            return Range(0 , u.length).map( i => u[i] * v[i] );
+        };
+    };
+};
+Vector.Sum = function ( u, v ) {
+    if ( this.isVector(u) == false && this.isVector(v) == false ) {
+        return u + v;
+    } else if ( this.isVector(u) && this.isVector(v) == false ) {
+        return Range(0 , u.length).map( i => u[i] + v );
+    } else if ( this.isVector(u) == false && this.isVector(v) ) {
+        return Range(0 , v.length).map( i => u + v[i] );
+    } else if ( this.isVector(u) && this.isVector(v) ) {
+        if ( u.length == v.length ) {
+            return Range(0 , u.length).map( i => u[i] + v[i] );
+        };
+    };
+};
+Vector.Dot = function ( u, v ) {
+    if ( this.isVector(u) && this.isVector(v) ) {
+        return this.Prod(u, v).reduce(
+            ( x, y ) => x + y
+        );
+    };
+};
+Vector.Norm = function ( u ) {
+    if ( this.isVector(u) ) {
+        return Math.sqrt(Math.abs( this.Dot(u, u) ));
+    };
+};
+Vector.Unitary = function ( u ) {
+    if ( this.isVector(u) ) {
+        return this.Prod( 1.0 / this.Norm(u), u );
+    };
+};
+Vector.Eval = function ( F, u ) {
+    if ( this.isCallable(F) && this.isVector(u) ) {
+        return u.map( x => F(x) );
+    };
+};
+</script>
+<h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
+<div class="row">
+  <div id="logo" class="cell-md-3 text-center bg-dark" style="color: #9e0843;">
+      CircuitalMinds | VahnGraff
+  </div>
+  <input id="query" type="text" class="cell-md-4" placeholder="Search for video..">
+  <button onclick="$('#query')[0].value='';" class="cell-md-1 bg-dark fg-light"><span class="mif-cross-light"></span></button>
+  <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="clock"></div>
+  <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="date"></div>
+</div>
+<div class="row">
+    <div class="cell-md-4">
+        <div class="p-2 multi-action">
+            <button class="action-button rotate-minus bg-teal fg-white" onclick="$(this).toggleClass('active')">
+                <span class="icon"><span class="mif-apps"></span></span>
+            </button>
+            <ul class="p-2 actions drop-right">
+            
+                <li id="volume-minus" onclick="Player.Vol.setMinus();" class="bg-teal"><a><span class="mif-volume-minus"></span></a></li>
+            
+                <li id="volume-plus" onclick="Player.Vol.setPlus();" class="bg-teal"><a><span class="mif-volume-plus"></span></a></li>
+            
+                <li id="previous" onclick="Player.Previous();" class="bg-teal"><a><span class="mif-previous"></span></a></li>
+            
+                <li id="play" onclick="$('#video-player')[0].play();" class="bg-teal"><a><span class="mif-play"></span></a></li>
+            
+                <li id="pause" onclick="$('#video-player')[0].pause();" class="bg-teal"><a><span class="mif-pause"></span></a></li>
+            
+                <li id="next" onclick="Player.Next();" class="bg-teal"><a><span class="mif-next"></span></a></li>
+            
+            </ul>
+        </div>
+    </div>
+    <div class="cell-md-2">
+        <input id="random" class="p-2"
+               type="checkbox"
+               data-role="switch"
+               data-caption="Random"
+               data-cls-switch="mySwitch"
+               data-cls-caption="fg-teal text-bold"
+               data-cls-check="bd-teal myCheck">
+    </div>
+</div>
+<div class="row mt-2">
+
+<video id="video-player"
+       data-video-selected="0"
+       class="cell-md-8 bg-light fg-cyan"
+       data-aspect-ratio="hd"
+       data-role="video-player"
+       data-volume="1"
+       data-on-end="Player.Next();"
+       data-on-play="this.play();"
+       data-on-pause="this.pause();"
+       onchange="this.play();"
+       data-loop-icon="<span class='mif-loop2 fg-cyan'></span>"data-play-icon="<span class='mif-play fg-cyan'></span>"data-stop-icon="<span class='mif-stop fg-cyan'></span>"data-volume-high-icon="<span class='mif-volume-low fg-cyan'></span>"data-volume-low-icon="<span class='mif-volume-low fg-cyan'></span>"data-volume-medium-icon="<span class='mif-volume-medium fg-cyan'></span>"data-volume-mute-icon="<span class='mif-volume-mute2 fg-cyan'></span>"
+></video>
+    <div class="cell-md-4">
+    <ul id="feed-playlist" class="group-list feed-list"></ul>
+    </div>
+</div>
+<div class="row mt-2">
+
+
+
+
+
+<div id="results" class="modal">
+	<div class="modal-content">			
+	<div class="modal-header">	
+		<span class="close">&times;</span><h2>Search Results</h2>
+	</div>
+	<div class="modal-body"><ul id='jkl-results' class='feed-list bg-darkTeal fg-light'></ul></div>
+	<div class="modal-footer">
+		&copy; CircuitalMinds. VahnGraff | Don't Stop The Classics<span class="close">&times;</span>
+	</div>
+</div>
+</div>
+<script>
+$("#query")[0].onclick = function() {
+    $("#results")[0].style.display = "block";
+};
+Object.values($("#results")[0].querySelectorAll('span.close')).map(
+	s => s.onclick = function() {
+		$("#results")[0].style.display = "none";
+	}
+);
+window.onclick = function(event) {
+    if ( event.target == $("#results")[0] ) {
+        $("#results")[0].style.display = "none";
+    };
+};
+</script>
+</div>
+<script>
+let Player = new Object();
+
+Player.ID = 'video-player';
+Player.Poster = 'https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/poster.gif';
+Player.Data = {};
+Player.randomMode = false;
+
+Player.setMode = function () {
+    this.randomMode = $("#random")[0].checked;
+};
+Player.Title = {
+    get: function () {
+        return $("#video-title")[0];
+    },
+    set: function ( title ) {
+        this.get().innerHTML = title;
+    }
+};
+Player.Vol = {
+    setPlus: function () {
+        vol = $("#" + Player.ID)[0].volume * 100;
+        if ( vol < 100 ) {
+            vol += 10;
+        } else {
+            vol = 100;
+        };
+        $("#" + Player.ID)[0].volume = vol / 100;
+    },
+    setMinus: function () {
+        vol = $("#" + Player.ID)[0].volume * 100;
+        if ( vol > 0 ) {
+            vol -= 10;
+        } else {
+            vol = 0;
+        };
+        $("#" + Player.ID)[0].volume = vol / 100;
+    }
+};
+
+Player.getVideo = function ( Index ) {
+    title = Object.keys(this.Data)[Index];
+    video = this.Data[title];
+    this.getMetadata( video );
+    if ( video.title == undefined ) {
+        video.title = title;
+    };
+    video.title = video.title.replace(".mp4", "").replace(".wmv", "");
+    return video;
+};
+Player.getRandomVideo = function () {
+    return this.getVideo(Math.round(
+        Math.random() * ( Object.keys(this.Data).length - 1 )
+    ));
+};
+Player.getMetadata = function ( video ) {
+    Attrs = ["name", "property", "itemprop"];
+    Contents = ["title", "og:title", "og:image", "duration", "keywords"];
+    function setData ( x, y ) {
+        attrName = ( x[y] ) ? Contents[Contents.indexOf(x[y])] : undefined;
+        if ( attrName != undefined ) {
+            keyName = ( attrName.indexOf(":") != -1 ) ? attrName.split(":")[1] : attrName;
+            if ( video[keyName] == undefined ) {
+                video[keyName] = x.content;
+            };
+        };
+    };
+    for ( x of video.metadata ) {
+        Attrs.map( y => setData(x, y) );
+    };
+    if ( video.duration != undefined ) {
+        video.duration = video.duration.replace("PT", "").replace("M", ":").replace("S", ":0");
+    };
+    if ( video.image == undefined ) {
+        video["image"] = this.Poster;
+    };
+};
+
+Player.Start = function () {
+    obj = $("#" + this.ID)[0];
+    setTimeout(function() {
+        obj.play();
+        $("#results")[0].style.display = "none";
+    }, 500);
+};
+Player.Next = function () {
+    obj = $("#" + this.ID)[0];
+    this.setMode();
+    Index = parseFloat(obj.dataset.videoSelected) + 1;
+    Video = ( this.randomMode ) ? this.getRandomVideo() : this.getVideo( Index );
+    obj.setAttribute("src", Video.url);
+    obj.dataset.videoSelected = Index;
+    this.Title.set(Video.title);
+    this.Start();
+};
+Player.Previous = function () {
+    obj = $("#" + this.ID)[0];
+    this.setMode();
+    Index = parseFloat(obj.dataset.videoSelected) - 1;
+    Video = ( this.randomMode ) ? this.getRandomVideo() : this.getVideo( Index );
+    obj.setAttribute("src", Video.url);
+    obj.dataset.videoSelected = Index;
+    this.Title.set(Video.title);
+    this.Start();
+};
+Player.Select = function ( Index ) {
+    obj = $("#" + this.ID)[0];
+    this.setMode();
+    Video = this.getVideo( Index );
+    obj.setAttribute("src", Video.url);
+    obj.dataset.videoSelected = Index;
+    this.Title.set(Video.title);
+    this.Start();
+};
+
+$( function () {
+    requestObj.get(
+        'https://circuitalminds.github.io/static/data/videos/metadata.json',
+        function ( data ) { Player.Data = data }
+    );
+    $('#video-player')[0].poster = 'https://github.com/CircuitalMinds/static/raw/main/apps/vahngraff/img/poster.gif';
+    $("#palette-top")[0].innerHTML =  [
+        '<div class="cell-md-12 h-100" ',
+        'style="' + Colors.getGradient() + '">',
+        '</div>'
+    ].join("");
+    $("#palette-bottom")[0].innerHTML =  [
+        '<div class="cell-md-12 h-100" ',
+        'style="' + Colors.getGradient( Reverse=true ) + '">',
+        '</div>'
+    ].join("");
+    setJekyllSearch("videos");
+});
+</script>
+</div>
+<div id="palette-bottom"></div>
+
+
+</body>
+
+<script>
+$( function () {
+    ElementObj.setClock();
+    ElementObj.setDate();
+});
+</script>
+</html>

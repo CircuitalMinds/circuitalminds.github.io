@@ -1,153 +1,223 @@
-function open_form( Id ) {
-    $("#" + Id)[0].style.display = "block";
-};
-  
-function close_form( Id ) {
-    $("#" + Id)[0].style.display = "none";
-};
-
-function object_size ( obj ) {
-    return [
-      obj.clientWidth, obj.clientHeight
-    ];
-};
-
-function object_resize ( obj, w, h ) {
-    obj.style.width = w + 'px';
-    obj.style.height = h + 'px';
-}
-
-function object_boundary ( obj ) {
-    var rect = obj.getBoundingClientRect();
-    return {
-      top: rect.top,  bottom: rect.bottom,
-      left: rect.left, right: rect.right
-    };
-};
-
-function demoDragMoveEvent(el, pos){
-    $('#-pos-x').text(pos.x);
-    $('#-pos-y').text(pos.y);
-};
-
-function GetColor ( w ) {
-    if ( typeof(w) == 'string' ) {
-        return Object.values(Colors).filter(
-            c => c.toLowerCase().match(w.toLowerCase()) != null
-        )
-    } else if ( typeof(w) == 'number' ) {
-        return Colors[w]
-    }
-};
-
-function time_clock () {
-    var clock_obj = document.querySelectorAll('div[id="time-clock"]');
-    function set_clock ( obj ) {
-        if ( obj != undefined ) {
-            start = setInterval( function () {
-                datetime = new Date();
-                obj.innerHTML = [
-                    datetime.toLocaleDateString(),
-                    datetime.toLocaleTimeString()                
-                ].join(" - ");
-            }, 1000);
-        };  
-    };
-    for ( obj of clock_obj ) {
-        set_clock(obj);
-    };
-};
-
-function SetImageView ( static_path ) {
-    function OnMouse( cover ) {
-        return function () { showImage(cover) }
-    };
-    function OnClick( cover ) {
-        return function () { showImage(cover) }
-    };
-	Img = $("div.img");
-    Object.keys(Img).map(
-    	k => Img[k].onclick = function () {
-            name = this.style['background-image'].split('(\"')[1].split('\")')[0].split('/').reverse()[0];
-            showImage(static_path + '/images/blog/posts/' + name)
+let requestObj = new Object();
+requestObj.get = function ( urlData, handlerData ) {
+    $.getJSON(
+        urlData, function ( data ) {
+            setTimeout( function () {handlerData( data )}, 200 );
         }
     );
-   	Divs = $('div[data-role="tile"]');
-   	Links = $('a[data-role="tile"]');
-  	for ( x of [Divs, Links] ) {
-  	    y = Object.values(x).filter( c => c.dataset != undefined ).filter( ci => ci.dataset.cover != undefined );
-		for ( w of y ) {
-		    if ( w.href != '' ) {
-		        w.onmouseover = OnMouse(w.dataset.cover);
-		    } else {
-		        w.onclick = OnClick(w.dataset.cover);
-		    };
-		};
-    };
 };
-function showImage ( image ){
-    Metro.dialog.create({
-        title: "Animation demo",
-        content: '<img src="' + image + '" >',
-        onShow: function(){
-            var el = $(this);
-            el.addClass("ani-swoopInTop");
-            setTimeout(function(){
-                el.removeClass("ani-swoopInTop");
-            }, 500);
-        },
-        onHide: function(){
-            console.log("hide");
-            var el = $(this);
-            el.addClass("ani-swoopOutTop");
-            setTimeout(function(){
-                //el.removeClass("ani-swoopOutTop");
-            }, 5000);
+requestObj.post = function ( urlData, Data, handlerData ) {
+    $.post(
+        urlData, Data, function ( data ) {
+            setTimeout( function () {handlerData( data )}, 200 );
         }
-    });
-};
-
-$(function () {        
-    var clockObj = $("#clock")[0];
-    var dateObj = $("#date")[0];    
-    setInterval( function () {
-        datetime = new Date();
-        if ( clockObj != undefined ) {
-            clockObj.innerHTML = datetime.toLocaleTimeString();
-        };
-        if ( dateObj != undefined ) {        
-            dateObj.innerHTML = datetime.toLocaleDateString();
-        };
-    }, 1000);
-});
-
-function set_colors ( colors_data ) {        
-    return colors_data.map(
-        c => `<div class="cell-md-1" style="background-color: ${c};"></div>`
-    ).join("\n");
-};
-
-function range (start, stop, step=1) {
-    return Array.from(
-    	  {length: (stop - start - 1) / step + 1}, (_, i) => start + (i * step)
     );
 };
 
-var randint = ( a, b ) => ( a + Math.round(Math.random() * (b - a)) );
-var is_element = ( e, data ) => ( data.indexOf(e) != -1 );
-function random_array ( a, b, n ) {
-    var array_data = [];  	
-    while ( array_data.length < n ) {
-        ri = randint(a, b);
-        if ( is_element(ri, array_data) == false ) {
-            array_data.push(ri);
+let ElementObj = new Object();
+ElementObj.byId = function ( Id ) {
+    var Y = new Object();
+    Y.Obj = $("#" + Id)[0];
+    Y.setDisplay = function ( opt ) {
+        ( opt == "block" ) ? this.Obj.style.display = "block" : this.Obj.style.display = "none";
+    };
+    Y.getDimensions = function () {
+        return {
+            width: this.Obj.clientWidth, height: this.Obj.clientHeight
         };
     };
-    return array_data;
+    Y.setDimensions = function ( w, h ) {
+        this.Obj.style.width = w + 'px';
+        this.Obj.style.height = h + 'px';
+    };
+    Y.getPosition = function () {
+        Rect = {};
+        Coord = this.Obj.getBoundingClientRect();
+        ["top", "bottom", "left", "right"].map( x => Rect[x] = Coord[x] );
+        return Rect;
+    };
+    return Y;
+};
+ElementObj.getMeta = function ( attrName, Content ) {
+    return $("meta[" + attrName + "=" + Content + "]")[0];
+};
+ElementObj.setMeta = function ( attrName, Content, newContent ) {
+    metaObj = this.getMeta( attrName, Content );
+    metaObj.content = newContent;
 };
 
-function colorGrad ( colors ) {
-    return 'background-image: linear-gradient(60deg, ' + colors.map(
-        c => `${c} ${Math.round(100 / colors.length) * colors.indexOf(c)}%, `
-    ).join('') + '#1abc9c 100%); background-size: cover;';
+ElementObj.setModal = function ( Id, btnId, Content ) {
+    modal = $("#" + Id)[0];
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+            <span class="close">&times;</span>
+                ${Content.header}
+            </div>
+            <div class="modal-body">${Content.body}</div>
+            <div class="modal-footer">${Content.footer}</div>
+        </div>`;
+    $("#" + btnId)[0].onclick = function() {
+        modal.style.display = "block";
+    };
+    modal.querySelector('span').onclick = function() {
+        modal.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        };
+    };
 };
+ElementObj.setAccordion = function ( Id, Content ) {
+    accordion = $("#" + Id)[0];
+    accordion.innerHTML = `
+        <div class="accordion accordion-flush" id="${Id}">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-heading-${Id}">
+            <button class="accordion-button collapsed bg-darklight fg-teal ontouch"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${Id}"
+                    aria-expanded="false" aria-controls="flush-collapse-${Id}">
+                ${Content.header}
+            </button>
+            </h2>
+            <div id="flush-collapse-${Id}" class="accordion-collapse collapse bg-darklight"
+                 aria-labelledby="flush-heading-${Id}" data-bs-parent="#${Id}">
+            <div class="accordion-body">
+                ${Content.body}
+            </div>
+            </div>
+        </div>
+        </div>`;
+};
+ElementObj.setIframe = function ( Id, Url, W='100%', H='300px' ) {
+    $("#" + Id)[0].innerHTML = `
+        <iframe src="${Url}" class="image fit" width="${W}" height="${H}"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope;
+            picture-in-picture" allowfullscreen="true" frameborder="0">
+        </iframe>`;
+};
+ElementObj.setClock = function ( Id="clock" ) {
+    var clockObj = $("#" + Id)[0];
+    if ( clockObj != undefined ) {
+        setInterval( function () {
+            time = new Date();
+            clockObj.innerHTML = time.toLocaleTimeString();
+        }, 1000);
+    };
+};
+ElementObj.setDate = function ( Id="date" ) {
+    var dateObj = $("#" + Id)[0];
+    if ( dateObj != undefined ) {
+        setInterval( function () {
+            date = new Date();
+            dateObj.innerHTML = date.toLocaleDateString();
+        }, 1000);
+    };
+};
+
+let Colors = new Object();
+Colors.getGradient = function ( Reverse=false ) {
+    Data = ( Reverse ) ? this.Palette.reverse() : this.Palette;
+    gradient = "background-image: linear-gradient(60deg";
+    dx = Math.round(100 / Data.length);
+    Data.forEach(
+        function( e, i ) { gradient += ", " + e + " " + i * dx + "%" }
+    );
+    gradient += ", #1abc9c 100%); background-size: cover;";
+    return gradient;
+};
+Colors.byName = {
+    "amazon": "#232f3e",
+    "amber": "#f0a30a",
+    "black": "#000000",
+    "blue": "#00AFF0",
+    "bootstrap": "#563d7c",
+    "brandColor1": "#2ac4f4",
+    "brandColor2": "#004d6f",
+    "brown": "#825a2c",
+    "cobalt": "#0050ef",
+    "crimson": "#a20025",
+    "cyan": "#1ba1e2",
+    "dark": "#1d1d1d",
+    "darkAmber": "#a77107",
+    "darkBlue": "#0077a3",
+    "darkBrown": "#493219",
+    "darkCobalt": "#0036a3",
+    "darkCrimson": "#560014",
+    "darkCyan": "#13709e",
+    "darkEmerald": "#003d00",
+    "darkGray": "#989898",
+    "darkGrayBlue": "#41545e",
+    "darkGreen": "#3a660e",
+    "darkIndigo": "#4a00b3",
+    "darkLime": "#647800",
+    "darklight": "#2C2F36",
+    "darkMagenta": "#8c004a",
+    "darkMauve": "#4f415d",
+    "darkOlive": "#4a5b43",
+    "darkOrange": "#ae4800",
+    "darkPink": "#ba2588",
+    "darkRed": "#8f251f",
+    "darkSteel": "#43505b",
+    "darkTaupe": "#574e32",
+    "darkTeal": "#005e5d",
+    "darkViolet": "#7700b3",
+    "darkYellow": "#b3a800",
+    "emerald": "#008a00",
+    "facebook": "#4267b2",
+    "github": "#24292e",
+    "gitlab": "#e65328",
+    "gray": "#bebebe",
+    "grayBlue": "#607d8b",
+    "grayMouse": "#455a64",
+    "grayWhite": "#f5f5f5",
+    "green": "#60a917",
+    "indigo": "#6a00ff",
+    "light": "#f8f8f8",
+    "lightAmber": "#f8bf4f",
+    "lightBlue": "#3ecbff",
+    "lightBrown": "#bb823f",
+    "lightCobalt": "#3d7eff",
+    "lightCrimson": "#ef0036",
+    "lightCyan": "#5ebdec",
+    "lightEmerald": "#00d600",
+    "lightGray": "#e4e4e4",
+    "lightGrayBlue": "#8aa2ae",
+    "lightGreen": "#86e22a",
+    "lightIndigo": "#974dff",
+    "lightLime": "#d8ff12",
+    "lightMagenta": "#ff2599",
+    "lightMauve": "#9c89ad",
+    "lightOlive": "#95ab8d",
+    "lightOrange": "#ff9447",
+    "lightPink": "#e98fcb",
+    "lightRed": "#df6e68",
+    "lightSteel": "#8d9cab",
+    "lightTaupe": "#aea073",
+    "lightTeal": "#00f7f5",
+    "lightViolet": "#c44dff",
+    "lightYellow": "#fff44d",
+    "lime": "#a4c400",
+    "magenta": "#d80073",
+    "mauve": "#76608a",
+    "olive": "#6d8764",
+    "orange": "#fa6800",
+    "pink": "#dc4fad",
+    "red": "#CE352C",
+    "steel": "#647687",
+    "taupe": "#87794e",
+    "teal": "#1abc9c",
+    "twitter": "#1DA1F2",
+    "violet": "#aa00ff",
+    "white": "#ffffff",
+    "yellow": "#fff000"
+};
+Colors.Special = {
+    "complement": "#820e23", "low": "#f3dc9a","medium": "#9e0843","strong": "#005e5d"
+};
+Colors.Palette = [
+    "#040404","#d71839","#9e0843","#3469a2",
+    "#69c1a4","#f3dc9a","#61122f","#0b2e4d",
+    "#1d4b60","#2d050c","#820e23"
+];

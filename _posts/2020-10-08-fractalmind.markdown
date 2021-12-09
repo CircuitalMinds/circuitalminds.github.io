@@ -2,9 +2,8 @@
 layout: post
 title: What does it mean to feel millions of dreams come real?
 date: 2020-10-08 10:30:55 +0300
-image: posts/fractalmind.jpg
+image: fractalmind.jpg
 tags: [Cantor]
-scripts: ["criba", "sierpinski", "cantor", "lorenz", "mandelbrot", "animationPixel"]
 ---
 > <h3><strong>"Se repiten en multitud, liberandose en aparente anarquía preciosa estructura pintada en fragmentos disjuntos; El Infinito expresando su arte más auténtico".</strong></h3>
 
@@ -31,24 +30,22 @@ Dicha relación, y que posiblemente dió el interés a temas relacionados, fue a
 
 <div class="container">
     <div class="row">
-    <p>Cantidad de Números Primos \(\Phi (n)=\) <span id="var-pn"></span></p>
+    <p>Cantidad de Números Primos \(\Phi (n)=\) <span id="sieveCrib-Cn"></span></p>
     </div>
     <div class="row">
         <p>\(\displaystyle{ \pi = \sqrt{6 \cdot \prod_{i=1}^{\infty} \frac{1}{1-(p_{i})^{-2}} } = \prod_{i=1}^{\infty} f_{i}}\)</p>
     </div>
     <div class="row">
-        <p>\(\displaystyle{ \pi \approx \prod_{i=1}^{\Phi (n)} f_{i} = }\) <span id="var-pi"></span></p>
+        <p>\(\displaystyle{ \pi \approx \prod_{i=1}^{\Phi (n)} f_{i} = }\) <span id="sieveCrib-Pi"></span></p>
     </div>
     <div class="row">
-        <p> \(n=\) <span id="var-n"></span></p>
+        <p> \(n=\) <span id="sieveCrib-n"></span></p>
     </div>
     <div class="slidecontainer">
-        <input id='pn' value="10" type="range" class="slider" min="1" max="50" step="1" oninput="initCrib()"/>
+        <input value="10" type="range" class="slider" min="1" max="500" step="10" oninput="canvasObj.Models.sieveCrib(this.value);"/>
     </div>
     <br>
-    <div class="row">
-    <canvas id='crib' width='505px' height='660px' style='display: inline-block; max-width: 100%; max-height: 100%;'></canvas>
-    </div>
+    <div id="sieveCrib" class="row"></div>
     <br>           
 </div>
 
@@ -93,13 +90,13 @@ Hoy en día son conocidas una gran variedad de objetos geometricos que presentan
 <h3>Fractal del Conjunto de Cantor.</h3>
 <div class="container">
     <div class="row">
-        <p>Numero de Particiones \(C_m =\) <span id="cantor-partitions">5</span></p>
+        <p>Numero de Particiones \(C_N =\) <span id="Cantor-N">5</span></p>
     </div>
     <div class="slidecontainer">
-        <input value="5" type="range" class="slider" min="0" max="10" step="1" oninput="set_cantor(this.value);"/>
+        <input value="5" type="range" class="slider" min="0" max="10" step="1" oninput="canvasObj.Models.Cantor(this.value);"/>
     </div>    
     <br>
-    <div id="cantor"></div>
+    <div id="Cantor" class="row"></div>
     <br>    
 </div>    
 
@@ -111,17 +108,13 @@ Este conjunto no solamente es especial por su característica fractal, ya que lo
 
 <h3>Triangulo de Sierpiński.</h3>
 <div class="container">
-    <button id="sierpinBtn" class="button show" onclick="initSierpin()">Mostrar</button>
     <div class="row">
-    <canvas id='sierpin' width='505px' height='660px' style='display: inline-block; max-width: 100%; max-height: 100%;'></canvas>
-    </div>
-    <br>    
-    <div class="row">
-        <p>Numero de Particiones \(S_n = \) <span id="var-sn">6</span></p>
+        <p>Numero de Particiones \(S_n = \) <span id="Sierpinski-out-sn">6</span></p>
     </div>
     <div class="slidecontainer">
-        <input id='depthStepper' value="6" type="range" class="slider" min="1" max="10" step="1" oninput="initSierpin()"/>
-    </div>    
+        <input id='Sierpinski-sn' value="6" type="range" class="slider" min="1" max="10" step="1" oninput="canvasObj.Models.Sierpinski();"/>
+    </div>
+    <div id="Sierpinski" class="row"></div>
 </div>    
 
 Puede uno imaginarse en aquellos momentos lo absurdo que era pensar que existen distintas formas y tamaños de lo que llamamos infinito, pero debido a esto aprendimos que no se deben descartar ideas solo por aparentar ser absurdas, y solamente hacerlo cuando sea posible algun argumento válido que lo demuestre. 
@@ -142,46 +135,46 @@ Aunque la geometria de los fractales no este relacionada con el azar, aparenteme
     </p>  
     <br>
     <div class="row">
-      <p>\( \displaystyle \frac{dx}{dt}=a(y-x) \), \(\hspace{1.7cm} x_0=\) <span id="var-x0">0</span></p> 
+      <p>\( \displaystyle \frac{dx}{dt}=a(y-x) \), \(\hspace{1.7cm} x_0=\) <span id="LorenzAttractor-out-x0">0</span></p> 
     </div>
     <div class="slidecontainer">
-    <input id="x0" value="0" type="range" class="slider" min="-40" max="40" step="0.5" oninput="initLorenz()"/>
+    <input id="LorenzAttractor-x0" value="0" type="range" class="slider" min="-40" max="40" step="0.5" oninput="canvasObj.Models.LorenzAttractor();"/>
     </div>
     <div class="row">
-      <p>\( \displaystyle \frac{dy}{dt}=x(b-z)-y \), \(\hspace{1cm} y_0=\) <span id="var-y0">1</span></p>
+      <p>\( \displaystyle \frac{dy}{dt}=x(b-z)-y \), \(\hspace{1cm} y_0=\) <span id="LorenzAttractor-out-y0">1</span></p>
     </div>
     <div class="slidecontainer">
-    <input id="y0" value="1" type="range" class="slider" min="-40" max="40" step="0.1" oninput="initLorenz()"/>
+    <input id="LorenzAttractor-y0" value="1" type="range" class="slider" min="-40" max="40" step="0.1" oninput="canvasObj.Models.LorenzAttractor();"/>
     </div>
     <div class="row">   
-      <p>\( \displaystyle \frac{dz}{dt}=xy-cz \), \(\hspace{1.9cm} z_0=\) <span id="var-z0">10</span></p>
+      <p>\( \displaystyle \frac{dz}{dt}=xy-cz \), \(\hspace{1.9cm} z_0=\) <span id="LorenzAttractor-out-z0">10</span></p>
     </div>
     <div class="slidecontainer">
-    <input id="z0" value="10" type="range" class="slider" min="-40" max="40" step="0.1" oninput="initLorenz()"/>
+    <input id="LorenzAttractor-z0" value="10" type="range" class="slider" min="-40" max="40" step="0.1" oninput="canvasObj.Models.LorenzAttractor();"/>
     </div>  
 </div>
       
-<div id="lorenz" class="container"></div>
+<div id="LorenzAttractor" class="container"></div>
 
 <p>Con los siguientes parámetros es posible observar que para asegurar un comportamiento de atracción se requieren valores de signos opuestos, y en caso contrario para producir una repulsión.</p>
 <div class="container">
     <div class="row">
-      <p>\(a=\) <span id="var-a">-6</span></p>
+      <p>\(a=\) <span id="LorenzAttractor-out-a">-6</span></p>
     </div>
     <div class="slidecontainer">
-    <input id="a" value="-6" type="range" class="slider" min="-40" max="40" step="0.1" oninput="initLorenz()"/>
+    <input id="LorenzAttractor-a" value="-6" type="range" class="slider" min="-40" max="40" step="0.1" oninput="canvasObj.Models.LorenzAttractor();"/>
     </div>
     <div class="row">  
-      <p>\(b=\) <span id="var-b">28</span></p>
+      <p>\(b=\) <span id="LorenzAttractor-out-b">28</span></p>
     </div>
     <div class="slidecontainer">  
-    <input id="b" value="28" type="range" class="slider" min="-40" max="40" step="0.1" oninput="initLorenz()"/>
+    <input id="LorenzAttractor-b" value="28" type="range" class="slider" min="-40" max="40" step="0.1" oninput="canvasObj.Models.LorenzAttractor();"/>
     </div>
     <div class="row">
-      <p>\(c=\) <span id="var-c">0</span></p>
+      <p>\(c=\) <span id="LorenzAttractor-out-c">0</span></p>
     </div>
     <div class="slidecontainer">  
-      <input id="c" value="0" type="range" class="slider" min="-40" max="40" step="0.1" oninput="initLorenz()"/>
+      <input id="LorenzAttractor-c" value="0" type="range" class="slider" min="-40" max="40" step="0.1" oninput="canvasObj.Models.LorenzAttractor();"/>
     </div>
 </div>
 
@@ -205,53 +198,48 @@ Aunque la geometria de los fractales no este relacionada con el azar, aparenteme
 
 <div class="container">
     <p>Usando la ecuación anterior, y fijando un valor inicial \(z_{0}=0\), para establecer el conjunto de números complejos tales que \({\displaystyle | z_{n} | \leq 4}\), nos define el conocido fractal de Mandelbrot. Precisamente, este es el mismo de la imagen que fue mostrada en el inicio de este post pero con una configuración diferente de colores pero que pueden ser modificados en los deslizadores debajo, que además permiten mover coordenadas para obtener otras vistas de la misma imagen.</p>
-    <br>
-    <button id="mandelBtn" class="button show" onclick="initMandel()">Mostrar</button>
-    <br>
     <h4>Coordenadas</h4>
     <br>
     <div class="row">
-      <p>\(z_p=\) <span id="var-zoom">200</span></p>
+      <p>\(z_p=\) <span id="Mandelbrot-out-zoom">200</span></p>
     </div>
     <div class="slidecontainer">
-    <input id="zoom" value="200" type="range" class="slider" min="1" max="1000" step="1" oninput="initMandel()"/>
+    <input id="Mandelbrot-zoom" value="200" type="range" class="slider" min="1" max="1000" step="1" oninput="canvasObj.Models.Mandelbrot();"/>
     </div>
     <div class="row">  
-      <p>\(x_p=\) <span id="var-xp">-200</span></p>
+      <p>\(x_p=\) <span id="Mandelbrot-out-xp">-200</span></p>
     </div>
     <div class="slidecontainer">  
-    <input id="xp" value="-200" type="range" class="slider" min="-1000" max="1000" step="1" oninput="initMandel()"/>
+    <input id="Mandelbrot-xp" value="-200" type="range" class="slider" min="-1000" max="1000" step="1" oninput="canvasObj.Models.Mandelbrot();"/>
     </div>
     <div class="row">
-      <p>\(y_p=\) <span id="var-yp">0</span></p>
+      <p>\(y_p=\) <span id="Mandelbrot-out-yp">0</span></p>
     </div>
     <div class="slidecontainer">  
-      <input id="yp" value="0" type="range" class="slider" min="-1000" max="1000" step="1" oninput="initMandel()"/>
+      <input id="Mandelbrot-yp" value="0" type="range" class="slider" min="-1000" max="1000" step="1" oninput="canvasObj.Models.Mandelbrot();"/>
     </div>
     <br>
-    <div class="row">
-        <canvas id='mandel' width='505px' height='660px' style='display: inline-block; max-width: 100%; max-height: 100%;'></canvas>
-    </div>
+    <div id="Mandelbrot" class="row"></div>
     <br>
     <h4>Colores</h4>
     <br>
     <div class="row">
-      <p>\(r=\) <span id="var-red">100</span></p>
+      <p>\(r=\) <span id="Mandelbrot-out-r">100</span></p>
     </div>
     <div class="slidecontainer">
-    <input id="red" value="100" type="range" class="slider" min="0" max="255" step="1" oninput="initMandel()"/>
+    <input id="Mandelbrot-r" value="100" type="range" class="slider" min="0" max="255" step="1" oninput="canvasObj.Models.Mandelbrot();"/>
     </div>
     <div class="row">  
-      <p>\(g=\) <span id="var-green">0</span></p>
+      <p>\(g=\) <span id="Mandelbrot-out-g">0</span></p>
     </div>
     <div class="slidecontainer">  
-    <input id="green" value="0" type="range" class="slider" min="0" max="255" step="1" oninput="initMandel()"/>
+    <input id="Mandelbrot-g" value="0" type="range" class="slider" min="0" max="255" step="1" oninput="canvasObj.Models.Mandelbrot();"/>
     </div>
     <div class="row">
-      <p>\(b=\) <span id="var-blue">100</span></p>
+      <p>\(b=\) <span id="Mandelbrot-out-b">100</span></p>
     </div>
     <div class="slidecontainer">  
-      <input id="blue" value="100" type="range" class="slider" min="0" max="255" step="1" oninput="initMandel()"/>
+      <input id="Mandelbrot-b" value="100" type="range" class="slider" min="0" max="255" step="1" oninput="canvasObj.Models.Mandelbrot();"/>
     </div>
 </div>
 
@@ -265,8 +253,6 @@ No se requiere ser un genio para divagar en esta clase de arte matematico, solam
 <p>Si te intereso algun fractal o cualquier otro similar a los que fueron mostrados en este post, puedes encontrarlos en el codigo fuente de esta pagina desde tu navegador; Pero tambien pudiera ser posible iniciando una discusion para generar retroalimentacion. Y porsupuesto, cualquiera que contribuya de alguna manera en el arte es digno de un lugar donde pueda ser contemplado, tal como el autor del tema que he dejado para concluir.</p> 
 <br>
 <iframe width="505px" height="300px" src="https://www.youtube.com/embed/Gm1kC6xcRlE?list=PL9tY0BWXOZFtUDxjYHtFVrpsI0jmPopPr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-<canvas id='pixel' width='505px' height='100px' style='display: inline-block; max-width: 100%; max-height: 100%;'></canvas>
+<div id="Pixels" class="row"></div>
 </div>
-<script src="{{ site.js }}/canvas.js"></script>
-
 ***

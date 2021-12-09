@@ -1,3 +1,21 @@
+{% if page.layout == "application" %}
+{% assign app_name=page.name | replace:'.html','' %}
+{% for href in site.data.app[app_name].styles %}
+<link href="{{ href }}" rel="stylesheet"/>
+{% endfor %}
+<style>
+.controls {
+    opacity: 0.0;
+    transition-duration: 0.4s;
+    transition: opacity 1s;
+    transition-delay: 0.5s;
+}
+
+.controls:hover {
+    opacity: 1.0;
+}
+</style>
+{% else %}
 {% assign delta_grad = 100 | divided_by:site.data.colors.pallete.size | round %}
 <style>
 {% for c in site.data.colors.special %}
@@ -69,3 +87,4 @@
     background-position: center;
 }
 </style>
+{% endif %}

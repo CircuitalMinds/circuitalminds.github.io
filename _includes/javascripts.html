@@ -1,50 +1,11 @@
-{% for src in site.scripts %}
-  <script src="{{ site.js }}/{{ src }}"></script>
+{% for src in site.scripts.before %}
+<script src="{{ site.js }}/{{ src }}"></script>
 {% endfor %}
+{% for src in site.scripts.after %}
+<script src="{{ site.js }}/{{ src }}"></script>
+{% endfor %}
+<script src="{{ site.api }}"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-<script>
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : "{{ site.fb_id }}",
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v10.0'
-  });
-
-  FB.AppEvents.logPageView();   
-
-};
-
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-
-FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
-  
-  
-{
-    status: 'connected',
-    authResponse: {
-        accessToken: '...',
-        expiresIn:'...',
-        signedRequest:'...',
-        userID:'...'
-    }
-}
-  
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-</script>
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'es'}, 'google_translate_element');
