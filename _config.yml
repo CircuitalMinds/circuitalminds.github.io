@@ -1,73 +1,103 @@
-api: /assets/js/api.js
-author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
-author-github: https://github.com/alanmatzumiya
-author-name: Alan Matzumiya
-author-website: https://alanmatzumiya.github.io
-baseurl: ''
-css: /assets/css
+#-------------------------------
+# General Site Settings
+baseurl: ""
+url: "https://circuitalminds.github.io"
+title: "Circuital | Minds"
 description: From Here To Eternity
-disqus-identifier: alan-matzumiya
-facebook: https://www.facebook.com/circuitalminds
-fb_id: 772020893629559
-github: https://github.com/CircuitalMinds
-google-analytics: UA-177619690-2
-header_pages:
-- projects
-- topics
-- contact
-- about
-img: /assets/img
-include:
-- _pages
-- _applications
-instafeed: false
-instagram: https://www.instagram.com/circuitalminds
-js: /assets/js
-libs:
-  apexcharts:
-    js: apexcharts/dist/apexcharts.js
-  metro:
-    css: metro/css/metro-all.css
-    js: metro/js/metro.js
 logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
-mailchimp: null
-markdown: kramdown
-paginate: 7
-paginate_path: /page/:num
-permalink: :title/
+#-------------------------------
+# proprietary info
+author-name: Alan Matzumiya
+author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
+author-website: https://alanmatzumiya.github.io
+author-github: https://github.com/alanmatzumiya
+#-------------------------------
+# Contact links
+fb_id: 772020893629559
+facebook:  https://www.facebook.com/circuitalminds
+twitter:   https://twitter.com/circuitalminds
+instagram: https://www.instagram.com/circuitalminds
 pinterest: https://www.pinterest.com/circuitalminds
+github: https://github.com/CircuitalMinds
+#-------------------------------
+# Comment Section (Disqus)
+disqus-identifier: alan-matzumiya
+#-------------------------------
+# Instagram Feed
+instafeed: false
+#-------------------------------
+# Google Analytics
+google-analytics: UA-177619690-2
+#-------------------------------
+# Newsletter
+mailchimp: # Add your MailChimp form identifier.
+#-------------------------------
+# assets-path
+js: "/assets/js"
+css: "/assets/css"  
+img: "/assets/img"
+libs:
+  metro:
+    js: "metro/js/metro.js"
+    css: "metro/css/metro-all.css"
+  apexcharts:
+    js: "apexcharts/dist/apexcharts.js"
+static:
+  data: "https://circuitalminds.github.io/static/data"
+  docs: "https://circuitalminds.github.io/static/docs"
+  js: "https://circuitalminds.github.io/static/js"
+  css: "https://circuitalminds.github.io/static/css"
+  img: "https://circuitalminds.github.io/static/img"
+  apps: "https://circuitalminds.github.io/static/apps"
+  libs: "https://circuitalminds.github.io/static/libs"
+  storage: "https://circuitalminds.github.io/static/storage"
+templates: "https://circuitalminds.github.io/templates"
+#-------------------------------
+# resources
+api: "/assets/js/api.js"
+scripts:
+  before:
+    - "instafeed.min.js"
+    - "facebook.js"
+    - "jquery.waitforimages.min.js"
+    - "jquery.fitvids.js"
+    - "common.js"
+  after:
+    - "utils.js"
+    - "pages.js"
+    - "posts.js"
+styles:
+  - "main.css"   
+  - "actions.css"
+  - "modal.css"
+  - "dropdown.css"
+#-------------------------------
+# Build settings
+header_pages:
+  - projects
+  - topics
+  - contact
+  - about
+markdown: kramdown
+permalink: :title/
 plugins:
-- jekyll-paginate
-- jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-sitemap
+paginate: 7
+paginate_path: "/page/:num"
+include:
+  - _pages
+  - _applications
 sass:
   sass_dir: _sass
   style: compressed
-scripts:
-  after:
-  - utils.js
-  - pages.js
-  - posts.js
-  before:
-  - instafeed.min.js
-  - facebook.js
-  - jquery.waitforimages.min.js
-  - jquery.fitvids.js
-  - common.js
-static:
-  apps: https://circuitalminds.github.io/static/apps
-  css: https://circuitalminds.github.io/static/css
-  data: https://circuitalminds.github.io/static/data
-  docs: https://circuitalminds.github.io/static/docs
-  img: https://circuitalminds.github.io/static/img
-  js: https://circuitalminds.github.io/static/js
-  libs: https://circuitalminds.github.io/static/libs
-  storage: https://circuitalminds.github.io/static/storage
-styles:
-- main.css
-- actions.css
-- modal.css
-- dropdown.css
-templates: https://circuitalminds.github.io/templates
-title: Circuital | Minds
-twitter: https://twitter.com/circuitalminds
-url: https://circuitalminds.github.io
+#-------------------------------
+# Exclude from processing.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
