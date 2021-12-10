@@ -3,9 +3,7 @@
 <head>
     {% include metadata.html %}
     {% include libs.html %}
-    {% for href in page.include_styles %}
-        <link href="{{ site.css }}/{{ href }}.css" rel="stylesheet"/>
-    {% endfor %}
+    {% include styles.html %}
     {% include favicon.html %}
 </head>
 {% if page.include_lib == 'metro' %}
@@ -17,7 +15,10 @@
     {{ content }}
 </body>
 {% endif %}
-{% for src in page.include_scripts %}
-<script src="{{ site.js }}/{{ src }}.js"></script>
-{% endfor %}
+<script>
+$( function () {
+    ElementObj.setClock();
+    ElementObj.setDate();
+});
+</script>
 </html>

@@ -22,7 +22,7 @@ var Templates = {
             input: "query", container: "jkl-results"
         },
         results: `<li class="button card-content bg-darkTeal bg-dark-hover fg-light"
-                      onclick="$('#video-player')[0].dataset.videoSelected = '{index}'; OnEvent('video-selected');" >
+                      onclick="Player.Select( {index} );">
                       <img class="avatar" src="{image}">
                       <span class="label">{title}</span>
                       <span class="second-label">{duration}</span>

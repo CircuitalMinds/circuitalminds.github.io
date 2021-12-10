@@ -1,7 +1,10 @@
 {% assign app=site.data.app.vahngraff %}
+{% assign player=app.player %}
+{% assign search=app.search %}
 {% for src in app.scripts %}
-<script src="{{ site.static.apps }}/vahngraff/js/{{ src }}"></script>
+<script src="{{ src }}"></script>
 {% endfor %}
+{% include modules/math.html %}
 <h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
 <div class="row">
   <div id="logo" class="cell-md-3 text-center bg-dark" style="color: #9e0843;">
@@ -37,144 +40,161 @@
 </div>
 <div class="row mt-2">
 {% assign data_icon="<span class='ICON fg-cyan'></span>" %}
-<video id="{{ app.player.id }}"
-       data-video-selected=""
+<video id="{{ player.id }}"
+       data-video-selected="0"
        class="cell-md-8 bg-light fg-cyan"
        data-aspect-ratio="hd"
        data-role="video-player"
        data-volume="1"
-       data-on-end="OnEvent('video-next');"
+       data-on-end="Player.Next();"
        data-on-play="this.play();"
        data-on-pause="this.pause();"
        onchange="this.play();"
-       {% for i in app.player.icons %}data-{{ i[0] }}-icon="{{ data_icon | replace:'ICON',i[1] }}"{% endfor %}
+       {% for i in player.icons %}data-{{ i[0] }}-icon="{{ data_icon | replace:'ICON',i[1] }}"{% endfor %}
 ></video>
     <div class="cell-md-4">
     <ul id="feed-playlist" class="group-list feed-list"></ul>
     </div>
 </div>
+<div class="row mt-2">
+{% assign m_id=search.id %}
+{% assign m_header=search.header %}
+{% assign m_body=search.body %}
+{% assign m_footer=search.footer %}
+{% assign btn_id=search.btn_id %}
+{% include snippets/modal.html id=m_id header=m_header body=m_body footer=m_footer btn_id=btn_id %}
+</div>
 <script>
-var Videos;
+let Player = new Object();
 
-function getVideos() {
-    if ( Videos != undefined ) {
-        return Videos;
-    } else {
-        $.getJSON(
-            '{{ site.static.data }}/videos/metadata.json',
-            function ( data ) { setTimeout( function () {
-                Videos = data;
-                }, 1000);
-            }
-        );
-        return Videos;
-    };
+Player.ID = '{{ player.id }}';
+Player.Poster = '{{ player.poster }}';
+Player.Data = {};
+Player.randomMode = false;
+
+Player.setMode = function () {
+    this.randomMode = $("#random")[0].checked;
 };
-
-function getVideoByIndex ( index ) {
-    var Data = getVideos();
-    var Name = Object.keys(Data)[index];
-    var Video = Data[Name];
-    var Metadata = {index: index, url: Video.url};
-    for ( x of Video.metadata ) {
-        var keys = Object.keys(x);
-        if ( keys.indexOf("name") != -1 ) {
-            if ( x.name == "title" && Metadata.title == undefined ) {
-                Metadata.title = x.content;
-            } else if ( x.name == "twitter:image" && Metadata.image == undefined ) {
-                Metadata.image = x.content;
-            } else if ( x.name == "keywords" && Metadata.keywords == undefined ) {
-                Metadata.keywords = x.content;
-            };
-        } else if ( keys.indexOf("property") != -1 ) {
-            if ( x.property == "og:title" && Metadata.title == undefined ) {
-                Metadata.title = x.content;
-            } else if ( x.property == "og:image" && Metadata.image == undefined ) {
-                Metadata.image = x.content;
-            };
-        } else if ( keys.indexOf("itemprop") != -1 && Metadata.duration == undefined ) {
-            if ( x.itemprop == "duration" ) {
-                Metadata.duration = x.content.replace("PT", "").replace("M", ":").replace("S", ":0");
-            };
-        };
-    };
-    if ( Metadata.title == undefined  ) {
-        Metadata["title"] = Name.replace(".mp4", "").replace(".wmv", "");
-    };
-    if ( Metadata.image == undefined ) {
-        Metadata["image"] = '{{ site.logo }}';
-    };
-    return Metadata;
+Player.Title = {
+    get: function () {
+        return $("#video-title")[0];
+    },
+    set: function ( title ) {
+        this.get().innerHTML = title;
+    }
 };
-
-function getRandomVideo() {
-    var Data = getVideos();
-    return getVideoByIndex(Math.round(Math.random() * (Object.keys(Data).length - 1)));
-};
-
-function playerMode () {
-    return $("#random")[0].checked;
-};
-
-function OnEvent ( Event ) {
-    var Player = $("#video-player")[0];
-    var Index = Player.dataset.videoSelected;
-    var N = 0;
-    if ( Index != "" ) {
-        N += parseFloat(Index);
-    };
-    if ( Event == 'video-selected' ) {
-        Video = getVideoByIndex(N);
-        Player.setAttribute("src", Video.url);
-        $("#video-title")[0].innerHTML = Video.title;
-    } else if ( Event == 'video-next' || Event == 'video-back' ) {
-        if ( playerMode() ) {
-            Video = getRandomVideo();
-            Player.dataset.videoSelected = Video.index;
-            Player.setAttribute("src", Video.url);
-            $("#video-title")[0].innerHTML = Video.title;
+Player.Vol = {
+    setPlus: function () {
+        vol = $("#" + Player.ID)[0].volume * 100;
+        if ( vol < 100 ) {
+            vol += 10;
         } else {
-            if ( Event == "video-next" ) {
-                N += 1;
-            } else if ( Event == "video-back" ) {
-                N -= 1;
+            vol = 100;
+        };
+        $("#" + Player.ID)[0].volume = vol / 100;
+    },
+    setMinus: function () {
+        vol = $("#" + Player.ID)[0].volume * 100;
+        if ( vol > 0 ) {
+            vol -= 10;
+        } else {
+            vol = 0;
+        };
+        $("#" + Player.ID)[0].volume = vol / 100;
+    }
+};
+
+Player.getVideo = function ( Index ) {
+    title = Object.keys(this.Data)[Index];
+    video = this.Data[title];
+    this.getMetadata( video );
+    if ( video.title == undefined ) {
+        video.title = title;
+    };
+    video.title = video.title.replace(".mp4", "").replace(".wmv", "");
+    return video;
+};
+Player.getRandomVideo = function () {
+    return this.getVideo(Math.round(
+        Math.random() * ( Object.keys(this.Data).length - 1 )
+    ));
+};
+Player.getMetadata = function ( video ) {
+    Attrs = ["name", "property", "itemprop"];
+    Contents = ["title", "og:title", "og:image", "duration", "keywords"];
+    function setData ( x, y ) {
+        attrName = ( x[y] ) ? Contents[Contents.indexOf(x[y])] : undefined;
+        if ( attrName != undefined ) {
+            keyName = ( attrName.indexOf(":") != -1 ) ? attrName.split(":")[1] : attrName;
+            if ( video[keyName] == undefined ) {
+                video[keyName] = x.content;
             };
-            Video = getVideoByIndex(N);
-            Player.dataset.videoSelected = Video.index;
-            Player.setAttribute("src", Video.url);
-            $("#video-title")[0].innerHTML = Video.title;
         };
     };
+    for ( x of video.metadata ) {
+        Attrs.map( y => setData(x, y) );
+    };
+    if ( video.duration != undefined ) {
+        video.duration = video.duration.replace("PT", "").replace("M", ":").replace("S", ":0");
+    };
+    if ( video.image == undefined ) {
+        video["image"] = this.Poster;
+    };
+};
+
+Player.Start = function () {
+    obj = $("#" + this.ID)[0];
     setTimeout(function() {
-        Player.play();
+        obj.play();
         $("#results")[0].style.display = "none";
-    }, 1000);
+    }, 500);
+};
+Player.Next = function () {
+    obj = $("#" + this.ID)[0];
+    this.setMode();
+    Index = parseFloat(obj.dataset.videoSelected) + 1;
+    Video = ( this.randomMode ) ? this.getRandomVideo() : this.getVideo( Index );
+    obj.setAttribute("src", Video.url);
+    obj.dataset.videoSelected = Index;
+    this.Title.set(Video.title);
+    this.Start();
+};
+Player.Previous = function () {
+    obj = $("#" + this.ID)[0];
+    this.setMode();
+    Index = parseFloat(obj.dataset.videoSelected) - 1;
+    Video = ( this.randomMode ) ? this.getRandomVideo() : this.getVideo( Index );
+    obj.setAttribute("src", Video.url);
+    obj.dataset.videoSelected = Index;
+    this.Title.set(Video.title);
+    this.Start();
+};
+Player.Select = function ( Index ) {
+    obj = $("#" + this.ID)[0];
+    this.setMode();
+    Video = this.getVideo( Index );
+    obj.setAttribute("src", Video.url);
+    obj.dataset.videoSelected = Index;
+    this.Title.set(Video.title);
+    this.Start();
 };
 
-function Vol ( opt ) {    
-    data = $('#{{ app.player.id }}')[0].volume;
-    if ( opt == "+" && data < 1 ) { 
-        $('#{{ app.player.id }}')[0].volume += 0.1;
-    } else if ( data > 0.99 ) {
-        $('#{{ app.player.id }}')[0].volume = 1;
-    };
-    if ( opt == "-" && data > 0 ) {
-        $('#{{ app.player.id }}')[0].volume -= 0.1;
-    } else if ( data < 0.01 ) {
-        $('#{{ app.player.id }}')[0].volume = 0;
-    };
-};
-
-var Pallete = {};
-Pallete.data = {{ site.data.colors.pallete | jsonify }};
-Pallete.set_style = ( sty ) => ( `<div class="cell-md-12 h-100" style="${colorGrad(sty)}"></div>` );
-
-$(function() {
-    getVideos();
-    $('#{{ app.player.id }}')[0].poster = '{{ app.player.poster }}';
-    Pallete.top = Pallete.set_style(Pallete.data);
-    Pallete.bottom = Pallete.set_style(Pallete.data.reverse());
-    ["top", "bottom"].map( x => $(`#pallete-${x}`)[0].innerHTML = Pallete[x] );
+$( function () {
+    requestObj.get(
+        '{{ player.url_data }}',
+        function ( data ) { Player.Data = data }
+    );
+    $('#{{ player.id }}')[0].poster = '{{ player.poster }}';
+    $("#palette-top")[0].innerHTML =  [
+        '<div class="cell-md-12 h-100" ',
+        'style="' + Colors.getGradient() + '">',
+        '</div>'
+    ].join("");
+    $("#palette-bottom")[0].innerHTML =  [
+        '<div class="cell-md-12 h-100" ',
+        'style="' + Colors.getGradient( Reverse=true ) + '">',
+        '</div>'
+    ].join("");
     setJekyllSearch("videos");
 });
 </script>

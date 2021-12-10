@@ -1,14 +1,19 @@
 ---
 layout: page
-title: Portfolio
-image: julia.gif
-permalink: /contact/portfolio/
+title: Contact
+image: contact.jpg
+permalink: /contact/
 ---
-{% assign portfolio = site.data.portfolio %}
-{% assign thesis = portfolio.thesis %}
 
-<div class="row">
-<embed class="image fit" src="{{ site.static.docs }}/cv.pdf" width="100%" height="550px" type="application/pdf">
+<div class="item">
+  <header>
+    <h2 style="text-align: left;">Degree in Mathematical Sciences</h2>
+  </header>
+  <div class="image fit">
+    <table class="table">
+    <tbody id="mathematical-sciences"></tbody>
+    </table>
+  </div>
 </div>
 
 <div class="item">
@@ -17,43 +22,42 @@ permalink: /contact/portfolio/
   </header>
   <div class="image fit">
     <table class="table">
-    <tbody>
-    {% for x in thesis[0] %}
-        <tr><td>{{ x[0] }}</td><td>{{ x[1] }}</td></tr>
-    {% endfor %}
-    </tbody>
+    <tbody id="chemical-engineering"></tbody>
     </table>
   </div>
 </div>
+
+
 <div class="item">
   <header>
-    <h2 style="text-align: left;">Degree in Mathematical Sciences</h2>
-  </header>
-  <div class="image fit">
-    <table class="table">
-    <tbody>
-    {% for x in thesis[1] %}
-        <tr><td>{{ x[0] }}</td><td>{{ x[1] }}</td></tr>
-    {% endfor %}
-    </tbody>
-    </table>
-  </div>
-</div>
-<div class="item">
-  <header>
-    <h2 style="text-align: left;">GitHub - Repositories</h2>
+    <h2 style="text-align: left;">GitHub - Repositories</h2> 
   </header>
   <p class="image fit" id="desc-git" style="text-align: left;">
   You can consult on GitHub some of my programming projects that are being developed,
-  which aim to collect all the practices in the Python language and obtain as a result
+  which aim to collect all the practices in the Python language and obtain as a result 
   something useful such as Python packages, and educational guides for beginners or advanced users
   in the use of this language. And an image shows more than a few words.
   </p>
 </div>
 
-<img class="info-author-avatar" src="{{ site.author-avatar }}">
-<span>by</span>
-<span class="info-author-name">{{site.author-name}}</span>
+<div class="item">
+<a href="https://github.com/CircuitalMinds/" class="image fit"><img src="assets/images/organization.png" alt="circuitalminds" /></a>
+    <header>
+      <h3>Organization    <spam class="icon-b fa-github-alt"></spam></h3>
+    </header>
+</div>
+<div class="item">
+<embed class="image fit" type="text/html" src="https://circuitalminds.github.io/" width="100%" height="550px">
+    <header>
+      <h3>CircuitalMinds</h3>
+    </header>
+</div>
+<div class="item">   
+<embed class="image fit" type="text/html" src="{{ site.url }}/pySpectralPDE/" width="100%" height="550px">
+  <header>
+    <h3>Python Package | pySpectralPDE</h3>
+  </header>
+</div>
 
 <form method="post" action="/api/message">
 	<div class="row uniform">
@@ -86,4 +90,3 @@ permalink: /contact/portfolio/
 		</div>
 	</div>
 </form>
-

@@ -1,3 +1,5 @@
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
 {% for item in site.data.metadata %}
 {% if item.name %}
 <meta name="{{ item.name }}" content="{{ item.content }}"/>
@@ -15,17 +17,15 @@
 {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
 <!-- open_graph -->
 {% if page.layout == 'application' %}
-<link rel="alternate" href="{{ site.data.app[page.app_name].preview }}" />
-<meta property="og:image" content="{{ site.data.app[page.app_name].preview }}" />
-<meta property="og:url" content="{{ site.data.app[page.app_name].preview }}" />
+{% assign app_name=page.name | replace:'.html','' %}
+<meta property="og:image" content="{{ site.data.app[app_name].preview }}" />
+<meta property="og:url" content="{{ site.data.app[app_name].preview }}" />
 <title>{{ site.title | replace:' | ','' }} | {{ page.title }}</title>
 {% elsif page.image %}
-<link rel="alternate" href="{{ site.url }}{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
 <meta property="og:image" content="{{ site.url }}{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
 <meta property="og:url" content="{{ site.url }}{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
 <title>{{ site.title | replace:' | ','' }} | {{ page.title }}</title>
 {% else %}
-<link rel="alternate" href="{{ site.logo }}" />
 <meta property="og:image" content="{{ site.logo }}" />
 <meta property="og:url" content="{{ site.logo }}" />
 <title>{{ site.title }}</title>
