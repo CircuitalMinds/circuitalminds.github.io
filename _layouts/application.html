@@ -16,11 +16,11 @@
 </body>
 {% endif %}
 <script>
+colorsData = {{ site.data.colors | jsonify }};
+Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );
 $( function () {
     ElementObj.setClock();
-    ElementObj.setDate();    
-    colorsData = {{ site.data.colors | jsonify }};
-    Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );
+    ElementObj.setDate();
 });
 </script>
 </html>
