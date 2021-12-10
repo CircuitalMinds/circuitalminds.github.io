@@ -40,9 +40,11 @@ function formEvent ( Id, Option ) {
     $("#" + Id)[0].style.display = Option;
 };
 ElementObj.setIframe("chat-app", '{{ site.url }}/chat');
-$( function () {
+$( function () {    
     ElementObj.setClock();
     ElementObj.setDate();
+    colorsData = {{ site.data.colors | jsonify }};
+    Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );
 });
 </script>
 </html>

@@ -130,13 +130,3 @@ Colors.getGradient = function ( Reverse=false ) {
 Colors.byName = {};
 Colors.Special = {};
 Colors.Palette = [];
-$( function ) {
-    setTimeout( function () {
-        colorsData = {{ site.data.colors | jsonify }};
-        Object.keys(colorsData).map(
-            x => Colors[x] = colorsData[x]
-        );
-        ElementObj.setDate();
-        ElementObj.setClock();
-    }, 1000);
-};

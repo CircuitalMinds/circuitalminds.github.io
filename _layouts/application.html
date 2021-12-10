@@ -18,7 +18,9 @@
 <script>
 $( function () {
     ElementObj.setClock();
-    ElementObj.setDate();
+    ElementObj.setDate();    
+    colorsData = {{ site.data.colors | jsonify }};
+    Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );
 });
 </script>
 </html>
