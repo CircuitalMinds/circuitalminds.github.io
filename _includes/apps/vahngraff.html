@@ -53,7 +53,7 @@
        {% for i in player.icons %}data-{{ i[0] }}-icon="{{ data_icon | replace:'ICON',i[1] }}"{% endfor %}
 ></video>
     <div class="cell-md-4">
-    <ul id="feed-playlist" class="group-list feed-list"></ul>
+    <ul id="feeds" class="group-list feed-list"></ul>
     </div>
 </div>
 <div class="row mt-2">
@@ -179,6 +179,36 @@ Player.Select = function ( Index ) {
     this.Start();
 };
 
+Player.Feeds = {
+    "id": "feeds",
+    "delay": 10e3,
+    "getFeed": function () {
+        v = Player.getRandomVideo();    
+        return `<li class="button card-content bg-darkTeal bg-dark-hover fg-light"
+                    onclick="Player.Select( ${v.index} );">
+            <img class="avatar" src="${v.image}">
+            <span class="label">${v.title}</span>
+            <span class="second-label">${v.duration}</span>
+        </li>`;     
+    },
+    "setFeed": function ( Id, getFeed ) { 
+        $("#" + Id)[0].innerHTML = Range(0, 4).map(
+            i => getFeed() 
+        ).join("\n");
+    },
+    "display": function () {
+        setInterval( 
+            this.setFeed, 
+            this.delay, 
+            this.id, 
+            this.getFeed 
+        );
+    }
+}; 
+
+
+
+
 $( function () {
     requestObj.get(
         '{{ player.url_data }}',
@@ -196,5 +226,6 @@ $( function () {
         '</div>'
     ].join("");
     setJekyllSearch("videos");
+    Player.Feeds.display();
 });
 </script>
