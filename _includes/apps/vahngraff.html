@@ -115,9 +115,10 @@ Player.getVideo = function ( Index ) {
     return video;
 };
 Player.getRandomVideo = function () {
-    return this.getVideo(Math.round(
-        Math.random() * ( Object.keys(this.Data).length - 1 )
-    ));
+    videoIndex = Math.round( Math.random() * ( Object.keys(this.Data).length - 1 ) );
+    video = this.getVideo(videoIndex);
+    video.index = videoIndex;    
+    return video;
 };
 Player.getMetadata = function ( video ) {
     Attrs = ["name", "property", "itemprop"];
