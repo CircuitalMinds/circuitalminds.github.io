@@ -4,9 +4,22 @@ title: About
 image: about.jpg
 permalink: /about/
 ---
-Cabe la posibilidad de encontrar formas que no puedan ser del todo tangibles, pero todo depende de sus atributos.
 
-<img class="container reveal-in" style="width : 100%; border: 1px solid #1abc9c;" src="{{ site.img }}/pages/contact.jpg">
+<div class="wh-100-10-center">
+
+<div class="wh-100-100-left ontouch">
+Cabe la posibilidad de encontrar formas que no puedan ser del todo tangibles, pero todo depende de sus atributos.
+</div>
+
+</div>
+
+{%- capture arr -%}
+{% for i in (0..100) %}
+{{ i }} {% unless forloop.last %},{% endunless %}
+{% endfor %}
+{%- endcapture -%}
+
+<img class="container reveal-in" style="width : 100%; border: 1px solid #1abc9c;" src="/{{ site.img }}/pages/contact.jpg">
 
 <div class="container" style="border: 1px solid #1abc9c;">
 <iframe allowfullscreen="" frameborder="0" height="300"

@@ -7,7 +7,7 @@
     <div class="recent-posts">
       {% if post.image %}
       <div class="recent-header">
-        <a class="recent-image" href="{{ post.url}}" style="background-image: url('{{ site.img }}/posts/{{ post.image }}')"></a>
+        <a class="recent-image" href="{{ post.url}}" style="background-image: url('/{{ site.img }}/posts/{{ post.image }}')"></a>
       </div>
       {% else %}
       {% endif %}

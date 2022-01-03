@@ -41,7 +41,7 @@ permalink: /contact/
 </div>
 
 <div class="item">
-<a href="https://github.com/CircuitalMinds/" class="image fit"><img src="assets/images/organization.png" alt="circuitalminds" /></a>
+<a href="https://github.com/CircuitalMinds/" class="image fit"><img src="/assets/images/organization.png" alt="circuitalminds" /></a>
     <header>
       <h3>Organization    <spam class="icon-b fa-github-alt"></spam></h3>
     </header>

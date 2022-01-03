@@ -47,10 +47,10 @@ $( function () {
 
 ***
 
-<img src="{{site.img}}/posts/birthdays/coffee.jpg" alt="" class="reveal-in" width="910" height="512">
+<img src="/{{site.img}}/posts/birthdays/coffee.jpg" alt="" class="reveal-in" width="910" height="512">
 
 ***
 
-<img src="{{site.img}}/posts/birthdays/friends.jpg" alt="" class="reveal-in" width="910" height="512">
+<img src="/{{site.img}}/posts/birthdays/friends.jpg" alt="" class="reveal-in" width="910" height="512">
 
 ***

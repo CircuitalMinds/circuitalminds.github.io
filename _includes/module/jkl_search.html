@@ -1,0 +1,21 @@
+<script src="{{ site.url }}/{{ site.js }}/simple-jekyll-search.min.js"></script>
+<script>
+let jklSearch = new Object();
+jklSearch.Template = {};
+jklSearch.Render = function () {
+    if ( Object.keys(this.Template).length != 0 ) {
+        SimpleJekyllSearch(this.Template);
+    };
+    return;
+};
+jklSearch.setData = function ( Data ) {
+    this.Template.json = Data.json;
+    ["searchInput", "resultsContainer"].map(
+        x => this.Template[x] = $( "#" + Data[x] )[0]
+    );
+    ["searchResultTemplate", "noResultsText"].map(
+        x =>  this.Template[x] = Data[x].join("\n")
+    );
+    return;
+};
+</script>

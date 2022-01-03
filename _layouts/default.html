@@ -4,43 +4,27 @@
 {% include metadata.html %}
 {% include libs.html %}
 {% include styles.html %}
-{% if page.name == "404.html" %} 
-  {% include error_style.html %}
+{% if page.name == "404.html" %}
+<link href="{{ site.css }}/error.css" rel="stylesheet"/>
 {% endif %}
 {% include favicon.html %}
 </head>
 <body>
-  {% if site.google-analytics %}
-    {% include google-analytics.html %}
-  {% endif %}  
-  {% include loader.html %}
-  {% include header.html %}
-  {% assign login=site.data.login %}
-    {% assign m_id=login.id %}
-    {% assign m_header=login.modal.header %}
-    {% assign m_body=login.modal.body %}
-    {% assign m_footer=login.modal.footer %}
-    {% assign btn_id=login.modal.btn_id %}
-  {% include snippets/modal.html id=m_id header=m_header body=m_body footer=m_footer btn_id=btn_id %}
+{% if site.google-analytics %}
+  {% include google-analytics.html %}
+{% endif %}
+{% include loader.html %}
+{% include header.html %}
+{% include snippet/modal.html name="login" %}
     {{ content }}
-  {% include javascripts.html %}
-  {% include footer.html %}     
+{% include snippet/app_iframe.html %}
+{% include javascripts.html %}
+{% include footer.html %}
 </body>
-
-<button class="open-button" onclick="formEvent('chat_form', 'block');">Chat</button>
-<div class="chat-popup" id="chat_form">
-<div class="form-container">
-    <div id="chat-app"></div>
-    <button type="button" class="btn cancel" onclick="formEvent('chat_form', 'none');">Close</button>
-</div>
-</div>
 <script>
-setJekyllSearch('site');
-function formEvent ( Id, Option ) {
-    $("#" + Id)[0].style.display = Option;
-};
-ElementObj.setIframe("chat-app", '{{ site.url }}/chat');
-$( function () {    
+jklSearch.setData( {{ site.data.snippet.jklData | jsonify }} );
+$( function () {
+    jklSearch.Render();
     ElementObj.setClock();
     ElementObj.setDate();
     colorsData = {{ site.data.colors | jsonify }};

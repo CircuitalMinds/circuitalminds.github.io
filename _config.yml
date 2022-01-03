@@ -3,58 +3,48 @@
 baseurl: ""
 url: "https://circuitalminds.github.io"
 title: "Circuital | Minds"
-description: From Here To Eternity
-logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
+description: "From Here To Eternity"
+logo: "https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"
 #-------------------------------
 # proprietary info
-author-name: Alan Matzumiya
-author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
-author-website: https://alanmatzumiya.github.io
-author-github: https://github.com/alanmatzumiya
+author-name: "Alan Matzumiya"
+author-avatar: "https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
+author-website: "https://alanmatzumiya.github.io"
+author-github: "https://github.com/alanmatzumiya"
 #-------------------------------
 # Contact links
-fb_id: 772020893629559
-facebook:  https://www.facebook.com/circuitalminds
-twitter:   https://twitter.com/circuitalminds
-instagram: https://www.instagram.com/circuitalminds
-pinterest: https://www.pinterest.com/circuitalminds
-github: https://github.com/CircuitalMinds
+fb_id: "772020893629559"
+facebook: "https://www.facebook.com/circuitalminds"
+twitter: "https://twitter.com/circuitalminds"
+instagram: "https://www.instagram.com/circuitalminds"
+pinterest: "https://www.pinterest.com/circuitalminds"
+github: "https://github.com/CircuitalMinds"
 #-------------------------------
 # Comment Section (Disqus)
-disqus-identifier: alan-matzumiya
+disqus-identifier: "alan-matzumiya"
 #-------------------------------
 # Instagram Feed
-instafeed: false
+instafeed: "false"
 #-------------------------------
 # Google Analytics
-google-analytics: UA-177619690-2
+google-analytics: "UA-177619690-2"
 #-------------------------------
 # Newsletter
 mailchimp: # Add your MailChimp form identifier.
 #-------------------------------
 # assets-path
-js: "/assets/js"
-css: "/assets/css"  
-img: "/assets/img"
+js: "assets/js"
+css: "assets/css"
+img: "assets/img"
 libs:
   metro:
-    js: "metro/js/metro.js"
-    css: "metro/css/metro-all.css"
+    js: "libs/metro/js/metro.js"
+    css: "libs/metro/css/metro-all.css"
   apexcharts:
-    js: "apexcharts/dist/apexcharts.js"
-static:
-  data: "https://circuitalminds.github.io/static/data"
-  docs: "https://circuitalminds.github.io/static/docs"
-  js: "https://circuitalminds.github.io/static/js"
-  css: "https://circuitalminds.github.io/static/css"
-  img: "https://circuitalminds.github.io/static/img"
-  apps: "https://circuitalminds.github.io/static/apps"
-  libs: "https://circuitalminds.github.io/static/libs"
-  storage: "https://circuitalminds.github.io/static/storage"
-templates: "https://circuitalminds.github.io/templates"
+    js: "libs/apexcharts/dist/apexcharts.js"
+static_url: "https://circuitalminds.github.io/static"
 #-------------------------------
 # resources
-api: "/assets/js/api.js"
 scripts:
   before:
     - "instafeed.min.js"
@@ -64,8 +54,6 @@ scripts:
     - "common.js"
   after:
     - "utils.js"
-    - "pages.js"
-    - "posts.js"
 styles:
   - "main.css"   
   - "actions.css"
@@ -74,23 +62,23 @@ styles:
 #-------------------------------
 # Build settings
 header_pages:
-  - projects
-  - topics
-  - contact
-  - about
-markdown: kramdown
-permalink: :title/
+  - "projects"
+  - "topics"
+  - "contact"
+  - "about"
+markdown: "kramdown"
+permalink: ":title/"
 plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-paginate: 7
+  - "jekyll-paginate"
+  - "jekyll-sitemap"
+paginate: "7"
 paginate_path: "/page/:num"
 include:
-  - _pages
-  - _applications
+  - "_pages"
+  - "_applications"
 sass:
-  sass_dir: _sass
-  style: compressed
+  sass_dir: "_sass"
+  style: "compressed"
 #-------------------------------
 # Exclude from processing.
 # exclude:

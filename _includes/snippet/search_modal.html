@@ -1,0 +1,36 @@
+<div class="modal">
+	<div class="modal-content">
+	<div class="modal-header"></div>
+	<div class="modal-body"></div>
+	<div class="modal-footer"></div>
+	</div>
+</div>
+<script>
+function setModal ( Obj ) {
+	$("div.modal")[0].id = Obj.id;
+	$("div.modal-header")[0].innerHTML = `<h2>
+		${Obj.header}<span class="close">&times;</span>
+	</h2>`;
+	$("div.modal-body")[0].innerHTML = Obj.body;
+	$("div.modal-footer")[0].innerHTML =`<p>${Obj.footer}</p><span class="close">&times;</span>`;
+	modalObj = $("#" + Obj.id )[0];
+	Nodes = Object.values(modalObj.querySelector("div.modal-body").childNodes);
+	$("#" + Obj.btn_id)[0].onclick = function() {
+		modalObj.style.display = "block";
+		H = Math.round(document.body.clientHeight * 0.4) + "px";
+		console.log(H);
+		Nodes.map( x => x.style.height = H );
+	};
+	Buttons = Object.values(modalObj.querySelectorAll("span.close"));
+	Buttons.map(
+		btn => btn.onclick = function() {
+			modalObj.style.display = "none";
+		}
+	);
+	window.onclick = function(event) {
+		if ( event.target == modalObj ) {
+			modalObj.style.display = "none";
+		};
+	};
+};
+</script>

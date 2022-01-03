@@ -2,7 +2,6 @@
 layout: page
 title: Projects
 image: projects.jpg
-snippet: accordion
 permalink: /projects/
 ---
 

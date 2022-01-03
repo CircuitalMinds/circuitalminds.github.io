@@ -1,0 +1,57 @@
+{
+    "player": {
+        "buttons": [
+            {
+                "icon": "mif-volume-minus",
+                "id": "volume-minus",
+                "onclick": "Player.Vol.setMinus();"
+            },
+            {
+                "icon": "mif-volume-plus",
+                "id": "volume-plus",
+                "onclick": "Player.Vol.setPlus();"
+            },
+            {
+                "icon": "mif-previous",
+                "id": "previous",
+                "onclick": "Player.Previous();"
+            },
+            {
+                "icon": "mif-play",
+                "id": "play",
+                "onclick": "$('#video-player')[0].play();"
+            },
+            {
+                "icon": "mif-pause",
+                "id": "pause",
+                "onclick": "$('#video-player')[0].pause();"
+            },
+            {
+                "icon": "mif-next",
+                "id": "next",
+                "onclick": "Player.Next();"
+            }
+        ],
+        "video": {"id": "video-player"}
+    },
+    "modal": {
+        "login": {
+            "id": "login",
+            "header": "<h3>Login</h3>",
+            "body": "<div class=\"container\"><span>Username: <input type=\"text\"></span> <span> Password: <input type=\"text\"></span></div>",
+            "footer": "",
+            "btn_id": "get-login"
+        }
+    },
+    "jklData": {
+        "searchInput": "js-search-input",
+        "resultsContainer": "js-results-container",
+        "json": "/search.json",
+        "searchResultTemplate": [
+            "<li class='search-item'><a class='search-link' href='{url}'>{title}</a></li>"
+        ],
+        "noResultsText": [
+            "<li class='search-no-item'>No results found</li>"
+        ]
+    }
+}

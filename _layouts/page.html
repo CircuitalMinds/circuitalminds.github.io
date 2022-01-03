@@ -5,7 +5,7 @@ layout: default
 	<div class="row">
 		<div class="col col-12">
 			<div class="page-image-box">
-				<div class="page-image" style="background-image: url('{{ site.img }}/pages/{{ page.image }}')"></div>
+				<div class="page-image" style="background-image: url('/{{ site.img }}/pages/{{ page.image }}')"></div>
 			</div>
 		</div>
 		<article class="col col-12 col-t-10 push-t-1 page">
@@ -14,19 +14,7 @@ layout: default
 					<h1 class="page-title">{{ page.title | escape }}</h1>
 				</div>
 				<div class="page-body">
-					
-					{{ content }}										
-
-					{% if page.snippet %}
-					{% include /snippets/{{ page.snippet }}.html %}
-					{% endif %}
-
-					{% if page.html_includes %}	
-					{% for name in page.html_includes %}
-						{% include {{ name }}.html %}						
-					{% endfor %}
-					{% endif %}
-
+					{{ content }}
 				</div>
 			</div>
 		</article> <!-- /.page -->

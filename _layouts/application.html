@@ -3,18 +3,13 @@
 <head>
     {% include metadata.html %}
     {% include libs.html %}
+    {% include javascripts.html %}
     {% include styles.html %}
     {% include favicon.html %}
 </head>
-{% if page.include_lib == 'metro' %}
-<body class="bg-dark fg-white h-vh-100">
-    {{ content }}
+<body class="{% if page.lib == 'metro' %}bg-dark fg-white h-vh-100{% endif %}">
+{{ content }}
 </body>
-{% else %}
-<body>
-    {{ content }}
-</body>
-{% endif %}
 <script>
 colorsData = {{ site.data.colors | jsonify }};
 Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );

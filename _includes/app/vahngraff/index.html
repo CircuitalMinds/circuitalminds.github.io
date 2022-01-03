@@ -1,0 +1,46 @@
+{% include module/math.html %}
+<h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
+<div class="row">
+  <div id="logo" class="cell-md-3 text-center bg-dark" style="color: #9e0843;">
+      {{ site.title | replace:' | ', '' }} | {{ page.title }}
+  </div>
+  <input id="query" type="text" class="cell-md-4" placeholder="Search for video..">
+  <button onclick="$('#query')[0].value='';" class="cell-md-1 bg-dark fg-light"><span class="mif-cross-light"></span></button>
+  <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="clock"></div>
+  <div class="cell-md-2 text-center" style="color: #9e0843; border: 5px solid gray; margin: 0; padding: 10px;" id="date"></div>
+</div>
+<div class="row">
+    <div class="cell-md-4">
+        <div class="p-2 multi-action">
+            <button class="action-button rotate-minus bg-teal fg-white" onclick="$(this).toggleClass('active')">
+                <span class="icon"><span class="mif-apps"></span></span>
+            </button>
+            {% include snippet/player.html name="buttons" %}
+        </div>
+    </div>
+    <div class="cell-md-2">
+        <input id="random" class="p-2"
+               type="checkbox"
+               data-role="switch"
+               data-caption="Random"
+               data-cls-switch="mySwitch"
+               data-cls-caption="fg-teal text-bold"
+               data-cls-check="bd-teal myCheck">
+    </div>
+</div>
+<div class="row mt-2">
+{% include snippet/player.html name="video" %}
+<div class="cell-md-4"><ul id="feeds" class="group-list feed-list"></ul></div>
+<div class="row mt-2">
+{% include snippet/search_modal.html %}
+</div>
+<script>
+var Settings = {% include app/vahngraff/settings.json %};
+Settings.jklData.json = '{{ site.static_url }}'.concat( '/', Settings.jklData.json );
+setModal(Settings.search);
+jklSearch.setData( Settings.jklData );
+</script>
+</div>
+<script>
+{% include app/vahngraff/script.js %}
+</script>

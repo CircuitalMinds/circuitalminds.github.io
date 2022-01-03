@@ -1,7 +1,8 @@
 ---
 layout: application
 title: Spectrum
-include_lib: apexcharts
+image: preview.jpg
+lib: apexcharts
 permalink: /spectrum/
 ---
 <div id="wrapper">
@@ -79,7 +80,7 @@ permalink: /spectrum/
         </div>
     </div>
 </div>
-<script src="/assets/dashboard/scripts.js"></script>
+
 <script>
 function create_chart ( element_id, name, settings ) {
     var obj = new ApexCharts($("#" + element_id)[0], settings);

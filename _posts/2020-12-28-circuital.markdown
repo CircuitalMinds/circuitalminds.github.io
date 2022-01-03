@@ -31,31 +31,31 @@ Esta relación de orden no solamente es un método que sirve para identificar, s
 
 __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que junto con __My Morning Jacket__ se produce esto que han llamado __Circuital__, un tema que motivo esta vagancia, y que he representado junto con su letra en estos __Circuitos__.
 
-<div class="row" id="cover" style="background-image: url('{{ site.img }}/posts/circuital/cantor.jpeg');">
+<div class="row" id="cover" style="background-image: url('/{{ site.img }}/posts/circuital/cantor.jpeg');">
 <img id='cover' class='w-100' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
 
-<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
-<img id='cover' class='wr-34' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
-<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-34' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
 
 <div class="wl-33">
-<img id='cover' class='wr-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
-<img id='cover' class='wr-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
-<img id='cover' class='wr-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wr-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
 </div>
 
 <h3 class="wr-34" style="text-align : center;">Circuital</h3>
 
 <div class="wl-33">
-<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
-<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
-<img id='cover' class='wl-33' src='{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
+<img id='cover' class='wl-33' src='/{{ site.img }}/posts/circuital/cantor.jpeg'>
 </div>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tARFYFQIGaQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-<div class="row" id="cover" style="background-image: url('{{ site.img }}/posts/circuital/cascade_0.gif');">
+<div class="row" id="cover" style="background-image: url('/{{ site.img }}/posts/circuital/cascade_0.gif');">
 <div class="container" style="float : left; width : 45%">
 <h2>Lyrics</h2>
 {% for s in site.data.lyrics.english[0] %}  
@@ -71,7 +71,7 @@ __Referencia Especial:__ El autor y compositor conocido por __Jim James__, que j
 </div>
 
 {% for i in (1..site.data.lyrics.english.size) %}
-<div class="row" id="cover" style="background-image: url('{{ site.img }}/posts/circuital/cascade_{{ i }}.gif');">
+<div class="row" id="cover" style="background-image: url('/{{ site.img }}/posts/circuital/cascade_{{ i }}.gif');">
 <div class="container" style="float : left; width : 45%">
 {% for s in site.data.lyrics.english[i] %}  
 <p class="lyrics"><span style="height: 26px;">{{ s }}</span><br></p>
@@ -123,7 +123,7 @@ __Sugerencia:__ Puedes dejar tu comentario al final de este post para recomendar
 <div class="w-100">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PD2XgQOyCCk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div id="cover" class="w-50" style="background-image: url('{{ site.img }}/posts/circuital.jpg')"></div>
+<div id="cover" class="w-50" style="background-image: url('/{{ site.img }}/posts/circuital.jpg')"></div>
 <img id="cover" class="reveal-in w-50" alt="{{ site.url }}" src="{{ site.logo }}">
 <div class="w-100">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jiRUH9b33dA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
