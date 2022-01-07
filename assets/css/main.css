@@ -1,3 +1,218 @@
+/* dropdown navigator */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
+float: left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+.on-active {
+background-color: #9e0843;
+color: white;
+}
+
+.topnav .icon {
+display: none;
+}
+
+.dropdown {
+float: left;
+overflow: hidden;
+}
+
+.dropdown .dropbtn {
+font-size: 17px;
+border: none;
+outline: none;
+color: white;
+padding: 14px 16px;
+background-color: inherit;
+font-family: inherit;
+margin: 0;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+float: none;
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+background-color: #555;
+color: white;
+}
+
+.dropdown-content a:hover {
+background-color: #ddd;
+color: black;
+}
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+@media screen and (max-width: 600px) {
+.topnav a:not(:first-child), .dropdown .dropbtn {
+  display: none;
+}
+.topnav a.icon {
+  float: right;
+  display: block;
+}
+}
+
+@media screen and (max-width: 600px) {
+.topnav.responsive {position: relative;}
+.topnav.responsive .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.topnav.responsive a {
+  float: none;
+  display: block;
+  text-align: left;
+}
+.topnav.responsive .dropdown {float: none;}
+.topnav.responsive .dropdown-content {position: relative;}
+.topnav.responsive .dropdown .dropbtn {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+}
+  /* sliders */
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #2C2F36;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #1abc9c;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #1abc9c;
+    cursor: pointer;
+}
+
+.button {
+    position: relattive;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 10px 250x;
+    display: inline-block;
+    border-radius: 0.35em;
+    padding: 10px 30px;
+    background-color: #1abc9c;
+    border: 0;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.show {
+    background-color: #2C2F36;
+    color: #1abc9c;
+    border: 2px solid #1abc9c;
+}
+
+.show:hover {
+    background-color: #1abc9c;
+    color: white;
+}
+
+.bg-cover {
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #1abc9c;
+}
+.mainbutton {
+    position: relative;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 10px 250x;
+    display: inline-block;
+    border-radius: 0.35em;
+    padding: 10px 30px;
+    background-color: #9e0843;
+    border: 0;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.ontouch {
+    background-color: #2C2F36;
+    color: #9e0843;
+    border: 2px solid #9e0843;
+}
+
+.ontouch:hover {
+    background-color: #9e0843;
+    color: white;
+}
+
+/* switches */
+.switch .check::after {
+    background: teal;
+    border-color: dark;
+}
+.switch input[type="checkbox"]:checked ~ .check {
+    background: white;
+}
+.switch input[type="checkbox"]:checked ~ .check::after {
+    border-color: teal;
+    background: dark;
+}
+
 .button-primary {
     position: relative; color: white;
     text-align: center; text-decoration: none;
@@ -19,7 +234,7 @@
 span.intLink, a, a:visited {
     cursor: pointer;
     color: #2C2F36;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #info {
@@ -106,4 +321,78 @@ span.intLink, a, a:visited {
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #040404;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 16px;
+    background-color: #9e0843;
+    color: white;
+}
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #9e0843;
+    color: white;
 }

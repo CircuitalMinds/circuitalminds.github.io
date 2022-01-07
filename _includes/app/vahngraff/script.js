@@ -146,16 +146,6 @@ $( function () {
         function ( data ) { Player.Data = data }
     );
     $("#" + Player.ID)[0].poster = Player.Poster;
-    $("#palette-top")[0].innerHTML =  [
-        '<div class="cell-md-12 h-100" ',
-        'style="' + Colors.getGradient() + '">',
-        '</div>'
-    ].join("");
-    $("#palette-bottom")[0].innerHTML =  [
-        '<div class="cell-md-12 h-100" ',
-        'style="' + Colors.getGradient( Reverse=true ) + '">',
-        '</div>'
-    ].join("");
     jklSearch.Render();
     Player.Feeds.display();
 });

@@ -12,45 +12,19 @@ permalink: /projects/
 <h4>Una introduccion al lenguaje para aquellos quienes desean explorarlo, 
     es posible mediante los recursos que puedes encontrar en el siguiente enlace.
 </h4>
-{% assign nbs = site.data.notebooks %}
-{% assign introduction = nbs.introduction.data %}
-{% assign engineering = nbs.engineering.data %}
-{% assign science_data = nbs.science_data.data %}
 <p>Introduction. Getting Started with Python</p>
-<div id="Introduction" class="accordion accordion-flush initial-gradient">
-    <ul>
-    {% for nb in introduction %}    
-    <li class="mainbutton ontouch" onclick="window.location='{{nb.url}}';">{{ nb.name }}</li>
-    {% endfor %}
-    </ul>    
+<div id="Introduction" class="accordion accordion-flush initial-gradient"> 
 </div>
 
 ***
 
 <p>Python In Engineering. Some Applications in Engineering</p>
-{% for module in engineering %}  
-<div id="Module-1-{{ forloop.index }}" class="accordion accordion-flush initial-gradient">  
-<ul>
-    {% for nb in module %}
-    <li class="mainbutton ontouch" onclick="window.location='{{nb.url}}';">{{ nb.name }}</li>
-    {% endfor %}
-</ul>    
-</div>
-
-{% endfor %}
+<div id="engineering" class="accordion accordion-flush initial-gradient"></div>
 
 ***
 
 <p>Python In Data Analysis. Data Analysis, Good Practices</p>
-{% for module in science_data %}  
-<div id="Module-2-{{ forloop.index }}" class="accordion accordion-flush initial-gradient">  
-<ul>
-{% for nb in module %}
-<li class="mainbutton ontouch" onclick="window.location='{{nb.url}}';">{{ nb.name }}</li>
-{% endfor %}
-</ul>    
-</div>
-{% endfor %}
+<div id="science-data" class="accordion accordion-flush initial-gradient"></div>
 
 ***
 
@@ -65,5 +39,30 @@ permalink: /projects/
     profundizar en el tema, pues el objetivo es explorar este lenguaje obteniendo nuevas 
     posibilidades para sacar mejor provecho de esta herramienta.
 </p>
+<script>
+let Notebooks = new Object();
+function setNbs ( nbs, name ) {
+    obj = $("#" + name)[0];
+    for ( module of nbs.data ) {
+        modData = [
+            "<ul>", module.map(
+                x => '<li><a href="' + x.url + '">' + x.name + '</a></li>'
+            ).join("\n"), "</ul>"
+        ].join("\n");
+        console.log(modData);
+    };  
+}
+$(function () {
+    requestObj.get(
+        "{{ site.static_url }}/data/notebooks.json", 
+        function ( data ) {
+            Notebooks = data;
+            setTimeout( function () {
+                Object.keys(Notebooks).map( name => setNbs( Notebooks[name], name ) );
+            }, 200);
+        }
+    );    
+});    
+</script>
 
 ***

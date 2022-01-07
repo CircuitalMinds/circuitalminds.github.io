@@ -27,8 +27,6 @@ $( function () {
     jklSearch.Render();
     ElementObj.setClock();
     ElementObj.setDate();
-    colorsData = {{ site.data.colors | jsonify }};
-    Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );
 });
 </script>
 </html>

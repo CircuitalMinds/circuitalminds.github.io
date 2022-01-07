@@ -7,7 +7,7 @@ tags: [Cantor]
 ---
 > <h3><strong>"Se repiten en multitud, liberandose en aparente anarquía preciosa estructura pintada en fragmentos disjuntos; El Infinito expresando su arte más auténtico".</strong></h3>
 
-
+<script>{% include module/canvas.html %}</script>
 
 ***
 

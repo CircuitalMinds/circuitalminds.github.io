@@ -94,3 +94,15 @@
     color: white;
 }
 
+#logo, #date, #clock {
+    color: #9e0843;
+    background-color: #1d1d1d;
+    border: 5px solid gray;
+    margin: 0;
+    padding: 10px;
+}
+
+#logo:hover, #date:hover, #clock:hover {
+    background-color: #9e0843;
+    color: white;
+}

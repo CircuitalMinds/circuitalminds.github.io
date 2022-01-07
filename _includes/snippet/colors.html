@@ -1,4 +1,36 @@
-{% if include.name == "Special" %}
+{% if include.name == "Gradient" %}
+<style>
+{% assign delta_grad = 100 | divided_by:site.data.colors.Spectral.size | round %}
+.palette-gradient {
+    background-image: linear-gradient(60deg,  #9E0142 1%, {% for c in site.data.colors.Spectral %}{{ c }} {{ forloop.index | times:delta_grad }}%, {% endfor %} #5E4FA2 100%);
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+}
+
+.initial-gradient {
+    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+{% for c in site.data.colors.Spectral %}
+.bg-c{{ forloop.index }} {
+    background-color: {{ c }};
+}
+.fg-c{{ forloop.index }} {
+    color: {{ c }};
+}
+.bd-c{{ forloop.index }} {
+    border: 2px solid {{ c }};
+    border-radius: 5px;
+}
+{% endfor %}
+</style>
+
+{% elsif include.name == "Special" %}
 <style>
 {% for c in site.data.colors.Special %}
 .bg-special-{{ c[0] }} {
@@ -25,22 +57,6 @@
 }
 .bd-{{ c[0] }} {
     border: 2px solid {{ c[1] }};
-    border-radius: 5px;
-}
-{% endfor %}
-</style>
-
-{% elsif include.name == "Palette" %}
-<style>
-{% for c in site.data.colors.Palette %}
-.bg-c{{ forloop.index }} {
-    background-color: {{ c }};
-}
-.fg-c{{ forloop.index }} {
-    color: {{ c }};
-}
-.bd-c{{ forloop.index }} {
-    border: 2px solid {{ c }};
     border-radius: 5px;
 }
 {% endfor %}

@@ -7,12 +7,11 @@
     {% include styles.html %}
     {% include favicon.html %}
 </head>
-<body class="{% if page.lib == 'metro' %}bg-dark fg-white h-vh-100{% endif %}">
+<body class="{% if page.lib == 'metro' %}bg-dark fg-white w-100 h-100{% endif %}">
 {{ content }}
+{% include api/index.html %}
 </body>
 <script>
-colorsData = {{ site.data.colors | jsonify }};
-Object.keys(colorsData).map( x => Colors[x]=colorsData[x] );
 $( function () {
     ElementObj.setClock();
     ElementObj.setDate();
