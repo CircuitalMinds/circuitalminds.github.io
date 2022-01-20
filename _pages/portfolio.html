@@ -18,7 +18,7 @@ permalink: /contact/portfolio/
   <div class="image fit">
     <table class="table">
     <tbody>
-    {% for x in thesis[0] %}
+    {% for x in thesis.bachelor %}
         <tr><td>{{ x[0] }}</td><td>{{ x[1] }}</td></tr>
     {% endfor %}
     </tbody>
@@ -32,7 +32,7 @@ permalink: /contact/portfolio/
   <div class="image fit">
     <table class="table">
     <tbody>
-    {% for x in thesis[1] %}
+    {% for x in thesis.master %}
         <tr><td>{{ x[0] }}</td><td>{{ x[1] }}</td></tr>
     {% endfor %}
     </tbody>

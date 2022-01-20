@@ -1,5 +1,5 @@
+let Api = $("#api-root")[0];
 $( function () {
-    let Api = $("#api-root")[0];
     Api.currentPage = "{{ page.title | downcase }}";
-
+    Api.Data = {% include api/settings.json %};
 });

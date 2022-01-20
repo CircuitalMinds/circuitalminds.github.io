@@ -1,50 +1,80 @@
-author-avatar: https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4
-author-github: https://github.com/alanmatzumiya
-author-name: Alan Matzumiya
-author-website: https://alanmatzumiya.github.io
-baseurl: ''
-css: assets/css
-description: From Here To Eternity
-disqus-identifier: alan-matzumiya
-facebook: https://www.facebook.com/circuitalminds
-fb_id: '772020893629559'
-github: https://github.com/CircuitalMinds
-google-analytics: UA-177619690-2
-header_pages:
-- projects
-- topics
-- contact
-- about
-img: assets/img
-include:
-- _pages
-- _applications
-instafeed: 'false'
-instagram: https://www.instagram.com/circuitalminds
-js: assets/js
-logo: https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4
-mailchimp: null
-markdown: kramdown
-paginate: '7'
-paginate_path: /page/:num
-permalink: :title/
-pinterest: https://www.pinterest.com/circuitalminds
-plugins:
-- jekyll-paginate
-- jekyll-sitemap
-sass:
-  sass_dir: _sass
-  style: compressed
+#-------------------------------
+# General Site Settings
+baseurl: ""
+url: "https://circuitalminds.github.io"
+title: "Circuital | Minds"
+description: "From Here To Eternity"
+logo: "https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"
+#-------------------------------
+# proprietary info
+author-name: "Alan Matzumiya"
+author-avatar: "https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
+author-website: "https://alanmatzumiya.github.io"
+author-github: "https://github.com/alanmatzumiya"
+#-------------------------------
+# Contact links
+fb_id: "772020893629559"
+facebook: "https://www.facebook.com/circuitalminds"
+twitter: "https://twitter.com/circuitalminds"
+instagram: "https://www.instagram.com/circuitalminds"
+pinterest: "https://www.pinterest.com/circuitalminds"
+github: "https://github.com/CircuitalMinds"
+#-------------------------------
+# Comment Section (Disqus)
+disqus-identifier: "alan-matzumiya"
+#-------------------------------
+# Instagram Feed
+instafeed: "false"
+#-------------------------------
+# Google Analytics
+google-analytics: "UA-177619690-2"
+#-------------------------------
+# Newsletter
+mailchimp: # Add your MailChimp form identifier.
+#-------------------------------
+# assets-path
+js: "assets/js"
+css: "assets/css"
+img: "assets/img"
+static_url: "https://circuitalminds.github.io/static"
+#-------------------------------
+# resources
 scripts:
-  after:
-  - utils.js
   before:
-  - instafeed.min.js
-  - facebook.js
-  - jquery.waitforimages.min.js
-  - jquery.fitvids.js
-  - common.js
-static_url: https://circuitalminds.github.io/static
-title: Circuital | Minds
-twitter: https://twitter.com/circuitalminds
-url: https://circuitalminds.github.io
+    - "instafeed.min.js"
+    - "facebook.js"
+    - "jquery.waitforimages.min.js"
+    - "jquery.fitvids.js"
+    - "common.js"
+  after:
+    - "utils.js"
+#-------------------------------
+# Build settings
+header_pages:
+  - "resources"
+  - "topics"
+  - "contact"
+  - "about"
+markdown: "kramdown"
+permalink: ":title/"
+plugins:
+  - "jekyll-paginate"
+  - "jekyll-sitemap"
+paginate: "7"
+paginate_path: "/page/:num"
+include:
+  - "_pages"
+  - "_applications"
+sass:
+  sass_dir: "_sass"
+  style: "compressed"
+#-------------------------------
+# Exclude from processing.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

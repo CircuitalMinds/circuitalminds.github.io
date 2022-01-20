@@ -13,7 +13,36 @@ requestObj.post = function ( urlData, Data, handlerData ) {
         }
     );
 };
-
+function Dict ( data ) {
+    let Obj = new Object();
+    if ( data != undefined ) {
+        Obj.data = data;
+    } else {
+        Obj.data = {};
+    };
+    Obj.keys = function () {
+        return Object.keys(this.data);
+    };
+    Obj.values = function () {
+        return Object.values(this.data);
+    };
+    Obj.get = function ( key ) {
+        return this.data[key];
+    };
+    Obj.setattr = function ( key, value ) {
+        this.data[key] = value;
+    };
+    Obj.len = function () {
+        return Object.keys(this.data).length;
+    };
+    Obj.items = function () {
+        return Object.entries(this.data);
+    };
+    Obj.pop = function ( key ) {
+        delete this.data[key];
+    };
+    return Obj;
+};
 let ElementObj = new Object();
 ElementObj.byId = function ( Id ) {
     var Y = new Object();

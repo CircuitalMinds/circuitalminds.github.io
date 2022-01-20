@@ -8,7 +8,7 @@ var Messages = {
     data: {received: [], sent: []}
 };
 
-function SendMessage ( message ) {
+function sendMessage ( message ) {
      Messages.data.received.push(message.text);
      var chat = $(this).data("chat");
      setTimeout(function(){
@@ -22,4 +22,4 @@ function SendMessage ( message ) {
          Messages.data.sent.push(_m.text);
          chat.add(_m);
      }, 1000 + Math.round(Math.random() * 2000));
- }
+};

@@ -38,13 +38,3 @@ permalink: /contact/
 		</div>
 	</div>
 </form>
-<script>
-let pageData = new Object();
-pageData.Portfolio = {};
-$(function () {
-    requestObj.get(
-        "{{ site.static_url }}/data/portfolio.json", 
-        function ( data ) { pageData.Portfolio = data }
-    );    
-});    
-</script>
