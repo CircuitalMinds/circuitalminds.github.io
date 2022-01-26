@@ -1,4 +1,7 @@
-let VahnGraff = $("#video-player")[0];
+let VahnGraff = $("#vahngraff")[0];
+VahnGraff.Videos = {};
+VahnGraff.Metadata = {};
+
 VahnGraff.urlData = function ( x ) {
     return [
         "{{ site.static_url }}/data/videos", x
@@ -11,32 +14,12 @@ VahnGraff.urlVideo = function ( x ) {
         "music_" + V.id.split("-")[0], "main/videos", V.name
     ].join("/");
 };
-vObj.getData = function ( n ) {
-    V = this.get(n);
-    Meta = {}
-    function getMeta ( data ) {
-        [Name, Prop, ItemProp] = [
-            "name", "property", "itemprop"
-        ].map( m => Object.values(data[m]) );
-        Name.filter(
-            e => [
-                "title", "twitter:title", "twitter:image", "keywords"
-            ].indexOf(e["name"]) != -1
-        ).map( r => Meta[r["name"]] = r["content"] );
-        Prop.filter(
-            e => ["og:image", "og:title"].indexOf(e["property"]) != -1
-        ).map( r => Meta[r["property"]] = r["content"] );
-        ItemProp.filter(
-            e => ["name", "duration"].indexOf(e["itemprop"]) != -1
-        ).map( r => Meta[r["itemprop"]] = r["content"] );
-        console.log(Meta);
-        return Meta;
-    };
-    Url = [
-        "https://circuitalminds.github.io/static/data/videos/youtube/metadata",
-        V.id.replace(V.id.split("-")[0] + "-", "") + ".json"
-    ].join("/");
-    requestObj.get( Url, function( data ) { getMeta(data) } );
+VahnGraff.getMeta = function ( n ) {
+    V = this.Videos[n];
+    console.log(V.id.replace(V.id.split("-")[0] + '-', ''));
+    Meta = this.Metadata[V.id];
+    Meta.url = this.urlVideo(n);
+    return Meta;
 };
 VahnGraff.setData = function ( data, x ) {
     Ks = Object.keys(data);
@@ -45,13 +28,18 @@ VahnGraff.setData = function ( data, x ) {
     };
     return;
 };
-VahnGraff.Videos = {};
 
 $( function () {
     requestObj.get(
         VahnGraff.urlData("all.json"),
         function ( data ) {
             VahnGraff.setData(data, VahnGraff.Videos);
+        }
+    );
+    requestObj.get(
+        VahnGraff.urlData("metadata.json"),
+        function ( data ) {
+            VahnGraff.setData(data, VahnGraff.Metadata);
         }
     );
 });
@@ -212,7 +200,7 @@ Player.Feeds = {
 
 $( function () {
     requestObj.get(
-        "{{ site.static_url }}/data/videos/metadata/metadata.json",
+        "{{ site.static_url }}/data/videos/metadata.json",
         function ( data ) { Player.Data = data }
     );
     $("#" + Player.ID)[0].poster = Player.Poster;
