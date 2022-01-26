@@ -9,7 +9,7 @@
     "jklData": {
         "searchInput": "query",
         "resultsContainer": "jkl-results",
-        "json": "data/videos/videos.json",
+        "json": "data/videos/metadata/videos.json",
         "searchResultTemplate": [
             "<li class='button card-content bg-darkTeal bg-dark-hover fg-light' onclick='Player.Select( {index} );'>",
             "<img class='avatar' src='{image}'>",

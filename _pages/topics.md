@@ -5,40 +5,48 @@ image: topics.png
 permalink: /topics/
 ---
 
-{% assign intro=site.data.notebooks.introduction %}
-{% assign engineering=site.data.notebooks.engineering %}
-{% assign science_data=site.data.notebooks.science_data %}
+{% assign nbs=site.data.nbs %}
 
 <p>Introduction. Getting Started with Python</p>
 {% capture intro_html %}
 <ul>
-{% for x in intro.files %}
-<li><a href="{{ intro.url }}/{{ x }}">{{ x | replace:'.ipynb','' }}</a></li>
+{% for x in nbs.topics.introduction %}
+<li><a href="{{ nbs.url }}/introduction/{{ x }}">{{ x | replace:'.ipynb','' }}</a></li>
 {% endfor %}
 </ul>
 {% endcapture %}
-{% include snippet/accordion.html id=intro.id header=intro.title body=intro_html %}
+{% include snippet/accordion.html id="introduction" header="Introduction" body=intro_html %}
 
 <p>Python In Engineering. Some Applications in Engineering</p>
 {% capture engineering_html %}
-{% for i in engineering.modules %}
-{% assign module=engineering[i] %}
+{% for module in nbs.topics.engineering %}
+{% for v in module %}
+{% assign ID=v[0] | replace:'module_','engineering-' %}
+{% assign Header=v[0] | replace:'module_','Module ' %}
+{% assign Mn=v[0] %}
+{% assign Xn=v[1] %}
+{% endfor %}
 {% capture module_html %}
-<ul>{% for x in module.files %}<li><a href="{{ module.url }}/{{ x }}">{{ x | replace:'.ipynb','' }}</a></li>{% endfor %}</ul>
+<ul>{% for x in Xn %}<li><a href="{{ nbs.url }}/engineering/{{ Mn }}/{{ x }}">{{ x | replace:'.ipynb','' }}</a></li>{% endfor %}</ul>
 {% endcapture %}
-{% include snippet/accordion.html id=module.id header=module.title body=module_html %}
+{% include snippet/accordion.html id=ID header=Header body=module_html %}
 {% endfor %}
 {% endcapture %}
-{% include snippet/accordion.html id=engineering.id header=engineering.title body=engineering_html %}
+{% include snippet/accordion.html id="engineering" header="Engineering" body=engineering_html %}
 
 <p>Python In Data Analysis. Data Analysis, Good Practices</p>
 {% capture science_data_html %}
-{% for i in science_data.modules %}
-{% assign module=science_data[i] %}
+{% for module in nbs.topics.science_data %}
+{% for v in module %}
+{% assign ID=v[0] | replace:'module_','science_data-' %}
+{% assign Header=v[0] | replace:'module_','Module ' %}
+{% assign Mn=v[0] %}
+{% assign Xn=v[1] %}
+{% endfor %}
 {% capture module_html %}
-<ul>{% for x in module.files %}<li><a href="{{ module.url }}/{{ x }}">{{ x | replace:'.ipynb','' }}</a></li>{% endfor %}</ul>
+<ul>{% for x in Xn %}<li><a href="{{ nbs.url }}/science_data/{{ Mn }}/{{ x }}">{{ x | replace:'.ipynb','' }}</a></li>{% endfor %}</ul>
 {% endcapture %}
-{% include snippet/accordion.html id=module.id header=module.title body=module_html %}
+{% include snippet/accordion.html id=ID header=Header body=module_html %}
 {% endfor %}
 {% endcapture %}
-{% include snippet/accordion.html id=science_data.id header=science_data.title body=science_data_html %}
+{% include snippet/accordion.html id="science_data" header="Science Data" body=science_data_html %}

@@ -13,12 +13,12 @@
     padding: 7px 12px;
     font-size: 14px;
     border-radius: 4px;
-    color: $text;
+    color: $primary-color;
     font-weight: 700;
-    background: $blue-black;
+    background: $white;
     &:hover {
       color: $white;
-      background: $primary-color;      
+      background: $primary-color;
     }
   }
 }
