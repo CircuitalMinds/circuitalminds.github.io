@@ -1,7 +1,11 @@
-let vObj = Dict();
-
-vObj.getURL = function ( n ) {
-    V = this.get(n);
+let VahnGraff = $("#video-player")[0];
+VahnGraff.urlData = function ( x ) {
+    return [
+        "{{ site.static_url }}/data/videos", x
+    ].join("/");
+};
+VahnGraff.urlVideo = function ( x ) {
+    V = this.Videos[x];
     return [
         "https://raw.githubusercontent.com/circuitalmynds",
         "music_" + V.id.split("-")[0], "main/videos", V.name
@@ -34,6 +38,34 @@ vObj.getData = function ( n ) {
     ].join("/");
     requestObj.get( Url, function( data ) { getMeta(data) } );
 };
+VahnGraff.setData = function ( data, x ) {
+    Ks = Object.keys(data);
+    for ( k of Ks ) {
+        x[k] = data[k];
+    };
+    return;
+};
+VahnGraff.Videos = {};
+
+$( function () {
+    requestObj.get(
+        VahnGraff.urlData("all.json"),
+        function ( data ) {
+            VahnGraff.setData(data, VahnGraff.Videos);
+        }
+    );
+});
+
+let vObj = Dict();
+
+vObj.getURL = function ( n ) {
+    V = this.get(n);
+    return [
+        "https://raw.githubusercontent.com/circuitalmynds",
+        "music_" + V.id.split("-")[0], "main/videos", V.name
+    ].join("/");
+};
+
 
 
 let Player = new Object();
@@ -182,10 +214,6 @@ $( function () {
     requestObj.get(
         "{{ site.static_url }}/data/videos/metadata/metadata.json",
         function ( data ) { Player.Data = data }
-    );
-    requestObj.get(
-        "{{ site.static_url }}/data/videos/all.json",
-        function ( data ) { vObj.data = data }
     );
     $("#" + Player.ID)[0].poster = Player.Poster;
     jklSearch.Render();
