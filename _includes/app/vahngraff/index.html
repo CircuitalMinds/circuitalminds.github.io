@@ -37,7 +37,14 @@
 </div>
 <script>
 var Settings = {% include app/vahngraff/settings.json %};
-Settings.jklData.json = '{{ site.static_url }}'.concat( '/', Settings.jklData.json );
+Settings.jklData.json = Object();
+requestObj.get(
+    '{{ site.static_url }}/data/videos/metadata.json',
+    function ( data ) {
+        values = Object.values(data);
+        Settings.jklData.json = values;
+    }
+);
 setModal(Settings.search);
 jklSearch.setData( Settings.jklData );
 </script>

@@ -4,32 +4,32 @@
             {
                 "icon": "mif-volume-minus",
                 "id": "volume-minus",
-                "onclick": "Player.Vol.setMinus();"
+                "onclick": ""
             },
             {
                 "icon": "mif-volume-plus",
                 "id": "volume-plus",
-                "onclick": "Player.Vol.setPlus();"
+                "onclick": ""
             },
             {
                 "icon": "mif-previous",
                 "id": "previous",
-                "onclick": "Player.Previous();"
+                "onclick": ""
             },
             {
                 "icon": "mif-play",
                 "id": "play",
-                "onclick": "$('#video-player')[0].play();"
+                "onclick": ""
             },
             {
                 "icon": "mif-pause",
                 "id": "pause",
-                "onclick": "$('#video-player')[0].pause();"
+                "onclick": ""
             },
             {
                 "icon": "mif-next",
                 "id": "next",
-                "onclick": "Player.Next();"
+                "onclick": ""
             }
         ],
         "video": {"id": "video-player"}

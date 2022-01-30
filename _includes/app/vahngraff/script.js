@@ -7,19 +7,18 @@ VahnGraff.urlData = function ( x ) {
         "{{ site.static_url }}/data/videos", x
     ].join("/");
 };
-VahnGraff.urlVideo = function ( x ) {
-    V = this.Videos[x];
-    return [
-        "https://raw.githubusercontent.com/circuitalmynds",
-        "music_" + V.id.split("-")[0], "main/videos", V.name
-    ].join("/");
-};
-VahnGraff.getMeta = function ( n ) {
+VahnGraff.getVideo = function ( n ) {
     V = this.Videos[n];
-    console.log(V.id.replace(V.id.split("-")[0] + '-', ''));
-    Meta = this.Metadata[V.id];
-    Meta.url = this.urlVideo(n);
-    return Meta;
+    vData = {"index": n, "id": V.id.replace(V.id.split("-")[0] + "-", "")};
+    vData.url = [
+        "https://raw.githubusercontent.com/circuitalmynds",
+        "music_" + V.id.replace("-" + vData.id, ""), "main/videos", V.name
+    ].join("/");
+    metadata = this.Metadata[vData.id];
+    Object.keys(metadata).map(
+        k => vData[k.replace("og:", "").replace("twitter:", "")] = metadata[k]
+    );
+    return vData;
 };
 VahnGraff.setData = function ( data, x ) {
     Ks = Object.keys(data);
@@ -28,159 +27,87 @@ VahnGraff.setData = function ( data, x ) {
     };
     return;
 };
-
-$( function () {
-    requestObj.get(
-        VahnGraff.urlData("all.json"),
-        function ( data ) {
-            VahnGraff.setData(data, VahnGraff.Videos);
-        }
-    );
-    requestObj.get(
-        VahnGraff.urlData("metadata.json"),
-        function ( data ) {
-            VahnGraff.setData(data, VahnGraff.Metadata);
-        }
-    );
-});
-
-let vObj = Dict();
-
-vObj.getURL = function ( n ) {
-    V = this.get(n);
-    return [
-        "https://raw.githubusercontent.com/circuitalmynds",
-        "music_" + V.id.split("-")[0], "main/videos", V.name
-    ].join("/");
-};
-
-
-
-let Player = new Object();
-
-Player.ID = "video-player";
-Player.Poster = "/{{ site.img }}/apps/poster.gif";
-Player.Data = {};
-Player.randomMode = false;
-
-Player.setMode = function () {
-    this.randomMode = $("#random")[0].checked;
-};
-Player.Title = {
-    get: function () {
-        return $("#video-title")[0];
-    },
-    set: function ( title ) {
-        this.get().innerHTML = title;
-    }
-};
-Player.Vol = {
-    setPlus: function () {
-        vol = $("#" + Player.ID)[0].volume * 100;
-        if ( vol < 100 ) {
-            vol += 10;
+VahnGraff.Player = VahnGraff.querySelector("video");
+VahnGraff.playerData = VahnGraff.Player.dataset;
+VahnGraff.setPlayer = function ( opt ) {
+    function start() {
+        vData = VahnGraff.getVideo(VahnGraff.playerData.videoSelected);
+        VahnGraff.Player.setAttribute("src", vData.url);
+        VahnGraff.querySelector("#video-title").innerHTML = vData.title;
+        setTimeout(function() {
+            VahnGraff.Player.play();
+            $("#results")[0].style.display = "none";
+        }, 500);
+    };
+    if ( typeof(opt) == "number" ) {
+        VahnGraff.playerData.videoSelected = opt;
+        return start();
+    } else if ( opt == "pause" ) {
+        return VahnGraff.Player.pause();
+    } else {
+        if ( opt == "play" ) {
+            VahnGraff.Player.play();
         } else {
-            vol = 100;
-        };
-        $("#" + Player.ID)[0].volume = vol / 100;
-    },
-    setMinus: function () {
-        vol = $("#" + Player.ID)[0].volume * 100;
-        if ( vol > 0 ) {
-            vol -= 10;
-        } else {
-            vol = 0;
-        };
-        $("#" + Player.ID)[0].volume = vol / 100;
-    }
-};
-
-Player.getVideo = function ( Index ) {
-    title = Object.keys(this.Data)[Index];
-    video = this.Data[title];
-    this.getMetadata( video );
-    if ( video.title == undefined ) {
-        video.title = title;
-    };
-    video.title = video.title.replace(".mp4", "").replace(".wmv", "");
-    return video;
-};
-Player.getRandomVideo = function () {
-    videoIndex = Math.round( Math.random() * ( Object.keys(this.Data).length - 1 ) );
-    video = this.getVideo(videoIndex);
-    video.index = videoIndex;
-    return video;
-};
-Player.getMetadata = function ( video ) {
-    Attrs = ["name", "property", "itemprop"];
-    Contents = ["title", "og:title", "og:image", "duration", "keywords"];
-    function setData ( x, y ) {
-        attrName = ( x[y] ) ? Contents[Contents.indexOf(x[y])] : undefined;
-        if ( attrName != undefined ) {
-            keyName = ( attrName.indexOf(":") != -1 ) ? attrName.split(":")[1] : attrName;
-            if ( video[keyName] == undefined ) {
-                video[keyName] = x.content;
-            };
+            VahnGraff.playerData.videoSelected = parseInt(
+                VahnGraff.playerData.videoSelected
+            ) + {"previous": -1, "next": 1}[opt];
+            return start();
         };
     };
-    for ( x of video.metadata ) {
-        Attrs.map( y => setData(x, y) );
-    };
-    if ( video.duration != undefined ) {
-        video.duration = video.duration.replace("PT", "").replace("M", ":").replace("S", ":0");
-    };
-    if ( video.image == undefined ) {
-        video["image"] = this.Poster;
-    };
 };
+VahnGraff.playerData.onEnd = function () { Vahngraff.setPlayer("next") };
+VahnGraff.playerData.onPlay = function () { Vahngraff.setPlayer("play") };
+VahnGraff.playerData.onPause = function () { Vahngraff.setPlayer("pause") };
+VahnGraff.playerData.onChange = function () { Vahngraff.setPlayer("play") };
+["pause", "play", "previous", "next"].map(
+    ID => VahnGraff.querySelector("#" + ID).onclick = function () {VahnGraff.setPlayer(ID)}
+);
+VahnGraff.getRandom = function () {
+    return VahnGraff.getVideo(randomInt(
+        0, Object.keys(VahnGraff.Videos).length
+    ));
+};
+(function() {
+    Vol = {};
+    Vol.Setter = Vector.Grid(0, 1, 10);
+    Vol.Data = Vol.Setter[0];
+    Vol.setDown = function() {
+      volIndex = Vol.Setter.indexOf(Vol.Data);
+      if ( volIndex > 0 ) {
+            Vol.Data = Vol.Setter[volIndex - 1];
+      } else {
+            Vol.Data = Vol.Setter[0];
+      };
+      VahnGraff.Player.volume = Vol.Data;
+    };
+    Vol.setUp = function() {
+      volIndex = Vol.Setter.indexOf(Vol.Data);
+      if ( volIndex < Vol.Setter.length - 1 ) {
+            Vol.Data = Vol.Setter[volIndex + 1];
+      } else {
+            Vol.Data = Vol.Setter[Vol.Setter.length - 1];
+      };
+      VahnGraff.Player.volume = Vol.Data;
+    };
+    VahnGraff.querySelector("#volume-minus").onclick = Vol.setDown;
+    VahnGraff.querySelector("#volume-plus").onclick = Vol.setUp;
+})();
 
-Player.Start = function () {
-    obj = $("#" + this.ID)[0];
-    setTimeout(function() {
-        obj.play();
-        $("#results")[0].style.display = "none";
-    }, 500);
+VahnGraff.playerData.Poster = "/{{ site.img }}/apps/poster.gif";
+VahnGraff.playerData.randomMode = VahnGraff.querySelector("#random").checked;
+VahnGraff.querySelector("#random").onchange = function () {
+	VahnGraff.playerData.randomMode = VahnGraff.querySelector("#random").checked;
 };
-Player.Next = function () {
-    obj = $("#" + this.ID)[0];
-    this.setMode();
-    Index = parseFloat(obj.dataset.videoSelected) + 1;
-    Video = ( this.randomMode ) ? this.getRandomVideo() : this.getVideo( Index );
-    obj.setAttribute("src", Video.url);
-    obj.dataset.videoSelected = Index;
-    this.Title.set(Video.title);
-    this.Start();
-};
-Player.Previous = function () {
-    obj = $("#" + this.ID)[0];
-    this.setMode();
-    Index = parseFloat(obj.dataset.videoSelected) - 1;
-    Video = ( this.randomMode ) ? this.getRandomVideo() : this.getVideo( Index );
-    obj.setAttribute("src", Video.url);
-    obj.dataset.videoSelected = Index;
-    this.Title.set(Video.title);
-    this.Start();
-};
-Player.Select = function ( Index ) {
-    obj = $("#" + this.ID)[0];
-    this.setMode();
-    Video = this.getVideo( Index );
-    obj.setAttribute("src", Video.url);
-    obj.dataset.videoSelected = Index;
-    this.Title.set(Video.title);
-    this.Start();
-};
-
-Player.Feeds = {
+VahnGraff.Feeds = {
     "id": "feeds",
     "delay": 10e3,
     "getFeed": function () {
-        v = Player.getRandomVideo();
+        v = VahnGraff.getRandom();
         return `<li class="button card-content bg-darkTeal bg-dark-hover fg-light"
-                    onclick="Player.Select( ${v.index} );">
-            <img class="avatar" src="${v.image}">
-            <span class="label">${v.title}</span>
-            <span class="second-label">${v.duration}</span>
+                onclick="VahnGraff.setPlayer( ${v.index} );">
+                <img class="avatar" src="${v.image}">
+                <span class="label">${v.title}</span>
+                <span class="second-label">${v.duration}</span>
         </li>`;
     },
     "setFeed": function ( Id, getFeed ) {
@@ -200,10 +127,32 @@ Player.Feeds = {
 
 $( function () {
     requestObj.get(
-        "{{ site.static_url }}/data/videos/metadata.json",
-        function ( data ) { Player.Data = data }
+        VahnGraff.urlData("all.json"),
+        function ( data ) {
+            VahnGraff.setData(data, VahnGraff.Videos);
+        }
     );
-    $("#" + Player.ID)[0].poster = Player.Poster;
+    requestObj.get(
+        VahnGraff.urlData("metadata.json"),
+        function ( data ) {
+            VahnGraff.setData(data, VahnGraff.Metadata);
+        }
+    );
+    VahnGraff.Player.poster = VahnGraff.playerData.Poster;
     jklSearch.Render();
-    Player.Feeds.display();
+    VahnGraff.Feeds.display();
 });
+function toggleFullScreen(obj) {
+    if (!document.fullscreenElement) {
+        obj.requestFullscreen();
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        };
+    };
+};
+document.addEventListener("keypress", function(e) {
+    if (e.key === 'Enter') {
+      toggleFullScreen(VahnGraff.Player);
+    }
+}, false);

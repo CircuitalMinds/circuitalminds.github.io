@@ -1,6 +1,106 @@
+<div id="iso-graff" style="display: block;">
+    <div class="base" style="width: 100%; height: 300px;"></div>
+    <div class="slidecontainer" style="display: none;">
+    <input value="10" type="range" class="slider"
+           min="1" max="500" step="10"
+    /></div>
+     <p>\(\Phi (n)=\)<span>29</span></p>
+
+    <div id="test-latex"></div>
+    <script>
+    let LaTex = new Object();
+    LaTex.with_style = true;
+    LaTex.Write = function ( data ) {
+        if ( this.with_style ) {
+            return "$$\\displaystyle{ " + data.replaceAll("**", "\\") + " }$$"
+        } else {
+            return data;
+        };
+    };
+    function test_latex () {
+        $("#test-latex")[0].innerHTML = LaTex.Write(
+            "**pi **approx **prod_{i=1}^{**Phi (n)} f_{i}"
+        );
+    };
+    </script>
+</div>
 <script>
-let canvasObj = new Object();
-canvasObj.gradientColors = {
+let IsoGraff = $("#iso-graff")[0];
+IsoGraff.Base = function() {
+    T = this.querySelector("div.base");
+    D = T.getClientRects()[0];
+    T.innerHTML = `<canvas width="${D.width}px" height="${D.height}px"
+                 style="display: inline-block;">
+        </canvas>`;
+    T.obj = T.querySelector("canvas");
+    T.ctx = T.obj.getContext("2d");
+    return T;
+};
+
+IsoGraff.Plot2D = function () {
+    T = this.Base();
+    var img = new Image();
+    img.width = "100%";
+    img.onload = function() {
+        T.ctx.drawImage(img, 0, 0);
+        T.ctx.beginPath();
+        T.ctx.moveTo(30, 96);
+        T.ctx.lineTo(70, 66);
+        T.ctx.lineTo(103, 76);
+        T.ctx.lineTo(170, 15);
+        T.ctx.stroke();
+    };
+    img.src = '{{ site.logo }}';
+    return T;
+};
+
+let Co = new Object();
+var C = [
+        "#9E0142", "#D53E4F", "#F46D43", "#FDAE61",
+        "#FEE08B", "#FFFFBF", "#E6F598", "#ABDDA4",
+        "#66C2A5", "#3288BD", "#5E4FA2"
+];
+function Grad ( Colors ) {
+    N = Colors.length;
+    dn = Math.round(100 / N);
+    LGrad = "background-image: linear-gradient(60deg";
+    for ( var n = 0; n < N - 1; n++ ) {
+        LGrad += ", " + Colors[i] + " " + n * dn + "%";
+    };
+    LGrad += ", " + Colors[N - 1] + " 100%); background-size: cover;";
+    return LGrad;
+};
+
+var C = [
+        "#9E0142", "#D53E4F", "#F46D43", "#FDAE61",
+        "#FEE08B", "#FFFFBF", "#E6F598", "#ABDDA4",
+        "#66C2A5", "#3288BD", "#5E4FA2"
+];
+W =
+function Grad ( X ) {
+    N = X.length;
+    dn = Math.round(100 / N);
+    LGrad = "background-image: linear-gradient(60deg";
+    for ( var n = 0; n < N - 1; n++ ) {
+        LGrad += ", " + X[n] + " " + n * dn + "%";
+    };
+    LGrad += ", " + X[N - 1] + " 100%); background-size: cover;";
+    return LGrad;
+};
+
+function stopGrad ( X ) {
+
+}
+Grad(C)
+
+
+
+
+
+
+
+let Canvas = new Object();
+Canvas.gradientColors = {
     Default: [
         {stop: 0.1, name: "sienna"},
         {stop: 0.5, name: "crimson"},
@@ -8,14 +108,15 @@ canvasObj.gradientColors = {
         {stop: 1, name: "royalblue"}
     ]
 };
-canvasObj.setGradient = function ( contextObj, L=[300, 0, 0, 100] ) {
+
+Canvas.setGradient = function ( contextObj, L=[300, 0, 0, 100] ) {
     var grad = contextObj.createLinearGradient(L[0], L[1], L[2], L[3]);
     this.gradientColors.Default.map(
         color => grad.addColorStop(color.stop, color.name)
     );
     return grad;
 };
-canvasObj.setModel = function ( Obj ) {
+Canvas.setModel = function ( Obj ) {
     Obj.innerHTML = `
         <canvas width="${Obj.clientWidth}" height="${Obj.clientWidth}"
                 style="display: inline-block; max-width: 100%; max-height: 100%;">
@@ -24,17 +125,17 @@ canvasObj.setModel = function ( Obj ) {
     modelObj.context = modelObj.getContext("2d");
     return modelObj;
 };
-canvasObj.Models = {
+Canvas.Models = {
     sieveCrib: function ( N, Id="sieveCrib" ) {
             viewObj = $("#" + Id)[0];
             $("#" + Id + "-n")[0].innerHTML = N;
-            obj = canvasObj.setModel( viewObj );
+            obj = Canvas.setModel( viewObj );
             Dx = obj.width / 10;
             obj.height = Dx + Dx * N / 10;
             primeNumbers = [];
             Prod = 1.0;
             setGenerator = [2, 3, 5, 7];
-            gradient = canvasObj.setGradient( obj.context );
+            gradient = Canvas.setGradient( obj.context );
             obj.context.strokeStyle = gradient;
             obj.context.beginPath();
             obj.context.stroke();
@@ -58,7 +159,7 @@ canvasObj.Models = {
                     Cn += 1;
                 };
             };
-            gradient = canvasObj.setGradient( obj.context );
+            gradient = Canvas.setGradient( obj.context );
             obj.context.strokeStyle = gradient;
             obj.context.stroke();
             $("#" + Id + "-Cn")[0].innerHTML = primeNumbers.length;
