@@ -1,4 +1,3 @@
-{% include module/math.html %}
 <div id="vahngraff">
 <h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
 <div class="row">
@@ -7,8 +6,8 @@
   </div>
   <input id="query" type="text" class="cell-md-4" placeholder="Search for video..">
   <button onclick="$('#query')[0].value='';" class="cell-md-1 bg-dark fg-light"><span class="mif-cross-light"></span></button>
-  <div class="cell-md-2 text-center" id="clock"></div>
-  <div class="cell-md-2 text-center" id="date"></div>
+  <div class="cell-md-2 text-center" id="clock-time"></div>
+  <div class="cell-md-2 text-center" id="date-time"></div>
 </div>
 <div class="row">
     <div class="cell-md-4">
@@ -33,23 +32,20 @@
 {% include snippet/player.html name="video" %}
 <div class="cell-md-4"><ul id="feeds" class="group-list feed-list"></ul></div>
 <div class="row mt-2">
-{% include snippet/search_modal.html %}
+{% include snippet/search.html %}
+</div>
+</div>
 </div>
 <script>
-var Settings = {% include app/vahngraff/settings.json %};
-Settings.jklData.json = Object();
-requestObj.get(
-    '{{ site.static_url }}/data/videos/metadata.json',
-    function ( data ) {
-        values = Object.values(data);
-        Settings.jklData.json = values;
-    }
-);
-setModal(Settings.search);
-jklSearch.setData( Settings.jklData );
+searchModal({
+    "id": "results",
+    "header": "Search Results",
+    "body": '<ul id="jkl-results" class="feed-list bg-darkTeal fg-light"></ul>',
+    "footer": "&copy; CircuitalMinds. Vahngraff | Don't Stop The Classics",
+    "button": "query"
+});
+JKL.Set( "videos" );
 </script>
-</div>
 <script>
 {% include app/vahngraff/script.js %}
 </script>
-</div>

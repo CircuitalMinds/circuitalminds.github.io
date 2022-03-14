@@ -40,14 +40,19 @@ static_url: "https://circuitalminds.github.io/static"
 #-------------------------------
 # resources
 scripts:
-  before:
-    - "instafeed.min.js"
-    - "facebook.js"
-    - "jquery.waitforimages.min.js"
-    - "jquery.fitvids.js"
-    - "common.js"
-  after:
-    - "utils.js"
+  - "instafeed.min.js"
+  - "facebook.js"
+  - "jquery.waitforimages.min.js"
+  - "jquery.fitvids.js"
+  - "common.js"
+  - "utils.js"
+modules:
+  - "math.html"
+  - "elements.html"
+  - "colors.html"
+  - "request.html"
+  - "timer.html"
+  - "jkl_search.html"
 #-------------------------------
 # Build settings
 header_pages:

@@ -1,3 +1,4 @@
+<div id="drive">
 <div class="row border-bottom bd-lightGray">
 
     <div class="cell-md-4 text-center text-left-md">
@@ -6,11 +7,11 @@
 
     <div class="cell-md-8 d-flex flex-justify-center flex-justify-end-md">
     <ul class="breadcrumbs bg-light">
-        <li class="pages-item mainbutton ontouch"><div id="time-clock" class="page-link"></div></li>
+        <li class="pages-item button-0 on-over"><div id="time-clock" class="page-link"></div></li>
         {% for page_name in site.header_pages %}
         <li class="page-item"><a class="page-link" href="/{{ page_name }}/">{{ page_name }}</a></li>
         {% endfor %}
-        <li class="pages-item mainbutton ontouch"><div id="get-login" class="page-link">Login</div></li>
+        <li class="pages-item button-0 on-over"><div id="get-login" class="page-link">Login</div></li>
     </ul>
     </div>
 
@@ -18,8 +19,8 @@
 
 <div class="row m-3">
 
-    <div class="cell-md-3 inbox p-1 bg-transparent">
-        <button class="button mb-3 success">Compose</button>
+    <div class="cell-md-3 inbox p-1 bg-transparent fg-teal">
+        <button class="button mb-3 success" onclick="Drive.View.close()">Close</button>
         <div data-collapsible="true" data-role="panel" data-title-caption="Folders">
         <ul id="folders" class="v-menu inbox-folders mt-4"></ul>
     </div>
@@ -28,21 +29,8 @@
 
 <div class="cell-md-8 bg-light">
 
-<div id="view" class="cell-md-5 img-container rounded fg-dark">
-    <img id="default" style="display: block;" src="{{ site.logo }}">
-    <div id="data" class="container" style="display: none">
-        <embed class="image fit" width="100%" height="550px" type="application/json">
-        <embed class="image fit" width="100%" height="550px" type="text/plain">
-    </div>
-    <div id="scripts" class="container" style="display: none">
-        <embed class="image fit" width="100%" height="550px" type="text/plain">
-    </div>
-    <div id="documents" class="container" style="display: none;">
-        <embed class="image fit" width="100%" height="550px" type="application/pdf">
-        <embed class="image fit" width="100%" height="550px" type="text/html">
-    </div>
-    <img id="pictures" style="display: none;" src="{{ site.logo }}">
-    <video id="videos" style="display: none;" controls></video>
+<div id="file-view" class="cell-md-5 img-container rounded fg-dark">
+    <img style="display: block;" src="{{ site.logo }}">
 </div>
 
 <form class="cell-md-3" action="/api/drive/upload" method=post enctype=multipart/form-data>
@@ -57,18 +45,9 @@
         <label class="fg-dark">Selected Files</label><div id="data-list" class="fg-dark"></div>
     <input type=submit value=Upload>
 </form>
-
 </div>
-
+</div>
+</div>
 <script>
 {% include app/drive/script.js %}
 </script>
-<script>
-$( function () {
-   settings = {% include app/drive/settings.json %};
-   setConfig(settings);
-   json_file = Drive.json_file;
-   requestObj.get( Drive.setURL( json_file ), function(data){setDrive( data )} );
-});
-</script>
-</div>

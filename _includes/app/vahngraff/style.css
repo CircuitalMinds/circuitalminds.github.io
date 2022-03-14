@@ -30,7 +30,7 @@
     to {opacity: 1}
 }
 /* The Modal (background) */
-.modal {
+.search-modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -48,7 +48,7 @@
 }
 
 /* Modal Content */
-.modal-content {
+.search-modal-content {
     position: fixed;
     bottom: 0;
     background-color: #9e0843;
@@ -60,26 +60,26 @@
 }
 
 /* The Close Button */
-.close {
+.search-close {
     color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-.close:hover,
-.close:focus {
+.search-close:hover,
+.search-close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-header {
+.search-modal-header {
     padding: 2px 16px;
     background-color: #9e0843;
     color: white;
 }
 
-.modal-body {
+.search-modal-body {
   padding: 2px 16px;
 }
 
@@ -88,13 +88,13 @@
   height: 150px;
 }
 
-.modal-footer {
+.search-modal-footer {
     padding: 2px 16px;
     background-color: #9e0843;
     color: white;
 }
 
-#logo, #date, #clock {
+#logo, #date-time, #clock-time {
     color: #9e0843;
     background-color: #1d1d1d;
     border: 5px solid gray;
@@ -102,7 +102,7 @@
     padding: 10px;
 }
 
-#logo:hover, #date:hover, #clock:hover {
+#logo:hover, #date-time:hover, #clock-time:hover {
     background-color: #9e0843;
     color: white;
 }

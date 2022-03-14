@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    {% include metadata.html %}
-    {% include libs.html %}
-    {% include javascripts.html %}
-    {% include styles.html %}
-    {% include favicon.html %}
+{% include metadata.html %}
+{% include libs.html %}
+{% include javascripts.html %}
+{% include styles.html %}
+{% if page.name == "404.html" %}
+<link href="{{ site.css }}/error.css" rel="stylesheet"/>
+{% endif %}
+{% include favicon.html %}
 </head>
-<body class="{% if page.lib == 'metro' %}bg-dark fg-white w-100 h-100{% endif %}">
+<body class="bg-dark fg-white w-100 h-100">
+{% if site.google-analytics %}
+{% include google-analytics.html %}
+{% endif %}
 {{ content }}
-{% include api/index.html %}
 </body>
 <script>
-$( function () {
-    ElementObj.setClock();
-    ElementObj.setDate();
-});
+$( function () { JKL.Render() });
 </script>
 </html>

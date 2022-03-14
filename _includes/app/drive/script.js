@@ -1,105 +1,87 @@
-var selected_files = $('#selected-files');
-let Drive = new Object();
-
-function setConfig ( settings ) {
-    if ( Object.keys(Drive).length == 0 ) {
-        Drive = settings;
-        Drive.root = '{{ site.static_url }}';
-        Drive.setURL = function ( paths ) {
-            if ( typeof(paths) == "object" ) {
-                return this.root.concat("/", paths.join("/"));
-            } else if ( typeof(paths) == "string" ) {
-                return this.root.concat("/", paths);
-            };
-        };
-    };
+let Drive = $( "#drive" )[0];
+Drive.Content = {
+    data: {},
+    get: function ( name ) {
+        return this.data[name];
+    },
+    set: function () {
+         Http.Get(
+            Static.Data.storage,
+            function ( x ) {
+                var s = "";
+                x.content.folders.map(
+                    function ( y ) {
+                        Drive.Content.data[y.name] = y.files;
+                        s += Drive.Folder.set( y.name, y.files );
+                    }
+                );
+                $("#folders")[0].innerHTML = s;
+            }
+        );
+    }
 };
-function setDrive ( data ) {
-    Drive.content = data.content.folders;
-    Drive.total_size = data.total_size;
-    Drive.content.map(
-         y => Drive.views[y.name] = {obj: $("#" + y.name)[0]}
-    );
-    Drive.views.documents.open = function ( path ) {
-        view = Drive.views.documents.obj;
-        if ( path.endsWith("pdf") ) {
-            view.querySelector(
-                'embed[type="application/pdf"]'
-            ).setAttribute( "src", path );
-        } else {
-            view.querySelector(
-                'embed[type="text/html"]'
-            ).setAttribute( "src", path );
-        };
-        view.style.display = "block";
-        return;
-    };
-    Drive.views.scripts.open = function ( path ) {
-        view = Drive.views.scripts.obj;
-        view.querySelector(
-            'embed[type="text/plain"]'
-        ).setAttribute( "src", path );
-        view.style.display = "block";
-        return;
-    };
-    Drive.views.data.open = function ( path ) {
-        view = Drive.views.data.obj;
-        if ( path.endsWith("json") ) {
-            view.querySelector(
-                'embed[type="application/json"]'
-            ).setAttribute( "src", path );
-        } else {
-            view.querySelector(
-                'embed[type="text/plain"]'
-            ).setAttribute( "src", path );
-        };
-        view.style.display = "block";
-        return;
-    };
-    Drive.views.pictures.open = function ( path ) {
-        view = Drive.views.pictures.obj;
-        view.setAttribute( "src", path );
-        view.style.display = "block";
-        return;
-    };
-    Drive.views.videos.open = function ( path ) {
-        view = Drive.views.videos.obj;
-        view.setAttribute( "src", path );
-        view.style.display = "block";
-        return;
-    };
-    function setFolder ( Data ) {
+Drive.File = {
+    icon: "icon mif-file-empty fg-teal",
+    getUrl: function ( folder, filename ) {
+        return  Http.Url( ["static", "storage", folder, filename] );
+    },
+    set: function ( folder, data ) {
         return [
-            '<li><a class="dropdown-toggle" href="#">',
-            Data.name,
-            `<span class="${Drive.icon_folder}"></span></a>`,
+            `<li><a onclick="Drive.View.open( '${folder}', '${data.filename}' );">`,
+            [
+                data.filename,
+                data.date,
+                data.size,
+                '<span class="' + this.icon + '"></span>'
+            ].join(" "),
+            '</a></li>'
+        ].join("\n");
+    }
+};
+Drive.Folder = {
+    icon: "icon mif-folder fg-teal",
+    set: function ( name, files ) {
+        return [
+            '<li><a class="dropdown-toggle" href="#">', name,
+            '<span class="' + this.icon + '"></span></a>',
             '<ul class="v-menu" data-role="dropdown">',
-            Data.files.map(
-                x => `<li>
-                      <a onclick="Open( '${Data.name}', '${x.filename}' );">
-                      ${x.filename} ${x.date} ${x.size} <span class="${Drive.icon_file}"></span>
-                      </a>
-                      </li>`
-            ).join("\n"),
+            files.map( y => Drive.File.set( name, y ) ).join("\n"),
             '</ul>',
             '</li>'
         ].join("\n");
-    };
-    $("#folders")[0].innerHTML = Drive.content.map(
-        x => setFolder(x)
-    ).join("\n");
+    }
 };
-
-function Close () {
-    Object.values(Drive.views).map( x => x.obj.style.display = "none" );
-    $("#default")[0].style.display = "block";
+Drive.View = {
+    data: {
+        "default": '<img class="view-content" src="{{ site.logo }}">',
+        "jsonfile": '<embed class="view-content image fit" width="100%" height="550px" type="application/json">',
+        "textfile": '<embed class="view-content image fit" width="100%" height="550px" type="text/plain">',
+        "pdf": '<embed class="view-content image fit" width="100%" height="550px" type="application/pdf">',
+        "html": '<embed class="view-content image fit" width="100%" height="550px" type="text/html">',
+        "image": '<img class="view-content image-fit">',
+        "video": '<video class="view-content" controls></video>'
+    },
+    open: function ( folder, filename ) {
+        var view = El.Query( "Id", "file-view" );
+        if ( folder == "pictures" ) {
+            view.innerHTML = this.data.image;
+        } else if ( folder == "videos" ) {
+            view.innerHTML = this.data.video;
+        } else if ( filename.endsWith("pdf") ) {
+            view.innerHTML = this.data.pdf;
+        } else if ( filename.endsWith("html") ) {
+            view.innerHTML = this.data.html;
+        } else if ( filename.endsWith("json") ) {
+            view.innerHTML = this.data.jsonfile;
+        } else {
+            view.innerHTML = this.data.textfile;
+        };
+        view.querySelector(".view-content").src = Drive.File.getUrl( folder, filename );
+    },
+    close: function () {
+        El.Query( "Id", "file-view" ).innerHTML = this.data["default"];
+    }
 };
-function Open ( folder, filename ) {
-    Close();
-    $("#default")[0].style.display = "none";
-    View = Drive.views[folder];
-    if ( View ) {
-        View.open( Drive.setURL(["storage", folder, filename]) );
-    };
-};
-
+$( function () {
+   Drive.Content.set();
+});

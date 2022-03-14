@@ -1,24 +1,12 @@
+<style>{% include snippet/logo.css %}</style>
 {% include snippet/colors.html name="Gradient" %}
 {% if page.layout == "application" %}
 <style>{% include app/{{ page.name | replace:'.html','' }}/style.css %}</style>
 {% else %}
-<style>{% include snippet/chat_style.css %}</style>
+<style>{% include snippet/helpers.css %}</style>
+<style>{% include snippet/chat.css %}</style>
+<style>{% include snippet/modal.css %}</style>
 {% include snippet/colors.html name="Special" %}
 {% include snippet/colors.html name="byName" %}
 {% include snippet/sizes.html %}
-<style>
-.logo-style {
-    background-color: #2C2F36;
-    text-align: center;
-    border: 2px solid #9e0843;
-    border-radius: 7px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-.logo-style:hover {
-    background-color: #9e0843;
-    border: 2px solid #e0c3fc;
-}
-</style>
-<link href="/{{ site.css }}/main.css" rel="stylesheet"/>
 {% endif %}

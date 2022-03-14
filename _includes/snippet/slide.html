@@ -1,0 +1,12 @@
+<div class="slider-container">
+    <div class="row w-100">
+    <input class="slider w-20 text-center bg-light" type="text" value="{{ include.value }}"/>
+    <input class="slider w-80"
+       type="range"
+       value="{{ include.value }}"
+       min="{{ include.min }}"
+       max="{{ include.max }}"
+       step="{{ include.step }}"
+       oninput="this.previousElementSibling.value=this.value;"/>
+    </div>
+</div>

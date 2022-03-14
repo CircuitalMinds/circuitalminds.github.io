@@ -9,9 +9,9 @@
     "jklData": {
         "searchInput": "query",
         "resultsContainer": "jkl-results",
-        "json": "data/videos/metadata.json",
+        "json": "https://circuitalminds.github.io/static/data/videos/query.json",
         "searchResultTemplate": [
-            "<li class='button card-content bg-darkTeal bg-dark-hover fg-light' onclick='VahnGraff.getVideo( {index} );'>",
+            "<li class='button card-content bg-darkTeal bg-dark-hover fg-light' onclick='Print( {this} );'>",
             "<img class='avatar' src='{image}'>",
             "<span class='label'>{title}</span>",
             "<span class='second-label'>{duration}</span></li>"

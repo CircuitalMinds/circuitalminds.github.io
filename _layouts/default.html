@@ -11,22 +11,17 @@
 </head>
 <body>
 {% if site.google-analytics %}
-  {% include google-analytics.html %}
+{% include google-analytics.html %}
 {% endif %}
 {% include loader.html %}
 {% include header.html %}
-{% include snippet/modal.html name="login" %}
-    {{ content }}
-{% include snippet/app_iframe.html %}
+{% include snippet/login.html %}
+{{ content }}
+{% include snippet/chat.html %}
 {% include javascripts.html %}
 {% include footer.html %}
 </body>
 <script>
-jklSearch.setData( {{ site.data.snippet.jklData | jsonify }} );
-$( function () {
-    jklSearch.Render();
-    ElementObj.setClock();
-    ElementObj.setDate();
-});
+$( function () { JKL.Set( "site" ); JKL.Render() });
 </script>
 </html>
