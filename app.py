@@ -7,7 +7,7 @@ from yaml import full_load
 
 class Site:
     path = join("/", *__file__.split("/")[:-1])
-    host = "192.168.50.7",
+    host = "192.168.50.7"
     port = 8080
     url = dict(
         production="https://circuitalminds.github.io",
@@ -44,13 +44,10 @@ class Site:
         self.Config.set("url", self.url["development"])
 
     def run(self):
-        params = " ".join([
-            getattr(self, i) for i in ("host", "port")
-        ])
+        params = " ".join([str(getattr(self, i)) for i in ("host", "port")])
+        logfile = self.path.replace("site", "dataset/credentials.json")
         system(
-            f"bash run.sh {params} " + load(open(
-                self.path.replace("site", "credentials.json")
-            ))["desktop"]["pwd"]
+            f"bash run.sh {params} {load(open(logfile))['desktop']['pwd']}"
         )
 
 
