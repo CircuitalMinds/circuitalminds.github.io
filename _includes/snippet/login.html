@@ -21,6 +21,7 @@
 $( function () {
 	M = El.Query( "Id", "login-data" );
 	El.Query( "Id", "login-button" ).onclick = function() {
+    	El.Query( "Cls", "menu-close" ).click();
     	El.Show( M );
 	};
 	El.iterAll( M, "span.close", function( e ) { e.onclick = function(){El.Hide( M )} } );

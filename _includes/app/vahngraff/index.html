@@ -4,8 +4,14 @@
   <div id="logo" class="cell-md-3 text-center">
       {{ site.title | replace:' | ', '' }} | {{ page.title }}
   </div>
-  <input id="query" type="text" class="cell-md-4" placeholder="Search for video..">
-  <button onclick="$('#query')[0].value='';" class="cell-md-1 bg-dark fg-light"><span class="mif-cross-light"></span></button>
+  <input id="query"
+         type="text"
+         class="cell-md-4"
+         placeholder="Search for video..">
+  <button onclick="$('#query')[0].value='';"
+          class="cell-md-1 bg-dark fg-light">
+      <span class="mif-cross-light"></span>
+  </button>
   <div class="cell-md-2 text-center" id="clock-time"></div>
   <div class="cell-md-2 text-center" id="date-time"></div>
 </div>
