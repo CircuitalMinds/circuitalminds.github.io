@@ -45,14 +45,7 @@ scripts:
   - "jquery.waitforimages.min.js"
   - "jquery.fitvids.js"
   - "common.js"
-  - "utils.js"
-modules:
-  - "math.html"
-  - "elements.html"
-  - "colors.html"
-  - "request.html"
-  - "timer.html"
-  - "jkl_search.html"
+  - "simple-jekyll-search.min.js"
 #-------------------------------
 # Build settings
 header_pages:
@@ -69,7 +62,6 @@ paginate: "7"
 paginate_path: "/page/:num"
 include:
   - "_pages"
-  - "_applications"
 sass:
   sass_dir: "_sass"
   style: "compressed"

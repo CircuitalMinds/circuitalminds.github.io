@@ -1,0 +1,31 @@
+{
+  "manifest": "/favicon.ico/manifest.json",
+  "ico": {
+      "href": "/favicon.ico/favicon.ico",
+      "sizes": [16, 32, 96]
+  },
+  "android": {
+      "href": "/favicon.ico/android-icon",
+      "sizes": [36, 48, 72, 96, 144, 192]
+  },
+  "apple": {
+      "pre": "/favicon.ico/apple-icon-precomposed.png",
+      "href": "/favicon.ico/apple-icon.png",
+      "sizes": [57, 60, 72, 76, 114, 120, 144, 152, 180]
+  },
+  "meta": [
+      {
+        "name": "theme-color",
+        "content": "#1abc9c"
+      },
+      {
+        "name": "msapplication-TileColor",
+        "content": "#1abc9c"
+      },
+      {
+        "name": "msapplication-TileImage",
+        "sizes":  [70, 144, 150, 310],
+        "content": "/favicon.ico/ms-icon"
+      }
+  ]
+}

@@ -7,7 +7,7 @@ permalink: /about/
 
 <div class="wh-100-10-center"> 
 {% for item in site.data.about %}
-<div class="wh-100-100-left ontouch">
+<div class="wh-50-100-center ontouch">
 {{ item[0] | capitalize }}: {{ item[1] }}
 </div>
 {% endfor %}

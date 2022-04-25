@@ -1,0 +1,14 @@
+<style>
+{% for c in site.data.colors.byName %}
+.bg-{{ c[0] }} {
+    background-color: {{ c[1] }};
+}
+.fg-{{ c[0] }} {
+    color: {{ c[1] }};
+}
+.bd-{{ c[0] }} {
+    border: 2px solid {{ c[1] }};
+    border-radius: 5px;
+}
+{% endfor %}
+</style>

@@ -1,11 +1,9 @@
-<link rel="canonical" href="{{ page.url | absolute_url }}">
-<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href='{{ "/feed.xml" | relative_url }}'/>
 {% for item in site.data.metadata %}
-{% if item.name %}
-<meta name="{{ item.name }}" content="{{ item.content }}"/>
-{% else %}
-<meta property="{{ item.property }}" content="{{ item.content }}"/>
-{% endif %}
+    {% if item.name %}
+    <meta name="{{ item.name }}" content="{{ item.content }}"/>
+    {% else %}
+    <meta property="{{ item.property }}" content="{{ item.content }}"/>
+    {% endif %}
 {% endfor %}
 <!-- Title, description, author -->
 {%- capture _page_title -%}
@@ -17,19 +15,11 @@
 {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
 <!-- open_graph -->
 {% if page.image %}
-
-{% if page.layout == 'application' %}
-<meta property="og:image" content="{{ site.url }}/{{ site.img }}/apps/{{ page.image }}" />
-<meta property="og:url" content="{{ site.url }}/{{ site.img }}/apps/{{ page.image }}" />
-{% else %}
-<meta property="og:image" content="{{ site.url }}/{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
-<meta property="og:url" content="{{ site.url }}/{{ site.img }}/{{ page.layout | append:'s' }}/{{ page.image }}" />
-{% endif %}
-<title>{{ site.title | replace:' | ','' }} | {{ page.title }}</title>
-
+<meta property="og:image"
+      content="{{ site.url }}/{{ site.img }}/{% if page.layout == 'application' %}app{% else %}{{ page.layout }}{% endif %}/{{ page.image }}" />
+<meta property="og:url"
+      content="{{ site.url }}/{{ site.img }}/{% if page.layout == 'application' %}app{% else %}{{ page.layout }}{% endif %}/{{ page.image }}" />
 {% else %}
 <meta property="og:image" content="{{ site.logo }}" />
 <meta property="og:url" content="{{ site.logo }}" />
-<title>{{ site.title }}</title>
-
 {% endif %}

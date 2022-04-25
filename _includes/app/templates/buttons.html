@@ -1,0 +1,19 @@
+{% assign buttons = include.buttons %}
+<div class="cell-md-4">
+<div class="p-2 multi-action">
+    <button class="action-button rotate-minus bg-teal fg-white"
+            onclick="$(this).toggleClass('active')">
+    <span class="icon"><span class="mif-apps"></span></span>
+    </button>
+    <ul class="p-2 actions drop-right">
+    {% for btn in buttons %}
+    <li id="{{ btn }}" class="bg-teal"><a><span class="mif-{{ btn }}"></span></a></li>
+    {% endfor %}
+    </ul>
+</div>
+</div>
+<div class="cell-md-2">
+<input id="random" class="p-2" type="checkbox"
+       data-role="switch" data-caption="Random" data-cls-switch="mySwitch"
+       data-cls-caption="fg-teal text-bold" data-cls-check="bd-teal myCheck">
+</div>

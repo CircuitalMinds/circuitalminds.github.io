@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% include metadata.html %}
-{% include libs.html %}
-{% include styles.html %}
-{% if page.name == "404.html" %}
-<link href="{{ site.css }}/error.css" rel="stylesheet"/>
-{% endif %}
-{% include favicon.html %}
+    {% include required.html %}
+    {% include style.html %}
+    {% include script.html %}
+    <title>
+        {% if page.title %}
+        {{ site.title | replace:' | ','' }} | {{ page.title }}
+        {% else %}
+        {{ site.title }}
+        {% endif %}
+    </title>
 </head>
 <body>
-{% if site.google-analytics %}
-{% include google-analytics.html %}
-{% endif %}
-{% include loader.html %}
-{% include header.html %}
-{% include snippet/login.html %}
-{{ content }}
-{% include snippet/chat.html %}
-{% include javascripts.html %}
-{% include footer.html %}
+    {% if site.google-analytics %}{% include resource/google-analytics.html %}{% endif %}
+    {% include main/loader.html %}
+    {% include main/header.html %}
+    {% include main/login.html %}
+
+    {{ content }}
+
+    {% include app/index.html name="chat" as_iframe="true" %}
+    {% include main/footer.html %}
+    <script>
+    jklSearch( {{ site.data.jkl_search['site'] | jsonify }} );
+    </script>
+    {% include api/index.html %}
 </body>
-<script>
-$( function () { JKL.Set( "site" ); JKL.Render() });
-</script>
 </html>

@@ -7,10 +7,6 @@ tags: [Cantor]
 ---
 > <h3><strong>"Se repiten en multitud, liberandose en aparente anarquía preciosa estructura pintada en fragmentos disjuntos; El Infinito expresando su arte más auténtico".</strong></h3>
 
-<script>{% include module/isograff.html %}</script>
-
-***
-
 
 Aprender un lenguaje nuevo e intentar formalizarlo, conlleva actos con diálogos internos que quizás en algunas ocasiones no será posible contar con alguna conclusión inmediata e inclusive girar de forma irracional por caminos equívocos; Y un escape posible es volver al inicio de todo, una y otra vez si fuese necesario. En matemáticas, obtener una prueba clara y coherente logrando su perfeccion, recurrir a prácticas de meditación es una necesidad para transportarnos al pensamiento abstracto, y asi obtener argumentos elementales para la construcción de un lenguaje que pueda sostener su claridad al mínimo detalle posible.
 

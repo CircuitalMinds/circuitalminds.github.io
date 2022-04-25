@@ -7,7 +7,7 @@ from yaml import full_load
 
 class Site:
     path = join("/", *__file__.split("/")[:-1])
-    host = "192.168.50.7"
+    host = "192.168.50.8"
     port = 8080
     url = dict(
         production="https://circuitalminds.github.io",

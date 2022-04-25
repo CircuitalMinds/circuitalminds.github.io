@@ -1,0 +1,27 @@
+{
+    "videos_root": "https://raw.githubusercontent.com/circuitalmynds/music_",
+    "header-links": {
+      "Home": "/",
+      "Resources": "/resources/",
+      "Topics": "/topics/",
+      "Log-In": "/login/"
+    },
+    "folder": {
+        "names": ["videos", "pictures", "scripts", "documents", "data"],
+        "icon": "icon mif-folder fg-teal"
+    },
+    "file": {
+        "icon": "icon mif-file-empty fg-teal"
+    },
+    "player": {
+      "buttons": [
+        "play",
+        "pause",
+        "previous",
+        "next",
+        "volume-minus",
+        "volume-plus"
+      ],
+      "poster": "img/app/poster.gif"
+    }
+}

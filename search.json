@@ -11,5 +11,5 @@ layout: null
       "image"    : "{{ post.image }}",
       "date"     : "{{ post.date }}"
     } {% unless forloop.last %},{% endunless %}
-  {% endfor %}   
+  {% endfor %}
 ]
