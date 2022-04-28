@@ -17,7 +17,7 @@ class Site:
     class Config:
         path = "./_config.yml"
         ignores = "\n".join([
-            ".env", "*environment", "*__pycache__", "*sass-cache", "*_site"
+            ".env", "*environment", "*__pycache__", "*sass-cache", "*_site", "*api"
         ])
 
         def get(self, name):
