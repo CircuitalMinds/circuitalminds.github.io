@@ -8,7 +8,7 @@ from yaml import full_load
 class Site:
     path = join("/", *__file__.split("/")[:-1])
     host = "192.168.50.8"
-    port = 8080
+    port = 80
     url = dict(
         production="https://circuitalminds.github.io",
         development=f"http://{host}"
@@ -43,17 +43,17 @@ class Site:
         system("bash push.sh")
         self.Config.set("url", self.url["development"])
 
-    def run(self):
+    def build(self):
         params = " ".join([str(getattr(self, i)) for i in ("host", "port")])
         logfile = self.path.replace("site", "dataset/credentials.json")
         system(
-            f"bash run.sh {params} {load(open(logfile))['desktop']['pwd']}"
+            f"bash make.sh {params} {load(open(logfile))['desktop']['pwd']}"
         )
 
 
 if __name__ == "__main__":
     opts = argv[1:]
-    if "run" in opts:
-        Site().run()
+    if "make" in opts:
+        Site().build()
     elif "update" in opts:
         Site().update()

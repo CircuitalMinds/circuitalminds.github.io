@@ -36,7 +36,7 @@ mailchimp: # Add your MailChimp form identifier.
 js: "assets/js"
 css: "assets/css"
 img: "assets/img"
-static_url: "https://circuitalminds.github.io/static"
+static_url: "/static"
 #-------------------------------
 # resources
 scripts:

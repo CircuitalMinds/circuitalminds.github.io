@@ -1,3 +1,7 @@
+function getUser() {
+    return $("#user-data")[0];
+};
+
 function InvalidEvent ( x ) {
     var y  = $( x );
     y.addClass( "ani-ring" );

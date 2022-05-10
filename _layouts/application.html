@@ -5,9 +5,7 @@
     {% include resource/lib.html name=page.lib %}
     {% include styles/app.html %}
     {% include script.html %}
-    <title>
-        {{ site.title | replace:' | ','' }} | {{ page.title }}
-    </title>
+    <title>{{ page.title }}</title>
 </head>
 <body class="bg-dark fg-white w-100 h-100">
     {% if site.google-analytics %}{% include resource/google-analytics.html %}{% endif %}
