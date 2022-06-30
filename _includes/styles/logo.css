@@ -6,6 +6,7 @@
     transition-duration: 0.4s;
     cursor: pointer;
 }
+
 .logo-style:hover {
     background-color: #9e0843;
     border: 2px solid #e0c3fc;

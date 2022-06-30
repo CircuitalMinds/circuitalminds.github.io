@@ -1,0 +1,21 @@
+I"Ö<form class="contact form-container" method="get">
+    <div class="row w-100">
+        <div class="row w-50">
+        <input type="text" name="name" id="name" value="" placeholder="Name" />
+        </div>
+        <div class="row w-50">
+        <input type="email" name="email" id="email" value="" placeholder="Email" />
+        </div>
+    </div>
+    <div class="row w-100">
+        <input type="text" name="subject" id="subject" value="" placeholder="Subject" />
+    </div>
+    <div class="row w-100">
+        <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+    </div>
+    <div class="row w-100">
+        <input type="submit" name="send" value="Send Message" />
+    </div>
+</form>
+
+:ET

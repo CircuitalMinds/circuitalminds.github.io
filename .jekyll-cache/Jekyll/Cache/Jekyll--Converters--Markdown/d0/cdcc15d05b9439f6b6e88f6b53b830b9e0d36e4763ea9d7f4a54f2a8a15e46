@@ -1,0 +1,49 @@
+I"�<blockquote>
+  <h3>"A veces, las cosas más sencillas y normales pueden convertirse en acontecimientos extraordinarios, simplemente si las llevaran a cabo con las personas adecuadas; y puedes ser solamente una persona para el mundo, pero para una persona tú eres el mundo."</h3>
+</blockquote>
+
+<hr />
+
+<p>Quizás los 365 días, que aproximadamente tiene el año, pudieran cada uno de ellos tener motivo para celebrar, sentirse especial e indispensable en este gran espacio sin dueño que hemos llamado <code class="language-plaintext highlighter-rouge">Cosmos</code>. En este espacio lleno de misterios, que aveces nos resulta tan complejo e incongruente, debe su existencia a cada ser que lo habita, o que alguna vez lo hizo, haciendo posible para mantener su presencia tan especial y divina como si fuera el <code class="language-plaintext highlighter-rouge">Todo</code> absoluto. Quizás, alguien detuvo el <code class="language-plaintext highlighter-rouge">Tiempo</code> exactamente en su día especial. Esta insistencia que prevalece con ego y escepticismo al cuestionarnos todo con la seguridad de que lo es posible <code class="language-plaintext highlighter-rouge">Todo</code>, nos mantiene unidos y constantes. Pero algunos pueden perder su misma presencia, su identidad, y sin existencia al menos de que algo o alguien se la recuerde.</p>
+
+<hr />
+
+<p>En contraste, si en verdad las requerimos, nuestra habilidad más poderosa que ni siquiera requiere presentarse o conocerla sustancialmente, y solamente identificarla con una simple palabra nos puede dar respuestas, la cual adoptamos como <code class="language-plaintext highlighter-rouge">Fe</code>. Sin verificar la veracidad de lo anterior, dejando el escepticismo a un lado y dejar que la imaginación resuelva mis inquietudes por un momento, puedo afirmar con seguridad, que es posible plasmarme tal y como lo hace el <code class="language-plaintext highlighter-rouge">Cosmos</code> en el estado más simple que podamos imaginarnos, que no necesita un nombre para identificarse, no existe la necesidad de un lenguaje porque somos aquello que llamamos el <code class="language-plaintext highlighter-rouge">"Todo"</code>, en ausencia física, y reconociendo su existencia por si mismo.</p>
+
+<hr />
+
+<p>Con las ideas que se describieron anteriormente, pareciera que se pretende mostrar alguna forma de inconformidad o molestia, pintar la individualidad como algo que necesitamos para lograr la paz o algo similar, y que probablemente ni siquiera podamos describir con exactitud. Pero, en realidad, es una notable percepción, y quizás utopía actual. En lo personal, quizás se ha perdido aquella identidad individual, y como muchas etapas del ser vivo sé estén manifestando, no me parece una idea absurda. Sin embargo, es más que claro que el ser humano conoció la fe y la paz individual en esencia alguna vez, pero prefirió identificarse en una sociedad, procurar al prójimo y se conoció la fe en un estado más allá de lo divino y majestuoso, que definitivamente era imposible individualmente. Exactamente, el <code class="language-plaintext highlighter-rouge">Amor</code>, al prójimo sin exclusión, a sus seres queridos, e incluso por uno mismo y a los que pertenecen a cualquier otra especie.</p>
+
+<hr />
+
+<p>Así, el tiempo es considerado valioso, y no solo por el tiempo de vida que le queda, si no también por el de sus vínculos más cercanos que llamamos <code class="language-plaintext highlighter-rouge">Amistades</code>, padres, hermanos y cualquier ser que aprecie su existencia. Y por eso, nuestra medida tan exacta para medir el tiempo conocida como año, es utilizada para procurar darle a cada uno de ellos un día especial e inolvidable como si fuera el ultimo día especial, que hemos llamado <code class="language-plaintext highlighter-rouge">Cumpleaños</code>. Hay quienes aún no conocen nada acerca de esto, o más bien no lo asimilen, pero sin duda notaran que <code class="language-plaintext highlighter-rouge">"El amor es más grande que cualquier cosa en su camino".</code></p>
+
+<hr />
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_friend</span><span class="p">(</span><span class="n">someone</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Yeii!!, </span><span class="si">#{</span><span class="n">some</span> <span class="n">better</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_friend</span><span class="p">(</span><span class="s1">'friendship'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Yeii!!, Coffee + Little Pigs' to STDOUT.</span></code></pre></figure>
+
+<hr />
+
+<h3 id="u2---love-is-bigger-than-anything-in-its-way-pª-yac">U2 - Love is bigger than anything in its way. (pª. YAC)</h3>
+
+<div id="vahngraff-app"></div>
+<script>
+$( function () {
+  set_iframe("vahngraff-app", 'http://192.168.50.8/vahngraff');
+});
+</script>
+
+<hr />
+
+<p><img src="/assets/img/posts/birthdays/coffee.jpg" alt="" class="reveal-in" width="910" height="512" /></p>
+
+<hr />
+
+<p><img src="/assets/img/posts/birthdays/friends.jpg" alt="" class="reveal-in" width="910" height="512" /></p>
+
+<hr />
+:ET

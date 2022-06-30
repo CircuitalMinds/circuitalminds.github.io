@@ -308,15 +308,6 @@ getDateTime = function () {
     var d = new Date();
     El.queryID( "date-time" ).innerHTML = d.toLocaleDateString();
 };
-function getRequest ( url ) {
-    var req = new XMLHttpRequest();
-    req.open( "GET", url );
-    req.send();
-    req.onreadystatechange = function () {
-        setTimeout( function () { console.log( req.responseText ) }, 200 );
-    };
-};
-
 
 function iter ( x, g ) {
     var k, v;
@@ -361,4 +352,28 @@ function getattr( x, k ) {
     } else {
         return x[k];
     };
+};
+
+function getRequest ( object, url, datatype ) {    
+    object.data = {};
+    object.get = function () {
+        var req = new XMLHttpRequest();    
+        req.open( "GET", url );
+        req.send();
+        req.onreadystatechange = function () { 
+            setTimeout( function () {                 
+                object.data = ( 
+                    datatype == "json" 
+                ) ? JSON.parse( req.response ) : req.response;
+            }, 200 );
+        };
+    };
+};
+
+function getData ( name ) {
+    var x = {};
+    getRequest( x, {
+        search: "https://circuitalminds.github.io"
+    }[name] );
+    return x;
 };

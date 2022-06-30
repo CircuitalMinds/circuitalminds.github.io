@@ -1,5 +1,4 @@
 {
-    "videos_root": "https://raw.githubusercontent.com/circuitalmynds/music_",
     "header-links": {
       "Home": "/",
       "Resources": "/resources/",
@@ -7,8 +6,8 @@
       "Log-In": "/login/"
     },
     "folder": {
-        "names": ["videos", "pictures", "scripts", "documents", "data"],
-        "icon": "icon mif-folder fg-teal"
+        "names": ["notebooks", "videos", "pictures", "documents"],
+        "icon": "icon mif-folder fg-cyan"
     },
     "file": {
         "icon": "icon mif-file-empty fg-teal"

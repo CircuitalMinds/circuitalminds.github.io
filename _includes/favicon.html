@@ -1,5 +1,5 @@
 <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>
-{% assign fav=site.data.favicon %}
+{% assign fav=site.data.cfg.favicon %}
 <link rel="manifest" href="{{ fav.manifest }}">
 {% for s in fav.android.sizes %}
 <link rel="icon" type="image/png" sizes="{{ s }}x{{ s }}"  href="{{ fav.android.href }}-{{ s }}x{{ s }}.png">
@@ -16,7 +16,7 @@
 {% for m in fav.meta %}
   {% if m.sizes %}
   {% for s in m.sizes %}
-  <meta name="m.name" content="{{ m.content }}-{{ s }}x{{ s }}.png">
+  <meta name="{{ m.name }}" content="{{ m.content }}-{{ s }}x{{ s }}.png">
   {% endfor %}
   {% else %}
   <meta name="{{ m.name }}" content="{{ m.content }}">

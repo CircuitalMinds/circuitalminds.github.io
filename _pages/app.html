@@ -1,10 +1,9 @@
 ---
 layout: application
 image: preview.jpg
-title: CircuitalMinds | VahnGraff
+title: VahnGraff
 lib: metro
 permalink: /app/vahngraff/
 ---
-<div class="cell-md-12 h-100 initial-gradient">
-{% include app/index.html as_iframe="false" %}
-</div>
+
+{% include {{ site.app.index }} as_iframe="false" %}

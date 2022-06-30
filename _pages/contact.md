@@ -47,9 +47,3 @@ permalink: /contact/
     </div>
 </form>
 
-
-
-{% assign Y = "John, Paul, George, Ringo" | split:"," %}
-{% for item in Y %}
-- {{ item }}
-{% endfor %}

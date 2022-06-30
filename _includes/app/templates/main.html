@@ -1,72 +1,19 @@
 {% assign app = include.data %}
-<div id="drive">
-<div class="row">
-    <div class="header row border-bottom">
-    <h3 class="header-title dashboard-section-title">{{ page.title }}</h3>
-    <ul class="header-links breadcrumbs">
-        {% for x in app['header-links'] %}
-        <li class="page-item">
-            <a class="page-link" href="{{ x[1] }}">{{ x[0] }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    </div>
-    <div class="cell-md-12">
-        <div class="row">
-        <div class="cell-md-4 inbox p-1 bg-transparent fg-teal">
-            <div data-collapsible="true" data-role="panel" data-title-caption="Folders">
-            <ul class="folders v-menu inbox-folders mt-4">
-                {% for x in app.folder.names %}
-                <li class="folder-{{ x }}">
-                    <a class="dropdown-toggle" href="#">
-                    {{ x | capitalize }}<span class="{{ app.folder.icon }}"></span>
-                    </a>
-                    <ul class="folder-{{ x }}-files v-menu" data-role="dropdown"></ul>
-                </li>
-                {% endfor %}
-            </ul>
-            </div>
-            <form action="/api/drive/upload" method=post enctype=multipart/form-data>
-            <input type="file" data-role="file" data-mode="drop" multiple="true"
-                   data-on-select="$('#selected-files').html('');
-                   $('#data-list')[0].innerHTML = '';
-                   $.each(arguments[0], function(){
-                   $('#selected-files').append('&lt;div&gt;'+this.name+'&lt;/div&gt;');
-                   $('#data-list')[0].innerHTML += '<p>'+this.name+'</p>\n';
-                });" name="files[]"/>
-                <div class="bg-light p-2 overflow reduce-1" id="selected-files" style="height: 270px;"></div>
-                <label class="fg-dark">Selected Files</label><div id="data-list" class="fg-dark"></div>
-            </form>
-        </div>
-        <div class="cell-md-8 bg-light">
-        <h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
-        <div class="row">
-          <div id="logo" class="cell-md-3 text-center">{{ page.title }}</div>
-          {% include datetime.html %}
-          <input id="query"
-                 type="text"
-                 class="cell-md-4"
-                 placeholder="Search for video..">
-          <button onclick="$('#query')[0].value='';"
-                  class="cell-md-1 bg-dark fg-light">
-              <span class="mif-cross-light"></span>
-          </button>
-        </div>
-        <div class="row">
-            {% include app/templates/buttons.html buttons=app.player.buttons %}
-        </div>
-        <div class="row mt-2">
-            {% include app/templates/player.html %}
-        <div class="row mt-2">
-        {% include app/templates/search.html %}
-        </div>
-        </div>
-        </div>
-    </div>
-    </div>
-</div>
+<!-- Header -->
+{% include app/templates/header.html links=app.header-links %}
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+  title="close side menu" id="myOverlay"></div>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+  {% include app/templates/video.html buttons=app.player.buttons %}
+  {% include app/templates/panel.html folder=app.folder %}
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>FOOTER</h4>
+    <p>Powered by <a href="{{ site.url }}" target="_blank">w3.css</a></p>
+  </footer>
+  <script>{% include app/scripts/drive.js %}</script>
+  <script>{% include app/scripts/index.js %}</script>
 </div>
 {% include app/index.html as_iframe="true" %}
-<script>
-{% include app/scripts/drive.js %}
-</script>

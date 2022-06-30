@@ -1,4 +1,4 @@
-{% for item in site.data.metadata %}
+{% for item in site.data.cfg.meta %}
     {% if item.name %}
     <meta name="{{ item.name }}" content="{{ item.content }}"/>
     {% else %}

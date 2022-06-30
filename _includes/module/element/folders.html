@@ -1,0 +1,38 @@
+<div data-collapsible="true" data-role="panel" data-title-caption="Folders">
+    <ul class="folders v-menu inbox-folders mt-4">
+        {% for x in site.data.App.folder.names %}
+        <li class="folder-{{ x }}">
+            <a class="dropdown-toggle" href="#">
+            {{ x | capitalize }}<span class="{{ site.data.App.folder.icon }}"></span>
+            </a>
+            <ul class="folder-{{ x }}-files v-menu" data-role="dropdown"></ul>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+<script>
+$( function () { 
+    var fdata = {};
+    var folders = getValues( $(".folders")[0].querySelectorAll("ul") );
+    folders.map(
+        fi => fdata[ fi.className.split( "-" )[1] ] = fi
+    );
+    function getFile ( y ) { return [
+            "<li><a>", [y.name, y.date, y.size].join(" "),
+            '<span class="icon mif-file-empty fg-teal"></span>',
+            "</a></li>"
+        ].join("");
+    };
+    fromStatic("data").get( 
+        "storage.json", 
+        function ( data ) {
+            var cont = Object.entries( data.content );
+            for ( x of cont ) {
+                fdata[ x[0] ].innerHTML = x[1].files.map(
+                    xi => getFile( xi )
+                ).join( "\n" );
+            };
+        }
+    );
+} );                
+</script>

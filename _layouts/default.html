@@ -4,27 +4,31 @@
     {% include required.html %}
     {% include style.html %}
     {% include script.html %}
-    <title>
-        {% if page.title %}
-        {{ site.title | replace:' | ','' }} | {{ page.title }}
-        {% else %}
-        {{ site.title }}
-        {% endif %}
-    </title>
+    <title>{% if page.title %} {{ page.title }} | {{ site.title }} {% else %} {{ site.title }} {% endif %}</title>
 </head>
 <body>
     {% if site.google-analytics %}{% include resource/google-analytics.html %}{% endif %}
-    {% include main/loader.html %}
-    {% include main/header.html %}
-    {% include main/login.html %}
+    {% include home/loader.html %}
+    {% include home/header.html %}
+    {% include home/login.html %}
 
     {{ content }}
 
     {% include app/index.html name="chat" as_iframe="true" %}
-    {% include main/footer.html %}
+    {% include home/footer.html %}
     <script>
-    jklSearch( {{ site.data.jkl_search['site'] | jsonify }} );
+        getSearchQuery({
+            noResultsText: "<li class='search-no-item'>No results found</li>",
+            searchInput: $( "#js-search-input" )[0],
+            resultsContainer: $( "#js-results-container" )[0],
+            searchResultTemplate: [
+                "<li class='search-item bg-cover' style='background-image: url( {image} );'>",
+                "<a class='search-link' href='{url}'><p class='tag'>{title}<p></a>",
+                "</li>"
+            ].join("\n"),
+            json: "/search.json"
+        });
     </script>
-    {% include api/index.html %}
+    {% include {{ site.api.html }} %}
 </body>
 </html>

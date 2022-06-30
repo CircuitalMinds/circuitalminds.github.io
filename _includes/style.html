@@ -4,11 +4,11 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
-<style>{% include styles/logo.css %}</style>
-<style>{% include styles/helpers.css %}</style>
-<style>{% include styles/modal.css %}</style>
-{% include styles/special_colors.html %}
-{% include styles/colors_by_name.html %}
-{% include styles/sizes.html %}
-{% include styles/gradient.html %}
-<style>{% include styles/chat.css %}</style>
+<style>
+{% include styles/logo.css %}
+{% include styles/helpers.css %}
+{% include styles/modal.css %}
+{% include styles/sizes.css %}
+{% include styles/gradient.css %}
+{% include styles/chat.css %}
+</style>

@@ -2,7 +2,7 @@
 # General Site Settings
 baseurl: ""
 url: "https://circuitalminds.github.io"
-title: "Circuital | Minds"
+title: "CircuitalMinds"
 description: "From Here To Eternity."
 logo: "https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"
 #-------------------------------
@@ -11,6 +11,10 @@ author-name: "Alan Matzumiya"
 author-avatar: "https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
 author-website: "https://alanmatzumiya.github.io"
 author-github: "https://github.com/alanmatzumiya"
+#-------------------------------
+# Location Data
+unison-location: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d27895.489657428087!2d-110.964439!3d29.078030000000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcf527709b7555a3!2sUniversidad%20de%20Sonora%20-%20UNISON!5e0!3m2!1ses-419!2smx!4v1630257214462!5m2!1ses-419!2smx"
+sky-location: "https://virtualsky.lco.global/embed/index.html?longitude=-111.02386000000001&latitude=29.0878&projection=lambert&showstarlabels=true&showorbits=true&ecliptic=true&meridian=true&gridlines_az=true&gridlines_eq=true&gridlines_gal=true&live=true"
 #-------------------------------
 # Contact links
 fb_id: "772020893629559"
@@ -36,7 +40,7 @@ mailchimp: # Add your MailChimp form identifier.
 js: "assets/js"
 css: "assets/css"
 img: "assets/img"
-static_url: "/static"
+static_url: "https://circuitalminds.github.io/static"
 #-------------------------------
 # resources
 scripts:
@@ -50,9 +54,16 @@ scripts:
 # Build settings
 header_pages:
   - "resources"
-  - "topics"
   - "contact"
   - "about"
+api:
+  html: "api/index.html"
+  js: "api/index.js"
+  root_url: "https://circuitalminds.heroku.com"
+app:
+  index: "app/index.html"
+  chat: "app/chat.html"
+  video: "app/video.html"
 markdown: "kramdown"
 permalink: ":title/"
 plugins:

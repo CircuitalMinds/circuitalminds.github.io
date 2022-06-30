@@ -1,4 +1,5 @@
-$( function () {
+function initDrive () {
+    let data = {};
     ( function getStorage () {
         var fdata = {};
         var folders = getValues( $(".folders")[0].querySelectorAll("ul") );
@@ -10,14 +11,12 @@ $( function () {
             '<span class="icon mif-file-empty fg-teal"></span>',
             "</a></li>"
         ].join("") };
-        fromStatic("data").get( "storage.json", function ( data ) {
-            var cont = Object.entries( data.content );
-            for ( x of cont ) {
-                fdata[ x[0] ].innerHTML = x[1].files.map(
-                    xi => getFile( xi )
-                ).join( "\n" );
-            };
-        });
+        var cont = Object.entries( data.content );
+        for ( x of cont ) {
+            fdata[ x[0] ].innerHTML = x[1].files.map(
+                xi => getFile( xi )
+            ).join( "\n" );
+        };        
     } )();
     $( "#log-in" ).on( "click", function () {
         console.log( "logged" );
@@ -41,4 +40,9 @@ $( function () {
 
     };
     $( ".close" ).on( "click", viewer.closeAll );
-});
+};
+
+
+function getStorageFolder() {
+    return Http( ":8080/storage" ).get( "documents" );
+};

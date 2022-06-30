@@ -1,0 +1,55 @@
+{% assign buttons = include.buttons %}
+
+<h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
+<div class="row">
+    <div id="logo" class="cell-md-4 text-center">{{ page.title }}</div>
+    {% include datetime.html %}
+    <input id="query"
+            type="text"
+            class="cell-md-3"
+            placeholder="Search for video..">
+    <button onclick="$('#query')[0].value='';"
+            class="cell-md-1 bg-dark fg-light">
+        <span class="mif-cross-light"></span>
+    </button>
+    <div class="p-2 mt-2 row">
+    {% for btn in buttons %}
+    <button id="{{ btn }}" class="action-button w3-hover-dark-gray w3-hover-text-white w3-dark w3-text-teal"><span class="mif-{{ btn }}"></span></button>
+    <div class="p-1"></div>    
+    {% endfor %}      
+    <div class="p-2"></div>
+    <div class="mt-2 p-2 w3-hover-dark-gray w3-hover-text-white w3-dark w3-text-teal">              
+        <input id="random" type="checkbox" data-caption='<span class="mif-shuffle"></span>'
+            data-role="switch" data-cls-switch="mySwitch"
+            data-cls-caption="fg-teal text-bold" data-cls-check="bd-teal myCheck">
+    </div>
+    </div>
+</div>     
+
+<br>
+<div class="row">
+<video class="cell-md-8 bg-light fg-cyan"
+       data-random-mode=false
+       data-video-selected="0"
+       data-aspect-ratio="hd"
+       data-role="video-player"
+       data-volume="1"
+       data-loop-icon='<span class="mif-loop2 fg-cyan"></span>'
+       data-play-icon='<span class="mif-play fg-cyan"></span>'
+       data-stop-icon='<span class="mif-stop fg-cyan"></span>'
+       data-volume-low-icon='<span class="mif-volume-low fg-cyan"></span>'
+       data-volume-high-icon='<span class="mif-volume-low fg-cyan"></span>'
+       data-volume-medium-icon='<span class="mif-volume-medium fg-cyan"></span>'
+       data-volume-mute-icon='<span class="mif-volume-mute2 fg-cyan"></span>'
+></video>
+</div>
+<ul id="feeds" class="group-list feed-list"></ul>
+<div id="results" class="search-modal" style="z-index:4">
+       <div class="search-modal-content">
+       <div class="search-modal-header"><span class="search-close">&times;</span><h2>Search Results</h2></div>
+       <div class="search-modal-body"><ul id="jkl-results" class="feed-list bg-darkTeal fg-light"></ul></div>
+       <div class="search-modal-footer"><span class="search-close">&times;</span>&copy; CircuitalMinds. Vahngraff | Don't Stop The Classics</div>
+       </div>
+</div>
+<script>{% include app/scripts/video.js %}</script>       
+    

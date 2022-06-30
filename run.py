@@ -1,59 +1,86 @@
 from sys import argv
-from os.path import join
-from json import load
 from os import system
+from subprocess import getoutput
+from pathlib import Path
 from yaml import full_load
+root = Path("./").resolve()
+host = getoutput("hostname -I").strip()
+
+
+def write(filename, data):
+    file = root.joinpath(filename)
+    if file.is_file():
+        file.open("w").write(data)
+
+
+class Config:
+
+    @staticmethod
+    def gitignore():
+        file = dict(
+            path=root.joinpath(".gitignore"),
+            data=[
+                ".env", "*__pycache__", "*sass-cache", "*_site"
+            ]
+        )
+
+        def update(*names):
+            file["path"].open("w").write("\n".join(file["data"] + list(names)))
+        file["update"] = update
+        return file
+
+    @staticmethod
+    def site():
+        file = dict(path=root.joinpath("_config.yml"))
+        file["data"] = full_load(file["path"].open())
+
+        def update(**data):
+            fdata = file["path"].open().read()
+            for key, value in data.items():
+                if key in file["data"]:
+                    fdata = fdata.replace(
+                        f'{key}: "{file["data"][key]}"',
+                        f'{key}: "{value}"'
+                    )
+            file["path"].open("w").write(fdata)
+            file["data"] = full_load(file["path"].open())
+        file["update"] = update
+        return file
 
 
 class Site:
-    path = join("/", *__file__.split("/")[:-1])
-    host = "192.168.50.8"
-    port = 80
-    url = dict(
-        production="https://circuitalminds.github.io",
-        development=f"http://{host}"
-    )
-
-    class Config:
-        path = "./_config.yml"
-        ignores = "\n".join([
-            ".env", "*environment", "*__pycache__", "*sass-cache", "*_site", "*api"
-        ])
-
-        def get(self, name):
-            return full_load(open(self.path)).get(name)
-
-        def set(self, key, value):
-            old_value = self.get(key)
-            if old_value:
-                data = open(self.path).read().replace(
-                    f'{key}: "{old_value}"',
-                    f'{key}: "{value}"'
-                )
-                with open(self.path, "w") as f:
-                    f.write(data)
+    config = Config.site()
+    run_opts = ["serve", "build", "push"]
 
     def __init__(self):
-        self.Config = self.Config()
+        self.config["update"](**dict(
+            url=f"http://{host}"
+        ))
 
-    def update(self):
-        self.Config.set("url", self.url["production"])
-        with open(".gitignore", "w") as f:
-            f.write(self.Config.ignores)
+    def push(self):
+        Config.gitignore()["update"]()
+        self.config["update"](**dict(
+            url="https://circuitalminds.github.io"
+        ))
         system("bash push.sh")
-        self.Config.set("url", self.url["development"])
+
+    def serve(self):
+        self.config["update"](**dict(
+            url=f"http://{host}"
+        ))
+        system("bash make.sh serve")
 
     def build(self):
-        params = " ".join([str(getattr(self, i)) for i in ("host", "port")])
-        logfile = self.path.replace("site", "dataset/credentials.json")
+        self.config["update"](**dict(
+            url=f"http://{host}"
+        ))
         system(
-            f"bash make.sh {params} {load(open(logfile))['desktop']['pwd']}"
+            f'bash make.sh build {Path.home().joinpath("login").open().read().strip()}'
         )
 
 
 if __name__ == "__main__":
-    opts = argv[1:]
-    if "make" in opts:
-        Site().build()
-    elif "update" in opts:
-        Site().update()
+    opt = argv[1] if len(argv) > 1 else None
+    if opt in Site.run_opts:
+        site = Site()
+        getattr(site, opt)()
