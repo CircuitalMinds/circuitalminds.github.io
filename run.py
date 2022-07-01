@@ -20,7 +20,7 @@ class Config:
         file = dict(
             path=root.joinpath(".gitignore"),
             data=[
-                ".env", "*__pycache__", "*sass-cache", "*_site"
+                ".env", "*__pycache__", "*sass-cache", "*jekyll-cache", "*_site"
             ]
         )
 
