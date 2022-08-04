@@ -1,10 +1,15 @@
 {
-    "header-links": {
-      "Home": "/",
-      "Resources": "/resources/",
-      "Topics": "/topics/",
-      "Log-In": "/login/"
+    "template": {
+        "header": "app/templates/header.html",
+        "panel": "app/templates/panel.html",
+        "video": "app/templates/video.html"
     },
+    "header-links": [
+      {"name": "Home", "url": "/"},
+      {"name": "Resources", "url": "/resources/"},
+      {"name": "Topics", "url": "/topics/"},
+      {"name": "Log-In", "url": "/login/"}
+    ],
     "folder": {
         "names": ["notebooks", "videos", "pictures", "documents"],
         "icon": "icon mif-folder fg-cyan"
@@ -21,6 +26,6 @@
         "volume-minus",
         "volume-plus"
       ],
-      "poster": "img/app/poster.gif"
+      "poster": "poster.gif"
     }
 }

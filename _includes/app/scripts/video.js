@@ -2,7 +2,7 @@ $( function () {
     var videoApp = $( "video" )[0];
 
     getitems({
-        poster: fromStatic( '{{ app.player.poster }}' ).url,
+        poster: '/{{ site.img }}/app/{{ app.player.poster }}',
         volume: 0.9,
         videolist: []
     }).map( e => videoApp[e[0]] = e[1] );
@@ -95,30 +95,30 @@ $( function () {
     };
 
     function searchModal () {
-		var M = El.queryCls( "search-modal" );
-		El.queryID( "jkl-results" ).addEventListener(
-			"click", function ( e ) {
-		        videoApp.playVideo( e.target.id.split( "-" )[0], false );
+		var m = getElement( "class", "search-modal" );
+		getElement( "id", "jkl-results" ).addEventListener(
+			"click", function ( r ) {
+		        videoApp.playVideo( r.target.id.split( "-" )[0], false );
 			}
 		);
-		El.queryID( "query" ).onclick = function() {
-			M.style.display = "block";
+		getElement( "id", "query" ).onclick = function() {
+			m.style.display = "block";
 			var h = bodySize( 0.10 ).h;
-			M.iterNodes( ".search-modal-body", function( e ) { e.style.height = h } );
+			m.queryNodes( ".search-modal-body").map( 
+                qi => qi.style.height = h 
+            );
 		};
-		M.iterAll(
-			"span.search-close", function( e ) {
-				e.onclick = function() { M.style.display = "none" };
-			}
+		m.query( "span.search-close" ).map( 
+            ci => ci.onclick = function () { m.style.display = "none" }			
 		);
 		window.onclick = function( event ) {
-			if ( event.target == M ) {
-				M.style.display = "none";
+			if ( event.target == m ) {
+				m.style.display = "none";
 			};
 		};
 	};
 
-	fromStatic( "data/videos" ).get(
+	fromStatic( "data/videos" ).getjson(
         "dataset.json", function ( data ) {
             for ( n of Object.keys( data ) ) {
                 var v = data[n];
@@ -127,17 +127,7 @@ $( function () {
             };
             setFeeds();
             searchModal();
-            SimpleJekyllSearch({
-                searchInput: $( "#query" )[0],
-                resultsContainer: $( "#jkl-results" )[0],
-                json: videoApp.videolist,
-                searchResultTemplate: `<li id='{index}' class='button card-content bg-darkTeal bg-dark-hover fg-light'>
-                    <img id='{index}-image' class='avatar' src='{image}'>
-                    <span id='{index}-title' class='label'>{title}</span>
-                    <span id='{index}-duration' class='second-label'>{duration}</span>
-                </li>`,
-                noResultsText: "<li class='button card-content bg-darkTeal bg-dark-hover fg-light'>Video Not Found</li>"
-            });
+            getVideoSearch( videoApp.videolist );
         }
     );
 });

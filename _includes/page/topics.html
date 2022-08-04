@@ -1,0 +1,89 @@
+<div id="console-out"></div>
+<input type="text" id="console-in"/>
+<button id="console-run">Run</button>
+
+<div id="list-data"></div>
+
+<div id="jupyter-app"></div>
+
+<script>
+var jupyterUrl = '{{ site['jupyter-url'] }}';
+
+function getDropDown ( id, content ) {
+    return `
+    <div class="accordion accordion-flush" id="${id}">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-heading-${id}">
+        <button class="accordion-button collapsed bg-darklight fg-teal button-0"
+                type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${id}"
+                aria-expanded="false" aria-controls="flush-collapse-${id}">
+            ${content.header}
+        </button>
+        </h2>
+        <div id="flush-collapse-${id}" class="accordion-collapse collapse"
+            aria-labelledby="flush-heading-${id}" data-bs-parent="#${id}">
+        <div class="accordion-body initial-gradient">
+            ${content.body}
+        </div>
+        </div>
+    </div>
+    </div>
+    `;
+};
+
+function getJupyterNotebooks () {
+    var nb = Http(
+        "https://raw.githubusercontent.com/CircuitalMinds/jupyter"        
+    );
+    nb.root = "";
+    nb.content = {};    
+
+    nb.getjson( 
+        "main/dataset.json", function ( x ) {
+            nb.root = x.root;
+            for ( i of getkeys( x.content ) ) {
+                var topic = x.content[i];
+                var y = {topic: i, content: []};
+                for ( m of getkeys(topic) ) {
+                    yi = {module: m, files: []};
+                    var files = topic[m];
+                    for ( file of files ) {
+                        yi.files.push({
+                            name: file.name,
+                            url: [nb.root, file.path].join("/"),
+                        });
+                    };
+                    y.content.push( yi );
+                };
+                nb.content[i] = y;
+            };
+        }
+    );
+
+    nb.setdata = function ( id, topic ) {
+        var xdata = "";
+        var tdata = this.content[topic];
+        for ( t of tdata.content ) {
+            tbody = "<ul>";
+            for ( fi of t.files ) {
+                tbody += '<li><a href="' + fi.url + '">' + fi.name + '</a></li>';
+            };
+            tbody +=  "</ul>";
+            xdata += getDropDown( topic + "_" + t.module, {header: t.module, body: tbody} );            
+        };
+        var ydata = getDropDown( topic, {header: topic, body: xdata} );
+        $( "#" + id )[0].innerHTML = ydata;
+    };
+
+    return nb;
+};
+
+
+$( function () {
+    var Out = $("#console-out")[0];
+    var In = $("#console-in")[0];
+    $("#console-run")[0].onclick = function () {
+        Out.innerHTML =  eval( In.value );
+    };
+} );
+</script>

@@ -1,13 +1,13 @@
 {% assign app = include.data %}
 <!-- Header -->
-{% include app/templates/header.html links=app.header-links %}
+{% include {{ app.template.header }} links=app.header-links %}
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
   title="close side menu" id="myOverlay"></div>
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-  {% include app/templates/video.html buttons=app.player.buttons %}
-  {% include app/templates/panel.html folder=app.folder %}
+  {% include {{ app.template.video }} buttons=app.player.buttons %}
+  {% include {{ app.template.panel }} folder=app.folder %}
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
     <h4>FOOTER</h4>
@@ -16,4 +16,4 @@
   <script>{% include app/scripts/drive.js %}</script>
   <script>{% include app/scripts/index.js %}</script>
 </div>
-{% include app/index.html as_iframe="true" %}
+{% include {{ site.app.index }} as_iframe="true" %}

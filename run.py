@@ -62,7 +62,7 @@ class Site:
         self.config["update"](**dict(
             url="https://circuitalminds.github.io"
         ))
-        system("bash push.sh")
+        system("bash push")
 
     def serve(self):
         self.config["update"](**dict(

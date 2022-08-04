@@ -20,17 +20,7 @@
 	</div>
 </div>
 <script>
-$( function () {
-	M = El.queryID( "login-data" );
-	El.queryID( "login-button" ).onclick = function() {
-    	El.queryCls( "menu-close" ).click();
-    	M.show();
-	};
-	M.iterAll( "span.close", function( e ) { e.onclick = function(){ M.hide() } } );
-	window.onclick = function( event ) {
-		if ( event.target == M ) {
-			M.hide();
-		};
-	};
+$( function () { 
+	createLogin( "login-data", "login-button" ) 
 });
 </script>

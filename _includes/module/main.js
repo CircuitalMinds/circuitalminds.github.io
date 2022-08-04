@@ -1,32 +1,88 @@
 // Import Modules
 /*
 ==================================================
-    Built-Module and Include
-==================================================
-    Search-Register
+    Search-Query
 ==================================================
 */
-let Tasks = {
-    list: [],
-    add: function( i ) {         
-        this.list.push(i); this.load()
-    },
-    load: function () {  
-        if ( $( "body" )[0].onload == undefined ) {
-            $( "body" )[0].onload = function() { 
-                var tasks = Tasks.list;
-                for ( var i = 0; i < tasks.length; i++ ) { tasks[i]() }
-            }
-        }
-    }
+
+function getVideoSearch ( videolist ) {
+    SimpleJekyllSearch({
+        searchInput: $( "#query" )[0],
+        resultsContainer: $( "#jkl-results" )[0],
+        json: videolist,
+        searchResultTemplate: `<li id='{index}' class='button card-content bg-darkTeal bg-dark-hover fg-light'>
+            <img id='{index}-image' class='avatar' src='{image}'>
+            <span id='{index}-title' class='label'>{title}</span>
+            <span id='{index}-duration' class='second-label'>{duration}</span>
+        </li>`,
+        noResultsText: "<li class='button card-content bg-darkTeal bg-dark-hover fg-light'>Video Not Found</li>"
+    });
+};    
+
+function getSearchQuery () {
+    SimpleJekyllSearch({
+        "noResultsText": "<li class='search-no-item'>No results found</li>",
+        "searchInput": $( "#js-search-input" )[0],
+        "resultsContainer": $( "#js-results-container" )[0],
+        "searchResultTemplate": [
+            "<li class='search-item bg-cover' style='background-image: url( {image} );'>",
+            "<a class='search-link' href='{url}'><p class='tag'>{title}<p></a>",
+            "</li>"
+        ].join("\n"),
+        "json": "/search.json"
+    });
 };
 
-function getSearchQuery ( Config ) {
-    SimpleJekyllSearch( Config );
+function getJupyterNotebooks () {
+    var nb = Http(
+        "https://raw.githubusercontent.com/CircuitalMinds/jupyter"        
+    );
+    nb.root = "";
+    nb.content = {};    
+
+    nb.getjson( 
+        "main/dataset.json", function ( x ) {
+            nb.root = x.root;
+            for ( i of getkeys( x.content ) ) {
+                var topic = x.content[i];
+                var y = {topic: i, content: []};
+                for ( m of getkeys(topic) ) {
+                    yi = {module: m, files: []};
+                    var files = topic[m];
+                    for ( file of files ) {
+                        yi.files.push({
+                            name: file.name,
+                            url: [nb.root, file.path].join("/"),
+                        });
+                    };
+                    y.content.push( yi );
+                };
+                nb.content[i] = y;
+            };
+        }
+    );
+
+    nb.setdata = function ( id, topic ) {
+        var xdata = "";
+        var tdata = this.content[topic];
+        for ( t of tdata.content ) {
+            tbody = "<ul>";
+            for ( fi of t.files ) {
+                tbody += '<li><a href="' + fi.url + '">' + fi.name + '</a></li>';
+            };
+            tbody +=  "</ul>";
+            xdata += getDropDown( topic + "_" + t.module, {header: t.module, body: tbody} );            
+        };
+        var ydata = getDropDown( topic, {header: topic, body: xdata} );
+        $( "#" + id )[0].innerHTML = ydata;
+    };
+
+    return nb;
 };
+
 /*
 ==================================================
-    Built-Timer
+    Builtins
 ==================================================
 */
 function Timer() {
@@ -76,93 +132,37 @@ function Timer() {
     };
 };
 
-function Http ( url ) {
-    return {
-        url: url, getUrl: function ( x ) {
-            if ( x != undefined ) {
-                return [
-                    url, ( getType( x ) == "array" ) ? x.join("/") : x
-                ].join("/");
-            } else {
-                return url;
-            };
-        },
-        get: function ( path, handler=print, dtype="json" ) {
-            if ( dtype == "json" ) {
-                $.getJSON(
-                    this.getUrl( path ), 
-                    (data) => setTimeout( () => handler(data), 200 )
-                );
-            } else if ( dtype == "text" ) {
-                getRequest( 
-                    this.getUrl( path ), 
-                    (data) => setTimeout( () => handler(data.responseText), 200 ) 
-                );
-            };
-        }
-    };
+
+function fromStatic ( path ) {
+    return Http( ["{{ site.static_url }}", path].join("/") );
 };
 
-/*
-==================================================
-    Utils
-==================================================
-*/
 
-function type ( x ) {
-    var xtype = typeof( x );
-    if ( xtype == "object" ) {
-        return (
-            x.length != undefined 
-        ) ? "array" : xtype;
-    } else {
-        return xtype;
-    };
+function getClockTime ( id ) {
+    setInterval( function () {
+        var time = new Date();
+        $( "#" + id )[0].innerHTML = time.toLocaleTimeString();
+    }, 1e3);
 };
 
-function print ( x ) {
-    console.log(
-        ( type( x ) == "object" ) ? JSON.stringify( y ) : y 
-    );
-};
+function getDateTime ( id ) {
+    var today = new Date();
+    $( "#" + id )[0].innerHTML = today.toLocaleDateString();
+    
+}
 
-function round ( x ) {
-    return Math.round( x );
-};
-
-function abs ( x ) {
-    return Math.abs( x );
-};
-
-function random ( a, b ) {
-    var r = Math.random();
-    if ( a != undefined && b != undefined ) {
-        return a + round( r * abs( b - a ) )
-    } else {
-        return r;
-    };
-};
-
-function range ( a, b, dx=1 ) {
-    if ( b == undefined ) {
-        b = a; a = 0;
-    };
-    return Array.from(
-        {length: (b - a - 1) / dx + 1}, ( _, i ) => a + ( i * dx )
-    );
-};
-
-function grid ( a, b, n ) {
-    var dx = (b - a) / n;
-    return range(0, n + 1).map( i => a + i * dx );
-};
-
-function getkeys ( x ) {
-    return Object.keys( x );
-};
-function getvalues ( x ) {
-    return Object.values( x );
-};
-function getitems ( x ) {
-    return Object.entries( x );
+function createLogin ( id, btn_id ) {
+	var login = getElement( "id", id );
+	getElement( "id", btn_id ).onclick = function() {
+    	getElement( "class", "menu-close" ).click();
+    	login.show();
+	};
+	login.query( "span.close" ).map(
+		ei => ei.onclick = function () { login.hide() }
+	);
+	window.onclick = function( event ) {
+		if ( event.target == login ) {
+			login.hide();
+		};
+	};	
 };

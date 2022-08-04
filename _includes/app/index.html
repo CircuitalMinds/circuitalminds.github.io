@@ -1,14 +1,14 @@
 {% if include.as_iframe == 'true' %}
-<button class="open-button" onclick='El.queryID( "chat_form" ).show();'>Chat</button>
+<button class="open-button" onclick='getElement( "id", "chat_form" ).show();'>Chat</button>
 <div class="chat-popup" id="chat_form">
 <div class="form-container">
     <iframe src="/app/chat/" class="image fit" width="100%" height="300px"
         allow="accelerometer; autoplay; encrypted-media; gyroscope;
         picture-in-picture" allowfullscreen="true" frameborder="0">
     </iframe>
-    <button type="button" class="btn cancel" onclick='El.queryID( "chat_form" ).hide();'>Close</button>
+    <button type="button" class="btn cancel" onclick='getElement( "id", "chat_form" ).hide();'>Close</button>
 </div>
 </div>
 {% else %}
-{% include app/templates/main.html data=site.data.App %}
+{% include {{ site.app.main }} data=site.data.App %}
 {% endif %}

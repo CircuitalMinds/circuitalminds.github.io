@@ -1,0 +1,14 @@
+{% assign img = include.data %}
+<div class="img-sticky">
+    <h2>{{ img.title }}</h2>
+    {% if img.subtitle %}<p>{{ img.subtitle }}</p>{% endif %}
+    <div class="img-container">
+    <img src="{{ img.src }}" alt="{{ img.title }}" style="width:100%;">
+    {% if img.content %}        
+    {% assign sides = "bottom-left,bottom-right,top-left,top-right,centered" | split:"," %}
+    {% for side in sides %}
+    <div class="img-{{ side }}">{{ img.content[side] }}</div>
+    {% endfor %}
+    {% endif %}
+    </div>
+</div>

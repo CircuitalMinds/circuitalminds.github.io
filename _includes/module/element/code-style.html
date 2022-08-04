@@ -1,0 +1,21 @@
+{% include x = include.data %}
+{% if x.language == 'ruby' %}
+    {% highlight ruby %}
+    def print_friend(someone)
+      puts "Yeii!!, #{some better}"
+    end
+    print_friend('friendship')
+    #=> prints 'Yeii!!, Coffee + Little Pigs' to STDOUT.
+    {% endhighlight %}
+{% elsif x.language == 'js' %}
+    {% highlight js %}
+      function endFractalized('Circuital', 'Minds') {
+        try {
+          'Circuital'.removeClass('Minds');
+        }
+        finally {
+          'Circuital'.destroy();
+        }
+    }
+    {% endhighlight %}
+{% endif %}

@@ -50,20 +50,28 @@ scripts:
   - "jquery.fitvids.js"
   - "common.js"
   - "simple-jekyll-search.min.js"
+module:
+  image-sticky: "module/element/image-sticky.html"
+  accordion: "module/element/accordion.html"
+  slider: "module/element/slider.html"
+  code-style: "module/element/code-style.html"
+  animation: "module/element/animation"
 #-------------------------------
 # Build settings
-header_pages:
-  - "resources"
-  - "contact"
-  - "about"
+home-pages:
+  - {name: "vahngraff", url: "/app/vahngraff/"}
+  - {name: "topics", url: "/topics/"}
+  - {name: "contact", url: "/contact/"}  
+  - {name: "about", url: "/about/"}
 api:
   html: "api/index.html"
   js: "api/index.js"
   root_url: "https://circuitalminds.heroku.com"
-app:
+app:  
+  main: "app/templates/main.html"
   index: "app/index.html"
   chat: "app/chat.html"
-  video: "app/video.html"
+jupyter-url: "https://raw.githubusercontent.com/CircuitalMinds/jupyter/main"
 markdown: "kramdown"
 permalink: ":title/"
 plugins:

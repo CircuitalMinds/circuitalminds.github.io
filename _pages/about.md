@@ -5,35 +5,4 @@ image: about.jpg
 permalink: /about/
 ---
 
-organization: CircuitalMinds
-
-***
-
-owner: Alan Matzumiya
-
-***
-
-goal: Organization Oriented to Software Development
-
-***
-
-topics of interest: Exact Art and Science 
-
-***
-
-<iframe width="100%" 
-        frameborder="0"
-        scrolling="no"
-        marginheight="0" 
-        marginwidth="0"
-        allowTransparency="true"
-        src="{{ site.data.url.uson-location }}">
-</iframe>
-<iframe width="100%" 
-        frameborder="0" 
-        scrolling="no"
-        marginheight="0" 
-        marginwidth="0"
-        allowTransparency="true"
-        src="{{ site.data.url.virtual-sky-location }}">
-</iframe>
+{% include page/about.html %}

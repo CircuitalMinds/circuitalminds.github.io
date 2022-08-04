@@ -1,0 +1,26 @@
+{% assign x = include.data %}
+<div id="slider-{{ x.id }}" class="slider-container">
+<div class="row w-100">
+<input class="slider w-20 text-center bg-light"
+       type="text" 
+       value="{{ x.value }}"
+>
+<input class="slider w-80"
+       type="range" 
+       value="{{ x.value }}" 
+       min="{{ x.min }}" 
+       max="{{ x.max }}" 
+       step="{{ x.step }}"
+>
+</div>    
+</div>
+<script>
+$( "#slider-{{ x.id }}" )[0].querySelector( 
+    'input[type="range"]' 
+).oninput = function () {
+    $( "#slider-{{ x.id }}" )[0].querySelector( 
+        'input[type="text"]'
+    ).value = this.value;
+};
+</script>
+    

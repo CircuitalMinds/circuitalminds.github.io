@@ -14,21 +14,11 @@
 
     {{ content }}
 
-    {% include app/index.html name="chat" as_iframe="true" %}
+    {% include {{ site.app.index }} name="chat" as_iframe="true" %}
     {% include home/footer.html %}
-    <script>
-        getSearchQuery({
-            noResultsText: "<li class='search-no-item'>No results found</li>",
-            searchInput: $( "#js-search-input" )[0],
-            resultsContainer: $( "#js-results-container" )[0],
-            searchResultTemplate: [
-                "<li class='search-item bg-cover' style='background-image: url( {image} );'>",
-                "<a class='search-link' href='{url}'><p class='tag'>{title}<p></a>",
-                "</li>"
-            ].join("\n"),
-            json: "/search.json"
-        });
-    </script>
+    <script>getSearchQuery()</script>
     {% include {{ site.api.html }} %}
+    <div id="iso-graff"></div>
+    <script>{% include module/iso-graff.js %}</script>
 </body>
 </html>

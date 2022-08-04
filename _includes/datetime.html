@@ -2,11 +2,7 @@
 <div class="button-0 cell-md-2 text-center" id="date-time"></div>
 <script>
 $( function () {
-    var today = new Date();
-    $( "#date-time" )[0].innerHTML = today.toLocaleDateString();
-    setInterval( function () {
-        var time = new Date();
-        $( "#clock-time" )[0].innerHTML = time.toLocaleTimeString();
-    }, 1e3);
+    getClockTime( "clock-time" );
+    getDateTime( "date-time" );
 });
 </script>
