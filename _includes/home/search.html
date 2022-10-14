@@ -1,0 +1,41 @@
+<div class="search">
+<div class="search-box">
+    <i class="search-close-button ion ion-ios-close"></i>
+    <label for="js-search-input" class="screen-reader-text"></label>
+    <input type="text" id="js-search-input"
+            class="search-text" autocomplete="off"
+            placeholder="Search Something...">        
+    <ol id="js-results-container" class="search-results-list"></ol>
+</div>
+</div>
+<script>
+
+$( function () {
+
+    var dataset = [];
+    
+    function add ( data ) {
+        for ( i of data ) { 
+            dataset.push(i);
+        };
+    };
+
+    fromStatic ( "data/videos" ).getjson( "dataset.json", add );
+    Http( '{{ site.url }}' ).getjson( 'search.json', add );
+
+    setTimeout( function () {        
+        SimpleJekyllSearch({
+            "noResultsText": "<li class='search-no-item'>No results found</li>",
+            "searchInput": $( "#js-search-input" )[0],
+            "resultsContainer": $( "#js-results-container" )[0],
+            "searchResultTemplate": `            
+                <li class="search-item bg-cover" style="background-image: url( '{image}' );">
+                <a class="search-link" href="{url}"><p class="tag">{title}<p></a>
+                </li>            
+            `,
+            "json": dataset
+        });
+    }, 1e3 );
+
+} );
+</script>

@@ -12,6 +12,8 @@
 
     {{ content }}
 
-{% include api/index.html %}
 </body>
+<script>
+     window._DATA = {{ site.data.app | jsonify }};
+</script>
 </html>

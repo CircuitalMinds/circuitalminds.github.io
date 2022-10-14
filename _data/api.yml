@@ -1,0 +1,5 @@
+url: http://192.168.50.100:8080
+route:
+  home: /
+  send-json: /send-json/
+  notebooks: /jupyter-notebooks/

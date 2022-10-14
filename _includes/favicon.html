@@ -1,24 +1,49 @@
-<link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet"/>
+<link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css"
+      rel="stylesheet"
+/>
 {% assign fav=site.data.cfg.favicon %}
-<link rel="manifest" href="{{ fav.manifest }}">
+<link rel="manifest"
+      href="{{ fav.manifest }}"
+/>
 {% for s in fav.android.sizes %}
-<link rel="icon" type="image/png" sizes="{{ s }}x{{ s }}"  href="{{ fav.android.href }}-{{ s }}x{{ s }}.png">
+<link rel="icon"
+      type="image/png"
+      sizes="{{ s }}x{{ s }}"
+      href="{{ fav.android.href }}-{{ s }}x{{ s }}.png"
+/>
 {% endfor %}
-<link rel="apple-touch-icon" href="{{ fav.apple.href }}">
+<link rel="apple-touch-icon"
+      href="{{ fav.apple.href }}"
+/>
 {% for s in fav.apple.sizes %}
-<link rel="apple-touch-icon" sizes="{{ s }}x{{ s }}" href="/favicon.ico/apple-icon-{{ s }}x{{ s }}.png">
+<link rel="apple-touch-icon"
+      sizes="{{ s }}x{{ s }}"
+      href="/favicon.ico/apple-icon-{{ s }}x{{ s }}.png"
+/>
 {% endfor %}
-<link rel="apple-touch-icon" href="{{ fav.apple.pre }}">
-<link rel="icon" href="{{ fav.ico.href }}">
+<link rel="apple-touch-icon"
+      href="{{ fav.apple.pre }}"
+/>
+<link rel="icon"
+      href="{{ fav.ico.href }}"
+/>
 {% for s in fav.ico.sizes %}
-<link rel="icon" type="image/png" sizes="{{ s }}x{{ s }}" href="/favicon.ico/favicon-{{ s }}x{{ s }}.png">
+<link rel="icon"
+      type="image/png"
+      sizes="{{ s }}x{{ s }}"
+      href="/favicon.ico/favicon-{{ s }}x{{ s }}.png"
+/>
 {% endfor %}
 {% for m in fav.meta %}
   {% if m.sizes %}
   {% for s in m.sizes %}
-  <meta name="{{ m.name }}" content="{{ m.content }}-{{ s }}x{{ s }}.png">
+  <meta name="{{ m.name }}"
+        content="{{ m.content }}-{{ s }}x{{ s }}.png"
+  />
   {% endfor %}
   {% else %}
-  <meta name="{{ m.name }}" content="{{ m.content }}">
+  <meta name="{{ m.name }}"
+        content="{{ m.content }}"
+  />
   {% endif %}
 {% endfor %}

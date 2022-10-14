@@ -1,0 +1,73 @@
+main: app/templates/main.html
+index: app/index.html
+chat: app/chat.html
+
+template:
+  header:
+    html: app/templates/header.html
+    buttons-top: [
+      {
+        url: "#mail",
+        icon: "envelope"
+      },
+      {
+        url: "#user",
+        icon: "user"
+      },
+      {
+        url: "#settings",
+        icon: "cog"
+      }
+    ]
+    buttons-down: [
+      {
+        url: "#news",
+        icon: "bell",
+        text: "News"
+      },
+      {
+        url: "#general",
+        icon: "bank",
+        text: "General"
+      },
+      {
+        url: "history",
+        icon: "history",
+        text: "History"
+      },
+      {
+        url: "#settings",
+        icon: "cog",
+        text: "Settings"
+      }
+    ]
+    links: [
+      {
+        text: Log-In,
+        url: /login/
+      }
+    ]
+  video:
+    html: app/templates/video.html
+    buttons: [
+        play,
+        pause,
+        previous,
+        next,
+        volume-minus,
+        volume-plus
+    ]
+    poster: poster.gif
+  panel:
+    html: app/templates/panel.html
+
+folder-icon: icon mif-folder fg-cyan
+file-icon": icon mif-file-empty fg-teal
+
+styles: [
+  styles/logo,
+  styles/gradient,
+  app/styles/utils,
+  styles/chat,
+  app/styles/index
+]

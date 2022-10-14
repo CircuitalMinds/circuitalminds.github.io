@@ -1,0 +1,14 @@
+<div id="iso-graph"></div>
+<div id="fig" class="row" style="width: 500px; height: 250px;"></div>
+
+<canvas id="figure" class="row"
+        width=550 height=450
+></canvas>
+
+<div id="jupyter"></div>
+
+<script>
+api.getJupyter();
+IsoGraph();
+$( function () { Particles('figure') } );
+</script>

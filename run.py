@@ -1,86 +1,95 @@
 from sys import argv
-from os import system
-from subprocess import getoutput
-from pathlib import Path
-from yaml import full_load
-root = Path("./").resolve()
-host = getoutput("hostname -I").strip()
+from os.path import join
+from utils import getconf, get_host, run_script, base_path, getjson, savejson
 
 
-def write(filename, data):
-    file = root.joinpath(filename)
-    if file.is_file():
-        file.open("w").write(data)
+class Data:
+    path = base_path.joinpath("_data")
+    files = {}
+
+    def __init__(self):
+        for i in self.path.iterdir():
+            self.files[i.name.split(".json")[0]] = getjson(i)
+    
+    def get(self, name):
+        return self.files.get(name)
+
+    def set(self, name, key, value):
+        self.files[name].update({key: value})
+        savejson(
+            self.path.joinpath(name + "json"),
+            self.files[name]
+        )
 
 
 class Config:
+    production = dict(
+        site=dict(url="https://circuitalminds.github.io"),
+        api=dict(url="https://circuitalminds.herokuapp.com")
+    )
+    production.update(dict(
+        site=dict(static_url=join(production["site"]["url"], "static"))
+    ))
 
-    @staticmethod
-    def gitignore():
-        file = dict(
-            path=root.joinpath(".gitignore"),
-            data=[
-                ".env", "*__pycache__", "*sass-cache", "*jekyll-cache", "*_site"
-            ]
+    development = dict(site=dict(url=f"http://{get_host()}"))
+    development.update(dict(
+        site=dict(
+            static_url=f'{development["site"]["url"]}:8080/static'
+        ),
+        api=dict(
+            url=f'{development["site"]["url"]}:8080'
         )
+    ))
 
-        def update(*names):
-            file["path"].open("w").write("\n".join(file["data"] + list(names)))
-        file["update"] = update
-        return file
+    api = dict(file=base_path.joinpath("_data/api.yml"), data=dict())
+    site = dict(file=base_path.joinpath("_config.yml"), data=dict())
 
-    @staticmethod
-    def site():
-        file = dict(path=root.joinpath("_config.yml"))
-        file["data"] = full_load(file["path"].open())
+    def __init__(self, mode="development"):
+        data = dict()
+        if mode == "development":
+            data = self.development
+        elif mode == "production":
+            data = self.production
+        self.api["data"] = getconf(self.api["file"])
+        self.api["data"].update(data["api"])
+        self.site["data"] = getconf(self.site["file"])
+        self.site["data"].update(data["site"])
 
-        def update(**data):
-            fdata = file["path"].open().read()
+    def update(self):
+        def writefile(filepath, **data):
+            textfile = filepath.open().read()
+            datafile = getconf(filepath)
             for key, value in data.items():
-                if key in file["data"]:
-                    fdata = fdata.replace(
-                        f'{key}: "{file["data"][key]}"',
+                if key in datafile:
+                    textfile = textfile.replace(
+                        f'{key}: "{datafile[key]}"',
                         f'{key}: "{value}"'
                     )
-            file["path"].open("w").write(fdata)
-            file["data"] = full_load(file["path"].open())
-        file["update"] = update
-        return file
+            filepath.open("w").write(textfile)
+        for x in (self.api, self.site):
+            writefile(x["file"], **x["data"])
+        self.api["data"] = getconf(self.api["file"])
+        self.site["data"] = getconf(self.site["file"])
 
 
-class Site:
-    config = Config.site()
-    run_opts = ["serve", "build", "push"]
-
-    def __init__(self):
-        self.config["update"](**dict(
-            url=f"http://{host}"
-        ))
+class Run:
+    opts = ["serve", "build", "push"]
 
     def push(self):
-        Config.gitignore()["update"]()
-        self.config["update"](**dict(
-            url="https://circuitalminds.github.io"
-        ))
-        system("bash push")
+        Config(mode="production").update()
+        run_script("push")
 
     def serve(self):
-        self.config["update"](**dict(
-            url=f"http://{host}"
-        ))
-        system("bash make.sh serve")
+        Config().update()
+        run_script("make", "serve")
 
     def build(self):
-        self.config["update"](**dict(
-            url=f"http://{host}"
-        ))
-        system(
-            f'bash make.sh build {Path.home().joinpath("login").open().read().strip()}'
-        )
+        Config().update()
+        run_script("make", "build")
 
 
 if __name__ == "__main__":
     opt = argv[1] if len(argv) > 1 else None
-    if opt in Site.run_opts:
-        site = Site()
-        getattr(site, opt)()
+    if opt in Run.opts:
+        f = Run()
+        getattr(f, opt)()

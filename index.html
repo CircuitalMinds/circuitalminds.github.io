@@ -9,7 +9,7 @@ layout: default
 	<div class="col col-12">
 	<article class="article-first">
 	<div class="article-image-first"
-		 style="background-image: url('/{{ site.img }}/post/{{post.image}}')">
+		 style="background-image: url('/{{ site.img }}/post/{{ post.image }}')">
 		<div class="article-content-first">
 		<div class="article-tag">
 		{% if post.tags.size >= 1 %}
@@ -20,7 +20,7 @@ layout: default
 		{% endif %}
 		</div>
 		<h2 class="article-title">
-		<a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a>
+		<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 		</h2>
 		<p class="article-excerpt">
 		{% if post.description %}
@@ -49,7 +49,7 @@ layout: default
 		<div class="article-head">
 		<a href="{{ post.url | prepend: site.baseurl }}"
 		   class="article-image"
-		   style="background-image: url('/{{ site.img }}/post/{{post.image}}')">
+		   style="background-image: url('/{{ site.img }}/post/{{ post.image }}')">
 		<div class="image-overlay">
 		<span class="image-overlay-text">{{post.title | slice: 0}}</span>
 		</div>

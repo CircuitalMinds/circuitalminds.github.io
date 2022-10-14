@@ -1,84 +1,69 @@
+{% assign api = site.data.api %}
+
 // Import Modules
 /*
 ==================================================
-    Search-Query
+    BUILTINS
 ==================================================
 */
 
-function getVideoSearch ( videolist ) {
-    SimpleJekyllSearch({
-        searchInput: $( "#query" )[0],
-        resultsContainer: $( "#jkl-results" )[0],
-        json: videolist,
-        searchResultTemplate: `<li id='{index}' class='button card-content bg-darkTeal bg-dark-hover fg-light'>
-            <img id='{index}-image' class='avatar' src='{image}'>
-            <span id='{index}-title' class='label'>{title}</span>
-            <span id='{index}-duration' class='second-label'>{duration}</span>
-        </li>`,
-        noResultsText: "<li class='button card-content bg-darkTeal bg-dark-hover fg-light'>Video Not Found</li>"
-    });
-};    
+var api = Http( '{{ api.url }}' );
 
-function getSearchQuery () {
-    SimpleJekyllSearch({
-        "noResultsText": "<li class='search-no-item'>No results found</li>",
-        "searchInput": $( "#js-search-input" )[0],
-        "resultsContainer": $( "#js-results-container" )[0],
-        "searchResultTemplate": [
-            "<li class='search-item bg-cover' style='background-image: url( {image} );'>",
-            "<a class='search-link' href='{url}'><p class='tag'>{title}<p></a>",
-            "</li>"
-        ].join("\n"),
-        "json": "/search.json"
-    });
+api.route = {{ api.route | jsonify }};
+
+api.getEnv = function () {
+    print( '{{ jekyll.environment }}' );
 };
 
-function getJupyterNotebooks () {
-    var nb = Http(
-        "https://raw.githubusercontent.com/CircuitalMinds/jupyter"        
-    );
-    nb.root = "";
-    nb.content = {};    
+api.getJupyter = function () {
 
-    nb.getjson( 
-        "main/dataset.json", function ( x ) {
-            nb.root = x.root;
-            for ( i of getkeys( x.content ) ) {
-                var topic = x.content[i];
-                var y = {topic: i, content: []};
-                for ( m of getkeys(topic) ) {
-                    yi = {module: m, files: []};
-                    var files = topic[m];
-                    for ( file of files ) {
-                        yi.files.push({
-                            name: file.name,
-                            url: [nb.root, file.path].join("/"),
-                        });
-                    };
-                    y.content.push( yi );
-                };
-                nb.content[i] = y;
-            };
-        }
-    );
+    function getDropDown ( id, content ) {
 
-    nb.setdata = function ( id, topic ) {
-        var xdata = "";
-        var tdata = this.content[topic];
-        for ( t of tdata.content ) {
-            tbody = "<ul>";
-            for ( fi of t.files ) {
-                tbody += '<li><a href="' + fi.url + '">' + fi.name + '</a></li>';
-            };
-            tbody +=  "</ul>";
-            xdata += getDropDown( topic + "_" + t.module, {header: t.module, body: tbody} );            
-        };
-        var ydata = getDropDown( topic, {header: topic, body: xdata} );
-        $( "#" + id )[0].innerHTML = ydata;
+        var Header = content.header;
+        var Body = content.body;
+        return `{%
+            include {{ site.module.accordion }}
+            id='${id}' header='${Header}' body='${Body}'
+        %}`;
+
     };
 
-    return nb;
+    function handler ( x ) {
+
+        var content = x.content;
+        var outdata = "";
+        for ( t of getkeys( content ) ) {
+            var tbody = "";
+            for ( m of getkeys( content[t] ) ) {
+                var mbody = "<ul>";
+                for ( xi of content[t][m] ) {
+                    mbody += '<li><a href="' + [x.root, xi.path].join("/") + '">' + xi.name.replace(".ipynb", "") + '</a></li>';
+                };
+                mbody +=  "</ul>";
+                tbody += getDropDown(
+                    t + "_" + m,
+                    { header: "Module " + m, body: mbody }
+                );
+            };
+            outdata += getDropDown(
+                t,
+                {
+                    header: t.split( "_" ).map(
+                        ti => ti[0].toUpperCase() + ti.slice(1)
+                    ).join( " " ),
+                    body: tbody
+                }
+            );
+        };
+
+        $( "#jupyter" )[0].innerHTML = outdata;
+
+    };
+
+    this.getjson( this.route.notebooks, handler );
+
 };
+
 
 /*
 ==================================================
@@ -134,22 +119,8 @@ function Timer() {
 
 
 function fromStatic ( path ) {
-    return Http( ["{{ site.static_url }}", path].join("/") );
+    return Http( ['{{ site.static_url }}', path].join("/") );
 };
-
-
-function getClockTime ( id ) {
-    setInterval( function () {
-        var time = new Date();
-        $( "#" + id )[0].innerHTML = time.toLocaleTimeString();
-    }, 1e3);
-};
-
-function getDateTime ( id ) {
-    var today = new Date();
-    $( "#" + id )[0].innerHTML = today.toLocaleDateString();
-    
-}
 
 function createLogin ( id, btn_id ) {
 	var login = getElement( "id", id );
@@ -165,4 +136,157 @@ function createLogin ( id, btn_id ) {
 			login.hide();
 		};
 	};	
+};
+
+
+function createConsole () {
+    var x = $( "#console" )[0];
+    
+    x.innerHTML = [
+        '<div class="console-out" ></div>',
+        '<input class="console-in" type="text" />',
+        '<button class="console-run" > Run </button>'
+    ].join( "\n" );
+
+    var input = x.querySelector( ".console-in" );
+    var output = x.querySelector( ".console-out" );
+
+    x.querySelector( ".console-run" ).onclick = function () {
+        output.innerHTML = eval( input.value );
+    };
+
+};
+
+function getLogIn () {
+
+    var login = $( "#login-data" )[0];
+    login.get = login.querySelector( ".login-button" );
+    login.get.onclick = function () {
+        print({
+            username: login.querySelector( "input[name=username]" ).value,
+            password: login.querySelector( "input[name=password]" ).value
+        });
+    };
+
+};
+
+function saveFile ( name, data ) {
+    data = JSON.stringify( data, null, 4 );
+    if ( typeof( Blob ) != "undefined" ) {
+        var textFileAsBlob = new Blob(
+            [data],
+            {type: 'text/plain'}
+        );
+        var downloadLink = document.createElement("a");
+        downloadLink.download = name;
+        if ( window.webkitURL != null ) {
+            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        } else {
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.onclick = document.body.removeChild(event.target);
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+        }
+        downloadLink.click();
+    } else {
+        var pp = document.createElement('a');
+        pp.setAttribute(
+            'href', 
+            'data:text/plain;charset=utf-8,' + encodeURIComponent( data )
+        );
+        pp.setAttribute('download', name);
+        pp.onclick = document.body.removeChild(event.target);
+        pp.click();
+    };
+};
+
+function getTemplate ( id, content_id ) {
+
+    var template = $( "#" + id )[0];
+    var content = $( "#" + content_id )[0];
+    cloned = template.content.cloneNode( true );
+    content.textContent = cloned.textContent;
+
+};
+
+
+function initSocket () {
+    
+    function message ( name ) {
+        return print({
+            starting: "starting to count",
+            sleeping: "start sleeping...",
+            terminated: "count terminated"
+        }[name]);
+    };
+
+    var socket = {
+        kill: function ( id ) {
+            if ( this.register[id] != undefined  ) {
+                delete this.register[id];
+            };
+        },
+        register: {}
+    };    
+
+    socket.create = function ( id ) {
+
+        var sock = {};        
+        
+        sock.id = id;
+        sock.connected = false;
+        
+        sock.data = {}; 
+        sock.task = null;
+        sock.connect = function () {
+            this.connected = true;
+        };
+        sock.disconnect = function () {
+            this.connected = false;
+        };
+
+        counter = {};
+        counter.value = 0;
+        counter.next = function () {
+            this.value += 1;
+        };
+        counter.back = function () {
+            this.value -= 1;
+        };
+        counter.reset = function () {
+            this.value = 0;
+        };        
+        sock.counter = counter;
+
+        sock.do_task = function ( func, secs, delay=1 ) {                               
+            sock.counter.reset();
+            message( "starting" );
+            sock.task = setInterval( function () {
+                if ( sock.counter.value < secs ) {
+                    sock.counter.next();
+                    print( "i="+sock.counter.value );
+                    func();
+                } else {
+                    clearInterval( sock.task );
+                    message( "terminated" );
+                };
+            }, delay * 1e3 );            
+        
+        };
+
+        sock.sleep = function ( t ) {
+            message( "starting" );            
+            setTimeout(
+                function () { 
+                    print( "wake up !!!" );
+                },
+            t * 1e3 );
+        };
+
+        socket.register[id] = sock;
+
+    };
+
+    return socket;
+
 };

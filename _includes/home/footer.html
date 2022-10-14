@@ -12,26 +12,21 @@
         </div>
         <div class="footer-bottom">
         <div class="copyright">
-        <p>&copy; {{site.time | date: '%Y'}} Crafted & Designed by <a href="{{ site.author-website }}">{{ site.author-name }}{{ site.applications }}</a></p>
+                <p>
+                &copy; {{site.time | date: '%Y'}} Crafted & Designed by
+                <a href="{{ site.data.author.website }}">
+                {{ site.data.author.name }}{{ site.applications }}
+                </a>
+                </p>
         </div>
         <div class="footer-social">
+        {% assign social_media =  "facebook, twitter, instagram, pinterest" | split:", " %}
         <ul class="list-reset">
-            {% if site.facebook %}
-            <li><a href="{{ site.facebook }}">Facebook</a></li>
-            {% else %}
+            {% for i in social_media %}
+            {% if site[i] %}
+             <li><a href="{{ site[i] }}">{{ i | capitalize }}</a></li>
             {% endif %}
-            {% if site.twitter %}
-            <li><a href="{{ site.twitter }}">Twitter</a></li>
-            {% else %}
-            {% endif %}
-            {% if site.instagram %}
-            <li><a href="{{ site.instagram }}">Instagram</a></li>
-            {% else %}
-            {% endif %}
-            {% if site.pinterest %}
-            <li><a href="{{ site.pinterest }}">Pinterest</a></li>
-            {% else %}
-            {% endif %}
+            {% endfor %}
         </ul>
         </div>
     </div>

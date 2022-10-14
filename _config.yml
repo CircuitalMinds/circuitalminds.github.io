@@ -1,89 +1,88 @@
 #-------------------------------
 # General Site Settings
+#-------------------------------
+
 baseurl: ""
-url: "https://circuitalminds.github.io"
+url: "http://192.168.50.100"
 title: "CircuitalMinds"
 description: "From Here To Eternity."
 logo: "https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"
-#-------------------------------
-# proprietary info
-author-name: "Alan Matzumiya"
-author-avatar: "https://avatars.githubusercontent.com/u/25187397?s=400&u=7c5cc8d7030f8d04105f7936c329030b0c3cc768&v=4"
-author-website: "https://alanmatzumiya.github.io"
-author-github: "https://github.com/alanmatzumiya"
-#-------------------------------
-# Location Data
-unison-location: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d27895.489657428087!2d-110.964439!3d29.078030000000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcf527709b7555a3!2sUniversidad%20de%20Sonora%20-%20UNISON!5e0!3m2!1ses-419!2smx!4v1630257214462!5m2!1ses-419!2smx"
-sky-location: "https://virtualsky.lco.global/embed/index.html?longitude=-111.02386000000001&latitude=29.0878&projection=lambert&showstarlabels=true&showorbits=true&ecliptic=true&meridian=true&gridlines_az=true&gridlines_eq=true&gridlines_gal=true&live=true"
+
 #-------------------------------
 # Contact links
-fb_id: "772020893629559"
+#-------------------------------
+
 facebook: "https://www.facebook.com/circuitalminds"
 twitter: "https://twitter.com/circuitalminds"
 instagram: "https://www.instagram.com/circuitalminds"
 pinterest: "https://www.pinterest.com/circuitalminds"
 github: "https://github.com/CircuitalMinds"
-#-------------------------------
-# Comment Section (Disqus)
+
 disqus-identifier: "alan-matzumiya"
-#-------------------------------
-# Instagram Feed
 instafeed: "false"
-#-------------------------------
-# Google Analytics
 google-analytics: "UA-177619690-2"
-#-------------------------------
-# Newsletter
 mailchimp: # Add your MailChimp form identifier.
+
 #-------------------------------
-# assets-path
+# Directory
+#-------------------------------
+
 js: "assets/js"
 css: "assets/css"
 img: "assets/img"
 static_url: "https://circuitalminds.github.io/static"
-#-------------------------------
-# resources
-scripts:
-  - "instafeed.min.js"
-  - "facebook.js"
-  - "jquery.waitforimages.min.js"
-  - "jquery.fitvids.js"
-  - "common.js"
-  - "simple-jekyll-search.min.js"
+
+scripts: [
+  "instafeed.min",
+  "facebook",
+  "jquery.waitforimages.min",
+  "jquery.fitvids",
+  "common",
+  "simple-jekyll-search.min"
+]
+
+styles: [
+  "logo",
+  "helpers",
+  "modal",
+  "sizes",
+  "gradient",
+  "chat"
+]
+
 module:
+  datetime: "module/element/datetime.html"
   image-sticky: "module/element/image-sticky.html"
   accordion: "module/element/accordion.html"
   slider: "module/element/slider.html"
   code-style: "module/element/code-style.html"
   animation: "module/element/animation"
+
 #-------------------------------
 # Build settings
+#-------------------------------
+
 home-pages:
   - {name: "vahngraff", url: "/app/vahngraff/"}
   - {name: "topics", url: "/topics/"}
   - {name: "contact", url: "/contact/"}  
   - {name: "about", url: "/about/"}
-api:
-  html: "api/index.html"
-  js: "api/index.js"
-  root_url: "https://circuitalminds.heroku.com"
-app:  
-  main: "app/templates/main.html"
-  index: "app/index.html"
-  chat: "app/chat.html"
-jupyter-url: "https://raw.githubusercontent.com/CircuitalMinds/jupyter/main"
+
 markdown: "kramdown"
 permalink: ":title/"
 plugins:
   - "jekyll-paginate"
   - "jekyll-sitemap"
+
 paginate: "7"
 paginate_path: "/page/:num"
 include:
   - "_pages"
+
 sass:
   sass_dir: "_sass"
   style: "compressed"
+
 #-------------------------------
 # Exclude from processing.
 # exclude:
@@ -94,3 +93,4 @@ sass:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+#-------------------------------

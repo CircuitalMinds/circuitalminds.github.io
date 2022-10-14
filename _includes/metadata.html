@@ -15,11 +15,22 @@
 {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
 <!-- open_graph -->
 {% if page.image %}
+
+{% if page.layout == 'application' %}
+{% assign rpath = 'app' %}{% else %}{% assign rpath = page.layout %}
+{% endif %}
 <meta property="og:image"
-      content="{{ site.url }}/{{ site.img }}/{% if page.layout == 'application' %}app{% else %}{{ page.layout }}{% endif %}/{{ page.image }}" />
+      content="{{ site.url }}/{{ site.img }}/{{ rpath }}/{{ page.image }}"
+/>
 <meta property="og:url"
-      content="{{ site.url }}/{{ site.img }}/{% if page.layout == 'application' %}app{% else %}{{ page.layout }}{% endif %}/{{ page.image }}" />
+      content="{{ site.url }}/{{ site.img }}/{{ rpath }}/{{ page.image }}"
+/>
 {% else %}
-<meta property="og:image" content="{{ site.logo }}" />
-<meta property="og:url" content="{{ site.logo }}" />
+<meta property="og:image"
+      content="{{ site.logo }}"
+/>
+<meta property="og:url"
+      content="{{ site.logo }}"
+/>
+
 {% endif %}

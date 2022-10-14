@@ -1,58 +1,20 @@
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,700"
+      rel="stylesheet"
+/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+/>
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<style>{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+></script>
 <style>
-{% include styles/logo.css %}
-{% include styles/helpers.css %}
-{% include styles/modal.css %}
-{% include styles/sizes.css %}
-{% include styles/gradient.css %}
-{% include styles/chat.css %}
+{% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}
 </style>
 <style>
-.img-container {
-  position: relative;
-  text-align: center;
-  color: white;
-}
-
-.img-bottom-left {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-}
-
-.img-top-left {
-  position: absolute;
-  top: 8px;
-  left: 16px;
-}
-
-.img-top-right {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-}
-
-.img-bottom-right {
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-}
-
-.img-centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}    
-
-.img-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
+{% for i in site.styles %}{% include styles/{{ i }}.css %}{% endfor %}
 </style>

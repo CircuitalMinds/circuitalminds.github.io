@@ -4,7 +4,9 @@
     {% include required.html %}
     {% include style.html %}
     {% include script.html %}
-    <title>{% if page.title %} {{ page.title }} | {{ site.title }} {% else %} {{ site.title }} {% endif %}</title>
+    <title>
+    {% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}
+    </title>
 </head>
 <body>
     {% if site.google-analytics %}{% include resource/google-analytics.html %}{% endif %}
@@ -14,11 +16,7 @@
 
     {{ content }}
 
-    {% include {{ site.app.index }} name="chat" as_iframe="true" %}
+    {% include {{ site.data.app.index }} name="chat" as_iframe="true" %}
     {% include home/footer.html %}
-    <script>getSearchQuery()</script>
-    {% include {{ site.api.html }} %}
-    <div id="iso-graff"></div>
-    <script>{% include module/iso-graff.js %}</script>
 </body>
 </html>

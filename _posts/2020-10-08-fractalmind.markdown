@@ -4,6 +4,7 @@ title: What does it mean to feel millions of dreams come real?
 date: 2020-10-08 10:30:55 +0300
 image: fractalmind.jpg
 tags: [Cantor]
+category: curiosity
 ---
 > <h3><strong>"Se repiten en multitud, liberandose en aparente anarquía preciosa estructura pintada en fragmentos disjuntos; El Infinito expresando su arte más auténtico".</strong></h3>
 

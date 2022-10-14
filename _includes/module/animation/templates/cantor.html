@@ -1,0 +1,52 @@
+<div id="cantor" class="container">
+    <div class="row">
+    <h3>
+        Fractal del Conjunto de Cantor.
+    </h3>
+    <p>
+        Sea $${\displaystyle C =\bigcap _{n=1}^{\infty }E_{n}}$$, donde cada
+        subconjunto $$E_{n}$$ es la union de $$2^{n}$$ intervalos de longitud $$3^{-n}$$
+        que están contenidos en el intervalo $$[0, 1]$$, y además se satisface
+        $${\displaystyle E_{1}\supset E_{2}\supset E_{3}\supset ...}$$. Este conjunto
+        lleva el nombre de ``` Cantor ```, que debido a su construcción produce el
+        conocido fractal de ``` Cantor ```, tal y como es mostrado debajo.
+    </p>
+    <p>Numero de Particiones \(C_N =\) <span class="cn-text">5</span></p>
+    <div class="slidecontainer">
+    <input value="5" type="range" class="cn-value slider"
+           min="0" max="10" step="1" oninput=""
+    />
+    </div>
+    <div class="cn-draw row"></div>
+    </div>
+</div>
+
+<div id="sierpinski" class="container">
+    <div class="row">
+    <h3>
+        Triangulo de Sierpiński.
+    </h3>
+    <p>
+        Este conjunto no solamente es especial por su característica fractal,
+        ya que logró desafiar la intuición geometrica cuando Cantor demostró
+        de una manera muy peculiar que esté conjunto es de medida cero, y si
+        esto ya parecia extraño, mostró tambien que la cantidad de elementos
+        de este conjunto es exactamente la misma que la del intervalo $$[0, 1]$$.
+    </p>
+    <p>Numero de Particiones \(S_n = \) <span class="sn-text">6</span></p>
+    <div class="slidecontainer">
+    <input value="6" type="range" class="sn-value slider"
+           min="1" max="10" step="1" oninput=""
+    />
+    </div>
+    <div class="sn-draw row"></div>
+    <p>
+        Puede uno imaginarse en aquellos momentos lo absurdo que era pensar
+        que existen distintas formas y tamaños de lo que llamamos infinito,
+        pero debido a esto aprendimos que no se deben descartar ideas solo
+        por aparentar ser absurdas, y solamente hacerlo cuando sea posible
+        algun argumento válido que lo demuestre.
+    </p>
+    </div>
+</div>
+<script src="static/js/cantor.js"></script>

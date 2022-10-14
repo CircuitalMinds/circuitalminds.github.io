@@ -1,12 +1,25 @@
-{% assign folder = include.folder %}
+{% assign panel = include.panel %}
 <div class="w3-panel">
-    
+
+<form class="cell-md-3" action="{{ site.url }}:8080/drive/videos/" method=post enctype=multipart/form-data>
+    <input type="file" data-role="file" data-mode="drop" multiple="true"
+           data-on-select="$('#selected-files').html('');
+           $('#data-list')[0].innerHTML = '';
+           $.each(arguments[0], function(){
+           $('#selected-files').append('&lt;div&gt;'+this.name+'&lt;/div&gt;');
+           $('#data-list')[0].innerHTML += '<p>'+this.name+'</p>\n';
+        });" name="files[]"/>
+        <div class="bg-light p-2 overflow reduce-1" id="selected-files" style="height: 270px;"></div>
+        <label class="fg-dark">Selected Files</label><div id="data-list" class="fg-dark"></div>
+    <input type=submit value=Upload>
+</form>
+
 <div class="w3-row-padding w3-margin-bottom">
   <div class="w3-quarter">
     <div class="w3-container w3-hover-cyan w3-hover-text-red w3-red w3-text-cyan w3-padding-16">
       <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
       <div class="w3-right">
-        <h3><span class="{{ folder.icon }}"></span></h3>
+        <h3><span class="{{ app.folder-icon }}"></span></h3>
       </div>
       <div class="w3-clear"></div>
       <h4>Documents</h4>
@@ -16,7 +29,7 @@
     <div class="w3-container w3-hover-cyan w3-hover-text-blue w3-blue w3-text-cyan w3-padding-16">
       <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
       <div class="w3-right">
-        <h3><span class="{{ folder.icon }}"></span></h3>
+        <h3><span class="{{ app.folder-icon }}"></span></h3>
       </div>
       <div class="w3-clear"></div>
       <h4>Pictures</h4>
@@ -26,7 +39,7 @@
     <div class="w3-container w3-hover-cyan w3-hover-text-teal w3-teal w3-text-cyan w3-padding-16">
       <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
       <div class="w3-right">
-        <h3><span class="{{ folder.icon }}"></span></h3>
+        <h3><span class="{{ app.folder-icon }}"></span></h3>
       </div>
       <div class="w3-clear"></div>
       <h4>Videos</h4>
@@ -36,7 +49,7 @@
     <div class="w3-container w3-hover-cyan w3-hover-text-orange w3-orange w3-text-cyan w3-padding-16">
       <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
       <div class="w3-right">
-        <h3><span class="{{ folder.icon }}"></span></h3>
+        <h3><span class="{{ app.folder-icon }}"></span></h3>
       </div>
       <div class="w3-clear"></div>
       <h4>Notebooks</h4>

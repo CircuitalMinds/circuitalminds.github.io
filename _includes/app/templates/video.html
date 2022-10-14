@@ -1,9 +1,9 @@
-{% assign buttons = include.buttons %}
+{% assign video = include.video %}
 
 <h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
 <div class="row">
     <div id="logo" class="cell-md-4 text-center">{{ page.title }}</div>
-    {% include datetime.html %}
+    {% include {{ site.module.datetime }} on-clock=true on-date=true %}
     <input id="query"
             type="text"
             class="cell-md-3"
@@ -13,7 +13,7 @@
         <span class="mif-cross-light"></span>
     </button>
     <div class="p-2 mt-2 row">
-    {% for btn in buttons %}
+    {% for btn in video.buttons %}
     <button id="{{ btn }}" class="action-button w3-hover-dark-gray w3-hover-text-white w3-dark w3-text-teal"><span class="mif-{{ btn }}"></span></button>
     <div class="p-1"></div>    
     {% endfor %}      

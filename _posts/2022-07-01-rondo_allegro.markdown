@@ -3,7 +3,8 @@ layout: post
 title: A Bluish Memory in a Rondó Allegro.
 date: 2022-07-01 06:00:00 +0300
 image: rondo_allegro.png
-tags: [Fauré Debussy Clair de Lune]
+tags: [Bergamasques]
+category: music
 ---
 > "La melancólica luz de la luna, dulce y solitaria, 
 que hace soñar a los pájaros sobre el árbol,
