@@ -3,7 +3,7 @@
 #-------------------------------
 
 baseurl: ""
-url: "http://192.168.50.100"
+url: "https://circuitalminds.github.io"
 title: "CircuitalMinds"
 description: "From Here To Eternity."
 logo: "https://avatars.githubusercontent.com/u/75770878?s=400&u=85be0810ccfb5f56a393f71cf971021f087c5a59&v=4"
@@ -26,6 +26,8 @@ mailchimp: # Add your MailChimp form identifier.
 #-------------------------------
 # Directory
 #-------------------------------
+
+api_url: "http://circuitalminds.herokuapp.com"
 
 js: "assets/js"
 css: "assets/css"

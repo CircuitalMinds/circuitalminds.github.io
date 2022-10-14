@@ -7,7 +7,7 @@
 ==================================================
 */
 
-var api = Http( '{{ api.url }}' );
+var api = Http( '{{ site.api_url }}' );
 
 api.route = {{ api.route | jsonify }};
 
