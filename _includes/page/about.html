@@ -1,10 +1,10 @@
+{% assign author = site.data.author %}
+
+{% include {{ site.module-animation }} name="sieve-crib" %}
+
 organization: CircuitalMinds
 
-owner: Alan Matzumiya
-
-goal: Organization Oriented to Software Development
-
-topics of interest: Exact Art and Science
+owner: {{ author.name }}
 
 <iframe width="100%" 
         frameborder="0"
@@ -12,13 +12,14 @@ topics of interest: Exact Art and Science
         marginheight="0" 
         marginwidth="0"
         allowTransparency="true"
-        src="{{ site.data.author.location.map }}">
+        src="{{ author.location.map }}">
 </iframe>
+
 <iframe width="100%" 
         frameborder="0" 
         scrolling="no"
         marginheight="0" 
         marginwidth="0"
         allowTransparency="true"
-        src="{{ site.data.author.location.sky }}">
+        src="{{ author.location.sky }}">
 </iframe>

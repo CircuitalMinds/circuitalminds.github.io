@@ -1,4 +1,4 @@
-<style>{% for i in site.data.app.styles %}{% include {{ i }}.css %}{% endfor %}</style>
+<style>{% for i in site.data.app.styles %}{% include {{ i }} %}{% endfor %}</style>
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Raleway"
 />
@@ -9,4 +9,7 @@
 html, body, h1, h2, h3, h4, h5 {
     font-family: "Raleway", sans-serif
 }
+</style>
+<style>
+{% include app/styles/chat.css %}
 </style>

@@ -1,8 +1,8 @@
 .controls {
     opacity: 0.0;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
     transition: opacity 1s;
-    transition-delay: 0.4s;
+    transition-delay: 0.3s;
 }
 
 .controls:hover {

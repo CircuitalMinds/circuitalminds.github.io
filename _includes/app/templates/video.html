@@ -1,9 +1,9 @@
 {% assign video = include.video %}
 
-<h3 class="cell-md-12 card-header fg-teal" id='video-title'></h3>
-<div class="row">
+<h3 class="cell-md-12 card-header bg-dark fg-teal" id='video-title'></h3>
+<div class="row bg-dark">
     <div id="logo" class="cell-md-4 text-center">{{ page.title }}</div>
-    {% include {{ site.module.datetime }} on-clock=true on-date=true %}
+    {% include {{ site.module-element.datetime }} on-clock=true on-date=true %}
     <input id="query"
             type="text"
             class="cell-md-3"
@@ -27,8 +27,8 @@
 </div>     
 
 <br>
-<div class="row">
-<video class="cell-md-8 bg-light fg-cyan"
+
+<video class="cell-md-12 bg-dark fg-cyan"
        data-random-mode=false
        data-video-selected="0"
        data-aspect-ratio="hd"
@@ -42,7 +42,7 @@
        data-volume-medium-icon='<span class="mif-volume-medium fg-cyan"></span>'
        data-volume-mute-icon='<span class="mif-volume-mute2 fg-cyan"></span>'
 ></video>
-</div>
+
 <ul id="feeds" class="group-list feed-list"></ul>
 <div id="results" class="search-modal" style="z-index:4">
        <div class="search-modal-content">

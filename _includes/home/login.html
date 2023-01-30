@@ -1,16 +1,20 @@
 <div id="login-data" class="modal">
 	<div class="modal-content">
-	<div class="modal-header">
-		<span class="close">&times;</span><h3>Login</h3>
+	<div class="modal-header">		
+		<span class="close">&times;</span>
+		<h3>Login</h3>
 	</div>
 	<div class="modal-body">
 		<div class="container">
 		<div class="row w-100">
-		<input class="w-25 bd-line" name="username"
-			   type="text" placeholder="  Username..">
-		<input class="w-25 bd-line" name="password"
-			   type="text" placeholder="  Password..">
-		<button class="w-25 button-0 login-button">Sign In</button>
+			<form onsubmit="login( this );" action="javascript:">
+			<input class="w-25 bd-line" name="email"
+				type="text" placeholder="  Email..">
+			<input class="w-25 bd-line" name="password"
+				type="password" placeholder="  Password..">
+			<button class="w-25 button-0 login-button">Sign In</button>			
+			</form>
+			<p id="response-message"></p>
 		</div>
 		</div>
 	</div>
@@ -20,7 +24,28 @@
 	</div>
 </div>
 <script>
+
 $( function () { 
 	createLogin( "login-data", "login-button" ) 
 });
+
+function login ( form ) {
+    
+    var req = {
+        email: form.querySelector( 'input[name="email"]' ).value,
+        password: form.querySelector( 'input[name="password"]' ).value
+    };
+
+    Http( 
+        '{{ site.api_url }}' 
+    ).post( 
+        '/login/', req,
+        function ( res ) {
+            var msg = $( "#response-message" )[0];
+            msg.innerHTML = ( res.authorized ) ? "Authorized" : "Unauthorized";
+        }
+    );
+
+};
+
 </script>

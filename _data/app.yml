@@ -65,9 +65,11 @@ folder-icon: icon mif-folder fg-cyan
 file-icon": icon mif-file-empty fg-teal
 
 styles: [
-  styles/logo,
-  styles/gradient,
-  app/styles/utils,
-  styles/chat,
-  app/styles/index
+  app/styles/utils.css,
+  app/styles/index.css
 ]
+
+jupyter:
+  url-content: https://raw.githubusercontent.com/CircuitalMinds/jupyter
+  url-root: https://jupyternbs.herokuapp.com/notebooks
+

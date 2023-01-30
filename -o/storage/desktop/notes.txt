@@ -1,0 +1,77 @@
+=========================================
+
+git config --global user.name "alanmatzumiya"
+git config --global user.email "alanmatzumiya@outlook.es"
+git config --global credential.helper cache
+
+USER-TOKEN: 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
+ORG-TOKEN: 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
+
+=========================================
+
+    Jekyll-Theme
+
+=========================================    
+
+    sudo apt-get install ruby
+    sudo apt-get install jekyll
+    sudo apt-get install bundler
+
+    sudo gem install jekyll bundler
+    sudo gem install update    
+
+    bundle install
+    bundler install
+
+    bundle exec jekyll server
+    bundler exec jekyll server
+  
+=========================================
+
+    Install Apache2
+
+=========================================
+
+    sudo apt update
+    sudo apt install apache2
+    sudo ufw allow 'Apache'
+    sudo systemctl enable apache2
+    
+    sudo mkdir /var/www/circuitalminds
+    sudo chown -R $USER:$USER /var/www/circuitalminds
+    sudo chmod -R 755 /var/www/circuitalminds
+    
+    sudo nano /etc/apache2/sites-available/circuitalminds.conf
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    <VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName circuitalminds
+    ServerAlias www.circuitalminds
+    DocumentRoot /var/www/circuitalminds
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    sudo a2ensite circuitalminds.conf
+    sudo a2dissite 000-default.conf
+    sudo systemctl reload apache2
+    sudo systemctl restart apache2    
+
+=========================================
+
+
+
+
+
+titulacion@unison.mx
+Nombre: Alan Daniel Matzumiya Zazueta
+Expediente: 211208551
+CURP: MAZA920914HSRTZL07
+e.firma: 
+
+
+   

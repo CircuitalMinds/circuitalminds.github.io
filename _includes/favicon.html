@@ -1,7 +1,7 @@
 <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css"
       rel="stylesheet"
 />
-{% assign fav=site.data.cfg.favicon %}
+{% assign fav=site.data.favicon %}
 <link rel="manifest"
       href="{{ fav.manifest }}"
 />
@@ -34,16 +34,19 @@
       href="/favicon.ico/favicon-{{ s }}x{{ s }}.png"
 />
 {% endfor %}
+
 {% for m in fav.meta %}
-  {% if m.sizes %}
-  {% for s in m.sizes %}
-  <meta name="{{ m.name }}"
-        content="{{ m.content }}-{{ s }}x{{ s }}.png"
-  />
-  {% endfor %}
-  {% else %}
-  <meta name="{{ m.name }}"
-        content="{{ m.content }}"
-  />
-  {% endif %}
+
+{% if m.sizes %}
+{% for s in m.sizes %}
+<meta name="{{ m.name }}"
+      content="{{ m.content }}-{{ s }}x{{ s }}.png"
+/>
+{% endfor %}
+{% else %}
+<meta name="{{ m.name }}"
+      content="{{ m.content }}"
+/>
+
+{% endif %}
 {% endfor %}

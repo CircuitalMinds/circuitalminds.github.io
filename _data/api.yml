@@ -1,4 +1,0 @@
-route:
-  home: /
-  send-json: /send-json/
-  notebooks: /jupyter-notebooks/

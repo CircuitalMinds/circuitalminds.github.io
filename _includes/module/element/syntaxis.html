@@ -1,0 +1,54 @@
+{% for i in (0..10) %}
+{% assign x = i | times:10 %}
+{% for j in (0..10) %}
+{% assign y = j | times:10 %}
+.wh-{{ x }}-{{ y }}-left {
+    float: left;
+    width: {{ x }}%;
+    height: {{ y }}%;
+    margin: 0;
+    padding: 2px 16px;
+}
+.wh-{{ x }}-{{ y }}-center {
+    float: center;
+    width: {{ x }}%;
+    height: {{ y }}%;
+    margin: 0;
+    padding: 2px 16px;
+}
+.wh-{{ x }}-{{ y }}-right {
+    float: right;
+    width: {{ x }}%;
+    height: {{ y }}%;
+    margin: 0;
+    padding: 2px 16px;
+}
+{% endfor %}
+{% endfor %}
+
+
+
+
+{% assign url=site.data.jupyter.url %}
+{% assign topic=include.topic %}
+{% assign dataset=site.data.jupyter.content[topic] %}
+
+<p>{{ site.data.jupyter.description[topic] }}</p>
+{% capture data_html %}
+{% for i in (0..dataset.size) %}
+{% assign m=i | plus:'1' | prepend:'0' %}
+{% assign Id=topic | append:'-' | append:m %}
+{% assign Header=i | plus:'1' | prepend:'Module ' %}
+
+{% capture module_html %}
+<ul>
+{% for v in dataset[m] %}
+<li><a href="{{ url }}/{{ v[1] }}">{{ v[0] | replace:'.ipynb','' }}</a></li>
+{% endfor %}
+</ul>
+{% endcapture %}
+{% include module/element/accordion.html id=Id header=Header body=module_html %}
+
+{% endfor %}
+{% endcapture %}
+{% include module/element/accordion.html id=topic header=topic body=data_html %}

@@ -3,8 +3,8 @@
 {% include {{ app.template.header.html }} header=app.template.header %}
 
 <div class="w3-overlay w3-hide-large w3-animate-opacity"
-     onclick="w3_close()"
-     style="cursor:pointer"
+     onclick="SideBar( 'close' );"
+     style="cursor:pointer;"
      title="close side menu"
      id="myOverlay"
 ></div>
@@ -26,4 +26,24 @@
 
 </div>
 
-{% include {{ app.index }} name="chat" as_iframe="true" %}
+    <button class="open-button"
+            onclick='getElement( "id", "chat_form" ).show();'>
+        Chat
+    </button>
+    <div class="chat-popup"
+         id="chat_form">
+    <div class="form-container">
+    <iframe src="/app/chat/"
+            class="image fit"
+            width="100%"
+            height="300px"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen="true"
+            frameborder="0"
+    ></iframe>
+    <button type="button"
+            class="btn cancel"
+            onclick='getElement( "id", "chat_form" ).hide();'>Close
+    </button>
+    </div>
+    </div>

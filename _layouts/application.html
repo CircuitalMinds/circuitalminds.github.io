@@ -7,13 +7,10 @@
 {% include script.html %}
 <title>{{ page.title }} | {{ site.title }}</title>
 </head>
-<body class="container initial-gradient">
+<body class="loader-background">
 {% if site.google-analytics %}{% include resource/google-analytics.html %}{% endif %}
 
     {{ content }}
 
 </body>
-<script>
-     window._DATA = {{ site.data.app | jsonify }};
-</script>
 </html>

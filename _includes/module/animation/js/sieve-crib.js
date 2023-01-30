@@ -1,16 +1,18 @@
-function SieveCrib () {
+$( function () {
+
+    var plt = IsoGraph();
+
     var sieve = $( "#sieve-crib" )[0];
-    sieve.get = function ( q ) {
-        return this.querySelector( ".sieve-" + q );
-    };
-    sieve.phi = sieve.get( "phi" );
-    sieve.pi = sieve.get( "pi" );
-    sieve.n = sieve.get( "n" );
-    sieve.slide = sieve.get( "slide" );
-    sieve.fig = View( sieve.get( "fig" ) );
+    sieve.phi = sieve.querySelector( ".sieve-phi" );
+    sieve.pi = sieve.querySelector( ".sieve-pi" );
+    sieve.n = sieve.querySelector( ".sieve-n" );
+    sieve.slide = sieve.querySelector( ".sieve-slide" );
+    sieve.fig = plt.create( "sieve-fig" );
+    var fig = sieve.fig.querySelector( "canvas" );
+    sieve.fig.ctx = fig.getContext( "2d" );
 
     sieve.slide.onchange = function () {
-        var w = sieve.fig.width / 10;
+        var w = fig.width / 10;
         sieve.fig.setH( w + w * ( this.value / 10 ) );
         sieve.table.iter( this.value );
     };
@@ -27,7 +29,8 @@ function SieveCrib () {
         },
         iter: function ( n ) {
             var xn = 1;
-            var w = sieve.fig.width / 10;
+            var w = fig.width / 10;
+            print(w);
             sieve.fig.ctx.beginPath();
             sieve.fig.ctx.stroke();
             for ( var i = 0; i < n / 10; i++ ) {
@@ -43,5 +46,6 @@ function SieveCrib () {
         }
     };
     sieve.fig.ctx.font = "15px Arial";
-    return sieve;
-}
+    sieve.slide.oninput = function () { sieve.table.iter( sieve.slide.value ) };
+
+} );

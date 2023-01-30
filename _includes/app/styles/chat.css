@@ -1,0 +1,83 @@
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 100%;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+  }
+
+  /* form-container style */
+  /* The popup chat - hidden by default */
+  .chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 1px solid #1abc9c;
+    z-index: 9;
+    height: 60%;
+  }
+  
+  .button-chat {
+    background-color: #555; color: white;
+    padding: 16px 20px; border: none;
+    cursor: pointer; opacity: 0.8;
+    transition-duration: 0.8s; position: fixed;
+    bottom: 23px; right: 28px; width: 280px;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 300px;
+    height: 100%;
+    padding: 5px;
+    background-color: white;
+  }
+  
+  /* Full-width textarea */
+  .form-container iframe {
+    height: 80%;
+    width: 100%;
+    padding: 5px;
+    margin: 2px;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+  }
+  
+  /* When the textarea gets focus, do something */
+  .form-container iframe:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/send button */
+  .form-container .btn {
+    background-color: #04AA6D;
+    height: 15%;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a background color to the cancel button */
+  .form-container .cancel {
+    background-color: #1abc9c;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }

@@ -15,6 +15,3 @@
 <style>
 {% capture include_to_scssify %}{% include main.scss %}{% endcapture %}{{ include_to_scssify | scssify }}
 </style>
-<style>
-{% for i in site.styles %}{% include styles/{{ i }}.css %}{% endfor %}
-</style>

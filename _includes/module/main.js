@@ -1,28 +1,64 @@
-{% assign api = site.data.api %}
-
 // Import Modules
+
+{% include module/utils.js %}
+
+{% include module/plot.js %}
+
 /*
 ==================================================
     BUILTINS
 ==================================================
 */
 
-var api = Http( '{{ site.api_url }}' );
+{% assign app = site.data.app %}
 
-api.route = {{ api.route | jsonify }};
+var app = Http( '{{ site.app }}' );
 
-api.getEnv = function () {
-    print( '{{ jekyll.environment }}' );
+app.env = function () {
+    return '{{ jekyll.environment }}';
 };
 
-api.getJupyter = function () {
+function fromStatic ( path ) {
+    return Http( ['{{ site.static_url }}', path].join("/") );
+};
+
+function createLogin ( id, btn_id ) {
+	var login = getElement( "id", id );
+	getElement( "id", btn_id ).onclick = function() {
+    	getElement( "class", "menu-close" ).click();
+    	login.show();
+	};
+	login.query( "span.close" ).map(
+		ei => ei.onclick = function () { login.hide() }
+	);
+	window.onclick = function( event ) {
+		if ( event.target == login ) {
+			login.hide();
+		};
+	};	
+};
+
+function getLogIn () {
+
+    var login = $( "#login-data" )[0];
+    login.get = login.querySelector( ".login-button" );
+    login.get.onclick = function () {
+        print({
+            username: login.querySelector( "input[name=username]" ).value,
+            password: login.querySelector( "input[name=password]" ).value
+        });
+    };
+
+};
+
+function getJupyter ( topic ) {
 
     function getDropDown ( id, content ) {
 
         var Header = content.header;
         var Body = content.body;
         return `{%
-            include {{ site.module.accordion }}
+            include {{ site.module-element.accordion }}
             id='${id}' header='${Header}' body='${Body}'
         %}`;
 
@@ -32,35 +68,36 @@ api.getJupyter = function () {
 
         var content = x.content;
         var outdata = "";
-        for ( t of getkeys( content ) ) {
-            var tbody = "";
-            for ( m of getkeys( content[t] ) ) {
-                var mbody = "<ul>";
-                for ( xi of content[t][m] ) {
-                    mbody += '<li><a href="' + [x.root, xi.path].join("/") + '">' + xi.name.replace(".ipynb", "") + '</a></li>';
-                };
-                mbody +=  "</ul>";
-                tbody += getDropDown(
-                    t + "_" + m,
-                    { header: "Module " + m, body: mbody }
-                );
+        var tbody = "";
+
+        for ( m of getkeys( content[topic] ) ) {
+            var mbody = "<ul>";
+            for ( xi of content[topic][m] ) {
+                mbody += '<li><a href="' + [x.root, xi.path].join("/") + '">' + xi.name.replace(".ipynb", "") + '</a></li>';
             };
-            outdata += getDropDown(
-                t,
-                {
-                    header: t.split( "_" ).map(
-                        ti => ti[0].toUpperCase() + ti.slice(1)
-                    ).join( " " ),
-                    body: tbody
-                }
+            mbody +=  "</ul>";
+            tbody += getDropDown(
+                topic + "_" + m,
+                { header: "Module " + m, body: mbody }
             );
         };
+        outdata += getDropDown(
+            topic,
+            {
+                header: topic.split( "_" ).map(
+                    ti => ti[0].toUpperCase() + ti.slice(1)
+                ).join( " " ),
+                body: tbody
+            }
+        );
 
-        $( "#jupyter" )[0].innerHTML = outdata;
+        $( "#jupyter-" + topic )[0].innerHTML = outdata;
 
     };
 
-    this.getjson( this.route.notebooks, handler );
+    fromStatic( "data" ).getjson( 
+        "notebooks.json", handler
+    );
 
 };
 
@@ -118,27 +155,6 @@ function Timer() {
 };
 
 
-function fromStatic ( path ) {
-    return Http( ['{{ site.static_url }}', path].join("/") );
-};
-
-function createLogin ( id, btn_id ) {
-	var login = getElement( "id", id );
-	getElement( "id", btn_id ).onclick = function() {
-    	getElement( "class", "menu-close" ).click();
-    	login.show();
-	};
-	login.query( "span.close" ).map(
-		ei => ei.onclick = function () { login.hide() }
-	);
-	window.onclick = function( event ) {
-		if ( event.target == login ) {
-			login.hide();
-		};
-	};	
-};
-
-
 function createConsole () {
     var x = $( "#console" )[0];
     
@@ -157,18 +173,6 @@ function createConsole () {
 
 };
 
-function getLogIn () {
-
-    var login = $( "#login-data" )[0];
-    login.get = login.querySelector( ".login-button" );
-    login.get.onclick = function () {
-        print({
-            username: login.querySelector( "input[name=username]" ).value,
-            password: login.querySelector( "input[name=password]" ).value
-        });
-    };
-
-};
 
 function saveFile ( name, data ) {
     data = JSON.stringify( data, null, 4 );
@@ -290,3 +294,27 @@ function initSocket () {
     return socket;
 
 };
+
+
+/*
+==================================================
+    Site-Data
+==================================================
+*/
+
+
+var currentPage = '{{ page.title }}';
+var sitePages = [];
+
+{%- for p in site.pages -%}
+{%- if p.title -%}
+sitePages.push({
+    "title": '{{ p.title }}',
+    "name": '{{ p.name }}',
+    "image": '{{ p.image }}',
+    "url": '{{ p.url }}',
+    "path": '{{ p.path }}',
+    "tags": {{ p.tags | split: ", " | jsonify }}
+});
+{%- endif -%}
+{%- endfor -%}

@@ -1,0 +1,18 @@
+{% assign topics = "intro, engineering, data_science" | split: ", " %}
+
+<div class="row jupyter">
+<h3 class="widget-title">Jupyter Notebooks</h3>
+{% for topic in topics %}
+
+<div id="jupyter-{{ topic }}"></div>
+
+{% endfor %}
+</div>
+
+<script>
+[
+    "intro", "engineering", "data_science"
+].map( 
+    t => getJupyter( t )
+);
+</script>

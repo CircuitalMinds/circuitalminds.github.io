@@ -1,7 +1,7 @@
 {% assign header = include.header %}
 
 <div class="w3-bar w3-top w3-black w3-large"
-     style="z-index:4"
+     style="z-index:30"
 >
 <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey"
         onclick="SideBar( 'open' );"><i class="fa fa-bars"></i>  Menu
@@ -14,8 +14,10 @@
 <div class="w3-container w3-row">
 <div class="w3-col s4">
 <img src="{{ site.logo }}"
-     class="w3-circle w3-margin-right"
-     style="width:46px">
+     class="w3-circle w3-margin-right w3-button"
+     style="width:100%"
+     onclick='redirectTo( "/" );'
+>
 </div>
 <div class="w3-col s8 w3-bar">
 <span>Welcome to <strong>{{ page.title }}</strong></span>
@@ -56,8 +58,9 @@
         style="padding-left: 25%; padding-top:22px;">
 <div class="w3-col s4">
 <img src="{{ site.logo }}"
-     class="w3-circle w3-margin-right w3-margin-bottom"
-     style="width:46px"
+     class="w3-circle w3-margin w3-button"
+     style="width:25%;"
+      onclick='redirectTo( "/" );'
 >
 </div>
 <div class="header row border-bottom">
