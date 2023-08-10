@@ -5,20 +5,18 @@
     <div class="header-box">
             <div class="logo-title bd-light spectral-gradient">
             <a class="logo-text" href="/">
-            <div class="fg-light"> {{ site.title }}</div>
-            </a>
+            <div class="fg-light">* {{ site.title }} *</div>
+            </a>               
             </div>
             <nav class="nav-menu">
             <i class="menu-close ion-ios-close"></i>
             <ul class="menu-list">
-                <li class="menu-item">{% include {{ site.module-element.datetime }} on-clock=true on-date=true %}</li>
-                
+                <li class="menu-item">{% include {{ site.module-element.datetime }} on-clock=true on-date=true %}</li>                
                 {% for x in site['home-pages'] %}
                 <li class="menu-item">
                     <a href="{{ x.url }}" class="menu-link">{{ x.name | capitalize }}</a>
                 </li>
-                {% endfor %}
-                
+                {% endfor %}                
                 <li class="menu-item">
                 <div id="login-button" class="button-0">Login</div>
                 </li>
@@ -37,3 +35,8 @@
 
 </header> <!-- /.header -->
 <div class="container" id="google_translate_element"></div>
+<audio id="audio-player" controls
+        src="https://github.com/circuitalmynds/music_u1/blob/main/videos/S. Rachmaninov - V. Gryaznov. Italian Polka-YmSDDslA__M.mp4?raw=true"
+        style="width: 100%; box-shadow: 5px 5px 5px rgba(0,0, 0, 0.4); border-radius: 90px; transform: scale(1.0);"
+></audio>
+

@@ -61,9 +61,11 @@ template:
   panel:
     html: app/templates/panel.html
 
-folder-icon: icon mif-folder fg-cyan
-file-icon": icon mif-file-empty fg-teal
-
+folder-icon: icon mif-folder
+file-icon": icon mif-file-empty
+folders: [
+  documents, pictures, videos
+]
 styles: [
   app/styles/utils.css,
   app/styles/index.css
@@ -72,4 +74,3 @@ styles: [
 jupyter:
   url-content: https://raw.githubusercontent.com/CircuitalMinds/jupyter
   url-root: https://jupyternbs.herokuapp.com/notebooks
-

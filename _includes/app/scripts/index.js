@@ -1,19 +1,23 @@
 function SideBar ( opt ) {
     
-    var sidebar = $( "#mySidebar" )[0];
+    var bar = $( "#mySidebar" )[0];
     var overlay = $( "#myOverlay" )[0];
 
-    if ( opt == "open" ) {
-        if ( sidebar.style.display === 'block') {
-            sidebar.style.display = 'none';
-            overlay.style.display = "none";
-        } else {
-            sidebar.style.display = 'block';
-            overlay.style.display = "block";
-        };
-    } else if ( opt == "close" ) {
-        sidebar.style.display = "none";
-        overlay.style.display = "none";
+    function close () {            
+        hide( bar); hide( overlay );
     };
 
+    function open () {
+        if ( bar.style.display === 'block' ) {
+            close();
+        } else {
+            show( bar ); show( overlay );
+        };
+    };
+    
+    if ( opt == "open" ) {
+        open();
+    } else if ( opt == "close" ) {
+        close();
+    };
 };

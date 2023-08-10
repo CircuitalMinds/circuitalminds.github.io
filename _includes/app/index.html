@@ -1,3 +1,4 @@
+<script>{% include app/scripts/app-data.js %}</script>
 {% if include.as_iframe == 'true' %}
     {% if include.name == 'chat' %}
     <button class="popup-open-button"
@@ -7,18 +8,14 @@
     <div class="popup-widget">
     <div class="popup-widget-content">
     <iframe src="/app/chat/"
-                 class="image fit"
-                 allow="accelerometer;
-                             autoplay;
-                             encrypted-media;
-                             gyroscope;
-                             picture-in-picture;"
-                 allowfullscreen="true"
-                 frameborder="0">
+            class="image fit"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;"
+            allowfullscreen="true"
+            frameborder="0">
     </iframe>
     <button type="button"
-                 class="btn cancel"
-                 onclick='hide( $( ".popup-widget" )[0] );'>
+            class="btn cancel"
+            onclick='hide( $( ".popup-widget" )[0] );'>
         Close
     </button>
     </div>

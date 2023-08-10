@@ -34,9 +34,7 @@
       href="/favicon.ico/favicon-{{ s }}x{{ s }}.png"
 />
 {% endfor %}
-
 {% for m in fav.meta %}
-
 {% if m.sizes %}
 {% for s in m.sizes %}
 <meta name="{{ m.name }}"
@@ -47,6 +45,5 @@
 <meta name="{{ m.name }}"
       content="{{ m.content }}"
 />
-
 {% endif %}
 {% endfor %}

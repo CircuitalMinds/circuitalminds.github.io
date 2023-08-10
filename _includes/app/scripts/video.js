@@ -1,115 +1,207 @@
-function fullScreenEvent( element ) {
+/*
+==================================================
+    Module: Video-Loader
+==================================================
+*/
 
-    document.addEventListener( 
-        "keypress", function ( e ) {
+class VPlayer {
+    constructor() {
+
+        this.video = $("#media-player")[0];
+        this.video.list = [];
+
+        this.search = {
+            modal: $(".search-modal")[0],
+            init: function () {
+
+                var video = $("#media-player")[0];
+                Http( appData.urldata ).getjson(
+                    "videos/dataset.json",
+                    function (req) {
+                        req.forEach( function (vdata) {
+                            if (vdata.title) {
+                                vdata.index = video.list.length;
+                                video.list.push(vdata);
+                            };
+                        } );
+                        SimpleJekyllSearch( {
+                            searchInput: $("#query")[0],
+                            resultsContainer: $("#jkl-results")[0],
+                            json: req,
+                            searchResultTemplate: appData.search_template.result,
+                            noResultsText: appData.search_template.not_found                    
+                        } );
+                    }
+                );
+
+            }
+        };
+
+    }
+};
+
+var player = new VPlayer();
+
+$( function() {
+
+    player.video.poster = appData.videoposter;
+    player.video.volume = 0.9;
+    player.video.dataset.videoSelected = 0;
+
+    player.currentVideo = function () {
+
+        var videoplayer = player.video;
+        return videoplayer.list[ 
+            videoplayer.dataset.videoSelected 
+        ];
+    
+    };   
+    
+    player.randomIndex = function () {
+        
+        return random(
+            0, player.video.list.length
+        );
+    
+    };
+    
+    player.shuffled = function () {
+
+        return $("#random")[0].checked;
+
+    }
+
+    player.start = function () {
+        var video = player.currentVideo();
+        player.video.src = encodeURI( video.url );
+        $("#video-title")[0].innerHTML = video.title;
+        setTimeout(function () {
+            player.video.play();
+            $("#results")[0].style.display = "none";
+        }, 1e3 );
+    };
+  
+    player.playVideo = function ( i ) {        
+        player.video.dataset.videoSelected = i;
+        player.start();
+    };
+
+    $("#play")[0].onclick = function () {
+        
+        var n = Number( 
+            player.video.dataset.videoSelected 
+        );
+        if ( n.toString() == "NaN" ) {
+            player.playVideo( player.randomIndex() );
+        } else {
+            player.video.play();
+        };
+        
+    };
+
+    $("#pause")[0].onclick = function () {
+        player.video.pause();
+    };
+
+    $("#previous")[0].onclick = function () {
+        
+        var n = Number( 
+            player.video.dataset.videoSelected 
+        );
+        if ( n.toString() == "NaN" || player.shuffled() ) {
+            player.playVideo( player.randomIndex() );
+        } else {
+            player.playVideo( n - 1 );
+        };
+        
+    };
+    
+    $("#next")[0].onclick = function () {
+        
+        var n = Number( 
+            player.video.dataset.videoSelected 
+        );
+        if ( n.toString() == "NaN" || player.shuffled() ) {
+            player.playVideo( player.randomIndex() );
+        } else {
+            player.playVideo( n + 1 );
+        };
+        
+    };
+
+    player.video.onended = function () {
+        $("#next")[0].click();
+    };
+
+    $("#volume-plus")[0].onclick = function () {
+        if (player.video.volume < 0.9) {
+            player.video.volume += 0.1;
+        } else {
+            player.video.volume = 1;
+        };
+    };
+    $("#volume-minus")[0].onclick = function () {
+        if (player.video.volume > 0.1) {
+            player.video.volume -= 0.1;
+        } else {
+            player.video.volume = 0;
+        };
+    };
+
+    document.addEventListener( "keypress", function ( e ) {
         if ( e.key === "Enter" ) {
             if ( !document.fullscreenElement ) {
-                element.requestFullscreen();
+                player.video.requestFullscreen();
             } else {
                 if ( document.exitFullscreen ) {
                     document.exitFullscreen();
-                };
+            };
             };
         };
     }, false );
 
-};
+    $( "#jkl-results" )[0].addEventListener(        
+        "click", function ( r ) {
+            player.playVideo( 
+                r.target.id.split("-")[0]
+            );
+        }     
 
-$(function () {
-    
-    var videoApp = $( 
-        'video[data-role=video-player]' 
-    )[0];
-    
-    videoApp.getData = function ( key, from_attribute ) {                
-        if ( type( from_attribute ) == "string" ) {
-            return this[ from_attribute ][ key ];
-        } else {        
-            return this[ key ];
-        };
-    };
-    videoApp.setData = function ( key, value, from_attribute ) {
-        if ( type( from_attribute ) == "string" ) {
-            this[ from_attribute ][ key ] = value;
-        } else {        
-            this[ key ] = value;
-        };
-    };
-    
-    getitems( {   
-        poster: '/{{ site.img }}/app/{{ video.poster }}',
-        volume: 0.9,
-        videolist: []
-    } ).map( v => videoApp.setData( v[0], v[1] ) );
-    
-    videoApp.setData( "videoSelected", 0, "dataset" );
+    );
 
-    videoApp.start = function () {
-        var video = this.videolist[this.dataset.videoSelected];
-        this.src = encodeURI( video.url );
-        $("#video-title")[0].innerHTML = video.title;
-        setTimeout(function () {
-            videoApp.play();
-            $("#results")[0].style.display = "none";
-        }, 500);
-    };
-
-    fullScreenEvent( videoApp );
-
-  
-    videoApp.playVideo = function (i, shuffled) {
-        this.dataset.randomMode = shuffled;
-        if (shuffled) {
-            i = random(0, this.videolist.length);
-        };
-        this.dataset.videoSelected = i;
-        this.start();
-    };
-
-    $("#play")[0].onclick = function () {
-        videoApp.play();
-    };
-    $("#pause")[0].onclick = function () {
-        videoApp.pause();
-    };
-    $("#previous")[0].onclick = function () {
-        videoApp.playVideo(
-            Number(videoApp.dataset.videoSelected) - 1, $("#random")[0].checked
+    $( "#query" )[0].onclick = function () {
+        
+        var modal = player.search.modal;        
+        var h = round( window.innerHeight * 0.45) + "px";    
+        modal.style.display = "block";    
+        
+        getvalues( 
+            modal.querySelector( ".search-modal-body" ).childNodes 
+        ).map( e => e.style.height = h );
+        
+        getvalues( modal.querySelectorAll( "span.search-close" ) ).map(
+            q => q.onclick = function () { 
+                modal.style.display = "none";
+            }
         );
-    };
-    $("#next")[0].onclick = function () {
-        videoApp.playVideo(
-            Number(videoApp.dataset.videoSelected) + 1, $("#random")[0].checked
-        );
-    };
 
-    videoApp.onended = function () {
-        $("#next")[0].click();
-    }
-
-    $("#volume-plus")[0].onclick = function () {
-        if (videoApp.volume < 0.9) {
-            videoApp.volume += 0.1;
-        } else {
-            videoApp.volume = 1;
-        };
-    };
-    $("#volume-minus")[0].onclick = function () {
-        if (videoApp.volume > 0.1) {
-            videoApp.volume -= 0.1;
-        } else {
-            videoApp.volume = 0;
+        window.onclick = function ( event ) {
+            if ( event.target == modal ) {
+                modal.style.display = "none";
+            };
         };
     };
 
-    function setFeeds( delay=30 ) {
+
+    function setFeeds() {
+        
         var feeds = $("#feeds")[0];
         var videolist = range(0, 4);
         function getFeeds() {
             for (var i = 0; i < videolist.length; i++) {
-                var video = videoApp.videolist[random(0, videoApp.videolist.length)];
+                var video = player.video.list[random(0, player.video.list.length)];
                 videolist[i] = `<li class="button card-content bg-darkTeal bg-dark-hover fg-light"
-                        onclick="$( 'video' )[0].playVideo( '${video.index}', false );">
+                        onclick="player.playVideo( '${video.index}' );">
                         <img class="avatar" src="${video.image}">
                         <span class="label">${video.title}</span>
                         <span class="second-label">${video.duration}</span>
@@ -118,85 +210,15 @@ $(function () {
             feeds.innerHTML = videolist.join("\n");
         };
         getFeeds();
-        setInterval( getFeeds, Number(`${delay}e3`) );
-    };    
+        setInterval( getFeeds, 15e3 );
 
-    fromStatic("data/videos").getjson(
-        "dataset.json", function (data) {
-            var titles = [];
-            for ( x of getvalues( data ) ) {
-                if ( isdefined( x.title ) && x.title != "" ) {
-                    titles.push( x.title );
-                };
-            };
-            titles.sort();
-            for ( v of getvalues(data)) {                                                
-                v.index = titles.indexOf( v.title );
-                videoApp.videolist[ v.index ] = v;
-            };
+    };
 
-            setFeeds();
+    setTimeout( function () {
+        player.search.init();
+        setTimeout( function () {
+            setFeeds();                    
+        }, 1e3 );
+    }, 1e3 );
 
-            var search = $( ".search-modal" )[0];
-            var result = $( "#jkl-results" )[0];
-            var query = $( "#query" )[0];
-
-            result.addEventListener(        
-                "click", function ( r ) {
-                    videoApp.playVideo( 
-                        r.target.id.split("-")[0], false
-                    );
-                }        
-            );
-            
-            query.onclick = function () {        
-                search.style.display = "block";
-                var h = bodySize(0.10).h;
-                getvalues( 
-                    search.querySelector( ".search-modal-body" ).childNodes 
-                ).map( e => e.style.height = h );
-            };
-
-            getvalues( search.querySelectorAll( "span.search-close" ) ).map(
-                q => q.onclick = function () { 
-                    search.style.display = "none";
-                }
-            );
-
-            window.onclick = function ( event ) {
-                if ( event.target == search ) {
-                    search.style.display = "none";
-                };
-            };
-
-            var Config = {
-                searchInput: query,
-                resultsContainer: result,
-                json: [],
-                searchResultTemplate: `
-                    <li id='{index}' class='button card-content bg-darkTeal bg-dark-hover fg-light'>
-                        <img id='{index}-image' class='avatar' src='{image}'>
-                        <span id='{index}-title' class='label'>{title}</span>
-                        <span id='{index}-duration' class='second-label'>{duration}</span>
-                    </li>
-                `,
-                noResultsText: `
-                    <li class='button card-content bg-darkTeal bg-dark-hover fg-light'>Video Not Found</li>
-                `
-            };
-        
-            function addData ( data ) {
-                Config.json = [ ...Config.json, ...data ];
-            };
-        
-            function initSearch () {
-                SimpleJekyllSearch( Config );
-            };
-
-            addData ( videoApp.videolist );
-            initSearch();
-
-        }
-    );
-
-});
+} );

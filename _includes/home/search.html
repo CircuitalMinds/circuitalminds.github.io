@@ -1,4 +1,4 @@
-<div class="search">
+<div class="search" style="left: 5%; right: 5%;">
 <div class="search-box">
     <i class="search-close-button ion ion-ios-close"></i>
     <label for="js-search-input" class="screen-reader-text"></label>
@@ -9,33 +9,45 @@
 </div>
 </div>
 <script>
+function geturl () { console.log('{{ site.url }}') };
 
 $( function () {
 
-    var dataset = [];
+    var sn, vn, v;
+
+    Http( '{{ site.static_url }}/data/videos' ).getjson(
+        "dataset.json", function ( data ) { vn = data }
+    );
     
-    function add ( data ) {
-        for ( i of data ) { 
-            dataset.push(i);
-        };
-    };
+    Http( '{{ site.url }}' ).getjson( 
+        "search.json", function ( data ) { sn = data } 
+    );    
 
-    fromStatic ( "data/videos" ).getjson( "dataset.json", add );
-    Http( '{{ site.url }}' ).getjson( 'search.json', add );
-
-    setTimeout( function () {        
-        SimpleJekyllSearch({
-            "noResultsText": "<li class='search-no-item'>No results found</li>",
-            "searchInput": $( "#js-search-input" )[0],
-            "resultsContainer": $( "#js-results-container" )[0],
-            "searchResultTemplate": `            
-                <li class="search-item bg-cover" style="background-image: url( '{image}' );">
-                <a class="search-link" href="{url}"><p class="tag">{title}<p></a>
-                </li>            
-            `,
-            "json": dataset
-        });
-    }, 1e3 );
+    ( function loop() {
+        setTimeout( function () {        
+            if ( sn != undefined && vn != undefined ) {
+                for ( v of vn ) {
+                    if ( v.title == "" ) {
+                        v.title = v.url.split("main/videos/")[1].split(".mp4")[0];
+                        v.title = v.title.replace( v.title.slice(-12), "" );
+                    };
+                };
+                SimpleJekyllSearch({
+                    "noResultsText": "<li class='search-no-item'>No results found</li>",
+                    "searchInput": $( "#js-search-input" )[0],
+                    "resultsContainer": $( "#js-results-container" )[0],
+                    "searchResultTemplate": [
+                        '<li class="search-item bg-cover" style="background-image: url( {image} );">',
+                        '<a class="search-link" href="{url}"><p>{title}</p></a>',
+                        '</li>'
+                    ].join(""),
+                    "json": [ ...sn, ...vn ].sort()
+                });
+            } else {
+                loop();
+            };
+        }, 1e3 );
+    } )();
 
 } );
 </script>

@@ -1,60 +1,76 @@
 {% assign panel = include.panel %}
 <div class="w3-panel">
 
-<form class="cell-md-3" action="{{ site.url }}:8080/drive/videos/" method=post enctype=multipart/form-data>
+<form id="upload-form" 
+      class="cell-md-3"
+      method=post 
+      action="{{ site.url }}:8080/api/drive/"
+      enctype=multipart/form-data
+>
     <input type="file" data-role="file" data-mode="drop" multiple="true"
            data-on-select="$('#selected-files').html('');
            $('#data-list')[0].innerHTML = '';
            $.each(arguments[0], function(){
            $('#selected-files').append('&lt;div&gt;'+this.name+'&lt;/div&gt;');
            $('#data-list')[0].innerHTML += '<p>'+this.name+'</p>\n';
-        });" name="files[]"/>
+        });" name="files"/>
         <div class="bg-light p-2 overflow reduce-1" id="selected-files" style="height: 270px;"></div>
         <label class="fg-dark">Selected Files</label><div id="data-list" class="fg-dark"></div>
+    <input type=text name="folder" placeholder="to folder" value="">
     <input type=submit value=Upload>
 </form>
 
 <div class="w3-row-padding w3-margin-bottom">
-  <div class="w3-quarter">
-    <div class="w3-container w3-hover-cyan w3-hover-text-red w3-red w3-text-cyan w3-padding-16">
-      <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-      <div class="w3-right">
-        <h3><span class="{{ app.folder-icon }}"></span></h3>
-      </div>
-      <div class="w3-clear"></div>
-      <h4>Documents</h4>
-    </div>
-  </div>
-  <div class="w3-quarter">
-    <div class="w3-container w3-hover-cyan w3-hover-text-blue w3-blue w3-text-cyan w3-padding-16">
+  
+  {% for folder in app.folders %}
+  <div class="w3-quarter" 
+       onclick='openfolder( "{{ folder }}" );'>
+    <div class="w3-container w3-hover-gray w3-hover-text-teal w3-black w3-text-white w3-padding-16">
       <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
       <div class="w3-right">
         <h3><span class="{{ app.folder-icon }}"></span></h3>
       </div>
       <div class="w3-clear"></div>
-      <h4>Pictures</h4>
+      <h4>{{ folder }}</h4>
     </div>
+    <div id="{{ folder }}-data" data-status="closed" class="w3-twothird"></div>
   </div>
-  <div class="w3-quarter">
-    <div class="w3-container w3-hover-cyan w3-hover-text-teal w3-teal w3-text-cyan w3-padding-16">
-      <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-      <div class="w3-right">
-        <h3><span class="{{ app.folder-icon }}"></span></h3>
-      </div>
-      <div class="w3-clear"></div>
-      <h4>Videos</h4>
-    </div>
-  </div>
-  <div class="w3-quarter">
-    <div class="w3-container w3-hover-cyan w3-hover-text-orange w3-orange w3-text-cyan w3-padding-16">
-      <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-      <div class="w3-right">
-        <h3><span class="{{ app.folder-icon }}"></span></h3>
-      </div>
-      <div class="w3-clear"></div>
-      <h4>Notebooks</h4>
-    </div>
-  </div>
+  {% endfor %}
+
+  <script>        
+    var apidrive = Http( "{{ site.url }}:8080/api/drive" );
+    function openfolder ( name  ) {
+        var datafolder = $( "#" + name + "-data" )[0];        
+        if ( datafolder.dataset.status == "opened" ) {
+            if ( datafolder.style.display == "block" ) {
+                datafolder.style.display = "none";
+            } else {
+                datafolder.style.display = "block";
+            };
+        } else {
+            var datatable = [];                    
+            function adddata ( data ) {
+                for ( file of data.files ) {
+                    datatable.push([
+                        '<tr>',
+                        '<td><i class="fa fa-user w3-text-blue w3-large"></i></td>',
+                        '<td><a href="'+apidrive.url+'/'+name+'/?get-file='+file.name+'"/>' + file.name + '</a></td><td><i>10 mins</i></td>',
+                        '</tr>'
+                    ].join("\n"));
+                };
+                datafolder.innerHTML = [
+                    '<table class="w3-table w3-striped w3-white">',
+                    datatable.join("\n"),
+                    '</table>'
+                ].join("\n");
+                datafolder.dataset.status = "opened";
+                datafolder.style.display = "block";
+            };
+            apidrive.getjson( "/"+name+"/", adddata );
+        };            
+    };    
+  </script>
+  
 </div>
 
     <div class="w3-row-padding" style="margin:0 -16px">

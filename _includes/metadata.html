@@ -1,11 +1,10 @@
 {% for item in site.data.meta %}
-    {% if item.name %}
-    <meta name="{{ item.name }}" content="{{ item.content }}"/>
-    {% else %}
-    <meta property="{{ item.property }}" content="{{ item.content }}"/>
-    {% endif %}
+{% if item.name %}
+<meta name="{{ item.name }}" content="{{ item.content }}"/>
+{% else %}
+<meta property="{{ item.property }}" content="{{ item.content }}"/>
+{% endif %}
 {% endfor %}
-
 <!-- Title, description, author -->
 {%- capture _page_title -%}
   {%- if page.title -%}{{- page.title | append: ' | ' -}}{%- endif -%}
@@ -14,10 +13,8 @@
 {%- endcapture -%}
 {%- assign _page_title = _page_title | escape -%}
 {%- assign _page_description = page.description | default: site.description | default: _page_title | escape -%}
-
 <!-- open_graph -->
 {% if page.image %}
-
 {% if page.layout == 'application' %}
 {% assign rpath = 'app' %}{% else %}{% assign rpath = page.layout %}
 {% endif %}
@@ -34,5 +31,4 @@
 <meta property="og:url"
       content="{{ site.logo }}"
 />
-
 {% endif %}

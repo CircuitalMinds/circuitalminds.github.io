@@ -1,16 +1,14 @@
 #!/bin/bash
 
 
-allow_push=$( python3 -m main get allow-push )
+allow_push=true
 user=alanmatzumiya
 repo=CircuitalMinds/circuitalminds.github.io.git
 
-if $allow_push; then
+if $allow_push; then 
 
-  python3 -m main set allow-push false
+    git add .
+    git commit -m "autocommit"
+    git push https://$user:"$( head "$HOME"/secret )"@github.com/$repo  
 
-  git add .
-  git commit -m "autocommit"
-  git push https://$user:"$( head "$HOME"/secret )"@github.com/$repo
-  
 fi

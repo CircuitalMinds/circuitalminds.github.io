@@ -8,9 +8,7 @@
 <title>{{ page.title }} | {{ site.title }}</title>
 </head>
 <body class="loader-background">
-{% if site.google-analytics %}{% include resource/google-analytics.html %}{% endif %}
-
+    {% include resource/google-analytics.html %}
     {{ content }}
-
 </body>
 </html>

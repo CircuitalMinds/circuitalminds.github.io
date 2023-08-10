@@ -4,7 +4,7 @@ from os import system
 base_path = Path(__file__).parent
 home_path = Path.home()
 host = dict(
-    name=getoutput("hostname -I").strip()
+    name=getoutput("hostname -I").split()[-1]
 )
 host["url"] = f"http://{host['name']}"
 

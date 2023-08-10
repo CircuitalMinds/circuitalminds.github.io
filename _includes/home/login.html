@@ -26,7 +26,27 @@
 <script>
 
 $( function () { 
-	createLogin( "login-data", "login-button" ) 
+	
+	var login = tquery( "id", "login-data" );
+	
+	$( "#login-button" )[0].onclick = function() {
+    	$( ".menu-close" )[0].click();
+    	login.show();
+	};
+	
+    var closeBtns = $( "#login-data span.close" );
+	for ( var n = 0; n < closeBtns.length; n++ ) {
+		closeBtns[n].onclick = function () { 
+			login.hide() 
+		};
+	};
+
+    window.onclick = function( event ) {
+		if ( event.target == login ) {
+			login.hide();
+		};
+	};	
+
 });
 
 function login ( form ) {
@@ -36,9 +56,7 @@ function login ( form ) {
         password: form.querySelector( 'input[name="password"]' ).value
     };
 
-    Http( 
-        '{{ site.api_url }}' 
-    ).post( 
+    Http( '{{ site.api_url }}' ).post(
         '/login/', req,
         function ( res ) {
             var msg = $( "#response-message" )[0];

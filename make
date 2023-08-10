@@ -2,6 +2,7 @@
 
 
 Option=$1
+clear
 
 function Install () {
     
@@ -21,8 +22,8 @@ function Install () {
 
 function Serve () {
 
-    Host=$( hostname -I )
-    Port="8080"
+    Host=$( hostname -I | awk '{print $1}' )
+    Port="8000"
     Login=$( head $HOME/login )
     echo "$Login" | sudo -S bundle exec jekyll serve -l -o -H [ --host $Host --port $Port ]
     
@@ -31,7 +32,7 @@ function Serve () {
 function Build () {    
 
     Login=$( head $HOME/login )
-    echo "$Login" | sudo -S bundle exec jekyll build JEKYLL_ENV=development -w -d /var/www/circuitalminds
+    echo "$Login" | sudo -S bundle exec jekyll build --trace --incremental JEKYLL_ENV=development -w -d /var/www/circuitalminds
     
 }
 
