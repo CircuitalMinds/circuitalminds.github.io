@@ -1,7 +1,8 @@
-*.env
+*venv
 *.idea
 *__pycache__
 *sass-cache
-*jekyll-cache
-*_site
-*conf
+.jekyll-cache
+.jekyll-metadata
+_site
+conf

@@ -1,5 +1,5 @@
 from sys import argv
-from utils import run_script, base_path, host
+from utils import run_script, base_path, host, setenv
 
 
 def config_update(mode="development"):
@@ -16,11 +16,12 @@ def config_update(mode="development"):
 
 
 class Main:
-    opts = ["serve", "build", "push"]
+    opts = ["serve", "build", "update"]
 
     @staticmethod
-    def push():
+    def update():
         config_update(mode="production")
+        setenv("allow-push", "true")
         run_script("push")
 
     @staticmethod
@@ -34,8 +35,8 @@ class Main:
         run_script("make", "build")
 
 
-if __name__ == "__main__":
-    config_update(mode="development")
+if __name__ == "__main__":    
+    config_update(mode="development")    
     opt = argv[1] if len(argv) > 1 else None
     if opt in Main.opts:
         getattr(Main, opt)()

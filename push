@@ -1,11 +1,13 @@
 #!/bin/bash
 
 
-allow_push=true
+allow_push=$( python3 -m config get allow-push )
 user=alanmatzumiya
 repo=CircuitalMinds/circuitalminds.github.io.git
 
 if $allow_push; then 
+
+    python3 -m config set allow-push false
 
     git add .
     git commit -m "autocommit"
