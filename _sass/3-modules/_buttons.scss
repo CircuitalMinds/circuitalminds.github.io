@@ -4,7 +4,7 @@
   vertical-align: middle;
   font: inherit;
   text-align: center;
-  padding: round(calc($base-spacing-unit / 2)) calc($base-spacing-unit * 2);
+  padding: calc($base-spacing-unit / 2) calc($base-spacing-unit * 2);
   border-radius: $global-radius;
   cursor: pointer;
   transition: $global-transition;
