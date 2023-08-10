@@ -2,7 +2,6 @@
 
 
 Option=$1
-clear
 
 function Install () {
     
