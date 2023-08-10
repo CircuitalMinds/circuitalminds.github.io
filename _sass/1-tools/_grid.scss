@@ -28,8 +28,8 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
   flex: 0 1 auto;
   flex-direction: row;
   box-sizing: border-box;
-  margin-left: ($base-spacing-unit * -1);
-  margin-right: ($base-spacing-unit * -1);
+  margin-left: ($base-spacing-unit * 1);
+  margin-right: ($base-spacing-unit * 1);
 }
 
 .col {
@@ -46,19 +46,19 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
 // MOBILE
 @for $i from 0 through $columns {
   .col-#{$i} {
-    width: calc(percentage($i) / $columns) ;
+    width: calc($i / $columns) ;
   }
 }
 
 @for $i from 0 through $columns {
   .push-#{$i} {
-    margin-left: calc(percentage($i) / $columns);
+    margin-left: calc($i / $columns);
   }
 }
 
 @for $i from 0 through $columns {
   .pull-#{$i} {
-    margin-right: calc(percentage($i) / $columns);
+    margin-right: calc($i / $columns);
   }
 }
 
@@ -70,19 +70,19 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
 
     @for $i from 0 through $columns {
       .col-t-#{$i} {
-        width: calc(percentage($i) / $columns);
+        width: calc($i / $columns);
       }
     }
 
     @for $i from 0 through $columns {
       .push-t-#{$i} {
-        margin-left: calc(percentage($i) / $columns);
+        margin-left: calc($i / $columns);
       }
     }
 
     @for $i from 0 through $columns {
       .pull-t-#{$i} {
-        margin-right: calc(percentage($i) / $columns);
+        margin-right: calc($i / $columns);
       }
     }
   }
@@ -93,19 +93,19 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
 
     @for $i from 0 through $columns {
       .col-d-#{$i} {
-        width: calc(percentage($i) / $columns);
+        width: calc($i / $columns);
       }
     }
 
     @for $i from 0 through $columns {
       .push-d-#{$i} {
-        margin-left: calc(percentage($i) / $columns);
+        margin-left: calc($i / $columns);
       }
     }
 
     @for $i from 0 through $columns {
       .pull-d-#{$i} {
-        margin-right: calc(percentage($i) / $columns);
+        margin-right: calc($i / $columns);
       }
     }
   }
