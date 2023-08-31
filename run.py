@@ -1,5 +1,15 @@
 from sys import argv
 from utils import run_script, base_path, host, setenv
+from time import sleep
+import webbrowser as browser
+from multiprocessing import Pool
+global procs
+procs = []
+
+
+def open_page():
+    sleep(3)
+    browser.open(host["url"])
 
 
 def config_update(mode="development"):
@@ -13,6 +23,10 @@ def config_update(mode="development"):
         )
     elif mode == "production":
         file.open("w").write(fpath.open().read())
+
+
+def run(proc):
+    proc()
 
 
 class Main:
@@ -39,4 +53,10 @@ if __name__ == "__main__":
     config_update(mode="development")    
     opt = argv[1] if len(argv) > 1 else None
     if opt in Main.opts:
-        getattr(Main, opt)()
+        procs.append(getattr(Main, opt))
+        try:
+            with Pool(len(procs)) as p:
+                p.map(run, procs)        
+        except KeyboardInterrupt as err:
+            print(err)
+            
